@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>滨田英明 (Hideaki Hamada) · Portfolio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;overflow:hidden;height:100vh;width:100vw;user-select:none;-webkit-user-select:none;cursor:pointer;}
+#main-image{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+#main-image img{max-width:98vw;max-height:92vh;object-fit:contain;transition:opacity .25s;}
+#counter{position:fixed;top:24px;left:50%;transform:translateX(-50%);font-size:14px;color:rgba(255,255,255,.5);z-index:10;letter-spacing:2px;}
+#filmstrip{position:fixed;bottom:0;left:0;right:0;height:80px;background:rgba(0,0,0,.85);display:flex;align-items:center;gap:4px;padding:0 16px;overflow-x:auto;z-index:10;scrollbar-width:none;}
+#filmstrip::-webkit-scrollbar{display:none;}
+#filmstrip .thumb{height:56px;min-width:56px;flex-shrink:0;border-radius:2px;overflow:hidden;cursor:pointer;opacity:.35;transition:opacity .2s,transform .2s;border:2px solid transparent;}
+#filmstrip .thumb:hover{opacity:.65;transform:translateY(-2px);}
+#filmstrip .thumb.active{opacity:1;border-color:#fff;transform:translateY(-4px);}
+#filmstrip .thumb img{width:100%;height:100%;object-fit:cover;}
+.nav-btn{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border:none;background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);font-size:20px;cursor:pointer;border-radius:50%;z-index:10;transition:background .2s;}
+.nav-btn:hover{background:rgba(255,255,255,.15);}
+#prev{left:20px;}#next{right:20px;}
+#loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:100;background:#000;transition:opacity .5s;}
+#loading.hidden{opacity:0;pointer-events:none;}
+.loader{width:32px;height:32px;border:2px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+#home-btn{position:fixed;top:20px;left:20px;z-index:20;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);padding:6px 14px;font-size:13px;cursor:pointer;border-radius:4px;letter-spacing:1px;transition:background .2s;text-decoration:none;display:inline-block;}
+#home-btn:hover{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);}
+#bio-btn{position:fixed;top:20px;right:20px;z-index:20;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);padding:6px 14px;font-size:13px;cursor:pointer;border-radius:4px;letter-spacing:1px;transition:background .2s;}
+#bio-btn:hover{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);}
+#bio-panel{position:fixed;top:0;right:-420px;width:400px;height:100vh;background:rgba(20,20,20,.97);z-index:30;transition:right .4s;padding:60px 32px 32px;overflow-y:auto;border-left:1px solid rgba(255,255,255,.08);}
+#bio-panel.open{right:0;}
+#bio-panel h2{font-size:24px;font-weight:300;letter-spacing:3px;margin-bottom:8px;}
+#bio-panel .sub{color:rgba(255,255,255,.35);font-size:13px;letter-spacing:1px;margin-bottom:24px;}
+#bio-panel p{font-size:14px;line-height:1.8;color:rgba(255,255,255,.7);margin-bottom:16px;}
+#bio-panel .close-bio{position:absolute;top:20px;right:20px;background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;}
+</style>
+</head>
+<body>
+<div id="loading"><div class="loader"></div></div>
+<a href="../index.html" id="home-btn">← 画廊</a>
+<button id="bio-btn">传记</button>
+<div id="counter"></div>
+<div id="main-image"><img src="" id="display-img" alt=""></div>
+<button class="nav-btn" id="prev">←</button>
+<button class="nav-btn" id="next">→</button>
+<div id="filmstrip"></div>
+<div id="bio-panel">
+  <button class="close-bio">✕</button>
+  <h2>滨田英明 (Hideaki Hamada)</h2>
+  <div class="sub">1977– · 日本</div>
+<p>滨田英明是日本当代最受欢迎的摄影师之一。他的照片有一种让人安静下来的能力——不是那种用力过猛的美，是一种日常的、几乎不经意的温柔。</p>
+<p>滨田英明 1977 年出生于大阪，早期拍自己的两个儿子 Haru 和 Mina 长大——那些照片在网络上火了之后，他一跃成为日本最炙手可热的胶片摄影师。他的照片是 6×6 的中画幅，色调偏蓝绿、曝光偏亮、看起来像隔着一层薄薄的阳光。</p>
+<p>他拍家庭、拍日常、拍那些没人觉得值得拍的瞬间——孩子从滑梯上滑下来、微风吹动窗帘、一杯冰咖啡。这些照片之所以打动人，不是因为技术有多好——是因为滨田英明真心喜欢他所拍摄的每一个平凡时刻。</p>
+<p>他说：'我想拍的照片，是多年以后看还会微笑的照片。'——他做到了。</p>
+</div>
+<script>
+var images = ["00b3faa327a70407a0db38c3d6143ef5.jpg", "01186cb4448e6e2c44e808caa92a9d91.jpg", "0138c37285302cd886e779ece2750020.jpg", "01868cf9dea7124b57e50d201d0d0afe.jpg", "02a1b170c739b8444532cdb5c76970ed.jpg", "030a8530f9f8a6df4d680c1943aa06c0.jpg", "04d764df726677404f143f9f49b00fb9.jpg", "04dccacba2a698f9e1a970dc6ef0cfa0.jpg", "06a0a29a427bbe1c6eb375d2fe09ff23.jpg", "07df71da6c83b3d07a2137240bb8efef.jpg", "0805acfe03066c8aefd753526266369c.jpg", "0bf6f42d85eb03fd0982f520a4c287fd.jpg", "0cda81c9ee98fcec01d260625920c784.jpg", "0ddc2a95b42a57376fe64b6fb8ef7b20.jpg", "0e874fd8a644679f5fb0108cf804aef9.jpg", "113d328fe85b66b9b4eb97835eb66833.jpg", "11c43739a8a4fcfc1dc497791f5b99d7.jpg", "128e32a16fee401989f22041d4627011.jpg", "13a4cb1cfbe2fb05e0ed8791859f48c7.jpg", "1499aa514bcd1ce29105a89c01c04d4b.jpg", "15136b2fd3a6ad7a3283b336cf4cae39.jpg", "164c674f982106bcac166a1b46cd3e1b.jpg", "167d7082c5742d2eb49b3385678b5ddd.jpg", "1a19a70931ca421d9f64fa6ed8bfcfc0.jpg", "1a1e2dec3b1157ae47d629a767f651da.jpg", "1a57ea15b02e17af7664bcdd9714150c.jpg", "1a84801fdf0abc2fb95b28ed6e35a29c.jpg", "1ce3ddb1bd68b9ba1a427e95db68add0.jpg", "2059cc13d10bdee6f49509af0cb84126.jpg", "210a953f0efeb9362ba3eff788ab5188.jpg", "217d3efc9785620e8e539cc182aee142.jpg", "21a0e642f3ab6c0af2ac34c145ab50f3.png", "2251a8ff1f4d82f98c074ec82d7bf6fc.jpg", "24161ca7bb7d57776fe5a3ddd28c4a28.jpg", "2474f5f5a65faa2fce31659334631aa1.jpg", "248a99eeb741db4afb47e00125cb29e4.jpg", "24a7d1f87e56c4a3b544b101b63d25fa.jpg", "27eb52c941152335580d786fa9a815c0.jpg", "2b36af294248808da8f08e5d18c230ba.jpg", "2e93efd2940efca463b4e13fc4944a80.jpg", "2f9fcd632fe3c30917aa00c9d659781b.jpg", "2fc1bca730dc4639b8ad115ee612f03f.jpg", "304f9d9cfe6a2154edb2fca2218a24d1.jpg", "320c407c4dac4f1bd1931ff836574f55.jpg", "32d252e3e9035a04ea9f47c8ca6428e1.jpg", "33856cb2c6e058ff2498a190b7208011.jpg", "3427c58c4c7bfc36cf21151c6f2875b6.jpg", "359bcbf8833990fe575afbd193e9b4d2.jpg", "35adc2e81129e07abae805a7337da62b.jpg", "37eefc32aaa384861dec5a061405ada8.jpg", "3949022673955b2a84dc51f9a70c73fd.jpg", "3b24bba83cc555baae91ef8385764c85.jpg", "3b74eeb10c23d92d2aea94d79f9f1f77.jpg", "3e101dbc5c020c1cc4a611fdd189b6ca.jpg", "3e558af7251f2bb42d6dbe925e0e84f8.jpg", "3ec42dd0b2b1ec22a7d11853a72a96ab.jpg", "3f4597968acaca3dc47c8f2a2ff2d991.jpg", "41447a1a4f6ccdced087136caf05309c.jpg", "417943a109d491dc2699d009c4c8e15e.png", "41a229598f1890c3d69aba0c38f12a54.jpg", "42715b2effff403cc1ece813435c6b7f.jpg", "43f8808d74d52c0573b5ee1c12ecac18.jpg", "4522c2ca14c4722409c4e03404140cda.jpg", "45ac905f70730a6de1b18d321203ded6.jpg", "467ed85dd240c71bf0b08357641df5e0.jpg", "49c70f83dabeda6f9be2f12ee58d104a.jpg", "4d29c4dfb13638916a90826a33d5ef31.jpg", "4deb0c46044c5be50ffb5d01aadda51c.jpg", "4eaaaff713949d9335fe5a123311b653.jpg", "4fc362d9036a5f7766f5a828215fb160.jpg", "52b79b9264b0e22e807a57f35826f440.jpg", "58dc20a0159c933da8bbf7c390f78729.jpg", "58fefcc8bb1e42f2bd533463037ce504.jpg", "5a281e21fe45d72e818586819861b413.jpg", "5b10f4558ec308d516d1346220d5720a.jpg", "5be7a14972f86fc3f347780626211d09.jpg", "5c639908a0abb33ba6a18851f6117e0f.jpg", "5cd56357a472777c75a9bb5215b91fb9.jpg", "5ee91ac71f8fb7f0a0dc7d1e6d17d165.jpg", "5f36d069db057d426a66020beb5e541f.jpg", "6095673cddc69ef122a3830cf82630e4.jpg", "6227376458c8b87a6e10e150b547a56b.jpg", "6311b892f712d1a1d93830de5e8ada5e.jpg", "635af3df30bc07a3b0c78e091f481aa0.jpg", "642e051d48a53fa375148f907dba88fd.jpg", "657f59e8ceb3bc21ae1646d2c5e4ea12.jpg", "65c736b3d1d9c1106aa75d7a25a8b27d.jpg", "668c6351c819bb84c5eb0d6826ed6ca2.jpg", "6b6dd338b47cd8e2a4b10184a3c4ee1d.jpg", "6ba2cbbffbc880ae13cac41e61d6aff3.jpg", "6bf2a8ebcd38d1d292abc7217c9837fe.jpg", "6fd5088e101513642f823995a00676a2.jpg", "707c17a605c6bb4cca35caa81f1acab0.jpg", "70e5ab92a13319214031e5590f3f566e.jpg", "71836366c2c91702b247e6dbcecef2da.jpg", "730889c5ab9605cd0e9d0a3d067a4c02.jpg", "73bf1c86487453eb5d183f20fb4d2770.jpg", "755d9adfd0b4d75bbfaecfe0ce19d553.jpg", "7587bc8990bea4f9927b0f6587ad87d1.jpg", "7691b4c893a849fb543df2b6190a6432.jpg", "778595f32c846f2c62934b7d801b447e.jpg", "7b1af1dc020b2b48a76814134744b567.jpg", "7c2c6f2094f94ee09aacd649a3bf9fb9.jpg", "7c7debcbdf76270b94261c2fa1312315.jpg", "7ca812b2eca070b104dcabf0ad017bee.jpg", "7f265ac8491394ebfb3507ba5c60cdf7.jpg", "80b5fafc44bdc3b1973f790cf556bcc9.jpg", "84ed08e958f93073afa6baf92c22a71c.jpg", "84f250cd91230461394c3829fbe4c08a.jpg", "85ce76b337192298bbb19dcc5e049edf.jpg", "86d83fe76e6de6a186fb2de94f2d487b.jpg", "871251a7d0b23c9583ec83a72dec5eb0.jpg", "8776c721efb81f860c335135ccdf35fc.jpg", "893f71d3799f55d05dcec1fc260b6068.jpg", "8b9b217ca0841991a5ddc0289509c324.jpg", "8cae8af99c7114b922ee07ae919ff37a.jpg", "8cddec92a3f67d7cab98f4031ce2fe61.jpg", "8cf1ffe5e5eb99d3ca623326c5ab20e4.jpg", "8ed7cd4576c790027fb692d1ef1f204d.jpg", "8f86d90345e74f562504ff52e4721a6c.jpg", "914b57a5519a9bda2e31f68b0b9ebfcd.jpg", "921972364afd0cf806aa7c5ddcab1be3.jpg", "92a5c942b9dc0ae5c6b10e3e65d134cd.jpg", "9434913e40caa4fa2be65dc4744dd1f8.jpg", "9463d9c072e00f06f407979df9d8d4cb.jpg", "956591d7197212c1845ae28728018e75.jpg", "98ceaa4d1dcd931c0e75f3662af6f134.jpg", "9addf15d8ab574a73fc7425b687a2679.jpg", "9cee2040a00ef705d033d090ac5743b7.jpg", "9d780afdb676d72c1e4c0229ee9f51d5.jpg", "9d838dbfbae46a48b094eab33a5e7c75.jpg", "9ff9a2f44e1241f8a2f73df7bed6f047.jpg", "a0ccc70f04a4cf60e6d980f5c6badcef.jpg", "a7b836f6b6bfabbf0783e7663b165998.jpg", "a7c758f26b786ad32d2f521272426a53.jpg", "a8a6d39614288a4008720abb0bf83b39.jpg", "aa8de0e3d8a6eea495b402b3c0d68d9e.jpg", "ace41db2d4d15336854e93e656b0f810.jpg", "b06afe7e4a2f195f77393fbc52d1abfe.jpg", "b22db50c2b8bfa7707ab49be5a75a401.jpg", "b2c473a9fb2c335481c810a8b0e551c5.jpg", "b2cf237d3d527e5d14c0b035fb666d67.jpg", "b323731dd0f041dc6a186bfba72c38ae.png", "b3c5634ad41b96bc04a61e6d5070f87c.jpg", "b7c63eb362d296a9292c95363bbed222.jpg", "b802a755c8677ae997d8ba8a6c05db61.jpg", "b97eda26c03dfe4e79b5a2e99bb34a30.jpg", "back-number-01.jpg", "bd050f5b4febb0985ce78ba33bca6f1c.jpg", "bdf943bdd018e7d586b35c1a723d8da6.jpg", "bf5242dee70f9d2b18f4fe6298852e73.jpg", "c04549640485844ecd10f122f2cbf947.jpg", "c20cdb91409a8809fe33d0319289dcab.jpg", "c21f39ca78786be463f0bd0a4c1efabd.jpg", "c30aa8a8db7b187617330999541585c5.jpg", "c3dfda73a82bc87c60f2953896adf227.jpg", "c462efd35f62f537875e412da7455024.jpg", "c513137b3ed9b667558c09f2c079e53e.jpg", "c9e1de321ecc7f886cf796c9459b1715.jpg", "ca260dba64f61acbd02c5ccc12d5a402.jpg", "cc4d10f25a2196134749afc27416b2b0.jpg", "cc556c5070b33eba794e566d51b2514e.jpg", "cebb98b2cc2406328e8978b0c7a64362.jpg", "cfd831350c366cdee476b49025dadd94.jpg", "d0a18f033b3616aeb0d65b28ebf27a83.jpg", "d12910b5087ae492f07959b8de686e45.jpg", "d2a6d60e36154cd15aa37f14bae93a7d.jpg", "d30a6dc70097942d96879a40bdf1f376.jpg", "d4359c7d9cd0ed60fbcec60b26d1daee.jpg", "d4f6bf31c99363ce5331f33b98429834.jpg", "d6c534cbe6b6f0fc9683e06eeafb8ac4.jpg", "d91b2bdc7edb951125150b3f1382e929.jpg", "d963de826886cd16c80b787bbdb1897a.jpg", "d9853071fe88af18fafa77753dd25367.jpg", "da2b95ff9d8437ce34277575c619b665.jpg", "da2d8d394b0ff2fa16beef77e296fe29.jpg", "daae7e64a229acbe51e8c957d0accc12.jpg", "db8ca3818c64c01da352a9dfc0e82d7e.jpg", "dbc3f344b5e8b27bf197a91a564f7da5.jpg", "dbe92a9951e160ebd0253d1d28566d4d.jpg", "dc71cb39fec2c213b4c4acd30532b607.jpg", "dd17266d2bd7e79dec677e6186586aaa.jpg", "docomo-01.jpg", "domonhorn-01.jpg", "e2f5e306e65b68e2a184fc2a5d4604fb.jpg", "e36daba208b48b94a58aec847c0424bf.jpg", "e3d2186599525109abde9550b31ed48b.jpg", "e4a995e1596d626f71d81809823d39f3.jpg", "e6314977593ee2458afb5e15ee88c70f.jpg", "e826ec0d9e5757c605d22e4481597046.jpg", "e830681a242a6f50754218271f26dd75.jpg", "early-morning-01.jpg", "eb0612769ad8e624d432058237d119d8.jpg", "ec0e020a8400bfd8e6c900d1bb2f469e.jpg", "ef25dad400e984e15ba6f5fe699ed553.jpg", "ef54c6b3ba7be6fae38d132e8f178b26.jpg", "efee438c55b860efa7e335c12640ae33.jpg", "f0a0cab5cec1145497bb90c25776269f.jpg", "f1aa77d830e3b5dd5c8a22c323eff693.jpg", "f23a1e8025e68230d2bb76e30c88dc4a.jpg", "f2b40ca55c7e9860ca7f0c4ad46e91ae.jpg", "f47685dc84fcb42d5963810ec771d911.jpg", "f618b078289a0c66739a12e3d1e3cfb2.jpg", "f68abdff9695f15d09732d06533c1efa.jpg", "fb9a26c079f57e5005d4765b7319fec0.jpg", "fc474cb34845cf4024f0f1b9e9bded76.jpg", "fce0e456fd83db0a144507df0f7837fc.jpg", "fde7777dd3ee3ccf38356a1e70254bfd.jpg", "feea010a8e38da22c1c38f8e3bd94d45.jpg", "ff08f5f1efacbfc372910c83621895e9.jpg", "ff86eb8e055ec4ae444a87ea80979650.jpg", "ffd196c25d0b31535490c2f5ff9ec562.jpg", "haru-mina-01.jpg", "haru-mina-02.jpg", "haru-mina-04.jpg", "haru-mina-06.jpg", "haru-mina-07.jpg", "imase-01.jpg", "innocent-world-01.jpg", "let-it-snow-01.jpg"];
+var i=0,d=document.getElementById('display-img'),c=document.getElementById('counter'),f=document.getElementById('filmstrip'),l=document.getElementById('loading');
+function u(idx){idx=(idx+images.length)%images.length;i=idx;l.classList.remove('hidden');
+var img=new Image();img.onload=function(){d.src='images/'+images[idx];l.classList.add('hidden');uf();};
+img.onerror=function(){d.src='images/'+images[idx];l.classList.add('hidden');};img.src='images/'+images[idx];
+c.textContent=(idx+1)+' / '+images.length;}
+function uf(){f.innerHTML='';images.forEach(function(fn,idx){var div=document.createElement('div');div.className='thumb'+(idx===i?' active':'');var img=document.createElement('img');img.src='images/'+fn;div.appendChild(img);div.onclick=function(){u(idx);};f.appendChild(div);});
+var a=f.querySelector('.active');if(a)a.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});}
+u(0);
+document.body.onclick=function(e){if(e.target.closest('#filmstrip,#home-btn,.nav-btn,#bio-panel,#bio-btn'))return;u(i+1);};
+document.getElementById('prev').onclick=function(e){e.stopPropagation();u(i-1);};
+document.getElementById('next').onclick=function(e){e.stopPropagation();u(i+1);};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();u(i+1);}if(e.key==='ArrowLeft'){e.preventDefault();u(i-1);}});
+document.getElementById('bio-btn').onclick=function(e){e.stopPropagation();document.getElementById('bio-panel').classList.toggle('open');};
+document.querySelector('.close-bio').onclick=function(e){e.stopPropagation();document.getElementById('bio-panel').classList.remove('open');};
+</script>
+</body>
+</html>

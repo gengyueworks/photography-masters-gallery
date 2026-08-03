@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Helmut Newton · Portfolio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;overflow:hidden;height:100vh;width:100vw;user-select:none;-webkit-user-select:none;cursor:pointer;}
+#main-image{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+#main-image img{max-width:98vw;max-height:92vh;object-fit:contain;transition:opacity .25s;}
+#counter{position:fixed;top:24px;left:50%;transform:translateX(-50%);font-size:14px;color:rgba(255,255,255,.5);z-index:10;letter-spacing:2px;}
+#filmstrip{position:fixed;bottom:0;left:0;right:0;height:80px;background:rgba(0,0,0,.85);display:flex;align-items:center;gap:4px;padding:0 16px;overflow-x:auto;z-index:10;scrollbar-width:none;}
+#filmstrip::-webkit-scrollbar{display:none;}
+#filmstrip .thumb{height:56px;min-width:56px;flex-shrink:0;border-radius:2px;overflow:hidden;cursor:pointer;opacity:.35;transition:opacity .2s,transform .2s;border:2px solid transparent;}
+#filmstrip .thumb:hover{opacity:.65;transform:translateY(-2px);}
+#filmstrip .thumb.active{opacity:1;border-color:#fff;transform:translateY(-4px);}
+#filmstrip .thumb img{width:100%;height:100%;object-fit:cover;}
+.nav-btn{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border:none;background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);font-size:20px;cursor:pointer;border-radius:50%;z-index:10;transition:background .2s;}
+.nav-btn:hover{background:rgba(255,255,255,.15);}
+#prev{left:20px;}#next{right:20px;}
+#loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:100;background:#000;transition:opacity .5s;}
+#loading.hidden{opacity:0;pointer-events:none;}
+.loader{width:32px;height:32px;border:2px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+#home-btn{position:fixed;top:20px;left:20px;z-index:20;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);padding:6px 14px;font-size:13px;cursor:pointer;border-radius:4px;letter-spacing:1px;transition:background .2s;text-decoration:none;display:inline-block;}
+#home-btn:hover{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);}
+#bio-btn{position:fixed;top:20px;right:20px;z-index:20;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);padding:6px 14px;font-size:13px;cursor:pointer;border-radius:4px;letter-spacing:1px;transition:background .2s;}
+#bio-btn:hover{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);}
+#bio-panel{position:fixed;top:0;right:-420px;width:400px;height:100vh;background:rgba(20,20,20,.97);z-index:30;transition:right .4s;padding:60px 32px 32px;overflow-y:auto;border-left:1px solid rgba(255,255,255,.08);}
+#bio-panel.open{right:0;}
+#bio-panel h2{font-size:24px;font-weight:300;letter-spacing:3px;margin-bottom:8px;}
+#bio-panel .sub{color:rgba(255,255,255,.35);font-size:13px;letter-spacing:1px;margin-bottom:24px;}
+#bio-panel p{font-size:14px;line-height:1.8;color:rgba(255,255,255,.7);margin-bottom:16px;}
+#bio-panel .close-bio{position:absolute;top:20px;right:20px;background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;}
+</style>
+</head>
+<body>
+<div id="loading"><div class="loader"></div></div>
+<a href="../index.html" id="home-btn">← 画廊</a>
+<button id="bio-btn">传记</button>
+<div id="counter"></div>
+<div id="main-image"><img src="" id="display-img" alt=""></div>
+<button class="nav-btn" id="prev">←</button>
+<button class="nav-btn" id="next">→</button>
+<div id="filmstrip"></div>
+<div id="bio-panel">
+  <button class="close-bio">✕</button>
+  <h2>Helmut Newton</h2>
+  <div class="sub">1920–2004 · 德国 / 澳大利亚</div>
+  <p>时尚摄影界的"坏小子"，用性感、权力和危险重新定义了时尚影像。Newton 出生于柏林犹太家庭，1938 年逃离纳粹德国，在澳大利亚当兵，战后在墨尔本开了自己的照相馆。1960 年代他去巴黎为《Vogue》拍摄——从此改变了时尚摄影的面貌。</p>
+<p>Newton 的照片里没有甜美柔光——女人穿着高跟鞋站在废墟里、手持雪茄的裸体女人坐在皮椅上、皮衣与锁链、游泳池边的死亡暗示。他拍摄的女性不是被观看的对象，而是掌握权力的主宰者。评论家称之为"病态"和"色情"，但 Newton 说：我拍的只是女人在她们自己宇宙中的样子。</p>
+<p>他的经典系列《Big Nudes》——那些充满建筑感的大尺幅黑白人体——影响了整个 1980 年代的视觉广告语言。他为《Playboy》《Vogue》《Elle》工作，但最著名的合作是与版画家 Alice Springs（他妻子 June Newton）——June 也拍过 Newton，那张他赤裸上身、手持相机的照片同样是经典。</p>
+<p>Newton 开车撞死在好莱坞大道上，82 岁。他的基金会至今运营，2019 年柏林 Helmut Newton 基金会举办了"Helmut Newton: In Private"展览，公开了他从不示人的私人影像。"</p>
+</div>
+<script>
+var images = ["00eab6e9867399d5bb5df42023f01c6d.jpg", "02bd88252697a2d1ca0c8de1255408a0.jpg", "0a12f1f1b344668bf38de39c0d9d0f06.jpg", "0c9b515dab1da8a61bf051ec75f8f426.jpg", "0d105db7082cf2c9fd0d4518c21d690e.jpg", "0d68bdfd7914b7845ae2a1e1ee37aa53.jpg", "0e3210629af84eb76d5ab86830ee4aa5.jpg", "0fb6d88ee5a55900bfd6a3e3be3c7b90.jpg", "106a8468b833eab0b82196b27b27ed0d.jpg", "14a49a2455a4e85fda15aae9467e9d2c.jpg", "18d528f041fc8d271936e018f4bc2a52.jpg", "1a310538e12a79fba499e22f95895017.jpg", "21b8e6486103477a322a88b477c0f3e0.jpg", "223d81c2a18e1526f77a4e9e9ad69bcb.jpg", "226762d157e578de297ea4bcf30500ce.png", "26262630ed2733fcd600f5488611ddd1.jpg", "268757d48a2f569eb39486c226a34759.jpg", "26a20b712cfdb96ba9da8a493ff4bf37.jpg", "277b5945f4ba3764199c0ed4fe98cca0.jpg", "2ee0e8e91ca16f406e477332ba94731f.jpg", "3208ecc3973db6d4a879ebd00bd6470b.jpg", "3272b2304982c2000d6c47806712814f.jpg", "35fad726f01d9136879c8d44d1922b02.jpg", "385d22fa35706c27302c476a7a00a1ac.jpg", "389bc50dc35e360cdda4a1d481b28c34.jpg", "38e45181064680f3f57a18446b5425a1.jpg", "40ded153077bddd7583dc735b2b8b105.jpg", "4608e2b72b9ed9aa6afcd67028789c34.jpg", "4f6d26dc8e8a51664acc083a6f5aaf9e.jpg", "51a0d4ff4e84c00adeb6e3958b656564.png", "5313f86259e8d2972c001b5f44f13100.jpg", "531b3f38ec2ef55fe738d854eb7bce3b.jpg", "54d660f3831eccf0d113d80eae137305.jpg", "590d81ebafd6335436b637d409ec5e9b.jpg", "595bbc535a2e0c1729f769cb9f638433.jpg", "5b640d291e42650cc0b7962ba8a5eab9.jpg", "5f09089fdb5e3845ae3aec14e88edab5.jpg", "615089642ffcd38330dc6b6023f75f35.jpg", "621edb4e5077748989d75e21a18c5915.jpg", "6beba48533bad79a39d31fe5ef7a1b70.jpg", "7297443b02218eda188c8c83c1cb4aa3.jpg", "7585fb11463c1f594de0ce26d934a87e.jpg", "7bc2abd28ea57ea2e1b66a03582bc122.jpg", "7d72a58a09195b30da610eb1343dfd3b.jpg", "7e17c9cb0b47dfc6834fac97811e05f5.jpg", "7eda24b4db9874b5a6c034b273aeed3c.jpg", "81170a7d2c9eed14ae97f10c410e997a.png", "81fa78dae0f1f78555bb561752b71f85.jpg", "822b4158c64684bd3fa93ec7f798bd25.png", "82b89064db2885bef53884ee9490ef58.jpg", "86668086c046d46fbaecc8bb4f09b8f4.jpg", "8aef3dd4419f317203e83b20edb7863d.jpg", "8bb0ccb42185d75f3b4d2cd2233169e4.jpg", "908e37a4eab1fbab65ed7d421b8ad35c.png", "91bb825770d935b9cdbd7b60515866cc.jpg", "98f6f264e1c306cc4b024619b59e4f4b.jpg", "99385589876752a6c60213ea04e64815.jpg", "9b08fb32971e5314f908419b75aa2b79.jpg", "9f286b95754dfe8a4d9cc0745444cafa.jpg", "a655f6367113ae167ac6d51f675060cf.jpg", "a6e94e53400a437203bc5fad95066bd2.jpg", "aa2910acadfba8350617dde1c4a76df6.jpg", "acdfe2340b06bd51432e50f46eb16678.jpg", "b040d15e2ba8eff17475e0c96a270878.jpg", "b3c97368555374f3d99398d8f4cc5104.jpg", "b5cee791dac6dcfadd3b488cacbd37f8.jpg", "b9d19c028c4135c61e92f86626f5dca9.jpg", "baec4ba1dfbaa78afffe317c62a2c2cb.jpg", "bb656ada034850ab9a44e1b7dce57590.jpg", "c005a6352b0ec5f7cb8b8917085df373.jpg", "c2d834700da82ce51cc8a66578842835.jpg", "c47261b8c4d9740e0507a7e5812abae9.jpg", "c57772dcc3f81dd77997f7fcf32d8272.jpg", "c660f00ddb75a360e6c3d199a0f87601.jpg", "c851e6f78c2ec71dc42dbed1006d73c6.jpg", "d190fb3dae2c9bd73983d269963ae269.png", "d32b9d94ed04bd085c08d5b0f6a67507.jpg", "d5c1ccddd8bf8349e8d9c9e954baa8a9.jpg", "d82b3d6aad8c8eb8e3a1af314609461f.jpg", "d84801b48386f2ac5a245d78577d7b58.jpg", "da1bc138afeb3b19cfbc0fcf2a150eac.jpg", "db5a42a450a1aa8b4208b20bcc40a126.jpg", "de955fa96ba40c08dc1973c7419d0826.jpg", "dec7156a9fbbbff9bb25a95af326fe8f.jpg", "e24038fd85618961f50e40cdd91162f4.jpg", "e3e57926c45ac37711e850830d789730.jpg", "e6d92c077ac13e9cc30fcd35ce660b2b.jpg", "eb45759fb732f905dc469d004349b113.jpg", "ebd75b639ebbcf26626d6dfea434e3fc.jpg", "f0b34d4167ce234ef36e7c431e0c980a.jpg", "f1bbe9df8a7ce04be0e14bface1f09ed.jpg", "f4227421d22653bf3c0ec0594dbf4e3f.jpg", "f433a5528ae9fa2da5148e80cacaad16.jpg", "f9a8eb371defeec4f0d35ced8664c17f.jpg", "fc02884fa6b554e56c653350588a105e.jpg", "fc8fbd5e3c3b6ab793e22ad28d9c34bc.jpg", "fe0516f16489534b5c544b0bea73af10.jpg", "ff08cd4d0952c3201f4761adc8fffa5a.jpg", "ff58288e1f52b074d67483d23f1fef77.jpg"];
+var i=0,d=document.getElementById('display-img'),c=document.getElementById('counter'),f=document.getElementById('filmstrip'),l=document.getElementById('loading');
+function u(idx){idx=(idx+images.length)%images.length;i=idx;l.classList.remove('hidden');
+var img=new Image();img.onload=function(){d.src='images/'+images[idx];l.classList.add('hidden');uf();};
+img.onerror=function(){d.src='images/'+images[idx];l.classList.add('hidden');};img.src='images/'+images[idx];
+c.textContent=(idx+1)+' / '+images.length;}
+function uf(){f.innerHTML='';images.forEach(function(fn,idx){var div=document.createElement('div');div.className='thumb'+(idx===i?' active':'');var img=document.createElement('img');img.src='images/'+fn;div.appendChild(img);div.onclick=function(){u(idx);};f.appendChild(div);});
+var a=f.querySelector('.active');if(a)a.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});}
+u(0);
+document.body.onclick=function(e){if(e.target.closest('#filmstrip,#home-btn,.nav-btn,#bio-panel,#bio-btn'))return;u(i+1);};
+document.getElementById('prev').onclick=function(e){e.stopPropagation();u(i-1);};
+document.getElementById('next').onclick=function(e){e.stopPropagation();u(i+1);};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();u(i+1);}if(e.key==='ArrowLeft'){e.preventDefault();u(i-1);}});
+document.getElementById('bio-btn').onclick=function(e){e.stopPropagation();document.getElementById('bio-panel').classList.toggle('open');};
+document.querySelector('.close-bio').onclick=function(e){e.stopPropagation();document.getElementById('bio-panel').classList.remove('open');};
+</script>
+</body>
+</html>

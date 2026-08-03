@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dorothea Lange · Portfolio</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; overflow: hidden; height: 100vh; width: 100vw; user-select: none; -webkit-user-select: none; cursor: pointer; }
+#main-image { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+#main-image img { max-width: 98vw; max-height: 92vh; object-fit: contain; transition: opacity 0.25s ease; }
+#counter { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); font-size: 14px; color: rgba(255,255,255,0.5); z-index: 10; letter-spacing: 2px; }
+#filmstrip { position: fixed; bottom: 0; left: 0; right: 0; height: 80px; background: rgba(0,0,0,0.85); display: flex; align-items: center; gap: 4px; padding: 0 16px; overflow-x: auto; z-index: 10; scrollbar-width: none; }
+#filmstrip::-webkit-scrollbar { display: none; }
+#filmstrip .thumb { height: 56px; min-width: 56px; flex-shrink: 0; border-radius: 2px; overflow: hidden; cursor: pointer; opacity: 0.35; transition: opacity 0.2s, transform 0.2s; border: 2px solid transparent; }
+#filmstrip .thumb:hover { opacity: 0.65; transform: translateY(-2px); }
+#filmstrip .thumb.active { opacity: 1; border-color: #fff; transform: translateY(-4px); }
+#filmstrip .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.nav-btn { position: fixed; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border: none; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); font-size: 20px; cursor: pointer; border-radius: 50%; z-index: 10; transition: background 0.2s; }
+.nav-btn:hover { background: rgba(255,255,255,0.15); }
+#prev { left: 20px; } #next { right: 20px; }
+#loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 100; background: #000; transition: opacity 0.5s; }
+#loading.hidden { opacity: 0; pointer-events: none; }
+.loader { width: 32px; height: 32px; border: 2px solid rgba(255,255,255,0.2); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#home-btn { position: fixed; top: 20px; left: 20px; z-index: 20; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); padding: 6px 14px; font-size: 13px; cursor: pointer; border-radius: 4px; letter-spacing: 1px; transition: background 0.2s; text-decoration: none; display: inline-block; }
+#home-btn:hover { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+#bio-btn { position: fixed; top: 20px; right: 20px; z-index: 20; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); padding: 6px 14px; font-size: 13px; cursor: pointer; border-radius: 4px; letter-spacing: 1px; transition: background 0.2s; }
+#bio-btn:hover { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+#bio-panel { position: fixed; top: 0; right: -420px; width: 400px; height: 100vh; background: rgba(20,20,20,0.97); z-index: 30; transition: right 0.4s ease; padding: 60px 32px 32px; overflow-y: auto; border-left: 1px solid rgba(255,255,255,0.08); }
+#bio-panel.open { right: 0; }
+#bio-panel h2 { font-size: 24px; font-weight: 300; letter-spacing: 3px; margin-bottom: 8px; }
+#bio-panel .sub { color: rgba(255,255,255,0.35); font-size: 13px; letter-spacing: 1px; margin-bottom: 24px; }
+#bio-panel p { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 16px; }
+#bio-panel .close-bio { position: absolute; top: 20px; right: 20px; background: none; border: none; color: rgba(255,255,255,0.4); font-size: 20px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div id="loading"><div class="loader"></div></div>
+<a href="../index.html" id="home-btn">← 画廊</a>
+<button id="bio-btn">传记</button>
+<div id="counter"></div>
+<div id="main-image"><img src="" id="display-img" alt=""></div>
+<button class="nav-btn" id="prev">←</button>
+<button class="nav-btn" id="next">→</button>
+<div id="filmstrip"></div>
+<div id="bio-panel">
+  <button class="close-bio">✕</button>
+  <h2>Dorothea Lange</h2>
+  <div class="sub">1895–1965 · 美国</div>
+  <p>大萧条时代的记录者，纪实摄影史上最无法绕过的名字。1936 年的《Migrant Mother》成为美国大萧条最有力的视觉象征——那张照片里 32 岁移民母亲眼中的忧虑和坚忍，比任何文字报道都更有冲击力，直接推动了政府对移民营地的粮食援助。</p>
+  <p>Lange 本是肖像摄影师，1933 年经济大萧条最严重时，她拿着相机走上旧金山街头，拍下了"White Angel Breadline"——一个孤独男子背对镜头、双手撑在栏杆上的画面。这张照片被她后来的导师、FSA（农业安全管理局）负责人 Roy Stryker 看到，立即邀请她加入联邦摄影项目。</p>
+  <p>1935-1940 年间，Lange 走遍美国南部和中西部，拍摄移民劳工、佃农、流浪者。她的镜头始终与被拍摄者处于同一高度——不居高临下，不猎奇，不煽情。她拍下的 Dust Bowl 难民、加州棉花田里的采摘工、路边帐篷里的家庭，构成了美国历史最珍贵的社会影像档案。</p>
+  <p>1941 年她获得 Guggenheim 基金，1942 年被美国军方雇用拍摄日裔美国人强制搬迁过程——那些照片被军方没收，直到 2006 年才公开，成为政府压制言论自由的重要历史证据。Lange 晚年因健康原因减少了拍摄，但她的影像遗产影响了 Walker Evans、Robert Frank、Lee Friedlander 等几代摄影师。</p>
+  <p>Lange 最被人反复提起的一句话是："相机是一个教人如何看世界的工具。""The camera is an instrument that teaches people how to see without a camera."</p>
+</div>
+<script>
+var images = ["0079df09e6b4a4a891bb6f7be1460dca.jpg", "059afb8e2f1ee19f9668345526eca477.jpg", "08af2e0ec22031af339d667560841bca.jpg", "0c2725b8ce6d07cb378c92e95c9189e3.jpg", "0e0f212a0c2113ae433398778f24cd14.jpg", "0fc66d4accdb931b402d64d0f5fb90ed.jpg", "158da1d1137657487bbdfe0486c9213b.jpg", "15b630eff52c31001aa8c9f9dc5be480.jpg", "16ec91fb25849c7aed761582a55e14df.jpg", "1b244ce6e73d2ba398f4a2997a2c161e.jpg", "1b5602f8898bfb4b02906d65885cf34b.jpg", "1b61955e12a7b5a68de98dda2f262b9e.jpg", "1bf13462996687dc42da283aabf9cdb7.jpg", "21fec40d38f4d7d44e7fab317ac3ab3d.webp", "2256fc64b350d87b5139e3f30551270e.jpg", "2398e4f9da7084c9934d3f56a7f5b675.webp", "23d14b13dd52f71ef718dafe5593f09e.jpg", "23e2df53c83ab0215b5fb03fad8a9ca3.jpg", "24b5376f1280a900a6329df62feabb2d.jpg", "27195998d57fb2c1f7e6557c973ddd09.jpg", "27263957e8034ff75890eb922baa2195.jpg", "27c7d0d9fe9c85b92b0a0289cad14635.jpg", "2981edf810ed7c04c5c00fbb289211d7.jpg", "2b0d9c8e019ec8ddf8aed8289f12fc61.jpg", "2f6ae8b089e88bc5f7da589055bd8d5a.jpg", "300da9f1ff430ebf0222c299bd6cd070.jpg", "306bd603965168b293c1f6846321751b.jpg", "3354fe2bd029a5b9d91335f4d85bcbfc.jpg", "350a0a72fd248c2b70be6564cefeeb13.jpg", "3571011c6f68623e3bb11739d33792c6.jpg", "38093982a5c3737815bb74a4c95548ea.jpg", "3eb0d14f4004fc0b93f587e8bfb59ebe.jpg", "3f8f8068444b9a8c6b052def5192bc0b.jpg", "3f9f3d3947e8fcb29cf495dee0a6eb15.jpg", "458c69368b2503bb976d6983e09bc1d1.jpg", "49c9ce3912fb64b88536b2515d8d4580.jpg", "4a0ab7b411722657b573cd0470b89cfc.jpg", "4a400c4bb12d99c3f66eaabe8fa51561.jpg", "4c284e735af2b90177f09d79b7efda3c.jpg", "4d8cc6b503b04b478d03379cdff4c0a0.jpg", "4ef2f5264b6f7407385f9ac67f9ac70f.webp", "4fefd80da70330173df65b21f47a5741.jpg", "522b3a47115fc6fcfba47485791a6a58.jpg", "535e6e0f901144e53b98b6dd02d42076.jpg", "5371057c716559a4d5f954fb2030bd7b.jpg", "55b0bd5b94f4c10c175c3e91427a23e1.jpg", "567b8098779b02c4090ad255169262ad.jpg", "58f15a92ea4b756dd289233122d9fe30.jpg", "598be7f6729fe2e67ec192036f34c3a9.jpg", "5a3258460df9d0883ca19c6b7153d098.jpg", "5b1434f366d32ba55293b10ff91df3dc.jpg", "5c3d10269ded1ff9479c245ef8c92f37.jpg", "5d3dbed5739e2d2160c3f7623d9cb227.jpg", "61b44c2945b6dc53aa6949f4b9de3f79.jpg", "61cd66e3b400ef203f33e6d6ef61778e.jpg", "667149960c1ef95eedb95de989666ee2.jpg", "6805980818206a64e24dbdcec44f32ff.jpg", "69ca29e53fa3ce2e82f6db1ca5524ea8.jpg", "6b3e06cc117e3f0ac0c14628e009559f.jpg", "6bc4d8826b6febc510df08e7d209704b.jpg", "6dec1baa3d900774496648941655922f.jpg", "6e3835fea5f40866a3ee48c22e89688f.jpg", "70ad50ea8049120d40c5743384cb8310.jpg", "72b6a1c5756244617d8e3bb075b8f6e5.jpg", "72c5bec5214f952d8b0cb483c92312ed.jpg", "73cc31fc3d72354a2258abdb9b587c1c.jpg", "77a0c58eddb24c3a74d4465160949a93.jpg", "79295438a2a542f1c6222bc0096c8602.jpg", "7b22cd091d245b2a930cb1d7e37ca2e9.jpg", "80a082a74f9e6934aa224836eb8ec695.jpg", "8122f51099d3a94d56569cc8d68db7e0.jpg", "8a910ce89e5ed1d6728127095c72e7a5.jpg", "8d8f1151954ff7de96ed5f6d5b600633.jpg", "8ff8a9181a7748212f9602172b8a3fe2.jpg", "9081c93240dba1a87a8b542862e9b815.jpg", "92324e2c59dff79e1065d2f344824973.jpg", "96723a6dc29a14c4d66a51a121ab2a43.jpg", "978bc5f40d2c37aabe9db2f8e835e902.jpg", "992fa7d988aac1597bdd092b38f0f52f.jpg", "9b6c8f997fac178ee3bafbb8e92ce5e2.jpg", "9f6231e40c23c7d5077337ef2de38d59.jpg", "a199867ae7a27985c3bb6ce6b44bed52.jpg", "a2b6aec2c3c6016cffebd48bbb4cf294.jpg", "a747f13c8d6bae8c0ea6431818aa1aaa.jpg", "acf64c84f3e187185602a58fa5f03fe6.jpg", "ad91daaf03f71a3879be55ae74af60e3.jpg", "b3cbcc5beda2685779eff4f0b3deb62e.jpg", "b49ba7c12bbe3154b8b7db6c477b8c03.jpg", "b6b8114b9fea9be4eb73b1fec0386e20.jpg", "b6bc1f262029a3f633e07ee806a86064.jpg", "bcb629c76d78e661bf0ebd589c412f68.jpg", "be014d04a95f070efbfebf2dc10b90a8.jpg", "bec86ef3cf47e50069553d3055ef54b5.jpg", "bf49f348aa042c86fd5ce5554e0511b5.jpg", "bfdaad1e4aa4a65902157382a0774921.jpg", "c0b162b4e201c3c1124e22821a793724.jpg", "c0b72f478b36c279002d47d64ba11117.jpg", "c1678436f5579d35fb0c43aa2048093e.jpg", "c2458ac975be68f94d11609bf55314fd.jpg", "c267c7186e77dcae8d4e8e40f2f0777c.jpg", "c376dd3e539e9a4d818b9ed752a9a23f.jpg", "c3ee831739e7c66c2243614296f8808c.jpg", "c4597f204ac9ca6a62b993023544b9a2.jpg", "c4fce88a6f6183f09949900d25a1231f.jpg", "c5e1cbb7e759776beb7dab867c7d0e04.jpg", "c6c6418d37a5faa2f20c49c21aeac3ba.jpg", "c73aebb3d4100c2db6504f04182e17b1.jpg", "c7b1e031ac2fc5e22a798fe5294dfbc7.jpg", "c7e8848f6fa66ea8f82882e516141a69.jpg", "c80f92516082afe23a6859f7dbd203bb.jpg", "cabec2397904bdf72f6d80462fdb2037.jpg", "ccea5ef513663034153fee4f957b06e6.jpg", "cdaa9c77814dd13226c5c74cfe87bc13.jpg", "ce09395f324e3224e9859ebfbdfa5c41.jpg", "d447442c1aeb74f6be5ca0e1910d174f.jpg", "d5162c049890115badf13de6e25722c8.jpg", "d5845c21425182502871bb16ee0d7c5a.jpg", "d6544289223fd447fa09bd40e3c405ee.jpg", "da259db144af42b2d5fff6160ab75721.jpg", "dd73238f0580cc70c500879e05026a8f.jpg", "df0b1ed5cba4e5b84a0afdd2a97a2192.jpg", "e3363d237a0092c1232420196733af06.jpg", "e3d56554dda4387c39bb77f91da3fa59.jpg", "e47af98a2fde831face3a3051806e8df.jpg", "e54d97e6eab3718097129c441edda621.jpg", "e6e39af0ac327a98bce1b2d80cfbd96e.jpg", "e6ea65c82db61f207092be653cbf7791.jpg", "e7cdc6aff517ed15f243e1314edcbe93.jpg", "e84d2c6fe6078cf6560729d624c859c6.jpg", "e8c94ee141ff9593d7614f096f2c0d81.jpg", "ead29e5987102596940ff5f825fe264b.jpg", "ed0917de9f0b9cedc44cfd020e067e01.jpg", "edd0f1d41e208450faa69f7b05f29295.jpg", "f1df4916f45c4641247a6ecaa605d029.jpg", "f2ca62c4571278cf582c6db0872f3bf0.jpg", "f3ec9fed4c875d3a18b02b9e661e950f.jpg", "f4e5d95cd921de266191318987733f79.jpg", "f52d625c4fa2eaada37a551959f6cdf0.jpg", "f5cbbc5bc6405a9770538b100737bb53.jpg", "f84f19f761664dbe6c7334138b8f10e6.jpg", "f86203cc21b987dac156dcc5d6cec0a3.jpg", "fbae1d3433bf046eb31d30f382f3be78.jpg", "fbb33b1bf75ff0e054e11608104793a7.jpg", "fcb7c1c52037aa2f6943b5adb5a05009.jpg", "fde42a1aa887d3fc7983ebbf2e24c683.jpg"];
+var currentIndex = 0;
+var display = document.getElementById('display-img');
+var counter = document.getElementById('counter');
+var filmstrip = document.getElementById('filmstrip');
+var loading = document.getElementById('loading');
+function update(idx) {
+  idx = (idx + images.length) % images.length;
+  currentIndex = idx;
+  loading.classList.remove('hidden');
+  var img = new Image();
+  img.onload = function() {
+    display.src = 'images/' + images[idx];
+    loading.classList.add('hidden');
+    updateFilmstrip();
+  };
+  img.onerror = function() {
+    display.src = 'images/' + images[idx];
+    loading.classList.add('hidden');
+  };
+  img.src = 'images/' + images[idx];
+  counter.textContent = (idx + 1) + ' / ' + images.length;
+}
+function updateFilmstrip() {
+  filmstrip.innerHTML = '';
+  images.forEach(function(fn, i) {
+    var div = document.createElement('div');
+    div.className = 'thumb' + (i === currentIndex ? ' active' : '');
+    var img = document.createElement('img');
+    img.src = 'images/' + fn;
+    div.appendChild(img);
+    div.onclick = function() { update(i); };
+    filmstrip.appendChild(div);
+  });
+  var active = filmstrip.querySelector('.active');
+  if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+}
+update(0);
+document.body.onclick = function(e) {
+  if (e.target.closest('#filmstrip') || e.target.closest('#home-btn') || e.target.closest('.nav-btn') || e.target.closest('#bio-panel') || e.target.closest('#bio-btn')) return;
+  update(currentIndex + 1);
+};
+document.getElementById('prev').onclick = function(e) { e.stopPropagation(); update(currentIndex - 1); };
+document.getElementById('next').onclick = function(e) { e.stopPropagation(); update(currentIndex + 1); };
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); update(currentIndex + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); update(currentIndex - 1); }
+});
+document.getElementById('bio-btn').onclick = function(e) { e.stopPropagation(); document.getElementById('bio-panel').classList.toggle('open'); };
+document.querySelector('.close-bio').onclick = function(e) { e.stopPropagation(); document.getElementById('bio-panel').classList.remove('open'); };
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Henri Cartier-Bresson</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; overflow: hidden; height: 100vh; width: 100vw; user-select: none; -webkit-user-select: none; cursor: pointer; }
+#main-image { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+#main-image img { max-width: 98vw; max-height: 92vh; object-fit: contain; transition: opacity 0.25s ease; }
+#counter { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); font-size: 14px; color: rgba(255,255,255,0.5); z-index: 10; letter-spacing: 2px; }
+#filmstrip { position: fixed; bottom: 0; left: 0; right: 0; height: 80px; background: rgba(0,0,0,0.85); display: flex; align-items: center; gap: 4px; padding: 0 16px; overflow-x: auto; z-index: 10; scrollbar-width: none; }
+#filmstrip::-webkit-scrollbar { display: none; }
+#filmstrip .thumb { height: 56px; min-width: 56px; flex-shrink: 0; border-radius: 2px; overflow: hidden; cursor: pointer; opacity: 0.35; transition: opacity 0.2s, transform 0.2s; border: 2px solid transparent; }
+#filmstrip .thumb:hover { opacity: 0.65; transform: translateY(-2px); }
+#filmstrip .thumb.active { opacity: 1; border-color: #fff; transform: translateY(-4px); }
+#filmstrip .thumb img { width: 100%; height: 100%; object-fit: cover; }
+#loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 100; background: #000; transition: opacity 0.5s; }
+#loading.hidden { opacity: 0; pointer-events: none; }
+.loader { width: 32px; height: 32px; border: 2px solid rgba(255,255,255,0.2); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#home-btn { position: fixed; top: 20px; left: 20px; z-index: 20; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); padding: 6px 14px; font-size: 13px; cursor: pointer; border-radius: 4px; letter-spacing: 1px; transition: background 0.2s; text-decoration: none; display: inline-block; }
+#home-btn:hover { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+</style>
+</head>
+<body>
+<div id="loading"><div class="loader"></div></div>
+<a href="../" id="home-btn">← 画廊</a>
+<div id="counter"></div>
+<div id="main-image"><img src="" id="display-img" alt=""></div>
+<div id="filmstrip"></div>
+<script>
+var images = ["0124b6f0350a9d8f6702af0beef9328f.jpg", "0286f46f09a21bf60f2c7567b88ef9d4.jpg", "037f7fd1010091191ee42e8ade0cfde5.jpg", "04103cd69dbdfd9065d3c6866d35b4ee.jpg", "041c2c63acd60c1f0e9e8cef76ba5673.jpg", "074e6af6caaf2d37233b4c967368318d.jpg", "078da8afc23de87f801f2a83d41c1f21.jpg", "08d69c73bcd964888084e7323570308e.jpg", "08dea713293bfc9f80be596769e7cfa4.jpg", "099d8476aef56c4a627fdda363fdd4a8.jpg", "0a2e9347ff14d9f1389663202e1acdfb.jpg", "0c5a733d0a2ca346fd22c8350370237f.jpg", "0cadf3e8e7c9f2f2b1b34b32ffa79b18.jpg", "0d58eb764d5e2ae4bbb76b06e06897d9.png", "0ea5b8e9e057b8c36dfb4c10c28c8e25.jpg", "0f85d9cecfec03a8d4474f7a7ca0f8cf.jpg", "0f9da35a1adb0cd3721bb819cb7f86b8.jpg", "0fc90c9823b93ee5f6aa4adccffe6463.jpg", "1076ee0651f5b525f31c0179a621ffd2.jpg", "1136f11904865e28dabca79241720c68.jpg", "1275cf03ed2f80ae786d42e9df41429b.jpg", "14c80586df83cd9ad45be8b9b90518a8.jpg", "1676a26ae25ead30e9a62c151c2aa0c2.jpg", "168fd84b3e58b83c79750da30750e275.jpg", "17834129a123e6f3e9dfd8b264583bc8.jpg", "17f71b5f20a0c5994c7fdc39340ba6d8.jpg", "198c3ca3a0eac01bfb83ac14ff6c7de5.jpg", "1da911ebb9d93db43b72281f5c70b423.jpg", "20629795d08563783f7477907c280a69.jpg", "214ecf2c89232270f475d9cb3af98991.jpg", "2221e0bab4b97597440c039ebca5c179.jpg", "2249b8e0ab29dcce2698cea7fd594f02.jpg", "22665f7e1544f43860b51291afb80ff9.jpg", "2297afcbc9a4c410058498d483d2a232.png", "24fea3ac0397599c486e18a649084a2e.jpg", "2ddda08e50fd3e5b080146b87e5e6a8a.jpg", "304720a7bc13904b3dd7bdf233aebb3a.jpg", "31dfd528c9c2fb2353fe8252c2808586.jpg", "334684694e0e28b62f3da148d77ee0dd.jpg", "36fc63c9ed77145784d00c9f3877ef51.jpg", "38012815cbf55efce65c46b05a566362.jpg", "38f962546b0c83f1e193024cd321f5c2.jpg", "3959a7c466dfd07aa5fc7f389f654451.png", "395dca7b9cd4741a220534e9aaa92209.jpg", "39d485db7b0b58ad74134a93d9a1a4da.jpg", "405768d3050ed9304aaa842c109a1dd0.jpg", "405fbbc8bdd7cd632e1d4acea24e420c.jpg", "411067ad9a46518383880831078b275e.jpg", "42a862632f586f2db4b62ecafcbb120a.jpg", "432fe88badd464b2d8fceb34c501c1e2.jpg", "433980df033e7580e80f403f6b7d19b7.jpg", "468fc4172792a4decec7995b71d8a82d.png", "471ac769f89f00b715d10ee4b53c0abf.png", "47dc0bf53921d09d0b035b509663aa7c.jpg", "485d8532c5ea29887ef783aa56998039.jpg", "4892ea6b808ca1265313cdd123edbde3.jpg", "4966844f8d0f2b4d567daaa7ea23aa19.jpg", "4acde620e4743c6d85332541d54b4a30.jpg", "4ad0313d8134a6ecd8364fb6fe97b01e.jpg", "4b2f665611bd34b172385c896230f3fd.jpg", "4f29f5450abc4f4eb8c45ebec32765f6.jpg", "4f8b7e3c584b3057e4903ca8c23eade1.jpg", "51aff8630b9495a55c85d388068f27a4.jpg", "5231745c1d4609dac719218943754a77.png", "54afcc83754342503f114c1d9982b71d.png", "55d248aa6508471abfc63058ac68d68b.jpg", "57ae4ca2b642913305207c82ea7a1131.jpg", "5a788ba30072424ec8e28f103b8a8bb9.jpg", "5de77c31b61c04194c912e4d3e7568a3.jpg", "5e862d0087affe81da1f425b041ae512.jpg", "5ec1ddde0a568d508fd624c75bda0275.jpg", "5fb5042e00eda26f44250d078f75b01c.jpg", "61ac255e05a029a99abc0e2e90e58501.jpg", "64d7d16851aad6e3a8304cfc12a6a394.jpg", "65b8e744c5cd3203e18ba73fbc8bc6db.jpg", "65e804f34c3949dc4157b23ec1d27824.jpg", "67703decb8f595be5e96e7c7ced32009.jpg", "683b1acfd60f968a9edd19a4746e238b.jpg", "68b63e2d60a9c3e3c5865ffe93c86051.jpg", "693f36d4e9ef34533793bf5ab7c207a5.jpg", "6b72e7c2dd93e38add5bc46bf508bc53.jpg", "6d8e7bad17704c20588b76a8ae0af461.jpg", "6dd539eb1449a9f96b0a0b15f5c148e9.jpg", "6e3f9529aa79c2f122bc0cca0f285234.jpg", "6ee7701894d0b77818f081fcffd22a83.jpg", "6f46aa3dbdf88ecaa601455840949581.jpg", "71e83ac5ef7102637e91f97522817426.jpg", "720e0f94aaa2b36784ddc4ec68c1c750.jpg", "760affe80fdbd20066af34f50d308b97.jpg", "76e5f90185c86387a0599914c3237b3e.jpg", "7a136e00adf84f5da047b84666af7224.jpg", "7c40564c69d673b67ba1aa77ae60c4c7.jpg", "80d58c7a53ed7ed8c0239e252aac2e6d.png", "823da145dd3b0bc338b9aca813a8b986.jpg", "831178ed9edab10bf4e6c94842e94de5.jpg", "83223f21074b4596a44bfb22b60d7a00.jpg", "83b93c6333a1fde5d61d42e7eb3a7e18.jpg", "84357ac552d24f0f4647fb061bbfb89d.jpg", "848563b6dee6109953d8816976c5995b.jpg", "878164eab895bc764660a023afdc3a93.jpg", "87f871f61e4cb0903be19d3df192c184.jpg", "8815d48b58d70bd064e9ce4fc5c8e068.jpg", "8ec25c63f3dedf5bfab19f18071a9b9a.jpg", "909bd7f26aaab1a2b2443144260b35f4.jpg", "91665675cebe071db37c0c58ebab8fa1.jpg", "916adaa06b8c83a41b0b62cd5ecbd5a2.jpg", "95fb2fcea05e9ca29262a4b8abaeff7c.jpg", "96e56cd7ab1462b515f8c579369e5e33.jpg", "996e7d19357d79191411f7ddc1c2751d.jpg", "9b9b3f0a114d338c3b94fced006b9b7b.png", "a053bde90f0d45e9bdf24f5c544e34af.jpg", "a10d159cea6ad35848bfd56fa6c3b734.jpg", "a1ec91caca3d9507c9fa4cf363944921.jpg", "a27682328a85d3631cc99cae221292a0.jpg", "a2cee59af9e786897893215481f3a220.jpg", "a30f2a74a4b0440d95ffe4fe46c9638a.jpg", "a526d74153df8582ab754dcdcaf47db8.jpg", "ac0bf98d192659e4dbb5a56295471d75.jpg", "ad89523cddc937fcc21114c9dfe96426.jpg", "ad8d1825b76c8401aad32306234f2171.jpg", "aed8977a97a148572edece13d46d18fc.jpg", "affca4c1b4422c6388b6e73e3acfb54c.jpg", "b420f8efca3e9fc6633ebe216bfbaa97.jpg", "b71c130d4c5da26ffb3c71c6de0e7f8a.jpg", "b92c3e0c8aa513dab347b6c6722a197c.jpg", "b942cd49bba2e74fff293b3c631df165.jpg", "b9e2607796f65a592325140456eec1af.jpg", "ba6b764ea68373a6847773f806a58a99.jpg", "bb55ec603f5ae6ce63b58ac9d073579d.jpg", "bf6339451dab3617a98ffb95bc382368.jpg", "c32300dc1f498b8b94893433d2c4ff2e.png", "c32b17b576b21da08fb3d7626b649253.jpg", "c49739eab98586a28f71ad8b0964f885.jpg", "c688111352dd9ee9f9269f1240b62384.jpg", "c78279d820d2adf4b06d15a444da5170.jpg", "c7dfac0238cc43dc8830026caaffc452.jpg", "c9b206fa814771cdc97e4616b169598b.jpg", "cae9bb2b4639a6722c2c40c34f478613.jpg", "cb60b1b97f7f7e766f6bebf973a705f9.jpg", "cc09191a6ae8607f848f44c2e6967f3a.jpg", "cc51214c1a4d2fcb6d425ad15e292d08.jpg", "cd0a1375abd525a88b4443d515df7bf3.jpg", "ce804b11bd4f19f0c5efc5b4c303e629.jpg", "cea240daed9604d77e4481d3c86f443b.jpg", "cffb6e63004d92f3cdb35eae5785e833.jpg", "d15bb08f4cb6feec15586a128a6fd132.jpg", "d3022e3e6a4027dc2bec25b4670c2432.jpg", "d458781ee90c53c59ba22fb6e3e1c60e.jpg", "d525a4a2d111a5d8868c03b4e80cf420.jpg", "d708ddb5994ee94dab73c07a3748b2ac.jpg", "d8fc2dc054379d6f2b532062c04c7aeb.png", "d96253455ce27a05c84301f182f4d690.png", "dbb96db7c367837966160c5afd5ebeab.jpg", "dc05404c8c1c071d9e24a88ce0b856d6.jpg", "dc98d521eb4223d36de90b53af1f9644.jpg", "ddfdb76c523183803d925a0180403cb8.jpg", "de8645bc406061fd5d591958a82132d9.jpg", "e05f08a6631d21fd7f4f28e7703285a3.jpg", "e815efc3edae93de53d40e6c1acb383d.png", "ecda6268cf56ca0b78a22f5ec973162f.jpg", "edd941b8b2c7bd9e3ec5d80172acff42.jpg", "f0b17dafe52e87d7acab229c8f656b62.jpg", "f0ea1bed8a8731aa2f273095d0cc0b38.jpg", "f0fcb92639a6e5e0dd86c2aad3066a49.jpg", "f180463561c5cd4cd61db4c3de926f97.jpg", "f61d63327e8f7fb3e22794f329deed4f.jpg", "f668eb6962f4f967d567d138d02f1783.jpg", "f858d2c286ee47292e9df0a7ec7170f3.jpg", "fdb0498c6d44dbd66cde4869345ceeda.jpg", "fefa4001f42f060e40c7aecbcade92e1.jpg", "ff515f4cb53705929702cf2145444296.jpg", "ff6b82797c9e82c81b1a60e77c8c932e.jpg"];
+var currentIndex = 0;
+var preloaded = new Set();
+function init() {
+  document.getElementById('counter').textContent = '1 / ' + images.length;
+  buildFilmstrip();
+  showImage(0);
+  document.getElementById('loading').classList.add('hidden');
+}
+function buildFilmstrip() {
+  var strip = document.getElementById('filmstrip');
+  var step = images.length > 200 ? Math.ceil(images.length / 200) : 1;
+  for (var i = 0; i < images.length; i += step) {
+    var thumb = document.createElement('div');
+    thumb.className = 'thumb';
+    thumb.innerHTML = '<img src="images/' + images[i] + '" loading="lazy" alt="">';
+    thumb.onclick = function(idx) { return function(e) { e.stopPropagation(); showImage(idx); }; }(i);
+    strip.appendChild(thumb);
+  }
+}
+function preload(index) {
+  if (index < 0 || index >= images.length || preloaded.has(index)) return;
+  preloaded.add(index);
+  var link = document.createElement('link');
+  link.rel = 'preload'; link.as = 'image'; link.href = 'images/' + images[index];
+  document.head.appendChild(link);
+}
+function showImage(index) {
+  currentIndex = index;
+  var display = document.getElementById('display-img');
+  display.style.opacity = '0';
+  setTimeout(function() {
+    display.src = 'images/' + images[index];
+    display.onload = function() { display.style.opacity = '1'; };
+  }, 100);
+  document.getElementById('counter').textContent = (index + 1) + ' / ' + images.length;
+  var thumbs = document.querySelectorAll('#filmstrip .thumb');
+  var step = images.length > 200 ? Math.ceil(images.length / 200) : 1;
+  var thumbIdx = Math.floor(index / step);
+  thumbs.forEach(function(t, i) { t.classList.toggle('active', i === thumbIdx); });
+  if (thumbs[thumbIdx]) thumbs[thumbIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  preload(index - 1); preload(index + 1); preload(index + 2);
+}
+function next() { showImage((currentIndex + 1) % images.length); }
+function prev() { showImage((currentIndex - 1 + images.length) % images.length); }
+document.getElementById('main-image').addEventListener('click', function(e) {
+  var rect = document.getElementById('main-image').getBoundingClientRect();
+  if (e.clientX - rect.left < rect.width / 3) prev(); else next();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prev(); }
+  if (e.key === 'f') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
+});
+var touchStartX = 0;
+document.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; });
+document.addEventListener('touchend', function(e) {
+  if (Math.abs(touchStartX - e.changedTouches[0].clientX) > 50) { (touchStartX - e.changedTouches[0].clientX > 0) ? next() : prev(); }
+});
+init();
+</script>
+</body>
+</html>

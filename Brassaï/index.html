@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brassaï</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a0a; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; min-height: 100vh; }
+.topbar { padding: 20px 32px; display: flex; align-items: center; gap: 16px; }
+.topbar a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; letter-spacing: 1px; }
+.topbar a:hover { color: rgba(255,255,255,0.8); }
+.hero { padding: 60px 40px 40px; text-align: center; max-width: 720px; margin: 0 auto; }
+.hero h1 { font-size: 42px; font-weight: 200; letter-spacing: 6px; margin-bottom: 4px; }
+.hero .dates { font-size: 14px; color: rgba(255,255,255,0.3); letter-spacing: 2px; margin-bottom: 24px; }
+.hero .positioning { font-size: 15px; color: rgba(255,255,255,0.5); letter-spacing: 2px; margin-bottom: 32px; font-style: italic; }
+.hero .bio { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.65); text-align: left; margin-bottom: 24px; }
+.hero .bio p { margin-bottom: 16px; }
+.hero .details { font-size: 13px; color: rgba(255,255,255,0.4); text-align: left; margin-bottom: 32px; line-height: 2; }
+.hero .details strong { color: rgba(255,255,255,0.6); }
+.hero blockquote { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.5); border-left: 2px solid rgba(255,255,255,0.15); padding-left: 20px; margin: 24px 0; font-style: italic; }
+.hero blockquote cite { display: block; margin-top: 6px; font-size: 12px; color: rgba(255,255,255,0.3); font-style: normal; }
+.books { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 2px; padding: 0 2px 2px; }
+.book { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; text-decoration: none; display: block; }
+.book img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease, filter 0.8s ease; filter: brightness(0.6); }
+.book:hover img { transform: scale(1.04); filter: brightness(0.85); }
+.book .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 50%); display: flex; flex-direction: column; justify-content: flex-end; padding: 36px 28px; }
+.book .title { font-size: 24px; font-weight: 300; letter-spacing: 2px; }
+.book .desc { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 6px; letter-spacing: 1px; }
+</style>
+</head>
+<body>
+<div class="topbar"><a href="../">← 画廊</a></div>
+<div class="hero">
+  <h1>Brassaï</h1>
+  <p class="dates">布拉赛 · 1899—1984</p>
+  <p class="positioning">"夜巴黎"的纪录者，摄影史上最伟大的夜间摄影师</p>
+  <div class="bio">
+    <p>Brassaï（本名 Gyula Halász）出生于匈牙利，1920 年代移居巴黎，成为这座城市夜晚最忠实的见证者。他带着一台小相机穿行于夜幕下的蒙马特、蒙帕纳斯、拉丁区——咖啡馆、妓院、舞厅、街头——拍下了那个时代的巴黎在日光下从不示人的另一面。</p>
+    <p>亨利·米勒称他为"巴黎之眼"。他的影像充满戏剧性的明暗对比，雾气、雨夜、煤气灯的光晕构成了他独特的视觉语言。他也是一位雕塑家、画家和作家，拍摄过毕加索、贾科梅蒂等艺术家的朋友群像。</p>
+  </div>
+  <div class="details">
+    <p><strong>代表系列：</strong>Paris de Nuit（夜巴黎）、Paris secret des années 30、Conversations avec Picasso</p>
+    <p><strong>常用器材：</strong>Voigtländer 相机、徕卡</p>
+    <p><strong>风格关键词：</strong>夜间摄影、街拍、明暗对比、巴黎1930年代、超现实主义氛围</p>
+    <p><strong>出版物：</strong>《Paris de Nuit》（1933）、《Brassaï: the monograph》等</p>
+  </div>
+  <blockquote>
+    "I have always tried to capture the poetry of the night, the mystery of the shadows, the life that awakens when the sun goes down."
+    <cite>—— Brassaï</cite>
+  </blockquote>
+</div>
+<div class="books">
+  <a class="book" href="portfolio.html">
+    <img src="images/7dac9e2f8d1c268e818999cc1cac1baa.jpg" alt="Portfolio">
+    <div class="overlay"><div class="title">作品集</div><div class="desc">32 张精选作品</div></div>
+  </a>
+</div>
+</body>
+</html>

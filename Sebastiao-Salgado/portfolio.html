@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sebastião Salgado · Portfolio</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#000; color:#fff; font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif; overflow:hidden; height:100vh; width:100vw; user-select:none; -webkit-user-select:none; cursor:pointer; }
+#main-image { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+#main-image img { max-width:98vw; max-height:92vh; object-fit:contain; transition:opacity .25s; }
+#counter { position:fixed; top:24px; left:50%; transform:translateX(-50%); font-size:14px; color:rgba(255,255,255,.5); z-index:10; letter-spacing:2px; }
+#filmstrip { position:fixed; bottom:0; left:0; right:0; height:80px; background:rgba(0,0,0,.85); display:flex; align-items:center; gap:4px; padding:0 16px; overflow-x:auto; z-index:10; scrollbar-width:none; }
+#filmstrip::-webkit-scrollbar { display:none; }
+#filmstrip .thumb { height:56px; min-width:56px; flex-shrink:0; border-radius:2px; overflow:hidden; cursor:pointer; opacity:.35; transition:opacity .2s,transform .2s; border:2px solid transparent; }
+#filmstrip .thumb:hover { opacity:.65; transform:translateY(-2px); }
+#filmstrip .thumb.active { opacity:1; border-color:#fff; transform:translateY(-4px); }
+#filmstrip .thumb img { width:100%; height:100%; object-fit:cover; }
+.nav-btn { position:fixed; top:50%; transform:translateY(-50%); width:48px; height:48px; border:none; background:rgba(255,255,255,.06); color:rgba(255,255,255,.7); font-size:20px; cursor:pointer; border-radius:50%; z-index:10; transition:background .2s; }
+.nav-btn:hover { background:rgba(255,255,255,.15); }
+#prev { left:20px; } #next { right:20px; }
+#loading { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:100; background:#000; transition:opacity .5s; }
+#loading.hidden { opacity:0; pointer-events:none; }
+.loader { width:32px; height:32px; border:2px solid rgba(255,255,255,.2); border-top-color:#fff; border-radius:50%; animation:spin .8s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+#home-btn { position:fixed; top:20px; left:20px; z-index:20; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); color:rgba(255,255,255,.5); padding:6px 14px; font-size:13px; cursor:pointer; border-radius:4px; letter-spacing:1px; transition:background .2s; text-decoration:none; display:inline-block; }
+#home-btn:hover { background:rgba(255,255,255,.15); color:rgba(255,255,255,.8); }
+#bio-btn { position:fixed; top:20px; right:20px; z-index:20; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); color:rgba(255,255,255,.5); padding:6px 14px; font-size:13px; cursor:pointer; border-radius:4px; letter-spacing:1px; transition:background .2s; }
+#bio-btn:hover { background:rgba(255,255,255,.15); color:rgba(255,255,255,.8); }
+#bio-panel { position:fixed; top:0; right:-420px; width:400px; height:100vh; background:rgba(20,20,20,.97); z-index:30; transition:right .4s; padding:60px 32px 32px; overflow-y:auto; border-left:1px solid rgba(255,255,255,.08); }
+#bio-panel.open { right:0; }
+#bio-panel h2 { font-size:24px; font-weight:300; letter-spacing:3px; margin-bottom:8px; }
+#bio-panel .sub { color:rgba(255,255,255,.35); font-size:13px; letter-spacing:1px; margin-bottom:24px; }
+#bio-panel p { font-size:14px; line-height:1.8; color:rgba(255,255,255,.7); margin-bottom:16px; }
+#bio-panel .close-bio { position:absolute; top:20px; right:20px; background:none; border:none; color:rgba(255,255,255,.4); font-size:20px; cursor:pointer; }
+</style>
+</head>
+<body>
+<div id="loading"><div class="loader"></div></div>
+<a href="../index.html" id="home-btn">← 画廊</a>
+<button id="bio-btn">传记</button>
+<div id="counter"></div>
+<div id="main-image"><img src="" id="display-img" alt=""></div>
+<button class="nav-btn" id="prev">←</button>
+<button class="nav-btn" id="next">→</button>
+<div id="filmstrip"></div>
+<div id="bio-panel">
+  <button class="close-bio">✕</button>
+  <h2>Sebastião Salgado</h2>
+  <div class="sub">1944– · 巴西</div>
+  <p>最具史诗感的纪实摄影师，他的黑白影像把地球的壮丽与脆弱推到人类面前。Salgado 出生于巴西，原本是经济学家，29 岁才拿起相机。1980 年代他拍摄了撒哈拉饥荒、拉丁美洲矿工、科威特油井大火——这些作品让他成为全球最受尊敬的战地/纪实摄影师之一。</p>
+<p>1994 年他开始《Workers》项目，走访 23 个国家拍摄即将消失的传统体力劳动。随后《Migrations》记录了全球人口流动——那些眼神中的尊严让你无法移开视线。2004 年启动《Genesis》——这是他最个人化的作品：用 8 年时间拍摄地球上还保留着原始状态的角落和部落，8×10 大画幅，黑白，像一部写给地球的情书。</p>
+<p>Salgado 的特别之处在于：他不拍苦难本身，他拍苦难中的人性。金矿里像蚂蚁一样攀爬的矿工、喷发中的火山脚下的海龟、与鲸鱼对视的北极渔民——他的照片里永远有一种超现实的美感。他的儿子 Juliano 也是摄影师，拍过关于他和他的森林恢复项目的纪录片《The Salt of the Earth》。</p>
+<p>他和妻子 Lélia 在巴西 Minas Gerais 恢复了一片 1750 英亩的原始森林，种了 200 万棵树。他今年 80 多岁了，还在拍。"</p>
+</div>
+<script>
+var images = ["007b46a521e30c40e20718c3a12a8fc5.jpg", "019be2c301c720aa1759d3281945c168.jpg", "04429d4f00c5537a21f3789d7ea4b96e.jpg", "05c5ec39c18b147b5492946311087259.jpg", "07c716c0d914c6a0040b9a29ff4f858e.jpg", "1011f1b998ff8c9afbae3a658c095504.jpg", "116e8805a1b475916f4edfd36c0673a2.jpg", "1577a049373aa1e8893c7c8401eca81f.jpg", "16d3b095160be82048586653aa52f73f.jpg", "180030342d854c5b24494102deaa2f72.jpg", "1803afb4bdd7f3e6f96a222da3602306.jpg", "1902fdafed2b3771cd0db8362726e482.jpg", "1ba45aafd919e919117551f8f36436dc.jpg", "1c2ff8a97489522790fe03698f2de711.jpg", "1d9d9d1eca7c92bd002e722f9ca4dcf3.jpg", "1e3906c7056c2a97ca15ab5d42d20b02.jpg", "1f827624c829e4d3204fc5dbc7e571da.jpg", "21d48e3df0a19e4063ed39cdaac5356e.jpg", "23ef36cd02bd86da227885d81046e7ec.jpg", "244aefee8bd0439e80eb5be06fbfe523.jpg", "251fc38a24dbd0b1cda5eed2ad578b4a.jpg", "29a68367afa07307252a3d5e5add8275.jpg", "2a572cb8142feabc0b75cd993624e1ab.jpg", "2c972bc621def853f86ce73e45390709.jpg", "2cbbe62bc44f21f19651e1dfe630aa47.jpg", "2d40d8cfbd87779c980c9c4cee3a974a.jpg", "2d58ae745d73864cd0a77feabfcd1f66.jpg", "2e2132ffbf3ed9ecf378dd8d98b19092.jpg", "2ece0fa558d78db7e1a7049c1da690eb.jpg", "3401c035f972a117f9c9f0e2ed4d9e76.jpg", "34b0a65792d6f541b3cdeac3e3da137d.jpg", "38f850229ced90d0841dbea2558bc0ea.jpg", "3a00283a6069957c2927ea0446668d3c.jpg", "3cb4c796ece039a5fbb4b93c3cffc963.jpg", "421705bb9aeef437674dab39804a0214.jpg", "450ad390066991fdb8f82be366d4ab99.png", "454f1e453d3a5c240c843ff6d6d0b159.jpg", "4559d374b08af77ef430542e8e962ae6.jpg", "46a7383dc4523f1de6aa38c647a0daf0.jpg", "4a3adadd334e2b1e94e60ca9b35a6eb0.jpg", "4a8d1cd8ce82cc93a1aaa813cbe75b1f.jpg", "4d7a706da72926a853ac799ec9a2531e.jpg", "4e2ddd94e9ca368bcd870a3f01560119.jpg", "4e88575056036f1c750171b44f5fcf08.jpg", "4efcef3c0b5c54440ecceff32f5599d0.jpg", "5109affa4c93a48b92856fb9e1e7c7a2.jpg", "5317d0ce1951b7149611b3d66fbc56e5.jpg", "549974c0bcb4f774d0cfb450535bee9e.jpg", "55a22ece4e073cf7708eebe43d1053f7.jpg", "55cb704e3806a07ecc828972ef1ba6d4.jpg", "565d8e9410fb73a768135885ad06e9e0.jpg", "56d814c61154ba31e395625439c0f0ca.jpg", "570a4352540a17ca297fbb9c1b9b5444.jpg", "57ae6ce4da0d39f908b74967bad7b21f.jpg", "5a2039283eb9b6d9531e348a0a6249c3.png", "5ad3383fdac319adc9d9187fd61a115e.jpg", "5d24405dbfd3812617afc412ff4c4bea.jpg", "5dc10bc2de336ad3ddf8e6826a25749c.jpg", "5f096acaac5074d768b440ee3745c5bf.jpg", "601161465cfc051d6f9b0e7c0b9fffcf.jpg", "6792238f50fc90bc2f41c966718750eb.jpg", "688b88ae59d209b8101118f6695bdcee.jpg", "68901f9f0860609e497cfa4a1792de2f.webp", "6961dd5c2f0c7e1026ee7ab9e87c23f5.jpg", "697bdea9d5ad88b1db608d0211036963.jpg", "6a8ede8bde1958684f623c85eac5afc6.jpg", "6bf7f8c639d7eed55e30e272d3deb480.jpg", "6f67ba71153f906d25c76d872fdf80bc.jpg", "709a297fc74865f12a6afbf455f0fb53.jpg", "75037718828c4ecfbe7896e5aadd1ec3.jpg", "77bed6f02625a22654b298815fb45513.jpg", "786e0b4d0d83dd866761b11ef1efd9ba.jpg", "78947a2873de975f34ef2f497168812d.jpg", "793f681e39d77c7e777d2545edefa644.jpg", "7d21d426ff500bc5e88faa105e4bfeee.jpg", "804ae289d9cf1d2503049274eac64031.jpg", "8086942dc046cf828d28551204a490dc.jpg", "836e8e2392814c1ec37376a58c9dea51.jpg", "83aabee6318ad6f2b67d9accd3a213ea.jpg", "842a0a819936aa4ae6f3fc9ab37d1456.jpg", "84ac739a1ea9641156a230164acef6e0.jpg", "88b2e9529d1bcdfb0559d2c40153e47c.jpg", "88c90fcceace0a4f9a1c6c98afa728e3.jpg", "8b94339db175fcfdd88dfe1adf093529.jpg", "8c0c8a5dde210281165ab155eb673fcc.jpg", "8d3253357df7e77e103ef00126518319.jpg", "917dd85018544fcc81969b79c23d1825.jpg", "92479c431986433113737404bc70d1a9.jpg", "93717d69550ff59d43f0e19af33e6d5e.png", "9386910b1fe0de482ac2b5ea96f2251a.jpg", "938bc0dcb190ef777551bb447f4979f3.jpg", "9ad34d0c672e0c23335943bfdc05fc5d.jpg", "9e77c907b79d6fc337a1de2785a8307b.jpg", "a0179f1848734f860b21ef7426242b3a.jpg", "a08f6c58e16d54aef634baf2ccfaf918.jpg", "a498a1be65f929d2c00839526419d546.jpg", "a49a4e9444df4cb706fec5cc5c9bca6e.jpg", "a501db268aeee944e601e0c1ae55a4b6.jpg", "a69eccc71e72bd6e08b8533c720a266b.jpg", "a6a811b0e26c3ad5af48e176666e38df.jpg", "a968f3cac8c2ca6914b26ed6043c29c8.jpg", "aa5342a85f88266cc4d706342c05aa7f.jpg", "aa983dfd94107b6524fcfda7e9a7dac0.jpg", "ab5d4c111256db3b4db066f126ee67c9.png", "acb6ae7c8316ddd47953691fa2fd50a1.jpg", "ace53a8f024169d655a34f98092af3ee.jpg", "af34a036bf9b292809a39f4bb1ecf957.jpg", "af4d0476535914f7bbd534874aa15665.jpg", "b148a138c6ecb6569dad80a02a3fd4fb.jpg", "b26e3ae11868d65bd73d5de892889b67.jpg", "b626cc24d27d73e24475ab45d001418f.jpg", "b6d3f3646b5552787fe0f3b86fbb7640.jpg", "bc5ee74b1a7fb5b47a4e843039a001b1.png", "be8d55cc3f266468a8c1aeed9b1cfe97.jpg", "bfa0a72b49253010d31267ec1112c2fd.jpg", "bfdb64d757a88aa65c68e6f4f36291c7.jpg", "c19ad714883ce04523af0f383c82d8f1.jpg", "c2f25a0b7b1fbd238a65120050fbcbfa.jpg", "c3bf5356c776d0e3684292a75dc098ed.jpg", "c54ec61a58ed220ab20f16c04ac62205.jpg", "c59a99e07689ea743332b2d8c49a72b3.webp", "c5ec7c230ef26ec4b0cfd1b93fed4164.jpg", "c66e181c417ded6d3479dcf3a6b72b8e.jpg", "cabca5560fef6911b2449c961b436b7d.jpg", "d469cbd7464e802b504946f04793bdaa.png", "d628721edf5a50c4e6f71337a4441ad4.jpg", "d8fe80e92e4d7b18ba0f582cdda53a1e.jpg", "da367bc80b9faae3b8bcc258bdcb8b4f.jpg", "dcc0b1cd435d40b525c518ebedbc7a6b.jpg", "dfb3914c91564476ccef05035613f1b0.jpg", "e07e1a25b33fca22ac8551e6854903ca.jpg", "e0a0b389a2d8bdca51fdeebdde183021.jpg", "e0b28a0117eda93298463aca2871cf2b.jpg", "e16b7ee3e357b6992bce609f3c83bcf0.jpg", "e1ffb4b1e83b31a26944a42872c1f3c3.jpg", "e2be0d259c15861fadd31f44f2c93d16.png", "e35fdc27fcb29f7c07dfa53dc45ca572.jpg", "e46130824651d4090f08017c004f4786.jpg", "e4a7d9197fa2c8626de37762a833b04d.jpg", "e9af3b9c0a20a11cb494348d70826e23.jpg", "e9cfde3c2217a2dcfa61d700cb363e4d.jpg", "e9d46bc33ae7177cba1d6e28c24edec6.jpg", "ea8e6f17c96ececb801f2f8a0d0f73b9.jpg", "eae5122b326e35ea9a11a1e5e99dde8e.jpg", "ebf0cb462242125f84a2f3ebd160f74a.jpg", "eccd6744e8463c134c99edfae47e0499.jpg", "ed84ceb3d55360723543d8a772d08c84.jpg", "edfd79d03b87a9832cf2d8d238234bcc.jpg", "ef39ab27b1ef40bad5e5245833f2f26e.jpg", "ef41e06db75c37edcf0690bdd4aa4a91.jpg", "efc3859382b6141d00e112c0b921d2f0.jpg", "f7199b73b7c37a56732f69dbee27571a.jpg", "f8c81e4929e7612e807599f11a56b163.jpg", "fa03aa1c23ad0f3aff05ea1a5e52aee5.jpg", "fb06cffbe231ffd96043ce4b8407a20a.jpg", "fccb916612aa782727b764520db3dc47.jpg", "fd15442b3ddb89f05c92909d2820bc93.jpg", "fe8a877c9eeb6f40efbc411ce3181852.jpg"];
+var currentIndex=0, display=document.getElementById('display-img'), counter=document.getElementById('counter'), filmstrip=document.getElementById('filmstrip'), loading=document.getElementById('loading');
+function update(idx){ idx=(idx+images.length)%images.length; currentIndex=idx; loading.classList.remove('hidden');
+  var img=new Image(); img.onload=function(){ display.src='images/'+images[idx]; loading.classList.add('hidden'); updateFilmstrip(); };
+  img.onerror=function(){ display.src='images/'+images[idx]; loading.classList.add('hidden'); }; img.src='images/'+images[idx];
+  counter.textContent=(idx+1)+' / '+images.length; }
+function updateFilmstrip(){ filmstrip.innerHTML=''; images.forEach(function(fn,i){ var div=document.createElement('div'); div.className='thumb'+(i===currentIndex?' active':''); var img=document.createElement('img'); img.src='images/'+fn; div.appendChild(img); div.onclick=function(){ update(i); }; filmstrip.appendChild(div); });
+  var active=filmstrip.querySelector('.active'); if(active) active.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'}); }
+update(0);
+document.body.onclick=function(e){ if(e.target.closest('#filmstrip,#home-btn,.nav-btn,#bio-panel,#bio-btn')) return; update(currentIndex+1); };
+document.getElementById('prev').onclick=function(e){ e.stopPropagation(); update(currentIndex-1); };
+document.getElementById('next').onclick=function(e){ e.stopPropagation(); update(currentIndex+1); };
+document.addEventListener('keydown',function(e){ if(e.key==='ArrowRight'||e.key===' '){ e.preventDefault(); update(currentIndex+1); } if(e.key==='ArrowLeft'){ e.preventDefault(); update(currentIndex-1); } });
+document.getElementById('bio-btn').onclick=function(e){ e.stopPropagation(); document.getElementById('bio-panel').classList.toggle('open'); };
+document.querySelector('.close-bio').onclick=function(e){ e.stopPropagation(); document.getElementById('bio-panel').classList.remove('open'); };
+</script>
+</body>
+</html>

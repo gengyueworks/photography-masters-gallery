@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>William Eggleston · Portfolio</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; overflow: hidden; height: 100vh; width: 100vw; user-select: none; -webkit-user-select: none; cursor: pointer; }
+#main-image { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+#main-image img { max-width: 98vw; max-height: 92vh; object-fit: contain; transition: opacity 0.25s ease; }
+#counter { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); font-size: 14px; color: rgba(255,255,255,0.5); z-index: 10; letter-spacing: 2px; }
+#filmstrip { position: fixed; bottom: 0; left: 0; right: 0; height: 80px; background: rgba(0,0,0,0.85); display: flex; align-items: center; gap: 4px; padding: 0 16px; overflow-x: auto; z-index: 10; scrollbar-width: none; }
+#filmstrip::-webkit-scrollbar { display: none; }
+#filmstrip .thumb { height: 56px; min-width: 56px; flex-shrink: 0; border-radius: 2px; overflow: hidden; cursor: pointer; opacity: 0.35; transition: opacity 0.2s, transform 0.2s; border: 2px solid transparent; }
+#filmstrip .thumb:hover { opacity: 0.65; transform: translateY(-2px); }
+#filmstrip .thumb.active { opacity: 1; border-color: #fff; transform: translateY(-4px); }
+#filmstrip .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.nav-btn { position: fixed; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border: none; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); font-size: 20px; cursor: pointer; border-radius: 50%; z-index: 10; transition: background 0.2s; }
+.nav-btn:hover { background: rgba(255,255,255,0.15); }
+#prev { left: 20px; } #next { right: 20px; }
+#loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 100; background: #000; transition: opacity 0.5s; }
+#loading.hidden { opacity: 0; pointer-events: none; }
+.loader { width: 32px; height: 32px; border: 2px solid rgba(255,255,255,0.2); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#home-btn { position: fixed; top: 20px; left: 20px; z-index: 20; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); padding: 6px 14px; font-size: 13px; cursor: pointer; border-radius: 4px; letter-spacing: 1px; transition: background 0.2s; text-decoration: none; display: inline-block; }
+#home-btn:hover { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+#bio-btn { position: fixed; top: 20px; right: 20px; z-index: 20; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); padding: 6px 14px; font-size: 13px; cursor: pointer; border-radius: 4px; letter-spacing: 1px; transition: background 0.2s; }
+#bio-btn:hover { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+#bio-panel { position: fixed; top: 0; right: -420px; width: 400px; height: 100vh; background: rgba(20,20,20,0.97); z-index: 30; transition: right 0.4s ease; padding: 60px 32px 32px; overflow-y: auto; border-left: 1px solid rgba(255,255,255,0.08); }
+#bio-panel.open { right: 0; }
+#bio-panel h2 { font-size: 24px; font-weight: 300; letter-spacing: 3px; margin-bottom: 8px; }
+#bio-panel .sub { color: rgba(255,255,255,0.35); font-size: 13px; letter-spacing: 1px; margin-bottom: 24px; }
+#bio-panel p { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 16px; }
+#bio-panel .close-bio { position: absolute; top: 20px; right: 20px; background: none; border: none; color: rgba(255,255,255,0.4); font-size: 20px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div id="loading"><div class="loader"></div></div>
+<a href="../index.html" id="home-btn">← 画廊</a>
+<button id="bio-btn">传记</button>
+<div id="counter"></div>
+<div id="main-image"><img src="" id="display-img" alt=""></div>
+<button class="nav-btn" id="prev">←</button>
+<button class="nav-btn" id="next">→</button>
+<div id="filmstrip"></div>
+<div id="bio-panel">
+  <button class="close-bio">✕</button>
+  <h2>William Eggleston</h2>
+  <div class="sub">1939– · 美国</div>
+  <p>彩色摄影革命的开创者，"把彩色摄影变成艺术"的那个人。在 Eggleston 之前，彩色摄影被严肃摄影界视为商业和业余的专属——黑白才是艺术的代名词。1976 年他在 MoMA 的个展"William Eggleston's Guide"让整个摄影界陷入分裂：有人惊呼这是天才，有人怒斥这是垃圾。</p>
+<p>Eggleston 出生于田纳西州孟菲斯，生长于美国南方中产家庭。1960 年代他先是受 Cartier-Bresson 和 Walker Evans 影响拍黑白，1965 年转向彩色。他用一台廉价的 35mm 相机和染料转印法（dye-transfer）冲洗照片——那种异常饱和的红色、蓝色、绿色，后来成为他的标志性视觉语言。</p>
+<p>他的镜头对准的永远是"不值得被拍的东西"：一个红色天花板上的灯泡、超市货架上的饮料瓶、被三轮车压过的草地、某人后院的铁皮屋顶。这种把毫无意义的事物拍成杰作的能力，来自他极其精准的色彩直觉和构图像钉子一样稳的手感。《The Democratic Forest》是他 1980 年代最大的项目——15000 张照片组成的美国南方视觉日记。</p>
+<p>Eggleston 一辈子抽着雪茄、开着凯迪拉克、弹着钢琴，像个刚睡醒的南方绅士。他不解释自己的照片——"如果你问我这张照片在说什么，在我拍完那一刻我就已经说完了。"</p>
+</div>
+<script>
+var images = ["02a2d56973413260dfa650487fe954fc.jpg", "0579902e9836143d916816f44ba599c7.jpg", "0701f6fdf97a0aa4e0c7f494f0ac5f9d.jpg", "072978bd957623800cfaa11c4920f266.jpg", "083681f5d70f7a2393dbb24cfed11ebf.jpg", "0a471036ea36b3390234e4e59453fad5.png", "0afca0748b0382e6fc67239aaf4a7d71.jpg", "0d5cfbc92acb62b04a2f01c795ac696a.jpg", "0e787f512b1309ee82177bb11c15a03f.jpg", "12258b92875e3eead3e0febf02e23170.jpg", "1419900d2d0217cc1ea01eaf8454a12c.png", "162932381f56bebb714f005bb265533b.jpg", "162ef491a2a0fff4714eeb1d733e8486.jpg", "175738f86cb1ad20f749f2aef7e357c5.jpg", "17be1536e36bb4888928bc2d018d77ae.jpg", "19e6fb55e206d9cf070521f425f5d498.jpg", "19f144e804ff19a1dad8b95488e541b4.jpg", "1a32b141c86851437624523bd6f8b033.jpg", "21aec1c3670e09d88dc20f0f2d9c39cc.jpg", "2289df3444ae45bcdbdff4440bf31a47.jpg", "22f2921ee90c1132f73a797da2a153ad.jpg", "2319abfd30bd41f99f8f3975cc45c66e.jpg", "2493c840e3245aa2d9a6c962e8e095a6.jpg", "265456d74fb5ac1af698f68df0f85b7d.jpg", "269c79a658e2fb77d5be20422057caf4.jpg", "2934d772d5ac9e25f63ba906130e6496.jpg", "29414284ee883f02b8fd1f2c942d6e35.jpg", "2cd2aecc4cb65171c2af3fb02f7bf578.jpg", "2e7e5da03a55475896cb09ec56d49413.jpg", "3015b5fcda39fa4a09ba283009a8445e.jpg", "31ebee6362f6aa602846201a4586d259.jpg", "31eebc11925a88cadd483804fa07b473.jpg", "36e6cc5802ff58ab55a134c9f17fdbb0.jpg", "3706d7bd7118acfda612a2065fb67bae.jpg", "39710d03fa90efd28a750d9d66349e25.jpg", "3b0fcba0618780b108ba80fabc52c221.jpg", "3c59974d3d50e7ea85306ea01b3aef53.jpg", "3f3fe82b9c2bd5b1c8f3c8b2e610c27a.jpg", "3f484dcc0faffb6429b7c76981f6b541.jpg", "4011216f0c33d95c60cc0794cb147aa2.jpg", "42aeaebc6bdc3b49f399f185152cc7f2.jpg", "43278f95efc91375d6e00172cae86d5c.jpg", "43951dcae0280fd317b1c9310cf62014.jpg", "47590c674a3b708a463d908ed8974388.jpg", "4c4b833030683cab8b3a7b0214010efd.jpg", "4dae053ab34821d67c2749d9f2cf0652.jpg", "4f429e5e0f77767c3f3678b3ea98477b.jpg", "50e2d3aae5c235c5a5510be623183825.jpg", "51054abde6e5be745b4bfa19c307faa8.jpg", "528ce3079d35a60a73dffbaf284658a9.jpg", "53f855d87f8d6ce2593a42ba16df23fd.jpg", "54f78d34519ba9abe84920d24caac0b6.jpg", "5640759a57c79fb19e06cdf1e97d5057.jpg", "5686cf426c751d7dd18358bcb79373df.jpg", "589145cea98ad26f8e510aa32925c184.jpg", "58e3a75a3deb2b23108b2f119e486c45.jpg", "5d68fa086022ede373ca544fc71ded07.jpg", "5edb40cd7d7f37534969c02aa15f1e98.jpg", "600197b42320035e9cc279ef033671b0.jpg", "65a7fddceb16cb278ab7dab26e3fde6d.jpg", "6ad8a7d8a166357d7245e4b3e1f81599.jpg", "6af8ba3f23517bb5242d8f6f14c9aba0.jpg", "6bd2442e924c4f289694aae70304a0e7.jpg", "6c02994766bb03a2132fe7fad55301c8.jpg", "6dcfd7b97d598d567c062adc3273e328.jpg", "6e9f51c966548417c1a3e49414f7d914.jpg", "745bb9828b898d29bd8a7e9c018527ab.jpg", "78bb6ff876a9b0c2a1b1bca95873d384.jpg", "7da5da5330a40bf7b6a79cd1f864ad4c.jpg", "81a969c1dc984c48254c0724454e0c2d.jpg", "8382b891bc930d29552843f471cb540f.jpg", "84d4ed245eaca8f91b0157535b8725b8.jpg", "8720e938deac27550b6e3f556018f681.jpg", "89f4355a9b5150bb0e0af2aa0534b886.jpg", "8a87c49ecbb9f33901b1e66eff8caba4.jpg", "8ad457720ed26e6429f307d6411ba561.jpg", "90810daca8e52c1b3bcb7d10f8f793fd.jpg", "94832b0446c61d34d2ad08900c47d672.jpg", "9a17f03528f2d7aad2fdb2a09555b66f.jpg", "9a8f968b882c4748dd22160b0b1665e0.jpg", "9c4235b2a1def76d2476570660f3bfd3.jpg", "9de84a2e90865235111734e837e54623.jpg", "9f40ddacddec0878608fcdeea35ef71b.jpg", "a0c664d6f3870d25a65c634e897d4bb5.jpg", "a0fbfabed424601ee47da2f0b97005f3.jpg", "a4d6ae488869c402bcf33b4c4144a199.jpg", "a7cb3ebaa4a9d5ae87fcf5a3e6663398.jpg", "a96f5a14f6932060a9b552561c646918.jpg", "ac02e154ede5fb7af510e2f557a7ca6f.jpg", "ae81a8e9d238482e9840b6c57d9711e3.jpg", "b1668a2d42297b69faa1f54e246bce91.jpg", "b19adc816b5842a32cd9fa7f4369ba72.jpg", "b1c2f2ceae77a663f449680adc87b881.jpg", "b1f32abbcd94d2b07bda599bead0e331.jpg", "b293a80fe229e06360d93df65f712fe7.jpg", "b3a1d1cdfe940924e1d95b41cf8eb160.jpg", "b69aa119f9d9dca6373cd0b0c917ebe0.jpg", "b7a52f75117e8523bba7cd49b81a624e.jpg", "b954850e2ca0f8bcc346f3e649d5dad4.jpg", "ba7f71f758ba1216f0595954c263adcf.jpg", "bbde3759bf4143c7f3fa6117b6f1ab94.jpg", "bc50fc40e7bfeef2953033cd39726c5c.jpg", "c34a02335b3bad60874df458e53de788.jpg", "c3a346ced834575dcbca34c23b45a536.jpg", "cd39af7ff20a689d84b584b6d45e6661.jpg", "d1c1f0bfb415fbd441136bc203a8c78e.jpg", "d25aefcfdcc30327f0f26801dda87961.jpg", "dab5a180f532b5d858536e2bfc7ccd03.jpg", "dce07a049c2f960ee83f9d21271f92e6.jpg", "ddace3f8a89d440671c9c2652b0fa08c.webp", "ddc340f3242b6d5297ad84e88fb30a76.jpg", "e02f259689d920fda22fe8d6842150a2.jpg", "e09836ec55e61ab1a692104fbfd1c7b7.jpg", "e195050c3776ff90cfbfb8fdd22e343d.jpg", "e2458e6a7bce0f0cbafa96e3c288a33d.jpg", "e25aba1547f19d698ed57eab389f557e.jpg", "e43e246591aa68f18e618e40797f5a61.jpg", "e51650a5e34b531d915d19083c958504.jpg", "e6d1a208f22a2f35345e60457f54227b.jpg", "ea0bff0ee28a4991e03d436b2e03b3e2.jpg", "eb947dbbff6fa3af559e910627c19a93.jpg", "f48ce39fbda752f7fe215ff99c3121d0.jpg", "f6f151e1b1ef8ba7f78856694d13ffa7.jpg", "f8f0daac0edac166f333f35e9215d7c5.jpg", "fa8907fb9136e29b865fe21f601e051b.jpg", "fcdb217d28bb1aa09c66455a45d3d2dc.jpg", "feced069bb9134a0cb0a40a9af32b4e9.jpg", "fee126016a3f312f566d446b08c731c2.jpg"];
+var currentIndex = 0;
+var display = document.getElementById('display-img');
+var counter = document.getElementById('counter');
+var filmstrip = document.getElementById('filmstrip');
+var loading = document.getElementById('loading');
+function update(idx) {
+  idx = (idx + images.length) % images.length; currentIndex = idx;
+  loading.classList.remove('hidden');
+  var img = new Image();
+  img.onload = function() { display.src = 'images/' + images[idx]; loading.classList.add('hidden'); updateFilmstrip(); };
+  img.onerror = function() { display.src = 'images/' + images[idx]; loading.classList.add('hidden'); };
+  img.src = 'images/' + images[idx];
+  counter.textContent = (idx + 1) + ' / ' + images.length;
+}
+function updateFilmstrip() {
+  filmstrip.innerHTML = '';
+  images.forEach(function(fn, i) {
+    var div = document.createElement('div'); div.className = 'thumb' + (i === currentIndex ? ' active' : '');
+    var img = document.createElement('img'); img.src = 'images/' + fn;
+    div.appendChild(img); div.onclick = function() { update(i); }; filmstrip.appendChild(div);
+  });
+  var active = filmstrip.querySelector('.active');
+  if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+}
+update(0);
+document.body.onclick = function(e) { if (e.target.closest('#filmstrip') || e.target.closest('#home-btn') || e.target.closest('.nav-btn') || e.target.closest('#bio-panel') || e.target.closest('#bio-btn')) return; update(currentIndex + 1); };
+document.getElementById('prev').onclick = function(e) { e.stopPropagation(); update(currentIndex - 1); };
+document.getElementById('next').onclick = function(e) { e.stopPropagation(); update(currentIndex + 1); };
+document.addEventListener('keydown', function(e) { if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); update(currentIndex + 1); } if (e.key === 'ArrowLeft') { e.preventDefault(); update(currentIndex - 1); } });
+document.getElementById('bio-btn').onclick = function(e) { e.stopPropagation(); document.getElementById('bio-panel').classList.toggle('open'); };
+document.querySelector('.close-bio').onclick = function(e) { e.stopPropagation(); document.getElementById('bio-panel').classList.remove('open'); };
+</script>
+</body>
+</html>

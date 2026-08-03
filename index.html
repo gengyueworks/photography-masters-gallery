@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>摄影大师画廊</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0a0a0a; color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  min-height: 100vh;
+}
+.hero { padding: 80px 40px 60px; text-align: center; }
+.hero h1 { font-size: 40px; font-weight: 200; letter-spacing: 8px; margin-bottom: 12px; }
+.hero p { color: rgba(255,255,255,0.4); font-size: 15px; letter-spacing: 2px; }
+.grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 2px; padding: 0 2px 2px;
+}
+.card {
+  position: relative; aspect-ratio: 4/3; overflow: hidden;
+  cursor: pointer; text-decoration: none;
+}
+.card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, filter 0.6s ease; filter: brightness(0.7); }
+.card:hover img { transform: scale(1.05); filter: brightness(0.9); }
+.card .overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 32px 28px;
+}
+.card .name { font-size: 22px; font-weight: 300; letter-spacing: 3px; }
+.card .count { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; letter-spacing: 1px; }
+.empty { grid-column: 1/-1; text-align: center; padding: 60px; color: rgba(255,255,255,0.2); }
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>摄影大师画廊</h1>
+  <p>MASTER PHOTOGRAPHERS</p>
+</div>
+<div class="grid" id="grid"></div>
+
+<script>
+const photographers = [
+  { name: "Henri Cartier-Bresson", slug: "henri-cartier-bresson", count: 149, label: "张作品", href: "slideshow.html", image: "images/0124b6f0350a9d8f6702af0beef9328f.jpg" },
+  { name: "Dorothea Lange", slug: "dorothea-lange", count: 131, label: "张作品", href: "slideshow.html", image: "images/0079df09e6b4a4a891bb6f7be1460dca.jpg" },
+  { name: "Walker Evans", slug: "walker-evans", count: 116, label: "张作品", href: "slideshow.html", image: "images/00e60b5a8c35fb008105dac5052f8864.jpg" },
+  { name: "William Eggleston", slug: "william-eggleston", count: 100, label: "张作品", href: "slideshow.html", image: "images/02a2d56973413260dfa650487fe954fc.jpg" },
+  { name: "Sebastião Salgado", slug: "sebastiao-salgado", count: 126, label: "张作品", href: "slideshow.html", image: "images/007b46a521e30c40e20718c3a12a8fc5.jpg" },
+  { name: "Diane Arbus", slug: "diane-arbus", count: 84, label: "张作品", href: "slideshow.html", image: "images/02cb10074ae74f2cb8b5993d9fa72f05.jpg" },
+  { name: "Helmut Newton", slug: "helmut-newton", count: 72, label: "张作品", href: "slideshow.html", image: "images/00eab6e9867399d5bb5df42023f01c6d.jpg" },
+  { name: "Cindy Sherman", slug: "cindy-sherman", count: 83, label: "张作品", href: "slideshow.html", image: "images/0199c1c9e9f8a68e6f7f85fff7a22620.jpg" },
+  { name: "Alex Webb", slug: "alex-webb", count: 211, label: "张作品", href: "slideshow.html", image: "images/006e1f3a4630b5be464805e728d88514.jpg" },
+  { name: "Gordon Parks", slug: "gordon-parks", count: 20, label: "张作品", href: "slideshow.html", image: "images/00878c5ce95de3a17f6e327922eca9e0.jpg" },
+  { name: "Stephen Shore", slug: "stephen-shore", count: 186, label: "张作品", href: "slideshow.html", image: "images/0220fb676ba21e5516a5681753b1547a.jpg" },
+  { name: "Nan Goldin", slug: "nan-goldin", count: 182, label: "张作品", href: "slideshow.html", image: "images/02d54790e23180ead41e6cad9f92c7d3.jpg" },
+  { name: "Ernst Haas", slug: "ernst-haas", count: 201, label: "张作品", href: "slideshow.html", image: "images/003a2ab477ea1949f63ae0b4a633f07c.jpg" },
+  { name: "Josef Koudelka", slug: "josef-koudelka", count: 210, label: "张作品", href: "slideshow.html", image: "images/0021c3b3a3c13669be92b2e0bf5e2cd0.jpg" },
+  { name: "Bruce Davidson", slug: "bruce-davidson", count: 194, label: "张作品", href: "slideshow.html", image: "images/0155cc5a0f3ccf91b7e88d279f8853e4.jpg" },
+  { name: "Marc Riboud", slug: "marc-riboud", count: 218, label: "张作品", href: "slideshow.html", image: "images/0062d162ae80beafdd26e259192cee6c.jpg" },
+  { name: "Guy Bourdin", slug: "guy-bourdin", count: 134, label: "张作品", href: "slideshow.html", image: "images/0093359050ce11b23dad3f6139d889be.jpg" },
+  { name: "Tim Walker", slug: "tim-walker", count: 946, label: "张作品", href: "slideshow.html", image: "images/00332429a35fd203d14ff59bee336bbd.jpg" },
+  { name: "Peter Lindbergh", slug: "peter-lindbergh", count: 1095, label: "张作品", href: "slideshow.html", image: "images/6e7164ea6692134188f078864a5df388.jpg" },
+  { name: "Elliott Erwitt", slug: "elliott-erwitt", count: 883, label: "张作品", href: "slideshow.html", image: "images/007bafab4895d8e772bfeaed541682eb.jpg" },
+  { name: "Fan Ho", slug: "fan-ho", count: 550, label: "张作品", href: "slideshow.html", image: "images/009390c0c7f375ba1cbcc8f3a4f8db61.jpg" },
+  { name: "Saul Leiter", slug: "saul-leiter", count: 300, label: "张作品", href: "slideshow.html", image: "images/0091c095a5864f3d49c1e7eeb13645fe.jpg" },
+  { name: "Arnold Newman", slug: "arnold-newman", count: 2, label: "张作品", href: "slideshow.html", image: "images/009c328cfcb8359caa02becda58799d0.jpg" },
+  { name: "Richard Avedon", slug: "richard-avedon", count: 379, label: "张作品", href: "slideshow.html", image: "images/006a3b72858160318647f0360ee5ebe5.png" },
+  { name: "Rinko Kawauchi", slug: "rinko-kawauchi", count: 86, label: "张作品", href: "slideshow.html", image: "images/0199564b77f2e22c409ce10eb7312fcc.jpg" },
+  { name: "Vivian Maier", slug: "vivian-maier", count: 98, label: "张作品", href: "slideshow.html", image: "images/03158dae9cb4c66f70b007ada0056b18.jpg" },
+  { name: "Robert Capa", slug: "robert-capa", count: 173, label: "张作品", href: "slideshow.html", image: "images/0192aab0bdcec9a0ac3e4b0f46170207.jpg" },
+  { name: "Harry Gruyaert", slug: "harry-gruyaert", count: 105, label: "张作品", href: "slideshow.html", image: "images/012c59003475e7d7c128be08031f70f3.jpg" },
+  { name: "Hideaki Hamada", slug: "hideaki-hamada", count: 218, label: "张作品", href: "slideshow.html", image: "images/00b3faa327a70407a0db38c3d6143ef5.jpg" },
+  { name: "Annie Leibovitz", slug: "annie-leibovitz", count: 4, label: "张作品 + 3本画册", href: "index.html", image: "images/00d6436d2d9283f7ce61f87b07ae378e.jpg" },
+  { name: "Mary Ellen Mark", slug: "mary-ellen-mark", count: 61, label: "张作品", href: "slideshow.html", image: "images/ed60da3b.841d.40c9.9e03.d45d331749bf.jpg" },
+  { name: "Paolo Roversi", slug: "paolo-roversi", count: 29, label: "张作品", href: "slideshow.html", image: "images/3241d2b458878dbbd7d4b038a6c8fe5a.jpg" },
+  { name: "Brassaï", slug: "brassaï", count: 30, label: "张作品", href: "slideshow.html", image: "images/02342d1e8a218a32df3125c066c86989.jpg" },
+  { name: "Robert Frank", slug: "robert-frank", count: 108, label: "张作品", href: "slideshow.html", image: "images/67a526900d3c957cf69c38096f5c7c26.jpg" },
+  { name: "Irving Penn", slug: "irving-penn", count: 101, label: "张作品", href: "slideshow.html", image: "images/6d79067bd3ac47b5074a6ac32f981cbf.jpg" },
+  { name: "Daido Moriyama", slug: "daido-moriyama", count: 121, label: "张作品", href: "slideshow.html", image: "images/66efaa731639ef9b7ebfda4fa3a014aa.jpg" },
+  { name: "Mario Testino", slug: "mario-testino", count: 7, label: "张作品", href: "slideshow.html", image: "images/00a794cc17112c4e4ceb0f95fdd9394e.jpg" },
+  { name: "Jacques Henri Lartigue", slug: "jacques-henri-lartigue", count: 188, label: "张作品", href: "slideshow.html", image: "images/026f8fc2d090e810f0876bbd2874f48f.jpg" },
+  { name: "Raghu Rai", slug: "raghu-rai", count: 197, label: "张作品", href: "slideshow.html", image: "images/001118a7c649ca3f81693f9a841e21ae.jpg" },
+  { name: "Berenice Abbott", slug: "berenice-abbott", count: 257, label: "张作品", href: "slideshow.html", image: "images/00d2b7c3eb32968aa4b06bb84528daaa.jpg" },
+  { name: "Wolfgang Tillmans", slug: "wolfgang-tillmans", count: 226, label: "张作品", href: "slideshow.html", image: "images/01c73e7b31b2509d952a20805830008c.jpg" },
+  { name: "Herb Ritts", slug: "herb-ritts", count: 90, label: "张作品", href: "slideshow.html", image: "images/0328532a4c8e8928548b00cb066774cc.jpg" },
+  { name: "Duane Michals", slug: "duane-michals", count: 78, label: "张作品", href: "slideshow.html", image: "images/06a7c6b5e04609081746dc8352c751c5.jpg" },
+  { name: "William Klein", slug: "william-klein", count: 215, label: "张作品", href: "slideshow.html", image: "images/00f0ee536cfaa1af7461d42cf82e05d1.webp" },
+  { name: "Sally Mann", slug: "sally-mann", count: 7, label: "张作品", href: "slideshow.html", image: "images/00ac37dab182ef22b58f6747ad17e269.webp" },
+  { name: "Bruce Gilden", slug: "bruce-gilden", count: 57, label: "张作品", href: "slideshow.html", image: "images/00a683e8d16ce3bfd7fbc2477c233f32.webp" },
+  { name: "Lee Friedlander", slug: "lee-friedlander", count: 62, label: "张作品", href: "slideshow.html", image: "images/0177f86af2079ef8b9fb8eaa2a01228d.jpg" },
+  { name: "Garry Winogrand", slug: "garry-winogrand", count: 121, label: "张作品", href: "slideshow.html", image: "images/001a14fd805dab3c94c6eb2b16c84caa.jpg" },
+  { name: "André Kertész", slug: "andre-kertesz", count: 114, label: "张作品", href: "slideshow.html", image: "images/091dea1b46e5fde53b284a8f80414132.jpg" },
+  { name: "Joel Meyerowitz", slug: "joel-meyerowitz", count: 158, label: "张作品", href: "slideshow.html", image: "images/00b198f58efaefe8d34a307ebb0006e0.jpg" },
+  { name: "Steve McCurry", slug: "steve-mccurry", count: 222, label: "张作品", href: "slideshow.html", image: "images/02dcf2292bbce35fb310608c6004e7ec.jpg" },
+  { name: "Ansel Adams", slug: "ansel-adams", count: 261, label: "张作品", href: "slideshow.html", image: "images/0022a906cd5ed8307088a1937a553ebe.jpg" },
+  { name: "Edward Weston", slug: "edward-weston", count: 79, label: "张作品", href: "slideshow.html", image: "images/02416d97539dbd91528890f1f5f2f399.jpg" },
+  { name: "Imogen Cunningham", slug: "imogen-cunningham", count: 88, label: "张作品", href: "slideshow.html", image: "images/03125777f886390e2f6c091350e39086.jpg" },
+  { name: "Minor White", slug: "minor-white", count: 79, label: "张作品", href: "slideshow.html", image: "images/08a5def6337ac23078df7ecaf90310d8.jpg" },
+  { name: "Alfred Stieglitz", slug: "alfred-stieglitz", count: 150, label: "张作品", href: "slideshow.html", image: "images/00ac0f18b427f69dc6e3173fc2f63f30.jpg" },
+  { name: "Paul Strand", slug: "paul-strand", count: 197, label: "张作品", href: "slideshow.html", image: "images/002ffaaf7ccda456b2e3855dd06fea87.jpg" },
+  { name: "Edward Steichen", slug: "edward-steichen", count: 237, label: "张作品", href: "slideshow.html", image: "images/0092d9c187ff134a70a2407e510fff60.jpg" },
+  { name: "Man Ray", slug: "man-ray", count: 8, label: "张作品", href: "slideshow.html", image: "images/0092d9c187ff134a70a2407e510fff60.jpg" },
+  { name: "László Moholy-Nagy", slug: "laszlo-moholy-nagy", count: 19, label: "张作品", href: "slideshow.html", image: "images/005051abe6a0c86c16bfe8764ef9e84b.jpg" },
+  { name: "Alexander Rodchenko", slug: "alexander-rodchenko", count: 190, label: "张作品", href: "slideshow.html", image: "images/005051abe6a0c86c16bfe8764ef9e84b.jpg" },
+  { name: "Helen Levitt", slug: "helen-levitt", count: 196, label: "张作品", href: "slideshow.html", image: "images/000c7fbb391ea62a2a92662554a07267.jpg" },
+  { name: "Lisette Model", slug: "lisette-model", count: 280, label: "张作品", href: "slideshow.html", image: "images/000c7fbb391ea62a2a92662554a07267.jpg" },
+  { name: "Harry Callahan", slug: "harry-callahan", count: 17, label: "张作品", href: "slideshow.html", image: "images/0056bc857cd019c2c956c6b65f6cb2e3.jpg" },
+  { name: "Aaron Siskind", slug: "aaron-siskind", count: 237, label: "张作品", href: "slideshow.html", image: "images/0056bc857cd019c2c956c6b65f6cb2e3.jpg" },
+  { name: "W. Eugene Smith", slug: "w-eugene-smith", count: 3, label: "张作品", href: "slideshow.html", image: "images/01d613f3f48435739cc01f5a27dcb1a0.jpg" },
+  { name: "Margaret Bourke-White", slug: "margaret-bourke-white", count: 193, label: "张作品", href: "slideshow.html", image: "images/01d613f3f48435739cc01f5a27dcb1a0.jpg" },
+  { name: "Lewis Hine", slug: "lewis-hine", count: 5, label: "张作品", href: "slideshow.html", image: "images/00c601f245fb39b5792f7ee2b1c29d4c.jpg" },
+  { name: "James Van Der Zee", slug: "james-van-der-zee", count: 178, label: "张作品", href: "slideshow.html", image: "images/00c601f245fb39b5792f7ee2b1c29d4c.jpg" },
+  { name: "Robert Doisneau", slug: "robert-doisneau", count: 22, label: "张作品", href: "slideshow.html", image: "images/004ca637c7c5d3baabe410b7945f1d68.jpg" },
+  { name: "Willy Ronis", slug: "willy-ronis", count: 4, label: "张作品", href: "slideshow.html", image: "images/004ca637c7c5d3baabe410b7945f1d68.jpg" },
+  { name: "Tina Modotti", slug: "tina-modotti", count: 243, label: "张作品", href: "slideshow.html", image: "images/010c4b6841f0f95077bf81a9eee5ab4c.jpg" },
+  { name: "René Burri", slug: "rene-burri", count: 266, label: "张作品", href: "slideshow.html", image: "images/010c4b6841f0f95077bf81a9eee5ab4c.jpg" },
+  { name: "Werner Bischof", slug: "werner-bischof", count: 287, label: "张作品", href: "slideshow.html", image: "images/009c9cc4609d5735c7d6cc698552e339.jpg" },
+  { name: "David Seymour", slug: "david-seymour", count: 243, label: "张作品", href: "slideshow.html", image: "images/009c9cc4609d5735c7d6cc698552e339.jpg" },
+  { name: "Inge Morath", slug: "inge-morath", count: 232, label: "张作品", href: "slideshow.html", image: "images/01341ac49c1ceafe6a6d7e840d67acbd.jpg" },
+  { name: "Martin Parr", slug: "martin-parr", count: 321, label: "张作品", href: "slideshow.html", image: "images/01341ac49c1ceafe6a6d7e840d67acbd.jpg" },
+  { name: "Pete Turner", slug: "pete-turner", count: 261, label: "张作品", href: "slideshow.html", image: "images/01a123245bee7ade75124fa9245e8a10.jpg" },
+  { name: "Fred Herzog", slug: "fred-herzog", count: 153, label: "张作品", href: "slideshow.html", image: "images/01a123245bee7ade75124fa9245e8a10.jpg" },
+  { name: "Luigi Ghirri", slug: "luigi-ghirri", count: 19, label: "张作品", href: "slideshow.html", image: "images/00d151ee37b578098b2619707586b6e2.jpg" },
+  { name: "Hiroshi Sugimoto", slug: "hiroshi-sugimoto", count: 156, label: "张作品", href: "slideshow.html", image: "images/00d151ee37b578098b2619707586b6e2.jpg" },
+  { name: "Shomei Tomatsu", slug: "shomei-tomatsu", count: 231, label: "张作品", href: "slideshow.html", image: "images/0166dd2fbb049e2961a0b30495386eea.jpg" },
+  { name: "David Bailey", slug: "david-bailey", count: 223, label: "张作品", href: "slideshow.html", image: "images/0166dd2fbb049e2961a0b30495386eea.jpg" },
+  { name: "Albert Watson", slug: "albert-watson", count: 276, label: "张作品", href: "slideshow.html", image: "images/01fd0df1f3d70acb04b295d837bc537d.jpg" },
+  { name: "Bruce Weber", slug: "bruce-weber", count: 254, label: "张作品", href: "slideshow.html", image: "images/01fd0df1f3d70acb04b295d837bc537d.jpg" },
+  { name: "Norman Parkinson", slug: "norman-parkinson", count: 24, label: "张作品", href: "slideshow.html", image: "images/0063012b8443844c355334e19399069d.jpg" },
+  { name: "Andreas Gursky", slug: "andreas-gursky", count: 176, label: "张作品", href: "slideshow.html", image: "images/0063012b8443844c355334e19399069d.jpg" },
+  { name: "Thomas Struth", slug: "thomas-struth", count: 319, label: "张作品", href: "slideshow.html", image: "images/0043858e78cb3b6f5545559e9f8b95f7.jpg" },
+  { name: "Rineke Dijkstra", slug: "rineke-dijkstra", count: 182, label: "张作品", href: "slideshow.html", image: "images/0043858e78cb3b6f5545559e9f8b95f7.jpg" },
+  { name: "Jeff Wall", slug: "jeff-wall", count: 210, label: "张作品", href: "slideshow.html", image: "images/0094c5d5940c3dbade9ed586cf44834f.jpg" },
+  { name: "Jeanloup Sieff", slug: "jeanloup-sieff", count: 245, label: "张作品", href: "slideshow.html", image: "images/005c847cdab0d783c766556d493cf729.jpg" },
+  { name: "Candida Höfer", slug: "candida-hofer", count: 309, label: "张作品", href: "slideshow.html", image: "images/00d4d79fb79630b83ef3b56129fcc7f0.jpg" },
+  { name: "Thomas Ruff", slug: "thomas-ruff", count: 3, label: "张作品", href: "slideshow.html", image: "images/00d4d79fb79630b83ef3b56129fcc7f0.jpg" },
+  { name: "Ikko Narahara", slug: "ikko-narahara", count: 245, label: "张作品", href: "slideshow.html", image: "images/00403961bc836e71ef270d4b24c3e1ba.webp" },
+  { name: "Kishin Shinoyama", slug: "kishin-shinoyama", count: 243, label: "张作品", href: "slideshow.html", image: "images/00403961bc836e71ef270d4b24c3e1ba.webp" },
+  { name: "Uta Barth", slug: "uta-barth", count: 322, label: "张作品", href: "slideshow.html", image: "images/011dd4bfa2dfb6519a879305214fa0d6.jpg" },
+  { name: "Mario Giacomelli", slug: "mario-giacomelli", count: 245, label: "张作品", href: "slideshow.html", image: "images/011dd4bfa2dfb6519a879305214fa0d6.jpg" },
+  { name: "Bernd & Hilla Becher", slug: "bernd-hilla-becher", count: 236, label: "张作品", href: "slideshow.html", image: "images/006b42c5f112e2c807d26ca8fd7a19c3.jpg" },
+  { name: "Michael Kenna", slug: "michael-kenna", count: 6, label: "张作品", href: "slideshow.html", image: "images/006b42c5f112e2c807d26ca8fd7a19c3.jpg" },
+  { name: "Josef Sudek", slug: "josef-sudek", count: 242, label: "张作品", href: "slideshow.html", image: "images/002e0f40407ca08202025220e989d018.jpg" },
+  { name: "Michael Wolf", slug: "michael-wolf", count: 10, label: "张作品", href: "slideshow.html", image: "images/002e0f40407ca08202025220e989d018.jpg" },
+  { name: "Emmet Gowin", slug: "emmet-gowin", count: 172, label: "张作品", href: "slideshow.html", image: "images/00a7da0ada4974904502df423839be77.jpg" },
+  { name: "Ray K. Metzker", slug: "ray-k-metzker", count: 223, label: "张作品", href: "slideshow.html", image: "images/00a7da0ada4974904502df423839be77.jpg" },
+  { name: "Horst P. Horst", slug: "horst-p-horst", count: 8, label: "张作品", href: "slideshow.html", image: "images/00b3eb28a7cba8108c79ec8c9663bb1d.jpg" },
+  { name: "Cecil Beaton", slug: "cecil-beaton", count: 270, label: "张作品", href: "slideshow.html", image: "images/00b3eb28a7cba8108c79ec8c9663bb1d.jpg" },
+  { name: "David LaChapelle", slug: "david-lachapelle", count: 275, label: "张作品", href: "slideshow.html", image: "images/003b8c63e07101bc4a5ccf688ac28fd1.jpg" },
+  { name: "Miles Aldridge", slug: "miles-aldridge", count: 4, label: "张作品", href: "slideshow.html", image: "images/003b8c63e07101bc4a5ccf688ac28fd1.jpg" },
+  { name: "Steven Meisel", slug: "steven-meisel", count: 80, label: "张作品", href: "slideshow.html", image: "images/0142ac5d3b0b8f2111ba277bfdd307b3.jpg" },
+  { name: "Sarah Moon", slug: "sarah-moon", count: 278, label: "张作品", href: "slideshow.html", image: "images/0142ac5d3b0b8f2111ba277bfdd307b3.jpg" },
+  { name: "Susan Meiselas", slug: "susan-meiselas", count: 213, label: "张作品", href: "slideshow.html", image: "images/001881fbc2d314be31f2f0f6ed5dd8ba.jpg" },
+  { name: "Constantine Manos", slug: "constantine-manos", count: 237, label: "张作品", href: "slideshow.html", image: "images/001881fbc2d314be31f2f0f6ed5dd8ba.jpg" },
+  { name: "Thomas Hoepker", slug: "thomas-hoepker", count: 243, label: "张作品", href: "slideshow.html", image: "images/004199df7c4ce473ed06962296244e7e.jpg" },
+  { name: "Patrick Zachmann", slug: "patrick-zachmann", count: 191, label: "张作品", href: "slideshow.html", image: "images/004199df7c4ce473ed06962296244e7e.jpg" },
+  { name: "William Albert Allard", slug: "william-albert-allard", count: 217, label: "张作品", href: "slideshow.html", image: "images/00bb9e500253dc3efcc77d7271da5429.jpg" },
+  { name: "Sam Abell", slug: "sam-abell", count: 199, label: "张作品", href: "slideshow.html", image: "images/00bb9e500253dc3efcc77d7271da5429.jpg" },
+  { name: "David Doubilet", slug: "david-doubilet", count: 107, label: "张作品", href: "slideshow.html", image: "images/01eca5f7415efd35a2511293a10348cb.jpg" },
+  { name: "James Balog", slug: "james-balog", count: 99, label: "张作品", href: "slideshow.html", image: "images/0048eee4375227662744f3c549883ae0.jpg" },
+  { name: "Steve Winter", slug: "steve-winter", count: 172, label: "张作品", href: "slideshow.html", image: "images/01c0a954f1c269e4d5ee5009445a750b.jpg" },
+  { name: "Jodi Cobb", slug: "jodi-cobb", count: 188, label: "张作品", href: "slideshow.html", image: "images/01c0a954f1c269e4d5ee5009445a750b.jpg" },
+  { name: "Frans Lanting", slug: "frans-lanting", count: 178, label: "张作品", href: "slideshow.html", image: "images/0090210ba98f5fc8d1993169d64cf388.jpg" },
+  { name: "Vincent Munier", slug: "vincent-munier", count: 21, label: "张作品", href: "slideshow.html", image: "images/0090210ba98f5fc8d1993169d64cf388.jpg" },
+  { name: "Art Wolfe", slug: "art-wolfe", count: 195, label: "张作品", href: "slideshow.html", image: "images/02d6570c65c5b8e4c6936b7dcd6b6a55.jpg" },
+  { name: "Platon", slug: "platon", count: 187, label: "张作品", href: "slideshow.html", image: "images/02d6570c65c5b8e4c6936b7dcd6b6a55.jpg" },
+  { name: "Jimmy Chin", slug: "jimmy-chin", count: 158, label: "张作品", href: "slideshow.html", image: "images/0053e650232ea76e97d2aa201b8f55bf.jpg" },
+  { name: "Paul Nicklen", slug: "paul-nicklen", count: 38, label: "张作品", href: "slideshow.html", image: "images/0053e650232ea76e97d2aa201b8f55bf.jpg" },
+  { name: "Cristina Mittermeier", slug: "cristina-mittermeier", count: 192, label: "张作品", href: "slideshow.html", image: "images/0147b935badfb2e0d2dbbdd68bd176f1.jpg" },
+  { name: "Thomas Mangelsen", slug: "thomas-mangelsen", count: 36, label: "张作品", href: "slideshow.html", image: "images/0147b935badfb2e0d2dbbdd68bd176f1.jpg" },
+  { name: "Beverly Joubert", slug: "beverly-joubert", count: 8, label: "张作品", href: "slideshow.html", image: "images/0257d50a7c67867e8c993775c1f76bc6.jpg" },
+  { name: "Ami Vitale", slug: "ami-vitale", count: 142, label: "张作品", href: "slideshow.html", image: "images/0257d50a7c67867e8c993775c1f76bc6.jpg" },
+  { name: "Nick Brandt", slug: "nick-brandt", count: 101, label: "张作品", href: "slideshow.html", image: "images/00b01176d28aacec99bfe6897bc38215.jpg" },
+  { name: "Thomas Heaton", slug: "thomas-heaton", count: 36, label: "张作品", href: "slideshow.html", image: "images/04ba90c0ce0618d255ddd7817fb8055e.jpg" },
+  { name: "Bruce Dale", slug: "bruce-dale", count: 292, label: "张作品", href: "slideshow.html", image: "images/00290b22ebd7d53c8c93f4ef70c36f28.jpg" },
+];
+
+const grid = document.getElementById('grid');
+photographers.forEach(p => {
+  if (p.count === 0) {
+    const div = document.createElement('div');
+    div.className = 'empty';
+    div.innerHTML = `<p>${p.name} · 待收录</p>`;
+    grid.appendChild(div);
+    return;
+  }
+  const a = document.createElement('a');
+  a.className = 'card';
+  a.href = `${p.slug}/${p.href}`;
+  a.innerHTML = `<img src="${p.slug}/${p.image}" alt="${p.name}"><div class="overlay"><div class="name">${p.name}</div><div class="count">${p.count} ${p.label}</div></div>`;
+  grid.appendChild(a);
+});
+</script>
+</body>
+</html>
