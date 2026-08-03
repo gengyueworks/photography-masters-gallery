@@ -9,4 +9,6 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 echo "[$(date)] Starting daily run: $COUNT photographers"
 python3 "$SCRIPT_DIR/auto_add.py" --count "$COUNT" 2>&1 | tee -a "$SCRIPT_DIR/auto_add.log"
+echo "[$(date)] Syncing to GitHub..."
+bash "$SCRIPT_DIR/scripts/sync_github.sh"
 echo "[$(date)] Done"
