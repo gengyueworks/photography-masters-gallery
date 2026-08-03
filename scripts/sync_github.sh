@@ -9,12 +9,13 @@ cd "$BASE" || exit 1
 # Step 1+2: regenerate PROGRESS.md and sync counts
 python3 "$BASE/scripts/generate_progress.py" >>"$BASE/daily_progress.log" 2>&1
 
-# Step 3: push if changed
+# Step 3: commit if changed, always push (no-op if up-to-date, auto-retries next run)
 if [ -n "$(git status --porcelain)" ]; then
   git add -A
   git commit -m "auto-sync: $(date '+%Y-%m-%d') gallery progress" >/dev/null 2>&1
-  git push -q origin main >>"$BASE/daily_progress.log" 2>&1
+fi
+if git push -q origin main >>"$BASE/daily_progress.log" 2>&1; then
   echo "[$(date)] GitHub synced" >>"$BASE/daily_progress.log"
 else
-  echo "[$(date)] No changes, GitHub already up-to-date" >>"$BASE/daily_progress.log"
+  echo "[$(date)] Push failed (network?), will retry next run" >>"$BASE/daily_progress.log"
 fi
