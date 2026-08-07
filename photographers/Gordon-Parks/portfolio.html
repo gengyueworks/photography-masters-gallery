@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gordon Parks · Portfolio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;overflow:hidden;height:100vh;width:100vw;user-select:none;-webkit-user-select:none;cursor:pointer;}
+#main-image{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+#main-image img{max-width:98vw;max-height:92vh;object-fit:contain;transition:opacity .25s;}
+#counter{position:fixed;top:24px;left:50%;transform:translateX(-50%);font-size:14px;color:rgba(255,255,255,.5);z-index:10;letter-spacing:2px;}
+#filmstrip{position:fixed;bottom:0;left:0;right:0;height:80px;background:rgba(0,0,0,.85);display:flex;align-items:center;gap:4px;padding:0 16px;overflow-x:auto;z-index:10;scrollbar-width:none;}
+#filmstrip::-webkit-scrollbar{display:none;}
+#filmstrip .thumb{height:56px;min-width:56px;flex-shrink:0;border-radius:2px;overflow:hidden;cursor:pointer;opacity:.35;transition:opacity .2s,transform .2s;border:2px solid transparent;}
+#filmstrip .thumb:hover{opacity:.65;transform:translateY(-2px);}
+#filmstrip .thumb.active{opacity:1;border-color:#fff;transform:translateY(-4px);}
+#filmstrip .thumb img{width:100%;height:100%;object-fit:cover;}
+.nav-btn{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border:none;background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);font-size:20px;cursor:pointer;border-radius:50%;z-index:10;transition:background .2s;}
+.nav-btn:hover{background:rgba(255,255,255,.15);}
+#prev{left:20px;}#next{right:20px;}
+#loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:100;background:#000;transition:opacity .5s;}
+#loading.hidden{opacity:0;pointer-events:none;}
+.loader{width:32px;height:32px;border:2px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+#home-btn{position:fixed;top:20px;left:20px;z-index:20;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);padding:6px 14px;font-size:13px;cursor:pointer;border-radius:4px;letter-spacing:1px;transition:background .2s;text-decoration:none;display:inline-block;}
+#home-btn:hover{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);}
+#bio-btn{position:fixed;top:20px;right:20px;z-index:20;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);padding:6px 14px;font-size:13px;cursor:pointer;border-radius:4px;letter-spacing:1px;transition:background .2s;}
+#bio-btn:hover{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);}
+#bio-panel{position:fixed;top:0;right:-420px;width:400px;height:100vh;background:rgba(20,20,20,.97);z-index:30;transition:right .4s;padding:60px 32px 32px;overflow-y:auto;border-left:1px solid rgba(255,255,255,.08);}
+#bio-panel.open{right:0;}
+#bio-panel h2{font-size:24px;font-weight:300;letter-spacing:3px;margin-bottom:8px;}
+#bio-panel .sub{color:rgba(255,255,255,.35);font-size:13px;letter-spacing:1px;margin-bottom:24px;}
+#bio-panel p{font-size:14px;line-height:1.8;color:rgba(255,255,255,.7);margin-bottom:16px;}
+#bio-panel .close-bio{position:absolute;top:20px;right:20px;background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;}
+</style>
+</head>
+<body>
+<div id="loading"><div class="loader"></div></div>
+<a href="../../index.html" id="home-btn">← 画廊</a>
+<button id="bio-btn">传记</button>
+<div id="counter"></div>
+<div id="main-image"><img src="" id="display-img" alt=""></div>
+<button class="nav-btn" id="prev">←</button>
+<button class="nav-btn" id="next">→</button>
+<div id="filmstrip"></div>
+<div id="bio-panel">
+  <button class="close-bio">✕</button>
+  <h2>Gordon Parks</h2>
+  <div class="sub">1912–2006 · 美国</div>
+  <p>美国 20 世纪最全能的艺术家之一——他是摄影师、导演、作家、作曲家，在每一个领域都留下了不可磨灭的印记。Parks 出生在堪萨斯州的贫寒家庭，15 岁时母亲去世，他在贫民窟摸爬滚打。一台二手相机改变了他的人生。</p>
+<p>1940 年代他以时装摄影起家，是《Vogue》历史上第一位黑人摄影师。但他真正的力量在社会纪实领域——1948 年他为《Life》杂志拍摄的哈莱姆黑人帮派故事引起了巨大反响。他深入贫民社区拍摄，不是居高临下地"记录苦难"，而是与被拍摄者同呼吸。他的镜头拍出了黑人生活的尊严和复杂。</p>
+<p>Parks 最著名的照片是 1942 年的《American Gothic, Washington, D.C.》——一位黑人清洁女工手持扫帚站在美国国旗前，构图直接致敬 Grant Wood 的同名画作，但把那把干草叉换成了扫帚。这张照片是一记无声的重拳，直击美国种族隔离制度的虚伪。</p>
+<p>他一生出版过多本自传，执导了经典电影《Shaft》，活到了 93 岁。"我拿起相机是因为它是我的武器。选择武器很重要。""I picked up a camera because it was my weapon of choice."</p>
+</div>
+<script>
+var images = ["00878c5ce95de3a17f6e327922eca9e0.jpg", "01497373dc3632a094bdb78b5028ea59.jpg", "02bacd19ba7d6da05f38adb6fe8278f4.jpg", "02dac836b91212697400b8281125a6ab.jpg", "0415e5d9663678432a47d4968844e761.jpg", "057da8a995b50eca322b33442729ea16.jpg", "05ff31b08709913317cded873cf05784.png", "089600d4ecdc9766232066c54593cb02.jpg", "09073c8df3e86d6985caef533903037a.jpg", "09af4a22afecd9d8f333aeaa0f7102b5.jpg", "0a16da7547f161b740df10934dcb3388.jpg", "0a8e467030893fa19ad5e9cb7531fb75.jpg", "0ae3f05b17d5b2ac096fa025d7155c35.jpg", "0b1e87718e09522e8ec9713b7b3ebf57.jpg", "0cf297a907d7ae8d4cce90af30d0cb73.jpg", "0d3e739698a77087e9da438b57c82401.jpg", "0deba72d25ee2f61323b38bd85896a74.jpg", "129d4caec9a54003734bfe6c942d255d.jpg", "13d6499f76c12db670ceebf280c5d982.jpg", "1670c900271c8fa60226b81449df49f9.jpg", "16ec39a4811e51e15377f093a0aed66c.jpg", "19f43582abed853037f9d700c7585588.jpg", "1bbe5487cbf589be5d496b603f1bde32.jpg", "1daae98ef62db0b0ba708c9ac877309b.jpg", "1dc57c6de47df47c3e53ecabbe8f3b0f.jpg", "1dd6ed812485f350ea6c5fd4b9deeb37.jpg", "1f5d48c06e2a062a5805e7174bc84ce8.jpg", "1f6af16c51a2265281539a1f9d05248d.jpg", "23a9aa3f7917bfae8a20f16a4e62788b.jpg", "26b5c29b67d118757c12cba60407d842.jpg", "282a651cb7afbd3c742d79c798c5d598.jpg", "28db2136d72961b775d29363e465a458.jpg", "2a41959d41c244f43226191a48b48cd1.jpg", "2c2bff6c4fa5daee71726ea793b0b3ea.jpg", "2c7e420e366b77232671ca92c116dc49.jpg", "2e0b66fa98e038f0d073bad1fd0f5dec.jpg", "2e7aa93e729786e158c246d1938d1a18.jpg", "2f195f9363ac424c75e82ff7624b0682.jpg", "2f4418d3037aa960dcff97d52b20246f.jpg", "30ba19f839dacd889e2a2ded44538cb6.jpg", "324f1e4f577dca6668d28f960313f86f.jpg", "32ca5fe97d0edd0f635e4865b2d0f216.jpg", "332fc2de9971303eff9ab0b86a09e24b.jpg", "35bd915f2a0a9d008d3917a947aa21bf.jpg", "36091bf2ef357dadc3fc5f49182caa76.jpg", "365b4b9a5b8d0d67cf2abb52cb916049.jpg", "373f7411f936e848f9939de03a240b15.jpg", "3898c7927f6de887e30f957bd62b42db.jpg", "3e6be652ac33624fd1821d61e552aaae.jpg", "41bda41effd53b309560a582b2983b57.jpg", "44d8b05160dd024836b9e257854c1bae.jpg", "474ed90991f412ed841af9d97a169492.jpg", "479bcfb4a7442af0f3ce92558e15b437.jpg", "4a6ce31c549d10e7d1db2ee04f242260.jpg", "4b3535aac01989f076f10e97a10f98f0.jpg", "4ff81d04bc739c051a7b96b3de081920.jpg", "51eb66b96799cf8b28a85ae74474a48d.jpg", "524ebf845cb68d9223f601314dc75b15.jpg", "535ee916b6644a9aa9452518438716ed.jpg", "53f59367a08caadfc799e8663c442eb6.png", "543ae6d1b25439d36e5b1f90e7f6de07.jpg", "54e3005350547ff4d505f098d661bc2a.jpg", "552ab5477984c4a4955034779fa6a4fb.jpg", "568a1e9ab35fd50b44acb3e594a52fd4.jpg", "57ca087ef56d70355889d32841b6f656.jpg", "58c0ed9570a33dd1fe18a1cc607082f7.jpg", "5a9f78e9d17b7ed34a6e537131177e1b.jpg", "5af0088c943ccf3f9e9b101fc2ddc46d.jpg", "5b770cec22bfda697b5bfad0a1c014bd.jpg", "5ba792270e45d2f1662b562970cfbb87.jpg", "5ea11f01f823ed2f1036f2473342c991.jpg", "62e1186fe80e6309b5ee30cd6688fe31.jpg", "659ba6b643e275a7b78f9918f77630e1.jpg", "668096995c395f836b6082a17e435a02.jpg", "67f6a97c759b27fc762ca447fad27ea3.jpg", "695891f2d022c75a189828be57c58da8.jpg", "6aa038f844cd754c60a23b1c75aabfb3.jpg", "6ac79574fc5d1c866ae8edbcd7bdcd04.jpg", "6ad8b8c1e3c5c5eb6a68c66d0a24fd83.jpg", "6d8c8cafeabf1b7e16e361c3b5ca26d6.jpg", "6f62111fcab625cfdf7faa39d530b9bd.jpg", "6f9f2b219d41c0dc41944b0b51580380.jpg", "736d8e2f58d031517068b5880752b844.png", "75123c130876f3ffd2018280861288f3.jpg", "761eb77e6e6f6484ac7dc3f17f702dc0.png", "796499d10ea17e4ba4808e114fc27264.jpg", "7bc5e1d62fe7f3c687f8ab0267650e1a.jpg", "7ceff4fd316088254f6f206d9a47e268.jpg", "7d4da2ee35e3b6f2f556270522e414aa.jpg", "80205d08a049821e0a6ba316c18ff8db.jpg", "82b249700e5bb8d508be51a02ab3434e.jpg", "8381b0d75d28361d2f18664dc9937541.jpg", "84ec9b3243e359f739da35e73674203d.jpg", "853db6b27d0eaf169af11135d200b39f.jpg", "85b8ae04164e4fed651780c2445290a0.jpg", "85bdb0610c656734f91c1a59bbd1d2ab.jpg", "86bbfd2b7fb0629495b2160997738e6d.jpg", "87e2c6433b5b6b99f043ef4744b20a73.jpg", "8c572e65c0b13f98184d7b899db2175a.jpg", "8e8188b27e0479ffd00a73d76b08d6f1.jpg", "8f1d844c76e7869baca82549d5efa79a.jpg", "90c140a6f6852e3e6d807e5355412998.jpg", "911830572c69739c7dec476f82ed5004.jpg", "92351ab3d1b1f029663bdef4ed784ab1.jpg", "9287ac8b1360e328139ffbb1cd50362f.jpg", "92c414cb48db852d6ab350b0569c0af6.jpg", "92de1d2498dff68bcd59cb442ff57ed7.jpg", "933f3aa6560ca16f2ed862052404dfe3.jpg", "9352e0ca05e99b69b218cd0a96d63ed3.jpg", "967bdaccdc95508b7cef3fc91a7940a9.jpg", "9800843a5986ca17ca04529ee712c4ab.jpg", "99c4453953e63afda2bd4860c06fd7b7.jpg", "9a10ac2a9708cb1eb7da3d6641947849.jpg", "9a45c58e2bf8808c37d70ccc5212b597.jpg", "9abf5a29b9bae7a8ccd09614fb8ce669.jpg", "9c663c478d7cbd82c6593c8709749ac4.jpg", "9cc67b2f1105c4e0372cbd93588adfc0.jpg", "9e43fefa1dfa2fe02127a2bb2992c2db.jpg", "a1366c20829daaafc846f46c36457529.jpg", "a1c899af7374fbad26a2f7938618ac50.jpg", "a3e6b662c486a218a50dad65c69e6225.jpg", "a60110d01f8adf1ab3fc92caec90fe72.jpg", "a9cbfd6cae7557b1dccfbdd8bbf9b288.jpg", "aadbeeb219926b621b616a35e9a08b3b.jpg", "ab3561063aa9afac262e6fefecf391d3.jpg", "ac94b35b561a6c7f979f9d7ac9282988.jpg", "ae4d51f4064950bbfd2436d6977bb373.jpg", "b242a7e1acb56e036c20df366e707a51.jpg", "b550863cba428fcd0739dff02ea33f42.jpg", "b5d1e5a07beba32c30466ac4157fd0be.jpg", "b5f3e518183e0876005d3ea56ce8ed34.jpg", "b62473767524423ac7380a71b7b334ae.jpg", "b65471eb00daa7feb8da221b04e69dbb.jpg", "b6d898bc83baec13088c9a033ac510ec.jpg", "b6f6f0fad1dc631b396030c235a63207.jpg", "b7858b166a900b31e61efc1ea0c705a7.jpg", "b7aa364278368fa5bdfd7a52af943e0a.jpg", "b9309954f3c67a3a643d5f1150e1c2f7.jpg", "bb3dc71e58485ff9f2380530248b62e6.png", "bb46754adec3cdb82dcba99af77d7670.jpg", "bd0f1415a9cc9901304b653fd7507366.jpg", "c04a2e856b6567f03ee8d42cfbe86987.jpg", "c191b7c455340aed5de3a9a3758d6051.jpg", "c1c77175755386156832d9e6f4ffd4a3.jpg", "c36fd93261e820c895522779642d496f.jpg", "c5b867180148618d7ea8de6cda37d620.jpg", "c5c0f668f8fbe8a77276d939a4e272e0.jpg", "c61e4477a727719abf100c566c7e49d2.jpg", "c63271485751268af648ae71db6bcdc1.jpg", "c75c7dcf3da61b4e21332a48148ecddb.jpg", "c8787e68ee36bbcc7546be8e1d46435e.jpg", "c9deae638fab60c0a926481d39c03a3a.jpg", "cb6c0f34ac966d7f9b80b411a964112f.jpg", "cbd49955471421fd70297d353f30a8c0.jpg", "ccfec361547f0baf12e1352336b37682.webp", "ce8c2bef558ed309c6b0319b286d14bc.png", "ce8d3ffdaf329d5f0824c690f71985b9.jpg", "cf417655f5f63fcf9d43b05149d6239a.jpg", "cf895ef3e40e270ff26ad9f9deeecd28.jpg", "d075de3e0e896045fc1485bae6d80969.jpg", "d118d9554f72ded92a7093d5da9a3fbe.jpg", "d153daeba387bccb267eea081f9eb59b.jpg", "d69718b26b043ffd212070446c4253fc.jpg", "d777707eaaa75cc8d3214fb79636288b.jpg", "d819ad5e620f7234041ec173c3eca2a4.jpg", "d88c83302e24e102c591aeebf9b816b5.jpg", "d90a601464107476290b2446b330c81d.jpg", "dddfa7595da1200a1f46e59237ef8a4c.jpg", "df1c7cd5cd9141fc339ad5df17c9c671.jpg", "e279ed64aa83acba480eddeaa2b56051.jpg", "e495903e3ba1fbb9f313dd4d84877a4b.jpg", "e4e7ec557155fb65556118fbbd0b375d.jpg", "e848c63e4f2d6364518ca31712b764e3.jpg", "e849f49cb34c3401604cc7e7e6d3af67.jpg", "e9036f994d3fd55ac88c43a0e8b83fb6.jpg", "eafed0b6e3753ebebcf8df4081d016e9.jpg", "eb2c2297ae156c38ea3d528b6a8ca517.jpg", "eb6d80263ac607104d086bb30cb1828b.jpg", "ebf2f308960eee57c85b8cf30886b763.jpg", "f059a7ccfc569566332076ce86a7f1d3.jpg", "f120ee66df4aff3af0e9834eb9b543a2.jpg", "f4299b21d6d95bd735e23dbacd0a2430.jpg", "f53b21b5d2c085f0abac3fc7af2ace17.jpg", "f5a1751e8d1e47aa10a8867b3483cb50.jpg", "f5ec6977bbab606cdb28076014528751.jpg", "f641f637ceef83c73e91cf9cd6f8a878.jpg", "f6b33f06fe63c56c322f5dc152ed9712.jpg", "f7e9b6821175ab9ad0d055f0bc921d71.jpg", "f873c446bf38ab13dd02ab7e6b7e01f6.jpg", "f8cd91768eb1ccaebe18e3397e7ea851.jpg", "fa8e64452bd3b61fffbf85c0d9cf9c38.jpg", "fab7f5031de2e78a693195f056b0de24.jpg", "fc5dc53d04ceb297218a899196718969.jpg", "fc66aaaa06c2139a225b58f7807bc8b1.jpg", "fd4cf8be785d01bb0b0ffe5c609c9ebe.jpg", "fe0b3cba704f03f7232ea2e8bc8cd0fb.jpg", "fe4db92ae584451c76154bc2585c6164.png", "feda085e60e0bf02ae2d764915a631dc.jpg", "ffe6dfb6257ec66abfae6c4bee65158d.jpg"];
+var i=0,d=document.getElementById('display-img'),c=document.getElementById('counter'),f=document.getElementById('filmstrip'),l=document.getElementById('loading');
+function u(idx){idx=(idx+images.length)%images.length;i=idx;l.classList.remove('hidden');
+var img=new Image();img.onload=function(){d.src='images/'+images[idx];l.classList.add('hidden');uf();};
+img.onerror=function(){d.src='images/'+images[idx];l.classList.add('hidden');};img.src='images/'+images[idx];
+c.textContent=(idx+1)+' / '+images.length;}
+function uf(){f.innerHTML='';images.forEach(function(fn,idx){var div=document.createElement('div');div.className='thumb'+(idx===i?' active':'');var img=document.createElement('img');img.src='images/'+fn;div.appendChild(img);div.onclick=function(){u(idx);};f.appendChild(div);});
+var a=f.querySelector('.active');if(a)a.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});}
+u(0);
+document.body.onclick=function(e){if(e.target.closest('#filmstrip,#home-btn,.nav-btn,#bio-panel,#bio-btn'))return;u(i+1);};
+document.getElementById('prev').onclick=function(e){e.stopPropagation();u(i-1);};
+document.getElementById('next').onclick=function(e){e.stopPropagation();u(i+1);};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();u(i+1);}if(e.key==='ArrowLeft'){e.preventDefault();u(i-1);}});
+document.getElementById('bio-btn').onclick=function(e){e.stopPropagation();document.getElementById('bio-panel').classList.toggle('open');};
+document.querySelector('.close-bio').onclick=function(e){e.stopPropagation();document.getElementById('bio-panel').classList.remove('open');};
+</script>
+</body>
+</html>

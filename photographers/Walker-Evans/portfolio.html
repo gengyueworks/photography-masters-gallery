@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Walker Evans · Portfolio</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; overflow: hidden; height: 100vh; width: 100vw; user-select: none; -webkit-user-select: none; cursor: pointer; }
+#main-image { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+#main-image img { max-width: 98vw; max-height: 92vh; object-fit: contain; transition: opacity 0.25s ease; }
+#counter { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); font-size: 14px; color: rgba(255,255,255,0.5); z-index: 10; letter-spacing: 2px; }
+#filmstrip { position: fixed; bottom: 0; left: 0; right: 0; height: 80px; background: rgba(0,0,0,0.85); display: flex; align-items: center; gap: 4px; padding: 0 16px; overflow-x: auto; z-index: 10; scrollbar-width: none; }
+#filmstrip::-webkit-scrollbar { display: none; }
+#filmstrip .thumb { height: 56px; min-width: 56px; flex-shrink: 0; border-radius: 2px; overflow: hidden; cursor: pointer; opacity: 0.35; transition: opacity 0.2s, transform 0.2s; border: 2px solid transparent; }
+#filmstrip .thumb:hover { opacity: 0.65; transform: translateY(-2px); }
+#filmstrip .thumb.active { opacity: 1; border-color: #fff; transform: translateY(-4px); }
+#filmstrip .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.nav-btn { position: fixed; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border: none; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); font-size: 20px; cursor: pointer; border-radius: 50%; z-index: 10; transition: background 0.2s; }
+.nav-btn:hover { background: rgba(255,255,255,0.15); }
+#prev { left: 20px; } #next { right: 20px; }
+#loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 100; background: #000; transition: opacity 0.5s; }
+#loading.hidden { opacity: 0; pointer-events: none; }
+.loader { width: 32px; height: 32px; border: 2px solid rgba(255,255,255,0.2); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#home-btn { position: fixed; top: 20px; left: 20px; z-index: 20; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); padding: 6px 14px; font-size: 13px; cursor: pointer; border-radius: 4px; letter-spacing: 1px; transition: background 0.2s; text-decoration: none; display: inline-block; }
+#home-btn:hover { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+#bio-btn { position: fixed; top: 20px; right: 20px; z-index: 20; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); padding: 6px 14px; font-size: 13px; cursor: pointer; border-radius: 4px; letter-spacing: 1px; transition: background 0.2s; }
+#bio-btn:hover { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+#bio-panel { position: fixed; top: 0; right: -420px; width: 400px; height: 100vh; background: rgba(20,20,20,0.97); z-index: 30; transition: right 0.4s ease; padding: 60px 32px 32px; overflow-y: auto; border-left: 1px solid rgba(255,255,255,0.08); }
+#bio-panel.open { right: 0; }
+#bio-panel h2 { font-size: 24px; font-weight: 300; letter-spacing: 3px; margin-bottom: 8px; }
+#bio-panel .sub { color: rgba(255,255,255,0.35); font-size: 13px; letter-spacing: 1px; margin-bottom: 24px; }
+#bio-panel p { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 16px; }
+#bio-panel .close-bio { position: absolute; top: 20px; right: 20px; background: none; border: none; color: rgba(255,255,255,0.4); font-size: 20px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div id="loading"><div class="loader"></div></div>
+<a href="../../index.html" id="home-btn">← 画廊</a>
+<button id="bio-btn">传记</button>
+<div id="counter"></div>
+<div id="main-image"><img src="" id="display-img" alt=""></div>
+<button class="nav-btn" id="prev">←</button>
+<button class="nav-btn" id="next">→</button>
+<div id="filmstrip"></div>
+<div id="bio-panel">
+  <button class="close-bio">✕</button>
+  <h2>Walker Evans</h2>
+  <div class="sub">1903–1975 · 美国</div>
+  <p>美国纪实摄影的奠基人，用一台 8×10 大画幅相机记录了美国大萧条时代的乡村生活。他拍摄的阿拉巴马佃农家庭照片——尤其是与 James Agee 合作的《Let Us Now Praise Famous Men》——成为美国影像史上最安静也最震撼的视觉文献。</p>
+  <p>Evans 在 1935-1937 年加入 Farm Security Administration（FSA）摄影项目，但他与同事 Dorothea Lange 的路数完全不同。Lange 拍的是人的表情和故事，Evans 拍的是物：褪色的木屋墙板、破旧的靴子、教堂里的椅子。他不追求瞬间情感冲击，而是用大画幅的极致清晰度，让每根木头的纹理自己说话。</p>
+  <p>1938 年 MoMA 为他举办了摄影史上第一个个人摄影展——"Walker Evans: American Photographs"。1940 年代他成为《Fortune》杂志的专职摄影师，拍摄了大量美国街景、广告牌和建筑。他对美国本土视觉语言的敏感，后来深刻影响了 Robert Frank、Lee Friedlander 和 Diane Arbus。</p>
+  <p>Evans 后期迷恋纽约地铁——他偷偷拍摄地铁乘客肖像，将相机藏在大衣里。这组《Many Are Called》在地铁车厢这一封闭空间中捕捉了 1940 年代纽约人的真实表情，成为街头摄影中"偷拍"这一方法的早期经典。</p>
+  <p>Evans 生前总说："好的照片来自对事物的尊重——你越尊重你的主题，照片就越好。"</p>
+</div>
+<script>
+var images = ["00e60b5a8c35fb008105dac5052f8864.jpg", "02364010644621fced9fbeaf65e2c415.jpg", "02581259d8c04eba1e02b8f5c124d07f.jpg", "0308e13761273c2eb55ddcf009f10512.jpg", "06348698bc5345ba86b2e2a66830f8b8.jpg", "0687da87ba242789b95594d38285a74b.jpg", "06dcd67a06537f9313bf6503a9e04382.jpg", "06e6a035a1df6790cd39c18a14498e07.jpg", "0704f4e34ec773831002060e48144bb8.jpg", "0733517756783161570c7ab52f045420.jpg", "0767da775eadf91f74d43352893eb08c.jpg", "07e3af7fba960be0d1980891978f67f9.jpg", "0bf0ab65721f64bd81d8a5632c43a558.jpg", "0dba2876080a20753f5004420ef67934.jpg", "10e38abcd3ffd7d806ce6a179563e0ec.jpg", "12003774bbcfe55778db02e9b281bd43.jpg", "125776c3352b90eb5e24fa74d9f03044.jpg", "189ca573b3e7c17b8e944ae153de4264.jpg", "1b7322d0cc9973ec1d477188c223e33e.jpg", "1ca23ad1935e5ce006a78359f4d6e6db.jpg", "1ed7070c45ee0301bcc762c1d0df471d.png", "286b35d76964a165facb78bf4d8c89f9.jpg", "2a57e3f58ba80549f4cb9fd45f9bcf07.jpg", "2ae7d4f65b37746d85e39d72425c9a88.jpg", "2e22acdd41577179f5378e003818db6e.jpg", "301de237e2bc65a57ae38e4b3577c44d.png", "30309b42f59be6fd58e215518214c289.jpg", "349ccbc6a38c874b10378daf4b8eae49.jpg", "34df470338ad1bda42011886987cb9f7.jpg", "353c3e2b21e84cfd94f73f4403556bf2.jpg", "3607427a43dead48be3a0189f04dfd59.jpg", "36133c10243437daf30be1a4e755dfb2.jpg", "3800110e47e6d4cf1ba8dc6e95c7c04d.jpg", "3833776db34bd03b313d847f810cc414.jpg", "389af90879b1c55753aa6a0730f06f07.jpg", "39857cd1dca2d47461b92787a1a0daa6.jpg", "3bd04a6497ab70389091f8225ae32ce5.jpg", "404fceb10556dce8e0bc9716e2eb49c3.jpg", "4093b16ee4d1b409579e19cb0f3ef98a.jpg", "4099556743e9812629d23a3743e689a2.jpg", "41f749414c85930a71d462e13b5883b2.jpg", "426d92317517c9c5fca1a5501430996d.jpg", "42b25dbda284c96e40858a0bc3f4bac7.jpg", "43b51308a865fa5f03d449901e23295e.jpg", "470fc7e38e6b1f4225353533fad70183.jpg", "472ac5e74ac6c548beba5de43b386961.jpg", "493d67204708265e584a9bdeff0b7262.jpg", "4e2085c9f40c6fb6601d30cc073b978f.jpg", "4e50a13d86869077eed9a0e33d51a08a.jpg", "4f0a34a404d46eada7a89f889b183eda.jpg", "4f37568973287567a472f0c20a81dc98.jpg", "53750947deb97462fd1ab789d0b81a5c.jpg", "54502e1de79b1725abac8166c02dcac5.jpg", "568cc5137f1618bcb9e2db232a2738e4.jpg", "5a5581c1c766e3d6fdb5ef59e1b4bc10.jpg", "5c874911ea3d5a25d57acdb1c3568c2e.jpg", "5cedae3b8148a34cc36faab550e52fb4.jpg", "5d1829988e570877bb12876575f085b8.jpg", "5da37605dadb6a0a73c82e1543812b51.jpg", "5ed1ceea62741ab1cc5bc2aaa1ed1e70.jpg", "5f70847e20dbb5a53642640004c87469.jpg", "5f75b0e26c9c92ede8dd7a835dfbd938.jpg", "64107d433ce19db4c8b7318d539bc924.jpg", "6464bdde3d64614fab4d11ca9221f8fe.jpg", "64a286759d57933435cbb519b15bf22a.jpg", "681221933f9c46d986427bacc3635489.jpg", "68e4d7329555116d8d6aac2b9f85ccab.jpg", "6bb69398a1705cd34fc07195ac142310.jpg", "6c89e594237f9303edc0cb8ec82d4059.jpg", "6d5a42ad488ab339fa9974b65cf1d702.jpg", "6e38d3124a4ab4db185e530a980aba09.jpg", "71105ca8c1a063f65692f78abdec13ff.jpg", "73cff1a4062d8154afbc2796a0459b2b.jpg", "76bb0ebac840de2e9b64373c2417af5c.jpg", "76ce9d7904477ae7390373da3b474184.jpg", "79ce486d299d00796a283abfa20fb903.jpg", "7dc9be45c5e4b7af1db3ca15e306825f.jpg", "7ef1685e87015637230390115ae939ac.jpg", "807f10a8e19e20d0763b1e2a6f4927dc.jpg", "81899952ac059f0cd116f6676b0abf97.jpg", "8248b39dbe1b038eabcfb47c132759c3.jpg", "82d76771bcf61bd37793fabe2707592d.jpg", "8547ba31fbacdd115f9a1b2d0fe26cca.jpg", "85f7d2e55b848542a48cf9f4d2a210d0.jpg", "87a6ec31e71b6d82a81b80978fcd4d64.jpg", "88b8f2c41d3c478136b3714efd36ce78.jpg", "89a1b4b7a0ba2a155f4405d927104e5a.jpg", "8b062ad7de03a04662626aaced9245d9.jpg", "8b4a9d79c27942976264cc27b310b1f1.jpg", "8bbfbf732a7bcce50fa87e9cb1721a8c.jpg", "8def937c82d98cd00cd712bcf4b282be.jpg", "8f8bb7e87081ded5cec34f627ba47410.png", "9015ad6755436c27841db7beaa7b15cd.jpg", "92d1b9545b7cfd6d3e3c0407dbc0f3cd.jpg", "98193c55b6abb9d6d5af1d3a9f437d48.jpg", "984dd5819fca5ee1c61e853f82544c4d.jpg", "9b142bcbe5be7a6fca6fc207ea8bde64.jpg", "9d09bb6677ca1ec6c6ea0a7d7d256e6a.jpg", "9d3abaabeb1c4d0198eb56b6e1305fa6.jpg", "a2a4b0c1ce5ea2cd8a8093ca9af06b71.jpg", "a2cffb0d28d9ace9bf3ec57cb9407760.jpg", "a373e63630523152806e019959da86b1.jpg", "a69514d372647a15ee626e2e35d8da99.jpg", "a79e7a4a0ebeb632830be62a5fa37ed5.jpg", "a7dd5aa9776a56682aafc4ccaa421195.jpg", "a8c614898536510750bb31d458b9b05f.jpg", "a8fe95e288657f5611a251e404ae70f1.jpg", "a9374f026beb7aaa6426e1ac08a0cf50.jpg", "a9c3a262bd983c66c5fcc44d827a6d9b.jpg", "ab1a65df0870911fd9b37a7f431c9230.jpg", "ab9754070319407c6a8ea62ddebd6101.jpg", "ac30df3214ce82be2cba1cf54355ae75.jpg", "acbcfd8bc363ba1fd0266b029a5ce8cd.jpg", "ad84545a8bedfc04c26d3fff66f91c0e.jpg", "adf9665629472e5a730adfc6f5766297.jpg", "ae9d35c8779db499ffb025629325aefb.jpg", "af2dc2fd7cf30bab2fb4f6d7206f472d.jpg", "b13ecd25797b6b0d017fc8957d9810d3.jpg", "b19eac12166058266254266fcc8b958c.jpg", "b564a0e88651fa42dacfc49673784e4c.jpg", "b6439bdc246fc6a7aa3d17a8b85d68d8.jpg", "bb508c8d4ce48c2bb39adc518b28da5d.jpg", "bbff8767e87adc3b16fce95a829c1859.jpg", "bcbee771f1ac456582cf9ae2f17e20bf.jpg", "c074bf018d40bc59a3a09a014f860cbe.jpg", "c0cd2e2e68a284ce68fa0ba97e08ab9c.jpg", "c2b803c55c22a03f001335da35972962.jpg", "c4805c8b0329c79d5e54523272ff8d15.jpg", "c65e8caa0f291af520bf5ca798c1a914.jpg", "c930c0189c819d4f9e0bb404267ef360.jpg", "c9f3a3416267fc2a45d4f8d9133fa26f.jpg", "ce06a9f6f34df7c1c635edc1c62a3135.jpg", "cfe81e425bd4b0dc7fe733d83adbe07b.jpg", "d203b73416220d7cae0205d4cafa0673.jpg", "d3ed8f47058bc994530f64dc0bc58278.jpg", "d46fcb55eccfe04108a854f1aaafd924.jpg", "d5665c5ee6be795d32891783d8597187.jpg", "d5b2d4ec1ba52455e525f5affcfc684d.jpg", "d90a8d13ac9263c4c4f433078cf0c969.jpg", "db65976d68387f3c2319c6f935070361.jpg", "e1b5193583b930dbd774a4e43a9a320d.jpg", "e1b634961c0040676444e94a2287ec88.jpg", "e26e8328200889d56c1a6584fbbf8591.jpg", "e2fb30b743346464b387707ced02a386.jpg", "ea455e13f342ed8a63c1ddb137eda8bf.jpg", "ea652fdc23b353d6fdf877740e252c5e.jpg", "ea818a568b7940e4d88825b8b9481ea6.jpg", "ea8ed2d56848f5ba0a071ae9fe336c6f.jpg", "ed5dd60fc1f305004cec799c458c5b99.jpg", "f1f5eb48d1bc719e9866ff77503a9270.jpg", "f26fde2609fa32948027bb3f1f74cf27.jpg", "f3929e2f93425caba60ebf980885be4d.jpg", "f69f4a2f899e6cf49617a21d5275cefe.jpg", "fa56e449862aeb16e8058f345bbe548e.jpg", "fa846be2592286f319cb80e80f965928.jpg", "fcd13afc770da29ec06b38169f581119.jpg"];
+var currentIndex = 0;
+var display = document.getElementById('display-img');
+var counter = document.getElementById('counter');
+var filmstrip = document.getElementById('filmstrip');
+var loading = document.getElementById('loading');
+function update(idx) {
+  idx = (idx + images.length) % images.length;
+  currentIndex = idx;
+  loading.classList.remove('hidden');
+  var img = new Image();
+  img.onload = function() {
+    display.src = 'images/' + images[idx];
+    loading.classList.add('hidden');
+    updateFilmstrip();
+  };
+  img.onerror = function() {
+    display.src = 'images/' + images[idx];
+    loading.classList.add('hidden');
+  };
+  img.src = 'images/' + images[idx];
+  counter.textContent = (idx + 1) + ' / ' + images.length;
+}
+function updateFilmstrip() {
+  filmstrip.innerHTML = '';
+  images.forEach(function(fn, i) {
+    var div = document.createElement('div');
+    div.className = 'thumb' + (i === currentIndex ? ' active' : '');
+    var img = document.createElement('img');
+    img.src = 'images/' + fn;
+    div.appendChild(img);
+    div.onclick = function() { update(i); };
+    filmstrip.appendChild(div);
+  });
+  var active = filmstrip.querySelector('.active');
+  if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+}
+update(0);
+document.body.onclick = function(e) {
+  if (e.target.closest('#filmstrip') || e.target.closest('#home-btn') || e.target.closest('.nav-btn') || e.target.closest('#bio-panel') || e.target.closest('#bio-btn')) return;
+  update(currentIndex + 1);
+};
+document.getElementById('prev').onclick = function(e) { e.stopPropagation(); update(currentIndex - 1); };
+document.getElementById('next').onclick = function(e) { e.stopPropagation(); update(currentIndex + 1); };
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); update(currentIndex + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); update(currentIndex - 1); }
+});
+document.getElementById('bio-btn').onclick = function(e) { e.stopPropagation(); document.getElementById('bio-panel').classList.toggle('open'); };
+document.querySelector('.close-bio').onclick = function(e) { e.stopPropagation(); document.getElementById('bio-panel').classList.remove('open'); };
+</script>
+</body>
+</html>

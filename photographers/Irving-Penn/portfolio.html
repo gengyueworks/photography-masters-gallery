@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Irving Penn · Portfolio</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; overflow: hidden; height: 100vh; width: 100vw; user-select: none; -webkit-user-select: none; cursor: pointer; }
+#main-image { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+#main-image img { max-width: 98vw; max-height: 92vh; object-fit: contain; transition: opacity 0.25s ease; }
+#counter { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); font-size: 14px; color: rgba(255,255,255,0.5); z-index: 10; letter-spacing: 2px; }
+#filmstrip { position: fixed; bottom: 0; left: 0; right: 0; height: 80px; background: rgba(0,0,0,0.85); display: flex; align-items: center; gap: 4px; padding: 0 16px; overflow-x: auto; z-index: 10; scrollbar-width: none; }
+#filmstrip::-webkit-scrollbar { display: none; }
+#filmstrip .thumb { height: 56px; min-width: 56px; flex-shrink: 0; border-radius: 2px; overflow: hidden; cursor: pointer; opacity: 0.35; transition: opacity 0.2s, transform 0.2s; border: 2px solid transparent; }
+#filmstrip .thumb:hover { opacity: 0.65; transform: translateY(-2px); }
+#filmstrip .thumb.active { opacity: 1; border-color: #fff; transform: translateY(-4px); }
+#filmstrip .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.nav-btn { position: fixed; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border: none; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); font-size: 20px; cursor: pointer; border-radius: 50%; z-index: 10; transition: background 0.2s; }
+.nav-btn:hover { background: rgba(255,255,255,0.15); }
+#prev { left: 20px; } #next { right: 20px; }
+#loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 100; background: #000; transition: opacity 0.5s; }
+#loading.hidden { opacity: 0; pointer-events: none; }
+.loader { width: 32px; height: 32px; border: 2px solid rgba(255,255,255,0.2); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#home-btn { position: fixed; top: 20px; left: 20px; z-index: 20; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); padding: 6px 14px; font-size: 13px; cursor: pointer; border-radius: 4px; letter-spacing: 1px; transition: background 0.2s; text-decoration: none; display: inline-block; }
+#home-btn:hover { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+#bio-btn { position: fixed; top: 20px; right: 20px; z-index: 20; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); padding: 6px 14px; font-size: 13px; cursor: pointer; border-radius: 4px; letter-spacing: 1px; transition: background 0.2s; }
+#bio-btn:hover { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+#bio-panel { position: fixed; top: 0; right: -420px; width: 400px; height: 100vh; background: rgba(20,20,20,0.97); z-index: 30; transition: right 0.4s ease; padding: 60px 32px 32px; overflow-y: auto; border-left: 1px solid rgba(255,255,255,0.08); }
+#bio-panel.open { right: 0; }
+#bio-panel h2 { font-size: 24px; font-weight: 300; letter-spacing: 3px; margin-bottom: 8px; }
+#bio-panel .sub { color: rgba(255,255,255,0.35); font-size: 13px; letter-spacing: 1px; margin-bottom: 24px; }
+#bio-panel p { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.7); margin-bottom: 16px; }
+#bio-panel .close-bio { position: absolute; top: 20px; right: 20px; background: none; border: none; color: rgba(255,255,255,0.4); font-size: 20px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div id="loading"><div class="loader"></div></div>
+<a href="../../index.html" id="home-btn">← 画廊</a>
+<button id="bio-btn">传记</button>
+<div id="counter"></div>
+<div id="main-image"><img src="" id="display-img" alt=""></div>
+<button class="nav-btn" id="prev">←</button>
+<button class="nav-btn" id="next">→</button>
+<div id="filmstrip"></div>
+<div id="bio-panel">
+  <button class="close-bio">✕</button>
+  <h2>Irving Penn</h2>
+  <div class="sub">1917–2009 · 美国</div>
+  <p>20 世纪商业与艺术摄影的集大成者。从《Vogue》封面到裸体肖像，从时尚编辑到彩绘身体，他是极少数同时在商业摄影和纯艺术摄影领域都达到顶峰的摄影师。</p>
+  <p>Penn 的视觉语言极其克制——中性灰或白背景、精准的侧光、被摄物悬浮在画面中无任何装饰。他的肖像以"把名人关进角落"著称：用一个三角形布景让被摄者靠在倾斜的墙上，迫使他们卸下面具。毕加索、杜尚、奥黛丽·赫本、萨尔瓦多·达利都进过那个角落。</p>
+  <p>除了肖像，他的静物摄影也同样惊人：巨大的玫瑰花、腐烂的水果、废弃的烟头——任何物体到了他的镜头下都获得了纪念碑式的庄严。1970 年代后他开始拍摄裸体，用铂钯印相工艺让身体在纸上呈现出大理石般的质感。</p>
+  <p>Penn 一生拒绝跟随潮流。当色彩成为杂志标配时，他坚持黑白；当极简主义风靡时，他反而做繁复的静物构成。他的固执让他在每个时代都显得不合时宜——但也让他的作品在半个世纪后依然像昨天拍的一样新鲜。</p>
+</div>
+<script>
+var images = ["0178f0e8fa82500534af96a8f01ae6e6.jpg", "0691046566607eab859ec4b735172335.jpg", "0823b21f25d8b9278a3ef8ed5df4b162.jpg", "1054e1a93a82d8cdcfeb520bb37743ec.jpg", "1071bfda94493539b88e9b10c8f88f57.jpg", "11876f2fe5e1518f2e19b5d6c2bbdfac.jpg", "123b8a51e9a3df4c3545058d79360fb3.jpg", "13712db4c7e0cd1c29e52c8be9143a01.jpg", "15ff465b2464929633c82cdf30ebb07f.jpg", "1b83cd42ab6e86c9b61e5bdd8a680a55.jpg", "1d6be14ee330d804607fb04bcbcaafc6.jpg", "1ddec8f08974d6c1d576d6fac4e42e1f.jpg", "1e73092679e3ae80c7f516385d798e52.jpg", "231347cf21cf9b7e56c12d7bc1497900.jpg", "240fa4e51d856babe5f892ad6162fe9e.jpg", "24a2ffcae7eaccfe61cdc2968e18bcfc.jpg", "25091296970e3f58ea6316d0da6ce69c.jpg", "257a495ca8973d89d719eae6a7c87d06.jpg", "26003f81fb21cff7c0ee73d938afad73.jpg", "290e8a34df1753f7b38118b33f3d6565.jpg", "29bdbcdb175dacf65a008db8f3f72596.jpg", "2add183b4afa7eb8220e25475dc1ad6e.jpg", "2bd54441d22988361e0496854c6673dc.jpg", "2d24ab13f2a5d351c04d48c955a713a3.jpg", "2e8fbdead53b9eb0772a3dc44ce2955b.jpg", "316088a554edd01bd95da5e27c9e2812.jpg", "343d9dc24b9f1384142f3b81016d7723.jpg", "34eaac5e5204679086600e7bedd2fa96.jpg", "3f19b78c1010fd3a9c5f7748183b136f.jpg", "42b2b2b19fbef3d8746802ad57e14142.jpg", "445ed4852d933fd07f80bd63ea13f402.jpg", "44f50ed6a51e41875394fe7dba734f18.jpg", "45e9682171f9f1164fb1a2498f0e9383.jpg", "49c52b91c458f81765f952cf09764132.jpg", "4cbc4b801e4761a87f6ed5bb8b0aa9a1.jpg", "4f03da135ccc951f63cfe66b4f9e0b20.jpg", "4f13b1a3c44fb247f33896f53a1cc2a1.jpg", "4f58983d0062ed5be1d2d3e403a386c2.jpg", "530115667764476643f3c15a5c0649d8.jpg", "56a1ae48b84909147c633bdd65b264be.jpg", "572678160e5d63defdf7bb96a51dfee4.jpg", "5cf3620005d5e181e17d46f41b1703d6.jpg", "5e0dd3eea00aab3d5dcf19441fda05c5.jpg", "6226a8ce9d1d2de492640ee23c50408b.jpg", "6490abc66076e28bcb445dc373111d01.jpg", "65738ab38c2ff8a2bf26728691bc1c4e.jpg", "660fcf0b7013b7837230124dbf67321a.jpg", "66de7e316b531f126cafc4e6c96fe7de.jpg", "67b38ff523d074e1b30d789d1b5dc0de.jpg", "6d79067bd3ac47b5074a6ac32f981cbf.jpg", "6dc2a877d2826605683efa35e2b8e5b8.jpg", "72d59e0d1bf3e1a7f4538d28ecec03de.jpg", "74a102c1714b30510681e54fe585d912.jpg", "7aa483d5cafd11c819325177e7684807.jpg", "7bf0199ddb2d796805e35aca90cfa59c.jpg", "7e8052863c4da8bbfffbeb944bcb4158.jpg", "7ee2cb2a5ac666bc58e0bddd6c9d842e.jpg", "8045be2f3940ecece314d586d8bb74c7.jpg", "81a915a6594a6d4f92b6aa1285971866.jpg", "8325f62daeb5b6ec90e6f2454ca81069.jpg", "86b5fa23e7806e51f9d8a94091ca959f.jpg", "873d9d4a168bb490a3584ef00caad958.jpg", "8908537fe7603439618ad8345dab9690.jpg", "8bb612287216c5bd933209191aa1af2d.jpg", "8e84280d2a8a1e0ef64f46fa16f97352.jpg", "8f751a8f6d08a6e28f57fb4c08d6029f.jpg", "90e39f0fa6c43c301c28650a150060af.jpg", "9394da86c60fb21cf30baade2af4246c.jpg", "93a58fc571e59879c46f40e1d18e8535.jpg", "970f5bc6e2a1c5cb1de5cf7923430c36.jpg", "a416864f9af6202a43c90ba1aa9d31f6.jpg", "a62db052885d3c1deda1082cb3757f92.jpg", "a70f1898adfa1ce9f023d87e97ef7cfa.jpg", "a75afb90ae1f525effb3c213489ac3f3.jpg", "aa9f93a237fe3642710086b99e174c12.jpg", "b435ac7f8dd31e0c964e5309bfb405df.jpg", "bacf881ea37faeac7621439deb3ab95b.jpg", "bb7b896656caf1320258924e2c7b7279.jpg", "bba400195e15ef61e8b429d5feb3d9a6.jpg", "befc48391096c917c2e08a6d7cea1e52.jpg", "bf43248e8a1f0fc15cf8732d998ef375.jpg", "bfb76496978835cfe8b9f038b7a12289.jpg", "bff342f0a0fe683309473e71aa9457c8.jpg", "c18e3ab311c41bba0f9170eba57285cc.jpg", "c6cddfc47af4e1c12340e3599e3a725b.jpg", "d31a1345cd1b9f3416264c8db847be38.jpg", "d4970e1ccb40a0599e763fc78e956e11.jpg", "d72353a3375a52a0a04b396d1cf2cb03.jpg", "da781f64969758be80b55bcd5f7ee18b.jpg", "dcd898454919b17b1b37e74db00f2644.jpg", "e0fe6c6334e8368b0912bda265894dd5.jpg", "e358bf85e7aad72e48ba95949673e37b.jpg", "e5eb0bda0d94b398af1141aba66d355d.jpg", "ea16a78040f36ef0505ad526eae2e48e.jpg", "ec1bc22036c9af8aa5f26e4bec135cb8.jpg", "ee6225ed28c5578c3f9a3b68ce17e9af.jpg", "f248d20d7bd469a95e65a8f12fed42dc.jpg", "f49c9677ba45e03bdb1926e8b9ff6878.jpg", "f58df88927b58d3a077d6234ee1c8f44.jpg", "fc63c3249a3d4df706db6356289198c4.jpg", "fd6e1842e96a6934b8c0d50c6092773e.jpg"];
+var currentIndex = 0;
+var display = document.getElementById('display-img');
+var counter = document.getElementById('counter');
+var filmstrip = document.getElementById('filmstrip');
+var loading = document.getElementById('loading');
+function update(idx) {
+  idx = (idx + images.length) % images.length;
+  currentIndex = idx;
+  loading.classList.remove('hidden');
+  var img = new Image();
+  img.onload = function() {
+    display.src = 'images/' + images[idx];
+    loading.classList.add('hidden');
+    updateFilmstrip();
+  };
+  img.onerror = function() {
+    display.src = 'images/' + images[idx];
+    loading.classList.add('hidden');
+  };
+  img.src = 'images/' + images[idx];
+  counter.textContent = (idx + 1) + ' / ' + images.length;
+}
+function updateFilmstrip() {
+  filmstrip.innerHTML = '';
+  images.forEach(function(fn, i) {
+    var div = document.createElement('div');
+    div.className = 'thumb' + (i === currentIndex ? ' active' : '');
+    var img = document.createElement('img');
+    img.src = 'images/' + fn;
+    div.appendChild(img);
+    div.onclick = function() { update(i); };
+    filmstrip.appendChild(div);
+  });
+  var active = filmstrip.querySelector('.active');
+  if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+}
+update(0);
+document.body.onclick = function(e) {
+  if (e.target.closest('#filmstrip') || e.target.closest('#home-btn') || e.target.closest('.nav-btn') || e.target.closest('#bio-panel') || e.target.closest('#bio-btn')) return;
+  update(currentIndex + 1);
+};
+document.getElementById('prev').onclick = function(e) { e.stopPropagation(); update(currentIndex - 1); };
+document.getElementById('next').onclick = function(e) { e.stopPropagation(); update(currentIndex + 1); };
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); update(currentIndex + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); update(currentIndex - 1); }
+});
+document.getElementById('bio-btn').onclick = function(e) { e.stopPropagation(); document.getElementById('bio-panel').classList.toggle('open'); };
+document.querySelector('.close-bio').onclick = function(e) { e.stopPropagation(); document.getElementById('bio-panel').classList.remove('open'); };
+</script>
+</body>
+</html>

@@ -11,6 +11,7 @@ from datetime import date
 from PIL import Image
 
 BASE = "/Volumes/拓展坞 1T2022/2 Codex-Workspace/Codex-Workspace-Main/32-AI高质量阅读库/摄影大师画廊"
+PHOTOS = os.path.join(BASE, "photographers")
 LOG = os.path.join(BASE, "daily_progress.log")
 TEMPLATE = os.path.join(BASE, ".portfolio_template.html")
 BOOK = os.path.join(BASE, "book")
@@ -347,7 +348,7 @@ def filter_dedup(img_dir):
     return rm
 
 def create_portfolio(name, subtitle, slug, files, bio_lines):
-    img_dir = os.path.join(BASE, slug, "images")
+    img_dir = os.path.join(PHOTOS, slug, "images")
     img_list = json.dumps(sorted(files))
     bio = "".join(f"<p>{p}</p>\n" for p in bio_lines)
     with open(TEMPLATE) as f:
@@ -415,7 +416,7 @@ def write_book_essay(slug, essay, chapter):
 
 def add_one(item):
     name, slug = item["name"], item["slug"]
-    img_dir = os.path.join(BASE, slug, "images")
+    img_dir = os.path.join(PHOTOS, slug, "images")
     if os.path.exists(img_dir) and len(os.listdir(img_dir)) > 0:
         log(f"  ⏭️  {name}: exists ({len(os.listdir(img_dir))} images)")
         return
@@ -442,13 +443,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--count", type=int, default=5)
     args = parser.parse_args()
-    already = set(os.listdir(BASE))
+    already = set(os.listdir(PHOTOS))
     added = 0
     for item in PENDING:
         if added >= args.count:
             break
         slug = item["slug"]
-        if slug in already and os.path.exists(os.path.join(BASE, slug, "images")):
+        if slug in already and os.path.exists(os.path.join(PHOTOS, slug, "images")):
             continue
         add_one(item)
         added += 1

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Annie Leibovitz · Portfolio</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; overflow: hidden; height: 100vh; width: 100vw; user-select: none; -webkit-user-select: none; cursor: pointer; }
+#main-image { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+#main-image img { max-width: 98vw; max-height: 92vh; object-fit: contain; transition: opacity 0.25s ease; }
+#counter { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); font-size: 14px; color: rgba(255,255,255,0.5); z-index: 10; letter-spacing: 2px; }
+#filmstrip { position: fixed; bottom: 0; left: 0; right: 0; height: 80px; background: rgba(0,0,0,0.85); display: flex; align-items: center; gap: 4px; padding: 0 16px; overflow-x: auto; z-index: 10; scrollbar-width: none; }
+#filmstrip::-webkit-scrollbar { display: none; }
+#filmstrip .thumb { height: 56px; min-width: 56px; flex-shrink: 0; border-radius: 2px; overflow: hidden; cursor: pointer; opacity: 0.35; transition: opacity 0.2s, transform 0.2s; border: 2px solid transparent; }
+#filmstrip .thumb:hover { opacity: 0.65; transform: translateY(-2px); }
+#filmstrip .thumb.active { opacity: 1; border-color: #fff; transform: translateY(-4px); }
+#filmstrip .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.nav-btn { position: fixed; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border: none; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); font-size: 20px; cursor: pointer; border-radius: 50%; z-index: 10; transition: background 0.2s; }
+.nav-btn:hover { background: rgba(255,255,255,0.15); }
+#prev { left: 20px; } #next { right: 20px; }
+#loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 100; background: #000; transition: opacity 0.5s; }
+#loading.hidden { opacity: 0; pointer-events: none; }
+.loader { width: 32px; height: 32px; border: 2px solid rgba(255,255,255,0.2); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#home-btn { position: fixed; top: 20px; left: 20px; z-index: 20; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); padding: 6px 14px; font-size: 13px; cursor: pointer; border-radius: 4px; letter-spacing: 1px; transition: background 0.2s; text-decoration: none; display: inline-block; }
+#home-btn:hover { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+</style>
+</head>
+<body>
+<div id="loading"><div class="loader"></div></div>
+<a href="../../index.html" id="home-btn">← 画廊</a>
+<div id="counter"></div>
+<div id="main-image"><img src="" id="display-img" alt=""></div>
+<button class="nav-btn" id="prev">←</button>
+<button class="nav-btn" id="next">→</button>
+<div id="filmstrip"></div>
+<script>
+var images = ["00d6436d2d9283f7ce61f87b07ae378e.jpg", "02c67ded7e5c29cea3e40f1ac7b15858.jpg", "03401368068a9a4e64a79b3fd56257b9.jpg", "048ca10cff84ee6395a26adba5d4fbda.jpg", "05713cdc168ceeca07ef06c4944dab36.jpg", "06f01c3188b4212ea9d3635938d66bc6.jpg", "070cd5105617596ab98c26ddbad82818.jpg", "0730cd37878f6ede1eb89097a811da96.jpg", "08ba2d2ce6a4b13c640a128524de18fa.jpg", "0a65c9e70b2f9502f6e58d3e17a3bff7.png", "0bbbcccf181ad7432eb9dac3e27af4a3.jpg", "0d780e9d1f070706eead603b4604b434.jpg", "11c187e409d935eb5dbaf6bb63df8257.jpg", "1263415a1708e04372321b721ba9e369.jpg", "13feb3d096e2d617681bf150d8c708e3.jpg", "140fef3f7001ce64ad13978c9bd55bf8.jpg", "143da88de52a8e6622bfbbdd00f9243b.jpg", "144749ecdf7ccd8e2d272a067cc48579.jpg", "1471d6687da43b1ab4664a32ceed0313.jpg", "16a0901f5a0479bb2906880c45c0c270.jpg", "19dcfcc075e2c9e2d1a142376b10ea2c.jpg", "1bf97f21e08901cfcd724fffccaf7b1a.jpg", "1bfabb88bf244f8f6e519b59451a88d4.jpg", "1cc651e44e9b086cd5accc60fcc69e1d.jpg", "1ccd3d8a88ad5c24cbe550860d5067ee.jpg", "1da46c39ac332140c1fd737046710991.jpg", "1e7d7a1331ca88070c89b015ac3669df.jpg", "1e800663593e3c1af3cbc1f47999d2e1.jpg", "1ef8aa6e9d2c65e0ff2027fdb7d4ccb6.jpg", "2402802d8a9c7b98d2e9b54dbf7354a0.jpg", "2688f5ceb90b76c15d8bcb85e4289d53.jpg", "269efcbcf3fea39c4825818d3e96902d.jpg", "26b44fc1c925289b175bdbf53765ec49.jpg", "2720fdb812d88f675cf488fdc717816d.jpg", "28202abf2cd2aaf863fe5ca6dad12b8e.jpg", "29c4b0605660c5411cad025d6479a292.jpg", "2f651041b64ab092883f6f4cab1c49ca.jpg", "3354076c9c30113275e0985ddeaa57d9.jpg", "3395812fd5d945125765d1d13711348e.jpg", "33bf591becdb6306fa54ad7e816f7847.jpg", "33c17b6b49b60fa7b0ac915b1d2ccafc.jpg", "343c72ed125de29655e494eec9ec4a20.jpg", "3509d04add6c8c950bac15ab07c6857e.jpg", "35ed30ef53faa9187bfffdfc64d2a448.jpg", "35fc50a749a55a6d85e647f0d66a314f.jpg", "37bf24a5b71eb60f66f490cc40678b8e.jpg", "390886ae73803fb2e41a6e857afa8f9d.jpg", "3a93a9eaf3004cc8bb07804149726d64.jpg", "3b001425034db25d87ebbcee5089fe97.jpg", "3b5281d95e440b5fff99fd523d6b939d.jpg", "3c1eeee65198e48c86256672296246bd.jpg", "3c398dae754c3bc642c087b2b4af5254.jpg", "3db31284f625fb68988b2f71420e69f3.jpg", "3eab7b3f37bad88ada5aca39d6fd1da8.jpg", "420fbf35e2d14d0920e1a9120f36dcd9.png", "45240a108b9288a1f9140575c7ab917d.jpg", "467da9e9d155a26ca2cb6f7425c0dd9c.jpg", "479a276f4d8f9076de03416221a1af00.jpg", "4b53086959c5b8a25507ea65c154919c.jpg", "4c46bcb9d475f35ecebd031d08dce233.jpg", "4c85e039bf84fe7ac8ed306b46b801fb.jpg", "4cbce6fe784e1f636d363df12110bdb9.jpg", "50dc675819121663233ed0785314a557.jpg", "525d5c7baef2052e18992d8d206d5284.jpg", "52a44620c5c1a16237cea1551d35c3df.jpg", "53f45acd228dadd51992965a9cc553c3.jpg", "5467dc2b2ab7621b418d563e1d4790d6.jpg", "54ec98590cd202624f363c71d2bec8c7.jpg", "5804206f71b78d7fd6634b581430d72c.jpg", "5d34a02380a1b5c1057e69f16b7e7d10.jpg", "5e0cd08855e19b7fdf3aa70574b2e332.jpg", "5f2afe6f6e6b0542cffebfc39a18d4cd.jpg", "6084ad393c7fe59fa09d4a1d480e3637.png", "6137b2b08b6f899619bdecd87f7a4bc7.jpg", "641b66474f80a053bdc0c8b8ac18d0a8.jpg", "65189de2db6f416ee0017e5b13bb5885.jpg", "673e09854e964b57081d21d4dd14a3f8.png", "67e86e63f6a6b6db65d08887cb1274a5.jpg", "6c32b6dc371cf9713c4e21d9f202cdd8.png", "6dc353b7c9bf217ba6c0419cc9c66d55.jpg", "732549f103902155e869ae5c437cb7cf.jpg", "73e946b475eaa768907134c0b9625ea8.jpg", "747fc1a07bac81ab03ab10a7d897d220.jpg", "75cc549fb8330339ff26244fbc25a3c2.jpg", "776ad63197ee603e6a90b935a4fbbeda.jpg", "77cf4f6228d920fe56d2842a22f7a12a.jpg", "799f309214cd9da816b2d450a1e0cd20.jpg", "79c5aa22fd6fa34096bf7b960017c960.jpg", "7bdaeb5431f7db2a42105512aeee4e08.png", "7d02eac87b7348f9b016a7dab85dce61.jpg", "7eb5a6683c393c3838b893923c5b9ba2.jpg", "8378e062e2c5d132f00e1a9cdc5a2dd9.jpg", "83b5f68c82910c952355dde14555218e.jpg", "83f995b523dacae446a8900ee5e4f73a.jpg", "87425328a0bcce1a109c891d2538a851.jpg", "88df4b60399c0ede0882f617d7132891.png", "8962a8b8f117a97c472dd49ef4d2bd4d.jpg", "8b8a06dd32c66cc11757a93ded22d907.jpg", "8bd3b7c302e1ebeefb4d6b7b03369c57.jpg", "8c4ed7937202400ad6e10912aaee77c7.jpg", "8e2d43cb1e7cab6610246ff812858c85.jpg", "8e97e80386faf0c6fe0a79e077005b15.jpg", "8faa2dae10171ec7d085d89de6644474.png", "901bf89cf79611dfae52a80517556499.jpg", "914e76d92020933cf498a63b2eeb454e.jpg", "9313a530ee030e038aba2fffb9ed7a8c.jpg", "935cf79ece6fd6aa05057f7aa985445d.jpg", "94a402a836efadec3cd0220c11f260f7.jpg", "9627a89f37add97dfadba8d4302abb7e.jpg", "96647d89707a4ac6b2d0e191ff59eab5.jpg", "96827c1d18e543445a79218440228ce4.jpg", "96dd05603e0695900d5481b86811fd63.jpg", "9714f0cd4f5563f26c358b4b7204bfbd.jpg", "99d2032dc95574118ff69bffe5086d88.jpg", "99f44b1d5a83183579016dd604941ab8.jpg", "9c03b0bec11d30bc9c59aa16c55166ca.jpg", "9ca15abe024ab3f245611d6011f88f7e.jpg", "9d24151709f5f4f5751c62dd48995271.jpg", "9f644e891b5924404ba5c864fb1769ce.jpg", "9fd416282e2b5712d6203912630d058f.jpg", "a0cce07f699ef0cd36cba57ce4cd9c51.jpg", "a2ad704ac3fc47d6eea0b6771a608b3a.jpg", "a39526c798e1ae788e4edef9b7398f59.jpg", "a522390d9af09cd822315093860fea2c.jpg", "a71a8f45a979867b868512091bc57702.jpg", "a886944cf216d75acb08b14c2da5271e.png", "aa40992a5589906aaa0faeac0ad72073.jpg", "ae6d27a8d0a0f2eeca962dddaaaaea73.png", "af355ff1c09c90605ef52845a8c08a5b.jpg", "b274fd92e7612a1758dce9245536f333.jpg", "b3afcb659b9e74bc672b85ea4e831759.jpg", "b592a20ab1572e839dcede538cd2572b.jpg", "b6b51ceb29e2be63a05df68ff000ad31.jpg", "b7279528000ed22e3774cb6aa928d386.jpg", "b794c17f2c19705c7dca365ba76a1662.jpg", "b7bbdeb6ed67372af5eb5e0317ee0891.jpg", "b95731a910042ab9f134e067014d32c3.jpg", "bb03b4549f296c51d4ae13605c7decb0.jpg", "bb969bd8f5ed103000499f90e2fd51ac.jpg", "bd233ee26cc6fbad6049d933b2fa7140.jpg", "bef9f4aa3602a23f6763d25548cb83fa.jpg", "bfeb95afde5e64496e2bf89e3afe67f7.jpg", "c14018195d0ab8220b6e42799c263c21.jpg", "c27fd5c109ef343bb1a6a1ecd4f1e2b0.jpg", "c74eba7c98d2c3e5a1bc49086d61d19b.jpg", "c833f3dac90926af8c62cdc646dd2ea0.jpg", "c9804a1df6854a85c8f6be649618934c.jpg", "caa9d45cff248d93b5804b31753290f2.jpg", "cd2ed18a577fd181e313de86724067f1.jpg", "cd6e6cad5f7cac9d4f50fbc62565857e.jpg", "cd7cf7aa8c567192c1e20e3c84ec96cf.jpg", "d2091e0cde564a1b05f3125e14cc671a.jpg", "d2e0ed020805d0f6f4539f70114792e0.jpg", "d3fbed94aed80d9321a261e5efcd3e7a.jpg", "d4b8d8e3b5ba5d810a589dfd9b3bfed3.jpg", "d4da8e8ef4e561e9b26552a656884a73.jpg", "d4f918bda730fae19e5c755653aba414.jpg", "d516cf98565b3f14cc427dbbf87867df.jpg", "d5d83e6a2f49aeb5e504aab6fe8d3ca3.jpg", "d6aeab159df92c21891b1535d4294f73.jpg", "d71e12c99e0bc0000768ac41d8d74107.jpg", "d98569f550f027bca5bab43632cfdf83.jpg", "dc38a9c69c22e2469d477d5c5038ab52.jpg", "df7429c4b5801825fb8983106357073a.jpg", "e214ddfa35f3e589f9056085759b5ac0.jpg", "e3857c99239b61b1fce1f21be30c6950.jpg", "e46e15cb5414b3c9bdab66bd3d5003c5.jpg", "eac3ad8a10eb69ee29d03f63754a0e03.jpg", "ed5b98f8f80cd70c1726def26ea11a73.jpg", "ef5112081701eff33a8c9f452ca815c4.jpg", "ef792f413d31df252dd1541a98b97485.jpg", "f11374c4f605161628be7956683d17d3.jpg", "f1139a7d3590390ee47af30fb2e6e99b.jpg", "f17b256caa6b2dd0b29b60b9d94ba50f.jpg", "f17e3dd6b536ec17efa75549e7fd67ae.jpg", "f2b33d17dfac76ac9817e73308664460.jpg", "f51b8825c559c599754b8054421214bb.jpg", "f7e3f1211edf351add06f1ff84fe736c.jpg", "f9050916cda27b6d604e74e795483dbf.jpg", "fac5f5802b23abe3417764ea1685c7b6.jpg", "fc023187daf42c73d0804109a441d882.jpg", "fd9e967006950b01d3988f7e817bd360.jpg", "fdd9d5943fa420eee3559c1a2ed52b44.jpg"];
+var currentIndex = 0;
+var preloaded = new Set();
+function init() {
+  document.getElementById('counter').textContent = '1 / ' + images.length;
+  buildFilmstrip();
+  showImage(0);
+  document.getElementById('loading').classList.add('hidden');
+}
+function buildFilmstrip() {
+  var strip = document.getElementById('filmstrip');
+  var maxThumbs = Math.min(images.length, 200);
+  var step = images.length > 200 ? Math.ceil(images.length / 200) : 1;
+  for (var i = 0; i < images.length; i += step) {
+    var thumb = document.createElement('div');
+    thumb.className = 'thumb';
+    thumb.innerHTML = '<img src="images/' + images[i] + '" loading="lazy" alt="">';
+    thumb.onclick = function(idx) { return function(e) { e.stopPropagation(); showImage(idx); }; }(i);
+    strip.appendChild(thumb);
+  }
+}
+function preload(index) {
+  if (index < 0 || index >= images.length || preloaded.has(index)) return;
+  preloaded.add(index);
+  var link = document.createElement('link');
+  link.rel = 'preload'; link.as = 'image'; link.href = 'images/' + images[index];
+  document.head.appendChild(link);
+}
+function showImage(index) {
+  currentIndex = index;
+  var display = document.getElementById('display-img');
+  display.style.opacity = '0';
+  setTimeout(function() {
+    display.src = 'images/' + images[index];
+    display.onload = function() { display.style.opacity = '1'; };
+  }, 100);
+  document.getElementById('counter').textContent = (index + 1) + ' / ' + images.length;
+  var thumbs = document.querySelectorAll('#filmstrip .thumb');
+  var step = images.length > 200 ? Math.ceil(images.length / 200) : 1;
+  var thumbIdx = Math.floor(index / step);
+  thumbs.forEach(function(t, i) { t.classList.toggle('active', i === thumbIdx); });
+  if (thumbs[thumbIdx]) thumbs[thumbIdx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  preload(index - 1); preload(index + 1); preload(index + 2);
+}
+function next() { showImage((currentIndex + 1) % images.length); }
+function prev() { showImage((currentIndex - 1 + images.length) % images.length); }
+document.getElementById('next').addEventListener('click', function(e) { e.stopPropagation(); next(); });
+document.getElementById('prev').addEventListener('click', function(e) { e.stopPropagation(); prev(); });
+document.getElementById('main-image').addEventListener('click', function(e) {
+  var rect = document.getElementById('main-image').getBoundingClientRect();
+  if (e.clientX - rect.left < rect.width / 3) prev(); else next();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); next(); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prev(); }
+  if (e.key === 'f') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
+});
+var touchStartX = 0;
+document.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; });
+document.addEventListener('touchend', function(e) {
+  if (Math.abs(touchStartX - e.changedTouches[0].clientX) > 50) { (touchStartX - e.changedTouches[0].clientX > 0) ? next() : prev(); }
+});
+init();
+</script>
+</body>
+</html>

@@ -66,7 +66,7 @@ const photographers = [
   { name: "Elliott Erwitt", slug: "elliott-erwitt", count: 883, label: "张作品", href: "slideshow.html", image: "images/007bafab4895d8e772bfeaed541682eb.jpg" },
   { name: "Fan Ho", slug: "fan-ho", count: 550, label: "张作品", href: "slideshow.html", image: "images/009390c0c7f375ba1cbcc8f3a4f8db61.jpg" },
   { name: "Saul Leiter", slug: "saul-leiter", count: 300, label: "张作品", href: "slideshow.html", image: "images/0091c095a5864f3d49c1e7eeb13645fe.jpg" },
-  { name: "Arnold Newman", slug: "arnold-newman", count: 2, label: "张作品", href: "slideshow.html", image: "images/009c328cfcb8359caa02becda58799d0.jpg" },
+  { name: "Arnold Newman", slug: "arnold-newman", count: 7, label: "张作品", href: "slideshow.html", image: "images/009c328cfcb8359caa02becda58799d0.jpg" },
   { name: "Richard Avedon", slug: "richard-avedon", count: 379, label: "张作品", href: "slideshow.html", image: "images/006a3b72858160318647f0360ee5ebe5.png" },
   { name: "Rinko Kawauchi", slug: "rinko-kawauchi", count: 86, label: "张作品", href: "slideshow.html", image: "images/0199564b77f2e22c409ce10eb7312fcc.jpg" },
   { name: "Vivian Maier", slug: "vivian-maier", count: 98, label: "张作品", href: "slideshow.html", image: "images/03158dae9cb4c66f70b007ada0056b18.jpg" },
@@ -80,7 +80,7 @@ const photographers = [
   { name: "Robert Frank", slug: "robert-frank", count: 108, label: "张作品", href: "slideshow.html", image: "images/67a526900d3c957cf69c38096f5c7c26.jpg" },
   { name: "Irving Penn", slug: "irving-penn", count: 101, label: "张作品", href: "slideshow.html", image: "images/6d79067bd3ac47b5074a6ac32f981cbf.jpg" },
   { name: "Daido Moriyama", slug: "daido-moriyama", count: 121, label: "张作品", href: "slideshow.html", image: "images/66efaa731639ef9b7ebfda4fa3a014aa.jpg" },
-  { name: "Mario Testino", slug: "mario-testino", count: 7, label: "张作品", href: "slideshow.html", image: "images/00a794cc17112c4e4ceb0f95fdd9394e.jpg" },
+  { name: "Mario Testino", slug: "mario-testino", count: 322, label: "张作品", href: "slideshow.html", image: "images/00a794cc17112c4e4ceb0f95fdd9394e.jpg" },
   { name: "Jacques Henri Lartigue", slug: "jacques-henri-lartigue", count: 188, label: "张作品", href: "slideshow.html", image: "images/026f8fc2d090e810f0876bbd2874f48f.jpg" },
   { name: "Raghu Rai", slug: "raghu-rai", count: 197, label: "张作品", href: "slideshow.html", image: "images/001118a7c649ca3f81693f9a841e21ae.jpg" },
   { name: "Berenice Abbott", slug: "berenice-abbott", count: 257, label: "张作品", href: "slideshow.html", image: "images/00d2b7c3eb32968aa4b06bb84528daaa.jpg" },
@@ -115,7 +115,7 @@ const photographers = [
   { name: "James Van Der Zee", slug: "james-van-der-zee", count: 178, label: "张作品", href: "slideshow.html", image: "images/00c601f245fb39b5792f7ee2b1c29d4c.jpg" },
   { name: "Robert Doisneau", slug: "robert-doisneau", count: 22, label: "张作品", href: "slideshow.html", image: "images/004ca637c7c5d3baabe410b7945f1d68.jpg" },
   { name: "Willy Ronis", slug: "willy-ronis", count: 4, label: "张作品", href: "slideshow.html", image: "images/004ca637c7c5d3baabe410b7945f1d68.jpg" },
-  { name: "Tina Modotti", slug: "tina-modotti", count: 322, label: "张作品", href: "slideshow.html", image: "images/010c4b6841f0f95077bf81a9eee5ab4c.jpg" },
+  { name: "Tina Modotti", slug: "tina-modotti", count: 2, label: "张作品", href: "slideshow.html", image: "images/010c4b6841f0f95077bf81a9eee5ab4c.jpg" },
   { name: "René Burri", slug: "rene-burri", count: 266, label: "张作品", href: "slideshow.html", image: "images/010c4b6841f0f95077bf81a9eee5ab4c.jpg" },
   { name: "Werner Bischof", slug: "werner-bischof", count: 287, label: "张作品", href: "slideshow.html", image: "images/009c9cc4609d5735c7d6cc698552e339.jpg" },
   { name: "David Seymour", slug: "david-seymour", count: 243, label: "张作品", href: "slideshow.html", image: "images/009c9cc4609d5735c7d6cc698552e339.jpg" },
@@ -189,8 +189,8 @@ photographers.forEach(p => {
   }
   const a = document.createElement('a');
   a.className = 'card';
-  a.href = `${p.slug}/${p.href}`;
-  a.innerHTML = `<img src="${p.slug}/${p.image}" alt="${p.name}"><div class="overlay"><div class="name">${p.name}</div><div class="count">${p.count} ${p.label}</div></div>`;
+  a.href = `photographers/${p.slug}/${p.href}`;
+  a.innerHTML = `<img src="photographers/${p.slug}/${p.image}" alt="${p.name}"><div class="overlay"><div class="name">${p.name}</div><div class="count">${p.count} ${p.label}</div></div>`;
   grid.appendChild(a);
 });
 </script>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Harry Gruyaert · Portfolio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;overflow:hidden;height:100vh;width:100vw;user-select:none;-webkit-user-select:none;cursor:pointer;}
+#main-image{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+#main-image img{max-width:98vw;max-height:92vh;object-fit:contain;transition:opacity .25s;}
+#counter{position:fixed;top:24px;left:50%;transform:translateX(-50%);font-size:14px;color:rgba(255,255,255,.5);z-index:10;letter-spacing:2px;}
+#filmstrip{position:fixed;bottom:0;left:0;right:0;height:80px;background:rgba(0,0,0,.85);display:flex;align-items:center;gap:4px;padding:0 16px;overflow-x:auto;z-index:10;scrollbar-width:none;}
+#filmstrip::-webkit-scrollbar{display:none;}
+#filmstrip .thumb{height:56px;min-width:56px;flex-shrink:0;border-radius:2px;overflow:hidden;cursor:pointer;opacity:.35;transition:opacity .2s,transform .2s;border:2px solid transparent;}
+#filmstrip .thumb:hover{opacity:.65;transform:translateY(-2px);}
+#filmstrip .thumb.active{opacity:1;border-color:#fff;transform:translateY(-4px);}
+#filmstrip .thumb img{width:100%;height:100%;object-fit:cover;}
+.nav-btn{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border:none;background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);font-size:20px;cursor:pointer;border-radius:50%;z-index:10;transition:background .2s;}
+.nav-btn:hover{background:rgba(255,255,255,.15);}
+#prev{left:20px;}#next{right:20px;}
+#loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:100;background:#000;transition:opacity .5s;}
+#loading.hidden{opacity:0;pointer-events:none;}
+.loader{width:32px;height:32px;border:2px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+#home-btn{position:fixed;top:20px;left:20px;z-index:20;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);padding:6px 14px;font-size:13px;cursor:pointer;border-radius:4px;letter-spacing:1px;transition:background .2s;text-decoration:none;display:inline-block;}
+#home-btn:hover{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);}
+#bio-btn{position:fixed;top:20px;right:20px;z-index:20;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);padding:6px 14px;font-size:13px;cursor:pointer;border-radius:4px;letter-spacing:1px;transition:background .2s;}
+#bio-btn:hover{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);}
+#bio-panel{position:fixed;top:0;right:-420px;width:400px;height:100vh;background:rgba(20,20,20,.97);z-index:30;transition:right .4s;padding:60px 32px 32px;overflow-y:auto;border-left:1px solid rgba(255,255,255,.08);}
+#bio-panel.open{right:0;}
+#bio-panel h2{font-size:24px;font-weight:300;letter-spacing:3px;margin-bottom:8px;}
+#bio-panel .sub{color:rgba(255,255,255,.35);font-size:13px;letter-spacing:1px;margin-bottom:24px;}
+#bio-panel p{font-size:14px;line-height:1.8;color:rgba(255,255,255,.7);margin-bottom:16px;}
+#bio-panel .close-bio{position:absolute;top:20px;right:20px;background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;}
+</style>
+</head>
+<body>
+<div id="loading"><div class="loader"></div></div>
+<a href="../../index.html" id="home-btn">← 画廊</a>
+<button id="bio-btn">传记</button>
+<div id="counter"></div>
+<div id="main-image"><img src="" id="display-img" alt=""></div>
+<button class="nav-btn" id="prev">←</button>
+<button class="nav-btn" id="next">→</button>
+<div id="filmstrip"></div>
+<div id="bio-panel">
+  <button class="close-bio">✕</button>
+  <h2>Harry Gruyaert</h2>
+  <div class="sub">1941– · 比利时</div>
+<p>Harry Gruyaert 是彩色摄影的先驱，Magnum 中最早拥抱彩色胶片的摄影师之一。他 1941 年出生于比利时安特卫普，早期在布鲁塞尔学电影和摄影。</p>
+<p>1970 年代他开始用彩色胶片拍摄——这在那时的纪实摄影界几乎是离经叛道。但他的色彩不是装饰性的：Gruyaert 的每一张照片里，颜色都是叙事的主体。他的画面充满了强烈的对比——红色的电话亭、蓝色的墙壁、黄色的出租车——这些纯色块像油画颜料一样涂满了整个画面。</p>
+<p>他拍摩洛哥的集市、埃及的沙漠、巴黎的地铁站、伦敦的街头。Gruyaert 的照片里很少有人在中心位置——人更多是一种色块、一个剪影、一个在环境中迷失的形状。他的构图受电影影响极大——宽画幅、大胆的裁剪、像电影剧照一样充满了叙事暗示。</p>
+<p>2015 年他出版了《TV Shots》——一组充满噪点的电视机屏幕照片。这些看起来像是坏掉的照片挑衅性地质问着：什么是真实的影像？什么是被观看？Gruyaert 一辈子都在玩色彩的边界。</p>
+</div>
+<script>
+var images = ["012c59003475e7d7c128be08031f70f3.jpg", "0346e4d388ff0461d3a3636a70624576.jpg", "06e09e5b7be18a40e729b6b27f874e8e.jpg", "0769dde2e80af41e5f550fc854241e03.jpg", "0ba00b0640a242d39d68ceb45ecd5447.jpg", "1411eb1592f77db66487d4b40ddf2b3d.jpg", "17c9c2671722283afdd9315c45d09c97.jpg", "18f8bc0d45b6c4da7d0f46a8c240339d.jpg", "1b092b926b18ce9ab4f4f74d96a73a7e.jpg", "1ebcb7001da5486b04c428d8a1e3d7ef.jpg", "238837727bff9d6636a76e1fcbc72e1d.jpg", "24088af9ce23e1e3f89f76f06c6cfb3e.jpg", "2410c0420e5d2e4cb266f01766b51352.jpg", "2b463fd00f1a30f7bcb9bfbd3b61bc4b.jpg", "2be3d32475a84dc53ffa19a9095ce1c4.jpg", "312ba83f386be1f5724ef8b71b916787.jpg", "33f17bd07277859dcbdaad2ff4f8e5d1.jpg", "359f5d77dd12920b50009edea0c2dc81.jpg", "36d91b99350f2b552812cd9f106963a1.jpg", "3ab89a5940d6a7474711e733151704a6.jpg", "3ae1f9f0bde91d6ac26866fd1766aa3e.jpg", "3c069c2ec88d306bfb435f1c8d71bdf1.jpg", "4254b00ed8015d89b3deba437cd6b95f.jpg", "43530113a1854c49f4932610432b3c3a.jpg", "437a7433f58316e75e5d29cb4afd58f4.jpg", "48434206cf2a0f163c7f53e8a9fad9cc.jpg", "48a3036645e7c90ba400ec537bbcd773.jpg", "4f4d7a78c4db4319a228b7c77cd874f5.jpg", "4f5a80053cc13599322797aa5c690261.jpg", "4faf05772b356d111ba2bb1a48ac6c37.jpg", "58e405d124fce783f861ac8128e8a9e6.jpg", "5967375bd400040eab3ca878ca0fdf16.jpg", "5ce12e3edd47500963e3d31fcc533838.jpg", "5d8700e5477920b0975c929385f81585.jpg", "677462ce3ff8f151b147c611d57b7403.jpg", "692ace993a905a84a83e910038167c48.jpg", "6b0df1d69e183dfc89fdbe13e565c1f1.jpg", "6cc69993eba8db616b8f607530e79884.jpg", "6df60b5e817eeb9da33723e30d1c3d58.jpg", "6ea121c9596be49237bc82897c503f36.jpg", "701d74f1e905405861f89d0925f9ea45.jpg", "71a79c800880ed24f799c4edcf0239df.jpg", "71c537b12f0d74cab446aee9ebfcca55.jpg", "7238fcc85fd1e4a3934bed20c8869fd5.jpg", "72978a777c058bd6769401c7d7939e6e.jpg", "77c01fccd012198ec50ac6260f051298.jpg", "7b63096316db8fd93c500ff5867d7a28.jpg", "7fe8bbc778cf82009fb25109f0a771ca.jpg", "7ff4109be7c62c3635b999f255b424be.jpg", "81bfb38e56dd8ca82b46cefd50264bc1.jpg", "8423cf144ce3e9bea20df64d22d47bd4.jpg", "846e250d09e3c2d4ccf90175cce00df5.jpg", "8934158e1cb1e4ca78b42996e698c29b.jpg", "8a1aad27050e531c1ece9bf2a637da47.jpg", "8b74caa7811f4349846c26d73a82fd29.jpg", "8c00d9f69508a489df541023d2e7242b.jpg", "8c2891ed2cdfe2a1138702d29099d921.jpg", "8cd7354c460d5018c1dadece9a244ab6.jpg", "8e07fc4aed0d4ed6ab9453bfac300518.jpg", "8e656d925d0dee3f5c922af27e6bf86e.jpg", "912539f7c3ab834737aee9bb71237fad.jpg", "92d35beba023f149766e02c236812575.jpg", "962442335fa8a49c635d6f4c64679428.jpg", "96a7d14c31389927c6a59db65f49a130.jpg", "98e752c4d9dfa2517694c6d4aa5f5e0f.jpg", "99034ae9e727a95aafd7f39998c72428.jpg", "9b925ae39382f17a54bd72d905a92d21.jpg", "9c61283709b7ebbc76c5aee7406c1251.jpg", "9cb7f096f96a3abaeb9233080cd31c0e.jpg", "a01e984ff63bcd611a7c027279e4476b.jpg", "a27d3185ff3e8c8958671a3682ed3cba.jpg", "a339f5f85a80dfe119ee9a7d08a654d5.jpg", "a4823369c8db0e78f3cf28e2a5449bc4.jpg", "a770fedf3832962f55190a5c70196ba1.jpg", "a8a533328b6b9df4ea9eeeb02bc35ca4.jpg", "a9335c20b1d5d0700e773cbb09979912.jpg", "aa6a018a5add65c63bd580966e8acf6d.jpg", "aba7fc55a02d3a6d279e6d85e8a1d7b7.jpg", "af694b8d7554abf0de5dd11f4d182d66.jpg", "b1f8e9dfe2b81a729c7aab218f91d389.jpg", "ba10695956c5fd2f91809c85f2de15fb.jpg", "badc079da7374b0f6cdd366b45112d08.jpg", "bdd810c8bd45fd0fb17825c0f687a55c.jpg", "be22f29b5479ea32af583bab78fec3d9.jpg", "c2a86a54b14fee121f81e1cd633ff286.jpg", "c663ee89faa4d09a98c9a69845de65d4.jpg", "c9aedfc89607a95b75e7af777e2e6193.jpg", "cf03608e961bc6048fba99a9993fbdad.jpg", "d59288d0636c4f8b7e7c3d069fca3a90.jpg", "dceb5dd973ab9ff21c3c88083765a3f5.jpg", "de3c278f004ec8526a72196721a1864a.jpg", "deef58686f03e2bd31dc0ea73855cb60.jpg", "e099675c071f130d3bc82a25a18b3b40.jpg", "e48a3b30f759b4589a454c7bc1b82cc9.jpg", "e872ad3e336517bc4542f49bdb1f68a2.jpg", "ea017a15dc21b39076478cd345e5a8ae.jpg", "ecd6833f2130dad8c0274cab068f3117.jpg", "eee1f4ecfffdf58608c934f6c7406e6b.jpg", "ef8f2bc95dca754fe15df4f1445d3db9.jpg", "f05e00068fb4790c8100bf9553f451df.jpg", "f577d28b2d0bbddc841db200f2ed27b2.jpg", "f8ed2e312c731c088321b9674ffca599.jpg", "fa82f47d4a2a6481e69bdc038370176e.jpg", "fb4dcc83dc2be40efe9eac228f6e3f23.jpg", "fd12dacf2ee9fff39a93be778f4cb93b.jpg", "feb045de2877b4e2879d3bf8eb465671.jpg"];
+var i=0,d=document.getElementById('display-img'),c=document.getElementById('counter'),f=document.getElementById('filmstrip'),l=document.getElementById('loading');
+function u(idx){idx=(idx+images.length)%images.length;i=idx;l.classList.remove('hidden');
+var img=new Image();img.onload=function(){d.src='images/'+images[idx];l.classList.add('hidden');uf();};
+img.onerror=function(){d.src='images/'+images[idx];l.classList.add('hidden');};img.src='images/'+images[idx];
+c.textContent=(idx+1)+' / '+images.length;}
+function uf(){f.innerHTML='';images.forEach(function(fn,idx){var div=document.createElement('div');div.className='thumb'+(idx===i?' active':'');var img=document.createElement('img');img.src='images/'+fn;div.appendChild(img);div.onclick=function(){u(idx);};f.appendChild(div);});
+var a=f.querySelector('.active');if(a)a.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});}
+u(0);
+document.body.onclick=function(e){if(e.target.closest('#filmstrip,#home-btn,.nav-btn,#bio-panel,#bio-btn'))return;u(i+1);};
+document.getElementById('prev').onclick=function(e){e.stopPropagation();u(i-1);};
+document.getElementById('next').onclick=function(e){e.stopPropagation();u(i+1);};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();u(i+1);}if(e.key==='ArrowLeft'){e.preventDefault();u(i-1);}});
+document.getElementById('bio-btn').onclick=function(e){e.stopPropagation();document.getElementById('bio-panel').classList.toggle('open');};
+document.querySelector('.close-bio').onclick=function(e){e.stopPropagation();document.getElementById('bio-panel').classList.remove('open');};
+</script>
+</body>
+</html>

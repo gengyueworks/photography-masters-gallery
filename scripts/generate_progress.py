@@ -22,7 +22,7 @@ for e in entries:
     ct = re.search(r"count:\s*(\d+)", e)
     if not (nm and sl and ct):
         continue
-    imd = os.path.join(BASE, sl.group(1), "images")
+    imd = os.path.join(BASE, "photographers", sl.group(1), "images")
     n = len(os.listdir(imd)) if os.path.isdir(imd) else 0
     rows.append((nm.group(1), sl.group(1), n))
     if n != int(ct.group(1)):

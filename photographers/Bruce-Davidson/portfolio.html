@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Bruce Davidson · Portfolio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;overflow:hidden;height:100vh;width:100vw;user-select:none;-webkit-user-select:none;cursor:pointer;}
+#main-image{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+#main-image img{max-width:98vw;max-height:92vh;object-fit:contain;transition:opacity .25s;}
+#counter{position:fixed;top:24px;left:50%;transform:translateX(-50%);font-size:14px;color:rgba(255,255,255,.5);z-index:10;letter-spacing:2px;}
+#filmstrip{position:fixed;bottom:0;left:0;right:0;height:80px;background:rgba(0,0,0,.85);display:flex;align-items:center;gap:4px;padding:0 16px;overflow-x:auto;z-index:10;scrollbar-width:none;}
+#filmstrip::-webkit-scrollbar{display:none;}
+#filmstrip .thumb{height:56px;min-width:56px;flex-shrink:0;border-radius:2px;overflow:hidden;cursor:pointer;opacity:.35;transition:opacity .2s,transform .2s;border:2px solid transparent;}
+#filmstrip .thumb:hover{opacity:.65;transform:translateY(-2px);}
+#filmstrip .thumb.active{opacity:1;border-color:#fff;transform:translateY(-4px);}
+#filmstrip .thumb img{width:100%;height:100%;object-fit:cover;}
+.nav-btn{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border:none;background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);font-size:20px;cursor:pointer;border-radius:50%;z-index:10;transition:background .2s;}
+.nav-btn:hover{background:rgba(255,255,255,.15);}
+#prev{left:20px;}#next{right:20px;}
+#loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:100;background:#000;transition:opacity .5s;}
+#loading.hidden{opacity:0;pointer-events:none;}
+.loader{width:32px;height:32px;border:2px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+#home-btn{position:fixed;top:20px;left:20px;z-index:20;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);padding:6px 14px;font-size:13px;cursor:pointer;border-radius:4px;letter-spacing:1px;transition:background .2s;text-decoration:none;display:inline-block;}
+#home-btn:hover{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);}
+#bio-btn{position:fixed;top:20px;right:20px;z-index:20;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);padding:6px 14px;font-size:13px;cursor:pointer;border-radius:4px;letter-spacing:1px;transition:background .2s;}
+#bio-btn:hover{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);}
+#bio-panel{position:fixed;top:0;right:-420px;width:400px;height:100vh;background:rgba(20,20,20,.97);z-index:30;transition:right .4s;padding:60px 32px 32px;overflow-y:auto;border-left:1px solid rgba(255,255,255,.08);}
+#bio-panel.open{right:0;}
+#bio-panel h2{font-size:24px;font-weight:300;letter-spacing:3px;margin-bottom:8px;}
+#bio-panel .sub{color:rgba(255,255,255,.35);font-size:13px;letter-spacing:1px;margin-bottom:24px;}
+#bio-panel p{font-size:14px;line-height:1.8;color:rgba(255,255,255,.7);margin-bottom:16px;}
+#bio-panel .close-bio{position:absolute;top:20px;right:20px;background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;}
+</style>
+</head>
+<body>
+<div id="loading"><div class="loader"></div></div>
+<a href="../../index.html" id="home-btn">← 画廊</a>
+<button id="bio-btn">传记</button>
+<div id="counter"></div>
+<div id="main-image"><img src="" id="display-img" alt=""></div>
+<button class="nav-btn" id="prev">←</button>
+<button class="nav-btn" id="next">→</button>
+<div id="filmstrip"></div>
+<div id="bio-panel">
+  <button class="close-bio">✕</button>
+  <h2>Bruce Davidson</h2>
+  <div class="sub">1933– · 美国</div>
+  <p>Magnum 的元老之一，拍了 70 年的社会纪实摄影师。Davidson 1933 年出生于芝加哥，1958 年加入 Magnum。他最著名的作品跨度极大——从 1959 年洛杉矶帮派《Brooklyn Gang》的黑白肖像，到 1960 年代民权运动的《The Black Muslims》，再到 1970 年代纽约地下铁的全彩色系列《Subway》。</p>
+<p>《Brooklyn Gang》——一群叫 Jokers 的青少年帮派——是 Davidson 25 岁时拍的。他跟这群少年一起混了好几个月，拍下了他们的舞蹈、斗殴、偷窃和拥抱。这些照片没有那种"社会问题纪录片"的隔阂感——Davidson 就是他们其中的一员。1990 年代他在哈莱姆的东 100 街住了一年，拍下了贫民窟生活最真实的照片。</p>
+<p>但 Davidson 最大的成就是《Subway》——1980 年他拍了三年纽约地铁。那是纽约地铁最危险的年代——涂鸦遍布车厢、犯罪丛生、灯光昏暗。Davidson 用彩色闪光灯和高速胶卷拍下了地铁里那些疲倦、愤怒、温柔和疏离的脸。每一张照片看起来都像在被闪光灯击中的一瞬间被扒下了所有伪装。</p>
+<p>他说："一个摄影师必须是一个斗士。你必须为一张照片战斗。如果你退缩了，你就错过了那一刻。"</p>
+</div>
+<script>
+var images = ["0155cc5a0f3ccf91b7e88d279f8853e4.jpg", "015bf48f752696d5f56498e247ef121a.jpg", "02f16ad3449562b16636840ba05a3bb8.png", "0367531ab400c4cdfb7169be3c09a949.jpg", "04f237f09f3d4e5c92fa1ea99d1f8a22.jpg", "0710fcf27e94b7c5420d081c3e12f91e.jpg", "0807d97c8a42e387e6e5a393ad27e3fd.jpg", "082b264aa2356acc959ffe73a235d642.jpg", "0975fe242d90142d5a4b7afa551a7d95.jpg", "0f5b2528a6652d4df66e659d468e4843.jpg", "123cad294becf83a563d1ce1d81bb24c.jpg", "12e49d6cc1674da013dba2e0744f45d1.jpg", "14dab5f79de93552ade96774546aed1a.jpg", "14ec97d149886b0aa2c112d2dad0d9dd.jpg", "1837826399cf2a4273b237558af83aab.jpg", "192f55b29a48ebdd2bfdde30968eb854.jpg", "1a033f94cdac9c3e9c471a8e632b7f09.jpg", "1a87cdc90f341f7ddef3fafb53103e9d.png", "1b0196a02b749f5244032e87652b415d.jpg", "1baae7a2c483c1661cc9afeda93b8cba.jpg", "1bdd1acc04e319f5333f09a6bef3fb1a.jpg", "1d42be864d5097fcfec3e234ab0080f8.jpg", "1dfb4282d7e95fe6287348f05e46269a.jpg", "1e59ed3bd4693616a2a5098b8197260c.jpg", "2042766c13ebd9672773a977908e610e.jpg", "22fa5313c3cfa88dfba3cd6cee67d936.jpg", "27c92b81abbdeeeec7daa8ea52746636.jpg", "27ce0161a923b3f2ac569ab2286dcaba.jpg", "27eea1b344f2a375f0a74ec942fe780d.jpg", "2882c5d232c014a42eac0f05b42d0f52.jpg", "2d01f48b2af223805bcc744f64dc541f.png", "2d8518444bd28955b507c125f5587d01.png", "2dc521b17895825764d6d581985d0228.jpg", "2fac8ff3b1b6803c90aa5177b619e764.jpg", "304953b4780fad04c5664a012095c7a5.webp", "32c769b59cd0a79d326e3887f9703b0c.jpg", "352a701d75880ca22bd96566ff874d08.jpg", "367a6cf0568a2ab5ef26c706eccb88c9.jpg", "36dc1370347f7171b76ae3ff66565c49.jpg", "384a6a0b48ef6a2edcfb6cd9bb390686.jpg", "38ec13a776fbeb82ec9d36768acf35f0.jpg", "3a71e212428e3891162f6f121eaebe39.jpg", "3b8b8d82a7c512c028d00d9cf3082985.jpg", "3ce38127be816295a20a172549cc527e.jpg", "3d8b289bc700835889f88143171c2bcc.jpg", "3e4dea8308180db44b8b8deef879399c.jpg", "40319678e432c490bf94f1c4d0c3c31c.jpg", "408683bb211cb2a15a3d0a58e090edeb.jpg", "40fedf52a793e6829e968d1ca64dc26f.jpg", "413ccd431c3430327c31ef4aa2cfec17.jpg", "42bffa6f3ff3616e574d95a6c2351883.jpg", "43d702c5a07d8b0a3f8129e80ea0407c.jpg", "4668c98bf17e793a6b869d52543ad861.jpg", "48013c324cef9e9c74cf39cb2c54ad5f.jpg", "483086a3e26f46452cd877200e697019.jpg", "4857c7db9abc88a36397f89026e05772.jpg", "4973335e066af95ce836826e4088510f.jpg", "49821bf9e113af24448ef522430d20f7.jpg", "4d0c44aa8637d7816f0e99c0d4b8fe71.jpg", "4f1051335d009d8c146dec4658b39235.jpg", "4f5102c330a5c93472a721dc59a62739.jpg", "4fe9cec0dec64df0830e5e3ad5e5a2a5.jpg", "50502981d27616ab042b1a0808b5b036.jpg", "5097f54a85dd745293a9aadacb3f8dbc.jpg", "514b5085bb737a788e4c4d6809f6f56e.jpg", "51bf290bd8eabe2576f2587fb868ef06.jpg", "5306ab05b4a24ff440f78106e6cb09a8.jpg", "53570506f598acc5216b384903927d15.jpg", "55fb747092e1503ff9d1aedcbc140ed0.jpg", "57fd7a9a7cdbe5c0b0538b551fc36f62.jpg", "580256e9a6ef6d1421b45a38bb0e932c.jpg", "585692d45338625a2e06792212936191.jpg", "5bd1a2bc2d3f0a740f147b07ce1271bd.jpg", "5d6882cf2fc00c0773dedc75c36c8f91.jpg", "5dda9aa5a74ee386d647e29a547ada00.jpg", "5f2a6018cee16b7f6409e7416405a2f6.jpg", "5f5b93562daeb873b893aa61023fee9e.jpg", "606f2613c51a7c54df8779690e9bed40.jpg", "615f3aa8ce6d8599a090c963beba8002.jpg", "622317c9236a4712c8f171ab08b68e02.jpg", "634e6850ea70da54976b093e7045e4a0.jpg", "65771cd84187e020dd9906c694c486ed.jpg", "66af0922af8e0a44e031e99879299563.jpg", "672fb25f2e41bde7d8f6b707a0150e4a.jpg", "69f9952ab17cf14d2ef18e4d17060c4c.jpg", "6b1b0807d11adb06a75b2ad216c24f6d.jpg", "6b4484ef77c67a255c524a63922dcebb.jpg", "6c2de772892f87ecdcd3e286568b5ced.jpg", "6e007c42cf77f7b6087e45e841d5852f.jpg", "6f25a89d1d6f90913cc174144c59ce0f.jpg", "6f67e942d656e975d833c814e7c1c6c7.jpg", "6fd30c0cc2ce165ff306b7d7a798a3ca.jpg", "7028191f98b37b74319d6803bee7417f.jpg", "70a09b2c8d36bc1f6fab3b469773c91a.jpg", "719513ba23a5a17398341ba9cfb06237.jpg", "73fb83cf2e159933ca8ae0c843654511.jpg", "7465f97caef46654ad2a8fd8ea846fd8.jpg", "769f27f4645a93872c400cda0b9abcd3.jpg", "78134f1a5fb3188c2155927e62a881e1.jpg", "781bb74c24f623f1bb6c58e3f3d55297.jpg", "788a11968455b3abe218f48bba8a68a4.jpg", "78b04f5ca585e0e4aac10e3289649bfa.jpg", "790ee117397f75de0cf89a1cfd1feedb.jpg", "7986e77d72b53edf380c2ec27e5ad4b9.jpg", "79ad322c8b483b30b0639c44df2587be.jpg", "7a11c2e2ae7e78d7d100f978700e256b.jpg", "7a25df55e4269f07c6a96e3a0b3ea070.jpg", "7e56e6533853dd3163acc7abb3385229.jpg", "7e5f0904b25fe600e7803a334e99dc3f.jpg", "7eb7a5a3f86ec0636ec12162f200c2f5.jpg", "813f4d9f5a27a855b9ee0607722e4645.jpg", "84190b133767832a76a398d2a156b79c.jpg", "864cf19be71edfd4b32d7bb9b70dce4a.jpg", "876b1d043f5e627ee3dcb6a719afb6c5.jpg", "8d3d3af00d1ca996e9a2c92702285a0b.jpg", "8de0e187abec577ccd8b661df6f7aff3.jpg", "8fb785a7e4ed7e16a73914a0517d41b8.jpg", "905203b6153595d23f43bb1c94502ec2.jpg", "9156abc5c49c5a70b51661f0e2e997a8.jpg", "9190c37d44175a224240b9ac299f7eb9.jpg", "93dfb5a9a375b44d31051b90fef4329a.jpg", "974bfc67cc7a14deb9fd0fb6fbdbd205.jpg", "9949a22a6fc25c1aa27baadcbdee16b9.jpg", "9a1f50c39c7b4593d6f6ff35afdb5325.jpg", "9a5e91e0dee311692d5e69172d96c7a7.jpg", "9b1c8eac7a79d7bb35f9b44c0f76b06d.jpg", "9be3beae291529f9db8b157a53a18d18.jpg", "9c10ea7d6174138f80102af0603b3bd2.jpg", "9c8ab27399d800a499ef3c80b19d5cc0.jpg", "9cdd8c800d699b1b8bf244789caa0c30.jpg", "a06faa9347d96d1c403027a37e02fc5a.jpg", "a57bad0f66271d8c950d094d845536f1.jpg", "a7b77aae3395be66e6ec4c59e752e87f.jpg", "a7b9e112e099e520f93858d2cdf7ee7a.jpg", "ab53a1bec56518fb03c021fa587f4a51.jpg", "adcec3f8ee8232846b5257353382f341.jpg", "ae96666938011d7953bcefb7048a73fb.jpg", "af0d15f00fb6af4a6bc752ff44c7924e.jpg", "af4bbd66181151604e030706340b1783.jpg", "b01c8d37237fa2803808d0aeddae5d10.jpg", "b09eafaabf3cba050bc98b911001ca0f.jpg", "b1204baa8e704218ec6caa5221c256ac.jpg", "b38679f536e845f3fd618a5324285f7b.jpg", "b5fed45507c534c1474d865fb64ecf77.jpg", "b6a7d43c0ec4bae5c22f1e8f1305221a.jpg", "b6abd94545644bd1568337200011d98f.jpg", "b6dcaaa88f31689dca6a281077bcd06f.jpg", "b774426af5cced727eb2371ac6b09bc6.png", "b78f6281c8b23ca84b0a26abce79748d.jpg", "b9b6216c6b592d204a906d5a9cb925f2.jpg", "b9cbaaf0aba987f97f682056ce28b59f.jpg", "baab4dc86733422d65528b03340b7d9d.jpg", "baf9efe53bb41fd6315afe202efe83d1.jpg", "bc2d29e8bb530d882063e89e11e3ec31.jpg", "befa401836aacbc24c7036ffbac64a4d.jpg", "bf81b0ca1241ff452b85300e5733367a.jpg", "c0ebf3c4677632f0e00a805a429a4d04.jpg", "c1cbd6945fcee48e90a8a5947751b291.jpg", "c230521a024c84bfc9037d06a49c7227.jpg", "c4d08ae9f910fc4aa85e4825b277ec49.jpg", "c71704d8d5cc77a904a2d4cedfe6aeda.jpg", "c80510f84c0604784507cf39be1dd997.jpg", "c8a1e2f4549c7fc30514613a0bb195f7.jpg", "c9afd877b86d308952665b422670f201.jpg", "cc8f85031c22b47952736326649646fb.jpg", "cd9b430283540ebe544bd4adfdc47ace.jpg", "ceb8b92346641addd6fefd6c1bd219ea.jpg", "cf3a27256561aa4207f7b17ea59b6840.jpg", "d16643ec50e0cfa71f2d1f9a73c094bf.jpg", "d1b235ce17991cf715976c698f684302.jpg", "d1f65225864473e7f09d5cd96f83ef21.jpg", "d35cbb0f9a3db183e2807e5b38f3e0c1.jpg", "d3c67123ddedf7f7cd6aaca0e2df5786.jpg", "d599b82ff2c20263f6166f5a8e832efe.jpg", "d86c215c9ca92632dd35ec3c3bf04da8.jpg", "d8bb1d79c7670683df0ee1a711ed2baa.jpg", "d8ec5737113052aeeaaaddf2a63bb880.jpg", "d8ef1ce2560180c868ed4f60f325fde0.jpg", "db1e0ae7843cae4d5d8e5e5b5e12f045.jpg", "dbb99defdf461eb1475926a0fc7faf3e.jpg", "dbc2fcb9fdfd103946d9dda37af85821.jpg", "dd1dedebdf73429eef05be3480209fea.jpg", "dd3f21fe59805098eaa3773b913a1c1e.jpg", "dd6935871f78fca3b6b12bcd23486a87.jpg", "de6b5b5f416517a13e04c3ee2758ab61.jpg", "dea559323617b7c639a925f0f9c1f950.jpg", "df9a56bd97da5eb575e7ceb714b99017.jpg", "e09b90aaea9b50306d8e3ed67908a0a2.jpg", "e22fd351eaa828ee8d8b4d54f2bc827c.jpg", "e4a50431cefb87c48d037e47bf542bbd.jpg", "e516cf709a1f56dd7e90c75c64a83fe5.jpg", "e61df92adb94226ca358a63eb871f045.jpg", "e6f8fdbb1f94c09bc6cb31461bc8193b.jpg", "e7264abb0d323d68ca954cb3cf53edd1.jpg", "e76f2505157bd94bba050d3f5e597bfe.jpg", "e77ae36d9814b9c7a99b07c0d6a32c4a.jpg", "e8d71159c363fa60cac8a5055c6d389d.jpg", "ea50bedd0bc9566dd2cc6f4026d95f00.jpg", "eb6e14360d94b627882d52b70233ca91.jpg", "ee9bf62a2d202d46d017c7065bf88b07.jpg", "eed9c6f558c7badeaf9c18a28b357a8b.jpg", "efe4e915c9850c0bae6b9ff3a508f7eb.jpg", "f0706d2256b5880cade159c9089916c9.jpg", "f4b007c91c7b7fb5d8630011ec074d43.jpg", "f4c80ee092f564dfb8c6159eccef48a9.jpg", "f71d1fe4f9e1b2fabb6da2ce2ce68ce5.jpg", "fb24100844c69b081ea2570d4a799988.jpg", "fc4dc8bc585e93b2f03a2cafad83bf94.jpg", "fe17ff59072f4ef53a81e0ed721033eb.jpg"];
+var i=0,d=document.getElementById('display-img'),c=document.getElementById('counter'),f=document.getElementById('filmstrip'),l=document.getElementById('loading');
+function u(idx){idx=(idx+images.length)%images.length;i=idx;l.classList.remove('hidden');
+var img=new Image();img.onload=function(){d.src='images/'+images[idx];l.classList.add('hidden');uf();};
+img.onerror=function(){d.src='images/'+images[idx];l.classList.add('hidden');};img.src='images/'+images[idx];
+c.textContent=(idx+1)+' / '+images.length;}
+function uf(){f.innerHTML='';images.forEach(function(fn,idx){var div=document.createElement('div');div.className='thumb'+(idx===i?' active':'');var img=document.createElement('img');img.src='images/'+fn;div.appendChild(img);div.onclick=function(){u(idx);};f.appendChild(div);});
+var a=f.querySelector('.active');if(a)a.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});}
+u(0);
+document.body.onclick=function(e){if(e.target.closest('#filmstrip,#home-btn,.nav-btn,#bio-panel,#bio-btn'))return;u(i+1);};
+document.getElementById('prev').onclick=function(e){e.stopPropagation();u(i-1);};
+document.getElementById('next').onclick=function(e){e.stopPropagation();u(i+1);};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();u(i+1);}if(e.key==='ArrowLeft'){e.preventDefault();u(i-1);}});
+document.getElementById('bio-btn').onclick=function(e){e.stopPropagation();document.getElementById('bio-panel').classList.toggle('open');};
+document.querySelector('.close-bio').onclick=function(e){e.stopPropagation();document.getElementById('bio-panel').classList.remove('open');};
+</script>
+</body>
+</html>
