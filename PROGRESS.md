@@ -1,6 +1,6 @@
 # 摄影大师画廊 · 进度总览
 
-> 自动生成：`python3 scripts/generate_progress.py` ｜ 最近更新：2026-08-07
+> 自动生成：`python3 scripts/generate_progress.py` ｜ 最近更新：2026-08-15
 
 ## 当前状态
 

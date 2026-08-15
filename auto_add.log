@@ -1,0 +1,11 @@
+  Larry Burrows: scraping...
+Traceback (most recent call last):
+  File "/Volumes/拓展坞 1T2022/2 Codex-Workspace/Codex-Workspace-Main/32-AI高质量阅读库/摄影大师画廊/auto_add.py", line 454, in <module>
+    add_one(item)
+  File "/Volumes/拓展坞 1T2022/2 Codex-Workspace/Codex-Workspace-Main/32-AI高质量阅读库/摄影大师画廊/auto_add.py", line 424, in add_one
+    urls = scrape_urls(name, item["queries"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/拓展坞 1T2022/2 Codex-Workspace/Codex-Workspace-Main/32-AI高质量阅读库/摄影大师画廊/auto_add.py", line 300, in scrape_urls
+    with open(tmp) as f:
+         ^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/var/folders/07/w4nnb6d965xd5yy5dj0sztw40000gn/T/tmp78s9is44.json'
