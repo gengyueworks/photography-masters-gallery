@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="paper">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>索尔·雷特 (Saul Leiter) · 摄影作品集与胶片灵感档案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #fbf9f5; --bg-secondary: #f3efe6; --bg-tertiary: #e8e2d5;
+  --card-bg: #ffffff; --card-border: rgba(0, 0, 0, 0.08); --card-border-strong: rgba(0, 0, 0, 0.16);
+  --text-primary: #18181b; --text-secondary: #4b5563; --text-muted: #6b7280; --text-gold: #b45309;
+  --accent-gold: #b45309; --accent-gold-bg: rgba(180, 83, 9, 0.08);
+  --font-serif: "Cinzel", "Newsreader", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, sans-serif;
+  --font-mono: "Space Grotesk", monospace;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05); --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.06);
+  --radius-sm: 6px; --radius-md: 10px;
+}
+[data-theme="dark"] {
+  --bg-primary: #0f1013; --bg-secondary: #16181e; --bg-tertiary: #20232b;
+  --card-bg: #181a20; --card-border: rgba(255, 255, 255, 0.09); --card-border-strong: rgba(255, 255, 255, 0.18);
+  --text-primary: #f4f4f5; --text-secondary: #9ca3af; --text-muted: #6b7280; --text-gold: #eab308;
+  --accent-gold: #eab308; --accent-gold-bg: rgba(234, 179, 8, 0.12);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.5);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-primary); line-height: 1.75; -webkit-font-smoothing: antialiased; }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+.site-header { position: sticky; top: 0; z-index: 100; background: rgba(251,249,245,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--card-border); }
+[data-theme="dark"] .site-header { background: rgba(15,16,19,0.9); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.brand-badge { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); }
+.brand-mark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent-gold), #9a6700); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 700; font-size: 13px; color: #fff; }
+.header-actions { display: flex; align-items: center; gap: 10px; }
+
+.pill-btn { background: var(--bg-secondary); border: 1px solid var(--card-border-strong); color: var(--text-primary); padding: 6px 14px; border-radius: 20px; cursor: pointer; text-decoration: none; font-size: 13px; font-family: var(--font-mono); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+.pill-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+.hero { padding: 50px 0 32px; text-align: center; border-bottom: 1px solid var(--card-border); }
+.hero-tag { display: inline-block; padding: 4px 14px; background: var(--accent-gold-bg); border: 1px solid var(--card-border); border-radius: 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-gold); font-weight: 700; margin-bottom: 14px; }
+.hero-title { font-family: var(--font-serif); font-size: clamp(30px, 4.5vw, 48px); font-weight: 700; margin-bottom: 12px; }
+.hero-quote { max-width: 680px; margin: 0 auto 24px; font-size: 15px; color: var(--text-secondary); line-height: 1.8; font-style: italic; background: var(--bg-secondary); padding: 16px 20px; border-radius: var(--radius-md); border-left: 3px solid var(--accent-gold); }
+
+.stats-bar { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.stat-pill { background: var(--bg-secondary); border: 1px solid var(--card-border); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-family: var(--font-mono); color: var(--text-secondary); }
+.stat-pill strong { color: var(--text-primary); }
+
+.controls-bar { position: sticky; top: 60px; z-index: 90; background: rgba(251,249,245,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--card-border); padding: 10px 0; }
+[data-theme="dark"] .controls-bar { background: rgba(15,16,19,0.95); }
+.controls-inner { display: flex; align-items: center; justify-content: space-between; }
+.view-btn-group { display: flex; gap: 4px; background: var(--bg-secondary); padding: 3px; border-radius: 8px; border: 1px solid var(--card-border); }
+.v-btn { background: transparent; border: none; padding: 4px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; color: var(--text-secondary); font-weight: 600; }
+.v-btn.active { background: var(--card-bg); color: var(--text-gold); box-shadow: var(--shadow-sm); }
+
+.gallery-section { padding: 32px 0 80px; }
+.feed-layout { display: flex; flex-direction: column; gap: 32px; max-width: 680px; margin: 0 auto; }
+.feed-card { background: var(--card-bg); border: 1px solid var(--card-border-strong); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md); }
+.feed-card img { width: 100%; height: auto; display: block; cursor: zoom-in; }
+.feed-card-footer { padding: 12px 16px; display: flex; justify-content: space-between; border-top: 1px solid var(--card-border); background: var(--bg-secondary); font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+
+.masonry-layout { display: none; column-count: 3; column-gap: 16px; }
+.masonry-layout.active { display: block; }
+.feed-layout.hidden { display: none; }
+.masonry-item { break-inside: avoid; margin-bottom: 16px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--card-border); background: var(--bg-secondary); cursor: zoom-in; }
+.masonry-item img { width: 100%; height: auto; display: block; }
+
+.lightbox-modal { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.95); backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; padding: 20px; }
+.lightbox-modal.active { display: flex; }
+.lightbox-img-wrap { max-width: 94vw; max-height: 90vh; position: relative; }
+.lightbox-img { max-width: 100%; max-height: 88vh; border-radius: var(--radius-sm); }
+.lightbox-close { position: absolute; top: -44px; right: 0; background: transparent; border: none; color: #fff; font-size: 32px; cursor: pointer; }
+.lightbox-counter { text-align: center; font-family: var(--font-mono); font-size: 13px; color: var(--text-gold); margin-top: 10px; }
+
+@media (max-width: 768px) {
+  .masonry-layout { column-count: 2; column-gap: 10px; }
+  .hero-title { font-size: 28px; }
+}
+@media (max-width: 480px) {
+  .masonry-layout { column-count: 1; }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../../index.html" class="brand-badge">
+      <div class="brand-mark">索</div>
+      <div>
+        <div style="font-size:14px; font-weight:700;">索尔·雷特 (Saul Leiter)</div>
+        <div style="font-size:10px; color:var(--text-gold); font-family:var(--font-mono);">经典胶片色彩</div>
+      </div>
+    </a>
+    <div class="header-actions">
+      <button class="pill-btn" onclick="toggleTheme()">🌓 主题</button>
+      <a href="../../index.html" class="pill-btn">📋 大师清单</a>
+      <a href="https://gengyueworks.github.io/pentax67ii-manual/" class="pill-btn">📷 宾得说明书</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">🇺🇸 美国 · 1923–2013 · 经典胶片色彩</div>
+    <h1 class="hero-title">索尔·雷特 (Saul Leiter)</h1>
+    <div class="hero-quote">“我拍照不是为了出名，只是因为看见了雨天玻璃上的红色雨伞和雾气很美。”</div>
+    <div class="stats-bar">
+      <div class="stat-pill"><strong>代表作</strong> 《Early Color》· 《纽约街头雨雾》</div>
+      <div class="stat-pill"><strong>核心器材</strong> Leica M · 柯达 Kodachrome 彩色反转片</div>
+      <div class="stat-pill"><strong>精选馆藏</strong> 206 幅高画质作品</div>
+    </div>
+  </div>
+</section>
+
+<div class="controls-bar">
+  <div class="container controls-inner">
+    <div style="font-size:13px; font-weight:700; color:var(--text-gold); font-family:var(--font-mono);">
+      CURATED WORKS (206P)
+    </div>
+    <div class="view-btn-group">
+      <button class="v-btn active" id="btnFeed" onclick="setView('feed')">📱 灵感流 (Feed)</button>
+      <button class="v-btn" id="btnGrid" onclick="setView('grid')">🔲 瀑布流 (Grid)</button>
+    </div>
+  </div>
+</div>
+
+<main class="container gallery-section">
+  <div class="feed-layout" id="feedContainer"></div>
+  <div class="masonry-layout" id="gridContainer"></div>
+</main>
+
+<div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+  <div class="lightbox-img-wrap" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightboxImg" class="lightbox-img" src="" alt="大图查看">
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+</div>
+
+<script>
+const IMAGES = [{"filename": "00c95461553f11efff9968586a4be300.png", "width": 1000, "height": 644, "aspect": 1.55}, {"filename": "040b93afc3b546ca58a215567a92c04e.jpg", "width": 516, "height": 768, "aspect": 0.67}, {"filename": "04223293d025ebb76453b17b16476c7b.jpg", "width": 520, "height": 700, "aspect": 0.74}, {"filename": "0462a293813c5a9673f5c6405db380ca.jpg", "width": 777, "height": 1024, "aspect": 0.76}, {"filename": "04f00dae7ae43836525efe31e2ba448e.jpg", "width": 736, "height": 1104, "aspect": 0.67}, {"filename": "06dfd9659c5171d6b2a44d35dbf75b79.jpg", "width": 800, "height": 1239, "aspect": 0.65}, {"filename": "07536871ebbd8b79cf6dd0eeb5be262c.jpg", "width": 900, "height": 1142, "aspect": 0.79}, {"filename": "08eeb6fe94f81a10307744888669d4ee.jpg", "width": 679, "height": 1024, "aspect": 0.66}, {"filename": "09727a0b42f94eead78d50454995e9e5.png", "width": 626, "height": 899, "aspect": 0.7}, {"filename": "0a5fa9720f6a3d417b7e75ab5fa9834a.jpg", "width": 1443, "height": 1800, "aspect": 0.8}, {"filename": "0af2855bd82e1b56fbe9acabac2533a8.jpg", "width": 1369, "height": 2048, "aspect": 0.67}, {"filename": "0eb1fbc7503e03d3073407c88cb839a0.jpg", "width": 514, "height": 750, "aspect": 0.69}, {"filename": "0f9a5a6d4bd6462aa2f363cdb4ee95d6.jpg", "width": 749, "height": 580, "aspect": 1.29}, {"filename": "0fc2d6e7daf45e6565d540836365ef23.jpg", "width": 581, "height": 874, "aspect": 0.66}, {"filename": "10a69e7d54b8d13535de44de8a686227.jpg", "width": 1800, "height": 1429, "aspect": 1.26}, {"filename": "1159d1005c467a1be13a205d2e192c90.jpg", "width": 655, "height": 973, "aspect": 0.67}, {"filename": "11937690bd450e09f5ba6fc74c9cfd50.jpg", "width": 1800, "height": 1188, "aspect": 1.52}, {"filename": "11a231570ad8768f49554f6f939d95b6.jpg", "width": 668, "height": 907, "aspect": 0.74}, {"filename": "183f51c8e050f07a10b6a0eaeb528f1a.jpg", "width": 736, "height": 1117, "aspect": 0.66}, {"filename": "18630bf6e4845138937771dcb8caddb5.jpg", "width": 555, "height": 800, "aspect": 0.69}, {"filename": "19b0e0bf016fb15acc784a5d2929fb6e.jpg", "width": 1584, "height": 1532, "aspect": 1.03}, {"filename": "1b65c14be59459b10f41033939fe5943.jpg", "width": 500, "height": 640, "aspect": 0.78}, {"filename": "1d2e44244fbe3f66894a6883135c46ed.jpg", "width": 521, "height": 750, "aspect": 0.69}, {"filename": "1d75e0083807e5ca18b6a3b432e85ba7.jpg", "width": 500, "height": 718, "aspect": 0.7}, {"filename": "1eb9946225126b8cd849d627bcde84f5.jpg", "width": 700, "height": 1036, "aspect": 0.68}, {"filename": "1ecf5f891ee5db08d5244be1790dc83c.jpg", "width": 563, "height": 750, "aspect": 0.75}, {"filename": "1ee657412adf54d8de6e717788bf24f0.jpg", "width": 1024, "height": 817, "aspect": 1.25}, {"filename": "20b4307e9bca107bf7b9cf1b4614945f.jpg", "width": 853, "height": 1280, "aspect": 0.67}, {"filename": "21aefe83804316d614669ceafcaee624.jpg", "width": 900, "height": 1200, "aspect": 0.75}, {"filename": "220ce1de3424cc9f5087dabcb5ec68e5.jpg", "width": 1196, "height": 1283, "aspect": 0.93}, {"filename": "299fbf6dd41f3b0e7c6fff23a1ba3a4a.jpg", "width": 1175, "height": 1800, "aspect": 0.65}, {"filename": "2a88cff0c4fd10b2cd2f99bab3c4488a.png", "width": 1000, "height": 659, "aspect": 1.52}, {"filename": "2be2509fe33829b27d76d4781d109925.jpg", "width": 922, "height": 1257, "aspect": 0.73}, {"filename": "31fb9e9e78cd04dcc13f1ad029dc8b01.jpg", "width": 987, "height": 1024, "aspect": 0.96}, {"filename": "32b57141eca9fd48c904a9e11c2a7aed.jpg", "width": 562, "height": 700, "aspect": 0.8}, {"filename": "33bda00e8736e138125a6356c0c45998.jpg", "width": 697, "height": 649, "aspect": 1.07}, {"filename": "37b3d202c55a49e67c5cf3dd5778ef0a.jpg", "width": 1100, "height": 1762, "aspect": 0.62}, {"filename": "3d783cc10f595a340f4d191934c83ec4.jpg", "width": 533, "height": 800, "aspect": 0.67}, {"filename": "3da9b5ddb35002eb00c3c5b000ff45a4.jpg", "width": 716, "height": 716, "aspect": 1.0}, {"filename": "3f6f7d1fbfb0a1b67b7ebc633acda800.jpg", "width": 595, "height": 891, "aspect": 0.67}, {"filename": "3fef579305557b3b10fc54b7e820bcd2.jpg", "width": 500, "height": 748, "aspect": 0.67}, {"filename": "40093d55b6557a49f6142dec310085f1.jpg", "width": 522, "height": 750, "aspect": 0.7}, {"filename": "40d9a87b463f0232d83c09fc3662b4e4.jpg", "width": 1800, "height": 1141, "aspect": 1.58}, {"filename": "417efdd1d18edbe41c6023124172c008.jpg", "width": 758, "height": 1137, "aspect": 0.67}, {"filename": "45d5a307c83c4b4fc75e854d6ff8b037.jpg", "width": 678, "height": 1024, "aspect": 0.66}, {"filename": "45f7880c9a7673a1db83d66a70aef22d.png", "width": 604, "height": 902, "aspect": 0.67}, {"filename": "46a7222c203694bd5bfe735c63d61866.png", "width": 1000, "height": 1523, "aspect": 0.66}, {"filename": "47ce08ed404b14175d37ffca7c77b1c1.jpg", "width": 766, "height": 500, "aspect": 1.53}, {"filename": "4868a90accdb6c37e2bb67e2c300e079.png", "width": 604, "height": 899, "aspect": 0.67}, {"filename": "49edbc46daab13e3196550c80e80ebb1.jpg", "width": 960, "height": 641, "aspect": 1.5}, {"filename": "4ce9b897b033736709aba6aaea211a7d.jpg", "width": 670, "height": 1012, "aspect": 0.66}, {"filename": "4d5dc67e6c91fb67c5c1dc03f76d0538.png", "width": 2020, "height": 3038, "aspect": 0.66}, {"filename": "4ea6077080886b268fd395c400c50f0f.png", "width": 2020, "height": 3048, "aspect": 0.66}, {"filename": "5029835a6ebb2cb37de46c1d1570a475.png", "width": 1000, "height": 1503, "aspect": 0.67}, {"filename": "53607838de0af77d315a9a051199e22a.png", "width": 1000, "height": 1537, "aspect": 0.65}, {"filename": "53d24a3bdc2f8117387fd66a38b55b1e.jpg", "width": 838, "height": 559, "aspect": 1.5}, {"filename": "53dd9bf54f165cadf851e542b4bf022b.jpg", "width": 1100, "height": 758, "aspect": 1.45}, {"filename": "53e76e91a38a6cc44a0e0612f9282799.jpg", "width": 596, "height": 925, "aspect": 0.64}, {"filename": "53fa752ad1c9675c1c485c6d52b169f8.jpg", "width": 698, "height": 1082, "aspect": 0.65}, {"filename": "55344b6c4d2cbd5e4f2b361572991538.jpg", "width": 563, "height": 750, "aspect": 0.75}, {"filename": "55ce9db4475f1450f8a4a7615884bef0.jpg", "width": 800, "height": 977, "aspect": 0.82}, {"filename": "561eb1a8cd4199eaf7edcb384798f38a.png", "width": 2020, "height": 2694, "aspect": 0.75}, {"filename": "5a305b8520b19b0ea31b1b2fd22a1f23.jpg", "width": 1620, "height": 1624, "aspect": 1.0}, {"filename": "5d9f73b48ffb9ba9f30e9d04e106a40a.jpg", "width": 563, "height": 567, "aspect": 0.99}, {"filename": "5f09bf2bd345c0179acc7c7c70df77a9.jpg", "width": 2414, "height": 1609, "aspect": 1.5}, {"filename": "60423eb7df054d10a8c4c648ee5cdf09.png", "width": 2020, "height": 2998, "aspect": 0.67}, {"filename": "606b8893f4245dddba625bd4c10175dd.jpg", "width": 500, "height": 528, "aspect": 0.95}, {"filename": "612dc09084027924fb0fa5c196414e16.jpg", "width": 960, "height": 654, "aspect": 1.47}, {"filename": "61497dc2077040432c18983a3bd4279c.jpg", "width": 749, "height": 1160, "aspect": 0.65}, {"filename": "6252b3e147e0eab5a31c56ac0fb57a66.jpg", "width": 600, "height": 797, "aspect": 0.75}, {"filename": "63ad1acbb45523a7167d933a4a0817ac.jpg", "width": 500, "height": 737, "aspect": 0.68}, {"filename": "63e51b1f3bb467911dcb5a9b824b7195.jpg", "width": 549, "height": 703, "aspect": 0.78}, {"filename": "68c859377f7e146b22dac0575b8fd341.jpg", "width": 1100, "height": 600, "aspect": 1.83}, {"filename": "695adda40850406b49879da959da298c.jpg", "width": 739, "height": 580, "aspect": 1.27}, {"filename": "6b357aebdd9e119f176f519b85a92f72.jpg", "width": 1024, "height": 795, "aspect": 1.29}, {"filename": "6d1f0bf9e8352fed9ecf5a2d06aafe85.jpg", "width": 887, "height": 580, "aspect": 1.53}, {"filename": "6e1aea83866c3b3a375538eba544115b.jpg", "width": 839, "height": 580, "aspect": 1.45}, {"filename": "6e844014cc864717ea1d43aeb2e2f446.jpg", "width": 853, "height": 1280, "aspect": 0.67}, {"filename": "6ee205b6a7d85426c5ad59f4d2f4d05d.jpg", "width": 661, "height": 1024, "aspect": 0.65}, {"filename": "6f25c23ae5668f34bc855c8404b776a4.jpg", "width": 570, "height": 853, "aspect": 0.67}, {"filename": "70666cd030e4083d0afd0ce10dc4fe77.jpg", "width": 736, "height": 1119, "aspect": 0.66}, {"filename": "71b176215bc96b2563221a8526e1c2b3.jpg", "width": 1200, "height": 900, "aspect": 1.33}, {"filename": "724d559fed84b4d605c69c841aa9af63.png", "width": 605, "height": 899, "aspect": 0.67}, {"filename": "74bd79ec3c1814222f415d95d0a14158.jpg", "width": 735, "height": 583, "aspect": 1.26}, {"filename": "74d460df0ed24732b40650f1aff0c4f6.jpg", "width": 1024, "height": 687, "aspect": 1.49}, {"filename": "76205a16915e550393d153e19e9f222b.jpg", "width": 610, "height": 909, "aspect": 0.67}, {"filename": "77031f65d40698a31636eac02d188040.jpg", "width": 1186, "height": 1800, "aspect": 0.66}, {"filename": "77786ecb62c4a0dae87ea506059a5941.jpg", "width": 1500, "height": 1003, "aspect": 1.5}, {"filename": "785fc4290b56063085f15f7e7c6033b6.jpg", "width": 1280, "height": 861, "aspect": 1.49}, {"filename": "7887a4b9e7f1b46575d805c5a9fd2d5f.png", "width": 2020, "height": 3026, "aspect": 0.67}, {"filename": "78c06a840ceca5fc1112e72164d481da.jpg", "width": 806, "height": 1024, "aspect": 0.79}, {"filename": "7c3c6b995120323b0d1f09c4544d54e3.jpg", "width": 667, "height": 1000, "aspect": 0.67}, {"filename": "7c8a7705649d03e4f215d8e60b02cef8.jpg", "width": 875, "height": 580, "aspect": 1.51}, {"filename": "7cbdd2f6e7b485554257c7aa601571e7.jpg", "width": 736, "height": 1132, "aspect": 0.65}, {"filename": "7f3e87ad82c40e7201e89aa28f939c53.jpg", "width": 702, "height": 1050, "aspect": 0.67}, {"filename": "7f6b8be93b1d6df0172de4aab7dd31b5.jpg", "width": 580, "height": 850, "aspect": 0.68}, {"filename": "823724855aac40e17d921fa135efc4ab.jpg", "width": 1327, "height": 2048, "aspect": 0.65}, {"filename": "823bf084e84d57130e55be2f06d1f926.jpg", "width": 678, "height": 1024, "aspect": 0.66}, {"filename": "8288b5b4c1ebbc253c01d84cdacc88da.jpg", "width": 520, "height": 792, "aspect": 0.66}, {"filename": "82982e6abafb1c65677a56b3ee463c62.jpg", "width": 1600, "height": 1200, "aspect": 1.33}, {"filename": "831cea4e66c0c85e52944af4470e7292.jpg", "width": 774, "height": 1174, "aspect": 0.66}, {"filename": "83a12d48c2dc724c32361370238fd67e.png", "width": 1000, "height": 1576, "aspect": 0.63}, {"filename": "85d108910ac02eb0b546fcf7fcc0c796.jpg", "width": 616, "height": 800, "aspect": 0.77}, {"filename": "87e053b679e183d82464f500d411a83b.jpg", "width": 802, "height": 1168, "aspect": 0.69}, {"filename": "897e004281aee569edc950aaffbade4d.jpg", "width": 875, "height": 584, "aspect": 1.5}, {"filename": "897fc271fba4901a5d36766101294d53.jpg", "width": 1549, "height": 2364, "aspect": 0.66}, {"filename": "8afc4cfd0743a798912bc5fc33bf2383.jpg", "width": 655, "height": 971, "aspect": 0.67}, {"filename": "8b40a189ef14c93d589e27b1a67ef961.png", "width": 2020, "height": 3006, "aspect": 0.67}, {"filename": "8be0086735349c0899c7e70ca65b5519.png", "width": 2020, "height": 3050, "aspect": 0.66}, {"filename": "8c0372b916b38e85ca218e32eea17441.png", "width": 1000, "height": 687, "aspect": 1.46}, {"filename": "8c89a4ebf004fe4b724f9ec2529c00eb.jpg", "width": 1400, "height": 939, "aspect": 1.49}, {"filename": "8caf047161ff2a946817ef595cd866cc.jpg", "width": 1035, "height": 1542, "aspect": 0.67}, {"filename": "8ebd62b2edc703ee5f04df4898bf6e7f.jpg", "width": 513, "height": 700, "aspect": 0.73}, {"filename": "8f31fa2e4d6981d7fbbea53599a08ac5.jpg", "width": 1795, "height": 1800, "aspect": 1.0}, {"filename": "900d8516e7845d70768a151405f26bd2.jpg", "width": 800, "height": 524, "aspect": 1.53}, {"filename": "91422640cf648341c4de7d1f0db88a46.jpg", "width": 528, "height": 700, "aspect": 0.75}, {"filename": "921afde4750d50e9a4a19a29e92b80fd.jpg", "width": 1800, "height": 1190, "aspect": 1.51}, {"filename": "95d9cdd06a9281cf4eeef486f801e239.jpg", "width": 655, "height": 991, "aspect": 0.66}, {"filename": "968ef5449b0548874f429f6ee6bb4f1f.jpg", "width": 575, "height": 800, "aspect": 0.72}, {"filename": "97eb9f2c3ed2f93e2fa8b11942c597af.jpg", "width": 500, "height": 749, "aspect": 0.67}, {"filename": "9c145996074a08a97bf137d4705ad755.jpg", "width": 960, "height": 579, "aspect": 1.66}, {"filename": "9d6328c8cf7e804aff853e3bbd18d0f6.jpg", "width": 960, "height": 640, "aspect": 1.5}, {"filename": "9dff002a0cd73f9db02ba5c6fa3f1dd8.jpg", "width": 1179, "height": 1800, "aspect": 0.66}, {"filename": "9ff522521945effd7f0ed946ddaac4ac.jpg", "width": 960, "height": 1454, "aspect": 0.66}, {"filename": "a1ebe943286088b536a82a597bf5b912.png", "width": 689, "height": 1033, "aspect": 0.67}, {"filename": "a1f28fd85e8874ed8575d959c0956fcf.jpg", "width": 525, "height": 700, "aspect": 0.75}, {"filename": "a2e975c1ee0c3acfd251ddeae13fc591.jpg", "width": 718, "height": 953, "aspect": 0.75}, {"filename": "a335e48a388b9542d42b77a1f1fa76f0.jpg", "width": 530, "height": 768, "aspect": 0.69}, {"filename": "a36ac3cf3d9cb6f7daf4c739c44d1256.png", "width": 2020, "height": 3054, "aspect": 0.66}, {"filename": "a4c6839c9edce31d53be271b34034545.jpg", "width": 540, "height": 750, "aspect": 0.72}, {"filename": "a5b480040fd4cbabe62c55c0dcd3ee44.jpg", "width": 678, "height": 1024, "aspect": 0.66}, {"filename": "a6c3bc1589d903d81716d6f2d9607c1a.png", "width": 2020, "height": 2924, "aspect": 0.69}, {"filename": "a7812984c8028cc25d3363412dad6614.jpg", "width": 1100, "height": 758, "aspect": 1.45}, {"filename": "a8d1c9dd9a2d1cfe3eb06de7b5a3ddf2.jpg", "width": 1024, "height": 576, "aspect": 1.78}, {"filename": "aa4bc40c5a7b8c9713d9bdee6cd5498f.jpg", "width": 1200, "height": 1600, "aspect": 0.75}, {"filename": "ab01dd65448b9c330e52932fd48c4794.jpg", "width": 1800, "height": 1283, "aspect": 1.4}, {"filename": "ab0e6faae468c79c05e754e019a38bc0.jpg", "width": 758, "height": 1137, "aspect": 0.67}, {"filename": "ac764dccee9279dec9f0cddc3687c677.jpg", "width": 624, "height": 957, "aspect": 0.65}, {"filename": "ad6ac1c1c6c4d7b437bef43ea2ca5f91.jpg", "width": 1200, "height": 630, "aspect": 1.9}, {"filename": "ae9180e9fdcdda8db6012e2557da5387.jpg", "width": 564, "height": 786, "aspect": 0.72}, {"filename": "b07630e71dedcadd14b8585ff5d53572.jpg", "width": 1163, "height": 1600, "aspect": 0.73}, {"filename": "b3dfcaf47b5c9dd2a22b2abbb81261cc.jpg", "width": 1080, "height": 1349, "aspect": 0.8}, {"filename": "b57976aeabc7b5e59708627b7b22f18d.jpg", "width": 519, "height": 800, "aspect": 0.65}, {"filename": "b7af81818243e848e7384731e04cb088.jpg", "width": 913, "height": 580, "aspect": 1.57}, {"filename": "b9bb717d1cc645e005144cb2dc64b3f5.jpg", "width": 519, "height": 800, "aspect": 0.65}, {"filename": "bb934211ec410b954660a68989c158a4.jpg", "width": 684, "height": 1024, "aspect": 0.67}, {"filename": "bc1f576abdaabee4a11764760c795831.jpg", "width": 568, "height": 580, "aspect": 0.98}, {"filename": "bcde08fca9ee925cb4a4b80abed08565.jpg", "width": 1000, "height": 1488, "aspect": 0.67}, {"filename": "bd5b7f9c1fe9068d8c467c01a86f8413.jpg", "width": 800, "height": 534, "aspect": 1.5}, {"filename": "bd7c4428b00d172fdcf0c647156cdc6e.jpg", "width": 550, "height": 825, "aspect": 0.67}, {"filename": "bf7224f060622ef8a054e7e069142390.png", "width": 1000, "height": 655, "aspect": 1.53}, {"filename": "bfbe9e97ca02cb9bb56d69db4c05c38b.jpg", "width": 600, "height": 902, "aspect": 0.67}, {"filename": "c1486baab511a733dc54797ddd573e4a.jpg", "width": 808, "height": 1200, "aspect": 0.67}, {"filename": "c252ed04bbc923a7290a9ae12e608581.jpg", "width": 2448, "height": 3901, "aspect": 0.63}, {"filename": "c3b4299e2e378a3195dbae9653e6c424.png", "width": 2020, "height": 3054, "aspect": 0.66}, {"filename": "c6024ee2f49879272f6046aa1171dd45.jpg", "width": 736, "height": 1096, "aspect": 0.67}, {"filename": "c6e372497916bc2c15032261db1df46c.jpg", "width": 1116, "height": 1600, "aspect": 0.7}, {"filename": "c7885570315ed22e42350294e0cf7d46.jpg", "width": 1205, "height": 1800, "aspect": 0.67}, {"filename": "c8a1d2ec2a019461ef8c16dbe91c33c5.png", "width": 1000, "height": 679, "aspect": 1.47}, {"filename": "c8ea71801bc1a16cf441bf94998dedb5.jpg", "width": 750, "height": 1125, "aspect": 0.67}, {"filename": "c980775f21cc1d57cedb438c1e5c3563.jpg", "width": 1204, "height": 1800, "aspect": 0.67}, {"filename": "ca61c677ef5771ded37e02a6308fe6b6.jpg", "width": 696, "height": 1051, "aspect": 0.66}, {"filename": "cb9b1f6d7f25cca5f968bd5df6f52830.jpg", "width": 633, "height": 960, "aspect": 0.66}, {"filename": "cd1197a05f28b2dcad038aab6b53623c.jpg", "width": 1887, "height": 1200, "aspect": 1.57}, {"filename": "cdccef3d788d9e23e7abd2d153bc10ca.jpg", "width": 521, "height": 700, "aspect": 0.74}, {"filename": "cf5060e573fc2722ce01694007c618de.jpg", "width": 1800, "height": 1132, "aspect": 1.59}, {"filename": "d148e7fc20ef6cb5c326183d9effd07a.jpg", "width": 758, "height": 537, "aspect": 1.41}, {"filename": "d19f3b075c9718fe95af109f7221aa06.png", "width": 1000, "height": 721, "aspect": 1.39}, {"filename": "d348456d0bd8add8d740a6ad67a195fc.jpg", "width": 809, "height": 1200, "aspect": 0.67}, {"filename": "d4cf9b34d3c9082eca2f68d09aa6c6b7.png", "width": 2020, "height": 3004, "aspect": 0.67}, {"filename": "d5c4370d339c36e6754bd2635e63a60f.jpg", "width": 758, "height": 1129, "aspect": 0.67}, {"filename": "d6800f292f67e3f57cdc765797895e3a.png", "width": 560, "height": 854, "aspect": 0.66}, {"filename": "d783b9bf88926767eaf693dbc7679d67.jpg", "width": 2472, "height": 3090, "aspect": 0.8}, {"filename": "d993ebe182bbca53c3290d58fb7d4980.jpg", "width": 768, "height": 768, "aspect": 1.0}, {"filename": "db0a87b5a06a043e2a636e7d13433e40.jpg", "width": 1854, "height": 1200, "aspect": 1.54}, {"filename": "dc4b1cb7ce191e64195803be2692e63f.jpg", "width": 1128, "height": 1440, "aspect": 0.78}, {"filename": "dcbe1bb89fae76a8b5e3f777245d5829.jpg", "width": 797, "height": 1200, "aspect": 0.66}, {"filename": "dcf54bdcfee45ac79e1cca79c03746ee.jpg", "width": 1100, "height": 1741, "aspect": 0.63}, {"filename": "deb0aaf01057ad312096afd7efe53a0a.jpg", "width": 1782, "height": 1800, "aspect": 0.99}, {"filename": "e04b73bf8f0009e848fe358a3d43c163.png", "width": 1000, "height": 680, "aspect": 1.47}, {"filename": "e0d9d793d02947714132545846a7e821.jpg", "width": 1497, "height": 921, "aspect": 1.63}, {"filename": "e303edc42b4ce39eef2fd18bd9385b84.jpg", "width": 639, "height": 1002, "aspect": 0.64}, {"filename": "e34f423293742ca6eb8bc5b01604a0e1.jpg", "width": 551, "height": 800, "aspect": 0.69}, {"filename": "e5d22efe5db5d4e74734161c4aca341b.png", "width": 2020, "height": 3034, "aspect": 0.67}, {"filename": "e67f4fa49df589f6e58529a8afd4d149.jpg", "width": 986, "height": 800, "aspect": 1.23}, {"filename": "e71a4031d3b4bef352f3084fcbfc5d93.jpg", "width": 1000, "height": 1500, "aspect": 0.67}, {"filename": "eba206e6c16070f8746cb06d5bf48a7e.jpg", "width": 1010, "height": 1500, "aspect": 0.67}, {"filename": "ec16e0158e19376dca0c1748b87640d0.jpg", "width": 1000, "height": 903, "aspect": 1.11}, {"filename": "ec7f1329f41062deb32720cec301a03e.png", "width": 652, "height": 982, "aspect": 0.66}, {"filename": "ef02e99e35bf2fbc905ecedaa7e27746.jpg", "width": 1017, "height": 1546, "aspect": 0.66}, {"filename": "ef0c65baa4569852d4c177ae6000dec9.jpg", "width": 1190, "height": 1800, "aspect": 0.66}, {"filename": "f07afafb3e3b08743707de0f8def8402.jpg", "width": 676, "height": 1024, "aspect": 0.66}, {"filename": "f0c21be34fd2dddf8382a83a7081fc06.jpg", "width": 694, "height": 1024, "aspect": 0.68}, {"filename": "f204f520efe2c1d39e94eb52cd489fab.jpg", "width": 600, "height": 899, "aspect": 0.67}, {"filename": "f3cc6652015b78abe0ca9219c84e5616.jpg", "width": 500, "height": 756, "aspect": 0.66}, {"filename": "f3decfd17c2e2779bdc6114540096362.jpg", "width": 1024, "height": 689, "aspect": 1.49}, {"filename": "f61b1b7303da2d00e87c3a0388b508f9.jpg", "width": 1800, "height": 1148, "aspect": 1.57}, {"filename": "f6e63f0f579c2f741b819d3bc46a9d65.jpg", "width": 1046, "height": 1600, "aspect": 0.65}, {"filename": "f75dd3909e16487159bde71524a509a7.jpg", "width": 804, "height": 1200, "aspect": 0.67}, {"filename": "f7f8460d61ae935ce716bacef75aab63.jpg", "width": 583, "height": 800, "aspect": 0.73}, {"filename": "f9360e96e7047a9ef67c74256c3ba7c6.png", "width": 1024, "height": 1016, "aspect": 1.01}, {"filename": "f9ee580057947d9d60158fc0517880c1.jpg", "width": 624, "height": 920, "aspect": 0.68}, {"filename": "fcabc34946e0fc3c46f6d61727044cc2.jpg", "width": 522, "height": 700, "aspect": 0.75}, {"filename": "fd091d05b084514bf1425ccf20477800.jpg", "width": 500, "height": 746, "aspect": 0.67}, {"filename": "fd97f4474bf62f3f0f8ecd5f93b5fcc4.jpg", "width": 728, "height": 800, "aspect": 0.91}, {"filename": "fff244d1a26fbd6a9f52e85de9216250.jpg", "width": 564, "height": 791, "aspect": 0.71}];
+let activeIdx = 0;
+
+function render() {
+  const feed = document.getElementById('feedContainer');
+  const grid = document.getElementById('gridContainer');
+  feed.innerHTML = ''; grid.innerHTML = '';
+  
+  IMAGES.forEach((item, idx) => {
+    const fc = document.createElement('article');
+    fc.className = 'feed-card';
+    fc.innerHTML = `
+      <img src="images/${item.filename}" alt="作品" loading="lazy" onclick="openLight(${idx})">
+      <div class="feed-card-footer">
+        <span># 索尔·雷特 作品</span>
+        <span>${item.width}×${item.height}</span>
+      </div>
+    `;
+    feed.appendChild(fc);
+    
+    const mi = document.createElement('div');
+    mi.className = 'masonry-item';
+    mi.innerHTML = `<img src="images/${item.filename}" alt="作品" loading="lazy" onclick="openLight(${idx})">`;
+    grid.appendChild(mi);
+  });
+}
+
+function setView(mode) {
+  const feed = document.getElementById('feedContainer');
+  const grid = document.getElementById('gridContainer');
+  document.getElementById('btnFeed').classList.toggle('active', mode === 'feed');
+  document.getElementById('btnGrid').classList.toggle('active', mode === 'grid');
+  if (mode === 'feed') {
+    feed.classList.remove('hidden'); grid.classList.remove('active');
+  } else {
+    feed.classList.add('hidden'); grid.classList.add('active');
+  }
+}
+
+function openLight(idx) {
+  activeIdx = idx;
+  document.getElementById('lightboxImg').src = 'images/' + IMAGES[idx].filename;
+  document.getElementById('lightboxCounter').textContent = `${idx + 1} / ${IMAGES.length} · 索尔·雷特`;
+  document.getElementById('lightboxModal').classList.add('active');
+}
+function closeLightbox() { document.getElementById('lightboxModal').classList.remove('active'); }
+function nextLight() { openLight((activeIdx + 1) % IMAGES.length); }
+function prevLight() { openLight((activeIdx - 1 + IMAGES.length) % IMAGES.length); }
+
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'paper';
+  const next = cur === 'dark' ? 'paper' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('master_theme', next);
+}
+
+window.addEventListener('keydown', (e) => {
+  const m = document.getElementById('lightboxModal');
+  if (m.classList.contains('active')) {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight' || e.key === ' ') nextLight();
+    if (e.key === 'ArrowLeft') prevLight();
+  }
+});
+
+let touchStartX = 0;
+document.getElementById('lightboxModal').addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+document.getElementById('lightboxModal').addEventListener('touchend', (e) => {
+  const diff = e.changedTouches[0].screenX - touchStartX;
+  if (diff < -40) nextLight();
+  if (diff > 40) prevLight();
+}, { passive: true });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('master_theme') || 'paper';
+  document.documentElement.setAttribute('data-theme', saved);
+  render();
+});
+</script>
+</body>
+</html>

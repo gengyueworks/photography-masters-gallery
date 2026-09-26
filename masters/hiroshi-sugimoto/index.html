@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="paper">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>杉本博司 (Hiroshi Sugimoto) · 摄影作品集与胶片灵感档案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #fbf9f5; --bg-secondary: #f3efe6; --bg-tertiary: #e8e2d5;
+  --card-bg: #ffffff; --card-border: rgba(0, 0, 0, 0.08); --card-border-strong: rgba(0, 0, 0, 0.16);
+  --text-primary: #18181b; --text-secondary: #4b5563; --text-muted: #6b7280; --text-gold: #b45309;
+  --accent-gold: #b45309; --accent-gold-bg: rgba(180, 83, 9, 0.08);
+  --font-serif: "Cinzel", "Newsreader", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, sans-serif;
+  --font-mono: "Space Grotesk", monospace;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05); --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.06);
+  --radius-sm: 6px; --radius-md: 10px;
+}
+[data-theme="dark"] {
+  --bg-primary: #0f1013; --bg-secondary: #16181e; --bg-tertiary: #20232b;
+  --card-bg: #181a20; --card-border: rgba(255, 255, 255, 0.09); --card-border-strong: rgba(255, 255, 255, 0.18);
+  --text-primary: #f4f4f5; --text-secondary: #9ca3af; --text-muted: #6b7280; --text-gold: #eab308;
+  --accent-gold: #eab308; --accent-gold-bg: rgba(234, 179, 8, 0.12);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.5);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-primary); line-height: 1.75; -webkit-font-smoothing: antialiased; }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+.site-header { position: sticky; top: 0; z-index: 100; background: rgba(251,249,245,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--card-border); }
+[data-theme="dark"] .site-header { background: rgba(15,16,19,0.9); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.brand-badge { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); }
+.brand-mark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent-gold), #9a6700); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 700; font-size: 13px; color: #fff; }
+.header-actions { display: flex; align-items: center; gap: 10px; }
+
+.pill-btn { background: var(--bg-secondary); border: 1px solid var(--card-border-strong); color: var(--text-primary); padding: 6px 14px; border-radius: 20px; cursor: pointer; text-decoration: none; font-size: 13px; font-family: var(--font-mono); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+.pill-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+.hero { padding: 50px 0 32px; text-align: center; border-bottom: 1px solid var(--card-border); }
+.hero-tag { display: inline-block; padding: 4px 14px; background: var(--accent-gold-bg); border: 1px solid var(--card-border); border-radius: 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-gold); font-weight: 700; margin-bottom: 14px; }
+.hero-title { font-family: var(--font-serif); font-size: clamp(30px, 4.5vw, 48px); font-weight: 700; margin-bottom: 12px; }
+.hero-quote { max-width: 680px; margin: 0 auto 24px; font-size: 15px; color: var(--text-secondary); line-height: 1.8; font-style: italic; background: var(--bg-secondary); padding: 16px 20px; border-radius: var(--radius-md); border-left: 3px solid var(--accent-gold); }
+
+.stats-bar { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.stat-pill { background: var(--bg-secondary); border: 1px solid var(--card-border); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-family: var(--font-mono); color: var(--text-secondary); }
+.stat-pill strong { color: var(--text-primary); }
+
+.controls-bar { position: sticky; top: 60px; z-index: 90; background: rgba(251,249,245,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--card-border); padding: 10px 0; }
+[data-theme="dark"] .controls-bar { background: rgba(15,16,19,0.95); }
+.controls-inner { display: flex; align-items: center; justify-content: space-between; }
+.view-btn-group { display: flex; gap: 4px; background: var(--bg-secondary); padding: 3px; border-radius: 8px; border: 1px solid var(--card-border); }
+.v-btn { background: transparent; border: none; padding: 4px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; color: var(--text-secondary); font-weight: 600; }
+.v-btn.active { background: var(--card-bg); color: var(--text-gold); box-shadow: var(--shadow-sm); }
+
+.gallery-section { padding: 32px 0 80px; }
+.feed-layout { display: flex; flex-direction: column; gap: 32px; max-width: 680px; margin: 0 auto; }
+.feed-card { background: var(--card-bg); border: 1px solid var(--card-border-strong); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md); }
+.feed-card img { width: 100%; height: auto; display: block; cursor: zoom-in; }
+.feed-card-footer { padding: 12px 16px; display: flex; justify-content: space-between; border-top: 1px solid var(--card-border); background: var(--bg-secondary); font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+
+.masonry-layout { display: none; column-count: 3; column-gap: 16px; }
+.masonry-layout.active { display: block; }
+.feed-layout.hidden { display: none; }
+.masonry-item { break-inside: avoid; margin-bottom: 16px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--card-border); background: var(--bg-secondary); cursor: zoom-in; }
+.masonry-item img { width: 100%; height: auto; display: block; }
+
+.lightbox-modal { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.95); backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; padding: 20px; }
+.lightbox-modal.active { display: flex; }
+.lightbox-img-wrap { max-width: 94vw; max-height: 90vh; position: relative; }
+.lightbox-img { max-width: 100%; max-height: 88vh; border-radius: var(--radius-sm); }
+.lightbox-close { position: absolute; top: -44px; right: 0; background: transparent; border: none; color: #fff; font-size: 32px; cursor: pointer; }
+.lightbox-counter { text-align: center; font-family: var(--font-mono); font-size: 13px; color: var(--text-gold); margin-top: 10px; }
+
+@media (max-width: 768px) {
+  .masonry-layout { column-count: 2; column-gap: 10px; }
+  .hero-title { font-size: 28px; }
+}
+@media (max-width: 480px) {
+  .masonry-layout { column-count: 1; }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../../index.html" class="brand-badge">
+      <div class="brand-mark">杉</div>
+      <div>
+        <div style="font-size:14px; font-weight:700;">杉本博司 (Hiroshi Sugimoto)</div>
+        <div style="font-size:10px; color:var(--text-gold); font-family:var(--font-mono);">东方光影与黑白极简</div>
+      </div>
+    </a>
+    <div class="header-actions">
+      <button class="pill-btn" onclick="toggleTheme()">🌓 主题</button>
+      <a href="../../index.html" class="pill-btn">📋 大师清单</a>
+      <a href="https://gengyueworks.github.io/pentax67ii-manual/" class="pill-btn">📷 宾得说明书</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">🇯🇵 日本 · 1948– · 东方光影与黑白极简</div>
+    <h1 class="hero-title">杉本博司 (Hiroshi Sugimoto)</h1>
+    <div class="hero-quote">“时间是一条看不见的河流，而长曝光让时间的流动凝结成一片纯净的虚无。”</div>
+    <div class="stats-bar">
+      <div class="stat-pill"><strong>代表作</strong> 《海景 Seascapes》· 《剧场 Theaters》· 《放电场》</div>
+      <div class="stat-pill"><strong>核心器材</strong> 8×10 大画幅座机 · 极度慢速长曝光</div>
+      <div class="stat-pill"><strong>精选馆藏</strong> 150 幅高画质作品</div>
+    </div>
+  </div>
+</section>
+
+<div class="controls-bar">
+  <div class="container controls-inner">
+    <div style="font-size:13px; font-weight:700; color:var(--text-gold); font-family:var(--font-mono);">
+      CURATED WORKS (150P)
+    </div>
+    <div class="view-btn-group">
+      <button class="v-btn active" id="btnFeed" onclick="setView('feed')">📱 灵感流 (Feed)</button>
+      <button class="v-btn" id="btnGrid" onclick="setView('grid')">🔲 瀑布流 (Grid)</button>
+    </div>
+  </div>
+</div>
+
+<main class="container gallery-section">
+  <div class="feed-layout" id="feedContainer"></div>
+  <div class="masonry-layout" id="gridContainer"></div>
+</main>
+
+<div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+  <div class="lightbox-img-wrap" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightboxImg" class="lightbox-img" src="" alt="大图查看">
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+</div>
+
+<script>
+const IMAGES = [{"filename": "00d151ee37b578098b2619707586b6e2.jpg", "width": 1600, "height": 1222, "aspect": 1.31}, {"filename": "038bc6185f7b0681c08b35516a1bd9c1.jpg", "width": 880, "height": 724, "aspect": 1.22}, {"filename": "04bd84d43ea6b30447c7c2e10ca9301a.jpg", "width": 2000, "height": 1333, "aspect": 1.5}, {"filename": "082b70a5b2c30e24ef6cd556360205e0.webp", "width": 1200, "height": 805, "aspect": 1.49}, {"filename": "086b5bc66e14d0c8b841488ed3db6c8d.jpg", "width": 3200, "height": 2480, "aspect": 1.29}, {"filename": "0b04fc435cde3bb81d8e31bb9d70d51a.jpg", "width": 3200, "height": 1664, "aspect": 1.92}, {"filename": "0cef650ad04c0f1dcbc7f9a45d4b65af.jpg", "width": 1082, "height": 1200, "aspect": 0.9}, {"filename": "0df87359e4874657b2458297fbd7d24d.jpg", "width": 1400, "height": 913, "aspect": 1.53}, {"filename": "0f1023865e9cd43f34aa718095bac187.png", "width": 1000, "height": 780, "aspect": 1.28}, {"filename": "1098764eb796a2568a673021546d7ba9.jpg", "width": 3200, "height": 1229, "aspect": 2.6}, {"filename": "10d3ba55d974aeb047f003a7373d1681.jpg", "width": 4557, "height": 3547, "aspect": 1.28}, {"filename": "11af23d7f7b12d98e4aea0b37b7621fc.jpg", "width": 800, "height": 561, "aspect": 1.43}, {"filename": "11c643970c65d7acd686effd8c0e1a46.webp", "width": 2500, "height": 1953, "aspect": 1.28}, {"filename": "14aa03a55307a54d1494dfbc01e1365a.jpg", "width": 960, "height": 633, "aspect": 1.52}, {"filename": "14ea6e741edb2b5eba9310711523c139.jpg", "width": 1200, "height": 936, "aspect": 1.28}, {"filename": "157aca48f2e45b867ca24222952cbcc8.jpg", "width": 735, "height": 570, "aspect": 1.29}, {"filename": "186ca49ca933283c7d5635750b84fa83.jpg", "width": 1023, "height": 791, "aspect": 1.29}, {"filename": "186f726c79cebfe6e9d9775ac18eabdf.jpg", "width": 1500, "height": 1161, "aspect": 1.29}, {"filename": "1938e11fee036d88981b0fe8eb5502cb.jpg", "width": 3200, "height": 2475, "aspect": 1.29}, {"filename": "1d3f89332a317cb1631d40b384e0333c.jpg", "width": 550, "height": 1267, "aspect": 0.43}, {"filename": "1dc688edd578913f08ce905f055e7916.jpg", "width": 3200, "height": 2467, "aspect": 1.3}, {"filename": "1dda8ad498b584aaf8df60f76293a745.jpg", "width": 1500, "height": 1179, "aspect": 1.27}, {"filename": "1f1bfc96554ccfa1de8cfc400125967d.jpg", "width": 2000, "height": 1577, "aspect": 1.27}, {"filename": "1f626a9444f7465ba8546a505109a4e0.jpg", "width": 3200, "height": 855, "aspect": 3.74}, {"filename": "22473e75e94f81a114beb3864059f38c.jpg", "width": 800, "height": 626, "aspect": 1.28}, {"filename": "22b7b455266507007c790a6147ac38e3.jpg", "width": 3000, "height": 2331, "aspect": 1.29}, {"filename": "252fc136ec930eae28279dce4cb38c84.jpg", "width": 3352, "height": 2680, "aspect": 1.25}, {"filename": "2a00c666ecc85c2812642fead983d5f6.jpg", "width": 1080, "height": 825, "aspect": 1.31}, {"filename": "2a62bb90176c5db7be1c6b795ba1a82e.jpg", "width": 1600, "height": 1236, "aspect": 1.29}, {"filename": "2c0ea2c4b1bca1dd529236145e115bff.jpg", "width": 4200, "height": 3255, "aspect": 1.29}, {"filename": "2e8bdbe0406a1f3e7c89304fcad4f7a1.jpg", "width": 3200, "height": 2476, "aspect": 1.29}, {"filename": "30d1d897e1fe0b1461b867134ac1ae8e.jpg", "width": 800, "height": 614, "aspect": 1.3}, {"filename": "3260739d0dd2f7cfb4ad281ceacd610a.jpg", "width": 2000, "height": 1548, "aspect": 1.29}, {"filename": "328a3a12d4fdb91bd2b2d5814ad9c726.webp", "width": 850, "height": 658, "aspect": 1.29}, {"filename": "331fd00fc568b2555de80380f17ee63e.jpg", "width": 1320, "height": 1000, "aspect": 1.32}, {"filename": "33600cf4b190d56154b4fe2e59e11c26.jpg", "width": 1200, "height": 935, "aspect": 1.28}, {"filename": "344e1575696af5fe55c96250a3830ad5.jpg", "width": 769, "height": 600, "aspect": 1.28}, {"filename": "366f6a1d3139d9ff1b86c1e66d43b2ad.jpg", "width": 3000, "height": 2325, "aspect": 1.29}, {"filename": "388c7216ff7ddfa52b157ff334f2b3bb.jpg", "width": 3482, "height": 2716, "aspect": 1.28}, {"filename": "397eb61c2ed3d768e6593102f59172c0.jpg", "width": 3200, "height": 2511, "aspect": 1.27}, {"filename": "39dab8b725976cb0c2f2d05d86b15c66.jpg", "width": 2432, "height": 1950, "aspect": 1.25}, {"filename": "3ae2eae575fd25430494fe167551b89e.jpg", "width": 1600, "height": 1242, "aspect": 1.29}, {"filename": "4060ea80562d35cbfbf68aa4aeb96c4a.jpg", "width": 1080, "height": 832, "aspect": 1.3}, {"filename": "412729bc025585bc662029359a369df5.jpg", "width": 1200, "height": 935, "aspect": 1.28}, {"filename": "4197588fbd0247e08caf8613bec4b858.jpg", "width": 838, "height": 656, "aspect": 1.28}, {"filename": "4637527d7eed4e2ceb4c3ad8a7511b99.jpg", "width": 1280, "height": 997, "aspect": 1.28}, {"filename": "465f8e8c193e083c45d4ebd3f4cdb949.jpg", "width": 849, "height": 1100, "aspect": 0.77}, {"filename": "477c571fbde7e77d964325ab8f351cdd.jpg", "width": 1300, "height": 956, "aspect": 1.36}, {"filename": "4a087c9f839661d8fb988e24826327ba.jpg", "width": 2007, "height": 3000, "aspect": 0.67}, {"filename": "4a92dd55e236aa3088936d808e747d0e.jpg", "width": 1400, "height": 1399, "aspect": 1.0}, {"filename": "4ad2a6ef62388210d0b8f66d01586cd3.jpg", "width": 3000, "height": 2345, "aspect": 1.28}, {"filename": "4d685d701b2bcac3de5a6abddb9ea0ed.jpg", "width": 768, "height": 768, "aspect": 1.0}, {"filename": "4d8fd02fb44abc5506a0fd4afa559cbf.jpg", "width": 5187, "height": 3891, "aspect": 1.33}, {"filename": "5088a028b1a882be91fe37e818a78fc7.jpg", "width": 2340, "height": 1822, "aspect": 1.28}, {"filename": "5250e86da400cc4829de134cea3473d4.jpg", "width": 2832, "height": 2832, "aspect": 1.0}, {"filename": "53554399807d1f9f155bee3922648b14.jpg", "width": 2240, "height": 2880, "aspect": 0.78}, {"filename": "538b96e44f6a37984f068fd7d2ddc39b.webp", "width": 2500, "height": 1933, "aspect": 1.29}, {"filename": "555de2e1ff2e2fb73f1856cfaa28fce3.jpg", "width": 1607, "height": 2000, "aspect": 0.8}, {"filename": "5724507f5004e28e9439528e3e399d1e.jpg", "width": 1400, "height": 1064, "aspect": 1.32}, {"filename": "57a3d2e7f5c8ca96693af77682c0544d.jpg", "width": 1400, "height": 1045, "aspect": 1.34}, {"filename": "5830d903b7d5e7f352444eb51c0f133c.jpg", "width": 757, "height": 944, "aspect": 0.8}, {"filename": "594eebf552a9e049b95733191fcce8cd.webp", "width": 847, "height": 662, "aspect": 1.28}, {"filename": "5a4f76c39fde00cf5cca53f1350a418f.jpg", "width": 4000, "height": 3195, "aspect": 1.25}, {"filename": "5aa5a3cc535443e3c95fa4e5d1b6079d.jpg", "width": 550, "height": 550, "aspect": 1.0}, {"filename": "5b393da19507503e43d1f74713a9fa4b.webp", "width": 2500, "height": 1950, "aspect": 1.28}, {"filename": "5c89760d76a9fe06f6dbced13637b715.jpg", "width": 1200, "height": 960, "aspect": 1.25}, {"filename": "5cdfd5841ee2b7684b04acf895097a61.jpg", "width": 3999, "height": 3119, "aspect": 1.28}, {"filename": "61f7b476f494de6cbfe0ac0a55f79e8b.png", "width": 1000, "height": 775, "aspect": 1.29}, {"filename": "6711d4f2e86d36c31d51b81d231d37ec.jpg", "width": 1440, "height": 1080, "aspect": 1.33}, {"filename": "686a7d2f2aa570c33a828f505e6df5ac.jpg", "width": 2000, "height": 1500, "aspect": 1.33}, {"filename": "6b11840b4963f73cd834176b077b7320.jpg", "width": 1080, "height": 1440, "aspect": 0.75}, {"filename": "6c5a035f7379a8fd79ae09170d21126f.jpg", "width": 850, "height": 567, "aspect": 1.5}, {"filename": "6c5db61bdff09e8517d7e7948e8b1e18.webp", "width": 2500, "height": 1947, "aspect": 1.28}, {"filename": "6cd0849bc0935990ed2fd3b67b76867d.jpg", "width": 1440, "height": 1080, "aspect": 1.33}, {"filename": "6d4194c9ddc72b187c902868f7a749b2.webp", "width": 2500, "height": 1948, "aspect": 1.28}, {"filename": "6dd06ebcd5e45a3ec71df7d1aca60a1f.jpg", "width": 3200, "height": 2497, "aspect": 1.28}, {"filename": "6e01d6ce596f91acac8d311c9a9264a6.jpg", "width": 1600, "height": 1250, "aspect": 1.28}, {"filename": "6f46aeec8990ed6605c09e48f191890f.jpg", "width": 1309, "height": 1000, "aspect": 1.31}, {"filename": "6fb814b7d066b24a301efa4af888703e.jpg", "width": 1120, "height": 630, "aspect": 1.78}, {"filename": "6fc6884a0f1f18e2b4e6eaed9138e975.jpg", "width": 1020, "height": 680, "aspect": 1.5}, {"filename": "7026d5302b470f1f363ccd3d355da730.jpg", "width": 1500, "height": 999, "aspect": 1.5}, {"filename": "717a2221adfa3a181cc95e75c1c3ca54.jpg", "width": 1280, "height": 1280, "aspect": 1.0}, {"filename": "722a8aafb15ed53abb5c786464374bfb.jpg", "width": 2560, "height": 1707, "aspect": 1.5}, {"filename": "7384182e647816af07c552c021859dbf.jpg", "width": 866, "height": 1000, "aspect": 0.87}, {"filename": "750168e7f24f30d249a11e7217ebfa3a.png", "width": 819, "height": 1024, "aspect": 0.8}, {"filename": "7553e5ae67a0e2f22aa2977dff7cfb05.webp", "width": 930, "height": 722, "aspect": 1.29}, {"filename": "75e996415fa9130399d8ef002106cd48.jpg", "width": 2800, "height": 2144, "aspect": 1.31}, {"filename": "761dccdeec218661a4cd225d80c8b6bc.jpg", "width": 2048, "height": 1365, "aspect": 1.5}, {"filename": "7881f6d951f7beaff251769b435804f5.jpg", "width": 800, "height": 800, "aspect": 1.0}, {"filename": "79dcbef00e3fde7319457e75f9321c2e.jpg", "width": 1600, "height": 1246, "aspect": 1.28}, {"filename": "7c4e4455e0c9ae605aec8b0622c00609.jpg", "width": 736, "height": 569, "aspect": 1.29}, {"filename": "7cea24350cf5cda3bd16729a23e1d60c.jpg", "width": 2820, "height": 2209, "aspect": 1.28}, {"filename": "7d198d8a3588082411d6c0b30ddd246a.jpg", "width": 800, "height": 1067, "aspect": 0.75}, {"filename": "7f4f9255939d4024768a28465df09be5.jpg", "width": 550, "height": 1249, "aspect": 0.44}, {"filename": "7fd21a4f605fbfb8d086b8e50db7e4f5.jpg", "width": 1600, "height": 1246, "aspect": 1.28}, {"filename": "80df3c5f34ab262a4e9f3bbb2fe63266.jpg", "width": 2500, "height": 3125, "aspect": 0.8}, {"filename": "87e515ee1cc7221585708784bed69f32.webp", "width": 1000, "height": 780, "aspect": 1.28}, {"filename": "8d6acfd368685c18057b7b1f55c16779.jpg", "width": 1280, "height": 1001, "aspect": 1.28}, {"filename": "8fd4c1b348179e95b228fcc0f310fc81.jpg", "width": 940, "height": 752, "aspect": 1.25}, {"filename": "91a437cec2384f9ea65fb44a92ae6981.jpg", "width": 4000, "height": 3101, "aspect": 1.29}, {"filename": "922e3dad0b6272b54c86f1fa9f05620f.jpg", "width": 1160, "height": 900, "aspect": 1.29}, {"filename": "927e94260c376ad5d3de78ee4cbee3d2.webp", "width": 932, "height": 726, "aspect": 1.28}, {"filename": "964fdec92c8556dc445ca61e143f4062.jpg", "width": 1080, "height": 842, "aspect": 1.28}, {"filename": "98849d75ad843eb829a88117f12ddadd.webp", "width": 2500, "height": 1908, "aspect": 1.31}, {"filename": "998494b90522970b5fb613af93f0d2b7.jpg", "width": 2293, "height": 3200, "aspect": 0.72}, {"filename": "99c0ba0e073d38fce920741a7320c286.jpg", "width": 1080, "height": 843, "aspect": 1.28}, {"filename": "9a52aa424cf319ababe47c57715315d8.jpg", "width": 4200, "height": 2100, "aspect": 2.0}, {"filename": "9ae6a836cc60cccb04b976a31d9d1673.jpg", "width": 3200, "height": 2667, "aspect": 1.2}, {"filename": "9ec64312cee6814d9d066a9773aa3889.jpg", "width": 5690, "height": 7091, "aspect": 0.8}, {"filename": "9ee62c7346392f4a9fba79c8481ab0fd.jpg", "width": 1024, "height": 793, "aspect": 1.29}, {"filename": "9f120cbe26a22f9550add71e5d6f222f.jpg", "width": 2000, "height": 1025, "aspect": 1.95}, {"filename": "9ff402bc9601f2b8962239f85deb0f58.jpg", "width": 2560, "height": 2063, "aspect": 1.24}, {"filename": "a4e21eb2b79d51fd006e380cab377f50.jpg", "width": 2000, "height": 1605, "aspect": 1.25}, {"filename": "a63dd8ae0532afaee0017efcc3399c46.jpg", "width": 800, "height": 995, "aspect": 0.8}, {"filename": "a6ee933a64d87470d1fd3c89c5f36b3c.jpg", "width": 1024, "height": 1024, "aspect": 1.0}, {"filename": "a9abf8a1666745c82c205242af37b1d3.jpg", "width": 736, "height": 574, "aspect": 1.28}, {"filename": "afdd516c3a3a4fd0d5d284c2b9368531.jpg", "width": 1369, "height": 1702, "aspect": 0.8}, {"filename": "b017c97f6e133da8ae174e0e532b5842.jpg", "width": 2100, "height": 2634, "aspect": 0.8}, {"filename": "b1bb4e479fe3c3cccfe3cbb22531c9ea.jpg", "width": 3000, "height": 2337, "aspect": 1.28}, {"filename": "b306920ebe7a6a788f2acffebe12796d.jpg", "width": 900, "height": 600, "aspect": 1.5}, {"filename": "b9e8b35a953eeed4e4b194565237a87a.jpg", "width": 1536, "height": 1236, "aspect": 1.24}, {"filename": "bb52d5aabfa3e86b1731f40fd3903c1c.jpg", "width": 1280, "height": 998, "aspect": 1.28}, {"filename": "bc4f223fc33c88b729584b64344fdeb6.jpg", "width": 1600, "height": 1256, "aspect": 1.27}, {"filename": "bc7b471890e0038684857aa16fa729e0.jpg", "width": 800, "height": 624, "aspect": 1.28}, {"filename": "bcf3fd4351c86c04bc84f99c553aa8f0.jpg", "width": 3200, "height": 2453, "aspect": 1.3}, {"filename": "bec53494c16ba55a238b9be2ad777e84.jpg", "width": 1145, "height": 960, "aspect": 1.19}, {"filename": "c09fb1608bc5881a230161732bdb51b1.jpg", "width": 3200, "height": 2476, "aspect": 1.29}, {"filename": "c0ca4b82dbfcc436bf1c4684f333767e.jpg", "width": 3000, "height": 2321, "aspect": 1.29}, {"filename": "c5c46dc7a7083625a326478b1b18ad32.jpg", "width": 2000, "height": 1554, "aspect": 1.29}, {"filename": "c6fa14a2f01c56a1026686e425e54baf.jpg", "width": 2048, "height": 1643, "aspect": 1.25}, {"filename": "c77fb7c26a63b8056c8b674ff4fd04a2.webp", "width": 2500, "height": 1931, "aspect": 1.29}, {"filename": "c79d097e21cb5bec8f148b5cd57334bb.jpg", "width": 3200, "height": 2111, "aspect": 1.52}, {"filename": "cab3867afffe9b86b944831ba1ecd3e0.webp", "width": 2402, "height": 1855, "aspect": 1.29}, {"filename": "cd3b3f54c1e92feba66e0db90415c322.jpg", "width": 1600, "height": 1250, "aspect": 1.28}, {"filename": "d133c872c06830705679b2623cf22764.png", "width": 888, "height": 688, "aspect": 1.29}, {"filename": "d82cbe4d7acaf416877e3f18ec1407ba.jpg", "width": 2000, "height": 800, "aspect": 2.5}, {"filename": "e296c2848a5bcb8b9a776fcfb096e712.jpg", "width": 1080, "height": 865, "aspect": 1.25}, {"filename": "e5849d9ee78bbf843a64204164dc1ab6.jpg", "width": 2000, "height": 1610, "aspect": 1.24}, {"filename": "e873c12cced0f37dc4ac6e107e55af42.jpg", "width": 1400, "height": 1062, "aspect": 1.32}, {"filename": "eae0257e63bfe43e984d2e160a3934dd.jpg", "width": 800, "height": 619, "aspect": 1.29}, {"filename": "eb15b43a50ca4c7308a2d5187182141a.jpg", "width": 2618, "height": 3000, "aspect": 0.87}, {"filename": "f0673b36be43d7635a17d868453f5385.jpg", "width": 3600, "height": 2808, "aspect": 1.28}, {"filename": "f42b7edde4ebf7aaad2053d41f00db85.jpg", "width": 1050, "height": 824, "aspect": 1.27}, {"filename": "f7fa9135a0cf490fe35efc9951fb3f09.jpg", "width": 3500, "height": 2670, "aspect": 1.31}, {"filename": "fbc7b69b9a7b9e5cb88018abf8130379.jpg", "width": 3200, "height": 2453, "aspect": 1.3}, {"filename": "fc12521178602328c737bc2afaeb08bf.jpg", "width": 1340, "height": 1000, "aspect": 1.34}, {"filename": "fd342b7d1f9e56013d169a7a2bd3a16d.jpg", "width": 1000, "height": 1119, "aspect": 0.89}, {"filename": "fdff3d814b2e82dd7c6c3dc4ca076b76.jpg", "width": 1300, "height": 956, "aspect": 1.36}, {"filename": "fe6c4c502d16bf18d82ecaf508b38395.jpg", "width": 2000, "height": 1308, "aspect": 1.53}, {"filename": "ffeb61d665a7560bb9e0a7583e5714ae.jpg", "width": 670, "height": 500, "aspect": 1.34}];
+let activeIdx = 0;
+
+function render() {
+  const feed = document.getElementById('feedContainer');
+  const grid = document.getElementById('gridContainer');
+  feed.innerHTML = ''; grid.innerHTML = '';
+  
+  IMAGES.forEach((item, idx) => {
+    const fc = document.createElement('article');
+    fc.className = 'feed-card';
+    fc.innerHTML = `
+      <img src="images/${item.filename}" alt="作品" loading="lazy" onclick="openLight(${idx})">
+      <div class="feed-card-footer">
+        <span># 杉本博司 作品</span>
+        <span>${item.width}×${item.height}</span>
+      </div>
+    `;
+    feed.appendChild(fc);
+    
+    const mi = document.createElement('div');
+    mi.className = 'masonry-item';
+    mi.innerHTML = `<img src="images/${item.filename}" alt="作品" loading="lazy" onclick="openLight(${idx})">`;
+    grid.appendChild(mi);
+  });
+}
+
+function setView(mode) {
+  const feed = document.getElementById('feedContainer');
+  const grid = document.getElementById('gridContainer');
+  document.getElementById('btnFeed').classList.toggle('active', mode === 'feed');
+  document.getElementById('btnGrid').classList.toggle('active', mode === 'grid');
+  if (mode === 'feed') {
+    feed.classList.remove('hidden'); grid.classList.remove('active');
+  } else {
+    feed.classList.add('hidden'); grid.classList.add('active');
+  }
+}
+
+function openLight(idx) {
+  activeIdx = idx;
+  document.getElementById('lightboxImg').src = 'images/' + IMAGES[idx].filename;
+  document.getElementById('lightboxCounter').textContent = `${idx + 1} / ${IMAGES.length} · 杉本博司`;
+  document.getElementById('lightboxModal').classList.add('active');
+}
+function closeLightbox() { document.getElementById('lightboxModal').classList.remove('active'); }
+function nextLight() { openLight((activeIdx + 1) % IMAGES.length); }
+function prevLight() { openLight((activeIdx - 1 + IMAGES.length) % IMAGES.length); }
+
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'paper';
+  const next = cur === 'dark' ? 'paper' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('master_theme', next);
+}
+
+window.addEventListener('keydown', (e) => {
+  const m = document.getElementById('lightboxModal');
+  if (m.classList.contains('active')) {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight' || e.key === ' ') nextLight();
+    if (e.key === 'ArrowLeft') prevLight();
+  }
+});
+
+let touchStartX = 0;
+document.getElementById('lightboxModal').addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+document.getElementById('lightboxModal').addEventListener('touchend', (e) => {
+  const diff = e.changedTouches[0].screenX - touchStartX;
+  if (diff < -40) nextLight();
+  if (diff > 40) prevLight();
+}, { passive: true });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('master_theme') || 'paper';
+  document.documentElement.setAttribute('data-theme', saved);
+  render();
+});
+</script>
+</body>
+</html>

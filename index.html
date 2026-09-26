@@ -1,295 +1,768 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="paper">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>摄影大师画廊</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>摄影大师灵感画廊 · 中画幅与经典胶片精选清单</title>
+<meta name="description" content="精选 10 位日本中画幅、生活写真与世界经典胶片摄影大师作品集与灵感清单：滨田英明、川内伦子、上田义彦、奥山由之、植田正治、索尔·雷特、何藩等 1,572 幅高清原作。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg-primary: #fbf9f5;
+  --bg-secondary: #f3efe6;
+  --bg-tertiary: #e8e2d5;
+  --card-bg: #ffffff;
+  --card-hover: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.08);
+  --card-border-strong: rgba(0, 0, 0, 0.16);
+  --card-border-gold: rgba(180, 83, 9, 0.35);
+  
+  --text-primary: #18181b;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --text-gold: #b45309;
+  
+  --accent-gold: #b45309;
+  --accent-gold-bg: rgba(180, 83, 9, 0.08);
+  
+  --font-serif: "Cinzel", "Newsreader", Georgia, "Noto Serif SC", serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+  --font-mono: "Space Grotesk", SFMono-Regular, monospace;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 20px 35px -5px rgba(0, 0, 0, 0.08);
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0f1013;
+  --bg-secondary: #16181e;
+  --bg-tertiary: #20232b;
+  --card-bg: #181a20;
+  --card-hover: #1e2129;
+  --card-border: rgba(255, 255, 255, 0.09);
+  --card-border-strong: rgba(255, 255, 255, 0.18);
+  --card-border-gold: rgba(212, 175, 55, 0.45);
+  
+  --text-primary: #f4f4f5;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --text-gold: #eab308;
+  
+  --accent-gold: #eab308;
+  --accent-gold-bg: rgba(234, 179, 8, 0.12);
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.7);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
 body {
-  background: #0a0a0a; color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
-  min-height: 100vh;
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
 }
-.hero { padding: 80px 40px 60px; text-align: center; }
-.hero h1 { font-size: 40px; font-weight: 200; letter-spacing: 8px; margin-bottom: 12px; }
-.hero p { color: rgba(255,255,255,0.4); font-size: 15px; letter-spacing: 2px; }
-.grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 2px; padding: 0 2px 2px;
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
-.card {
-  position: relative; aspect-ratio: 4/3; overflow: hidden;
-  cursor: pointer; text-decoration: none;
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(251, 249, 245, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--card-border);
+  transition: all 0.3s;
 }
-.card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, filter 0.6s ease; filter: brightness(0.7); }
-.card:hover img { transform: scale(1.05); filter: brightness(0.9); }
-.card .overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 32px 28px;
+[data-theme="dark"] .site-header {
+  background: rgba(15, 16, 19, 0.9);
 }
-.card .name { font-size: 22px; font-weight: 300; letter-spacing: 3px; }
-.card .count { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; letter-spacing: 1px; }
-.empty { grid-column: 1/-1; text-align: center; padding: 60px; color: rgba(255,255,255,0.2); }
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 16px;
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, var(--accent-gold), #9a6700);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+}
+
+.brand-title {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pill-btn {
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border-strong);
+  color: var(--text-primary);
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.pill-btn:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  transform: translateY(-1px);
+}
+
+/* ─── Hero ─── */
+.hero {
+  padding: 60px 0 40px;
+  text-align: center;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  background: var(--accent-gold-bg);
+  border: 1px solid var(--card-border-gold);
+  border-radius: 24px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900;
+  letter-spacing: 2px;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.hero-sub {
+  font-size: clamp(15px, 2vw, 17px);
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+
+.hero-stats-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.stat-pill {
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+.stat-pill strong {
+  color: var(--text-primary);
+}
+
+/* ─── Controls HUD Bar ─── */
+.controls-hud {
+  position: sticky;
+  top: 64px;
+  z-index: 90;
+  background: rgba(251, 249, 245, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--card-border);
+  padding: 12px 0;
+}
+[data-theme="dark"] .controls-hud {
+  background: rgba(15, 16, 19, 0.95);
+}
+
+.controls-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.search-box {
+  position: relative;
+  flex: 1;
+  min-width: 240px;
+  max-width: 360px;
+}
+.search-input {
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border-strong);
+  color: var(--text-primary);
+  padding: 8px 14px 8px 34px;
+  border-radius: 20px;
+  font-size: 13px;
+  outline: none;
+  font-family: var(--font-body);
+  transition: all 0.2s;
+}
+.search-input:focus {
+  border-color: var(--accent-gold);
+  background: var(--card-bg);
+  box-shadow: 0 0 12px rgba(180, 83, 9, 0.15);
+}
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.filter-pills {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.filter-pills::-webkit-scrollbar { display: none; }
+
+.filter-pill {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.filter-pill:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+.filter-pill.active {
+  background: var(--accent-gold);
+  color: #fff;
+  font-weight: 700;
+}
+[data-theme="dark"] .filter-pill.active {
+  color: #000;
+}
+
+.view-toggles {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-secondary);
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+}
+.view-toggle-btn {
+  background: transparent;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.view-toggle-btn.active {
+  background: var(--card-bg);
+  color: var(--text-gold);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ─── Masters Container & List View ─── */
+.masters-main {
+  padding: 32px 0 80px;
+}
+
+/* Mode 1: List View (清单模式 · 默认) */
+.list-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.master-list-item {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 80px 1.5fr 2fr 120px 140px;
+  align-items: center;
+  gap: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+  text-decoration: none;
+  color: inherit;
+}
+.master-list-item:hover {
+  border-color: var(--card-border-gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.item-num {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-gold);
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.item-country {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: normal;
+}
+
+.item-names {
+  display: flex;
+  flex-direction: column;
+}
+.item-name-zh {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.item-name-en {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.item-equip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-gold);
+}
+.item-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.item-count-badge {
+  text-align: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.item-count-badge strong {
+  color: var(--text-primary);
+  display: block;
+  font-size: 14px;
+}
+
+.item-action-btn {
+  background: var(--accent-gold-bg);
+  border: 1px solid var(--card-border-gold);
+  color: var(--text-gold);
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  transition: all 0.2s;
+}
+.master-list-item:hover .item-action-btn {
+  background: var(--accent-gold);
+  color: #fff;
+}
+[data-theme="dark"] .master-list-item:hover .item-action-btn {
+  color: #000;
+}
+
+/* Mode 2: Card View (大卡片网格模式) */
+.card-layout {
+  display: none;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+.card-layout.active {
+  display: grid;
+}
+.list-layout.hidden {
+  display: none;
+}
+
+.master-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s ease;
+}
+.master-card:hover {
+  border-color: var(--card-border-gold);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-cover-wrap {
+  height: 220px;
+  background: var(--bg-secondary);
+  overflow: hidden;
+  position: relative;
+}
+.card-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.master-card:hover .card-cover-img {
+  transform: scale(1.04);
+}
+
+.card-content {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.card-header {
+  margin-bottom: 12px;
+}
+.card-title-zh {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.card-title-en {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+.card-meta-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-gold);
+  background: var(--accent-gold-bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.card-quote {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-style: italic;
+  margin: 12px 0 16px;
+  border-left: 2px solid var(--accent-gold);
+  padding-left: 10px;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--card-border);
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+
+/* ─── Responsive (Mobile First) ─── */
+@media (max-width: 860px) {
+  .master-list-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+  }
+  .item-num {
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
+  .item-count-badge {
+    text-align: left;
+    display: inline-block;
+  }
+  .item-action-btn {
+    width: 100%;
+  }
+  .hero-title { font-size: 28px; }
+}
 </style>
 </head>
 <body>
-<div class="hero">
-  <h1>摄影大师画廊</h1>
-  <p>MASTER PHOTOGRAPHERS</p>
+
+<!-- ═══ TOP HEADER ═══ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#" class="brand-badge">
+      <div class="brand-mark">師</div>
+      <div>
+        <div class="brand-title">PHOTOGRAPHY MASTERS</div>
+        <div style="font-size:10px; color:var(--text-gold); font-family:var(--font-mono);">摄影大师灵感画廊 · 中画幅精选</div>
+      </div>
+    </a>
+    
+    <div class="header-actions">
+      <button class="pill-btn" onclick="toggleTheme()">🌓 主题</button>
+      <a href="https://gengyueworks.github.io/pentax67ii-manual/" class="pill-btn">📷 宾得 67II 说明书</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ HERO SECTION ═══ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">CURATED MEDIUM FORMAT & FILM MASTERS ARCHIVE</div>
+    <h1 class="hero-title">摄影大师灵感画廊</h1>
+    <p class="hero-sub">
+      中画幅与经典胶片摄影大师精选灵感清单 · 10 位大师 · 1572 幅高清馆藏原作
+    </p>
+    
+    <div class="hero-stats-bar">
+      <div class="stat-pill"><strong>精选收录</strong> 10 位世界级大师</div>
+      <div class="stat-pill"><strong>高画质作品</strong> 1572 幅已清洗原片</div>
+      <div class="stat-pill"><strong>核心流派</strong> 日本生活写真 · 中画幅6×7 · 经典彩色 · 东方光影</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTROLS HUD ═══ -->
+<div class="controls-hud">
+  <div class="container controls-inner">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索摄影师姓名、器材或代表作..." oninput="handleSearch()">
+    </div>
+    
+    <div class="filter-pills" id="filterPills">
+      <button class="filter-pill active" onclick="filterCategory('all')">全部大师 (10)</button>
+      <button class="filter-pill" onclick="filterCategory('japanese_life')">🇯🇵 日本生活与空气感 (5)</button>
+      <button class="filter-pill" onclick="filterCategory('color_film')">🌈 经典胶片色彩 (3)</button>
+      <button class="filter-pill" onclick="filterCategory('bw_geometry')">🖤 东方光影与黑白极简 (2)</button>
+    </div>
+    
+    <div class="view-toggles">
+      <button class="view-toggle-btn active" id="btnListView" onclick="setViewMode('list')">📋 清单 (List)</button>
+      <button class="view-toggle-btn" id="btnCardView" onclick="setViewMode('card')">🔲 卡片 (Card)</button>
+    </div>
+  </div>
 </div>
-<div class="grid" id="grid"></div>
 
+<!-- ═══ MAIN MASTERS CONTENT ═══ -->
+<main class="container masters-main">
+  <!-- View 1: List View (清单模式 · 默认) -->
+  <div class="list-layout" id="listContainer"></div>
+  
+  <!-- View 2: Card View (大卡片网格模式) -->
+  <div class="card-layout" id="cardContainer"></div>
+</main>
+
+<!-- ═══ SCRIPTS ═══ -->
 <script>
-const photographers = [
-  { name: "Henri Cartier-Bresson", slug: "henri-cartier-bresson", count: 149, label: "张作品", href: "slideshow.html", image: "images/0124b6f0350a9d8f6702af0beef9328f.jpg" },
-  { name: "Dorothea Lange", slug: "dorothea-lange", count: 131, label: "张作品", href: "slideshow.html", image: "images/0079df09e6b4a4a891bb6f7be1460dca.jpg" },
-  { name: "Walker Evans", slug: "walker-evans", count: 116, label: "张作品", href: "slideshow.html", image: "images/00e60b5a8c35fb008105dac5052f8864.jpg" },
-  { name: "William Eggleston", slug: "william-eggleston", count: 100, label: "张作品", href: "slideshow.html", image: "images/02a2d56973413260dfa650487fe954fc.jpg" },
-  { name: "Sebastião Salgado", slug: "sebastiao-salgado", count: 126, label: "张作品", href: "slideshow.html", image: "images/007b46a521e30c40e20718c3a12a8fc5.jpg" },
-  { name: "Diane Arbus", slug: "diane-arbus", count: 84, label: "张作品", href: "slideshow.html", image: "images/02cb10074ae74f2cb8b5993d9fa72f05.jpg" },
-  { name: "Helmut Newton", slug: "helmut-newton", count: 72, label: "张作品", href: "slideshow.html", image: "images/00eab6e9867399d5bb5df42023f01c6d.jpg" },
-  { name: "Cindy Sherman", slug: "cindy-sherman", count: 83, label: "张作品", href: "slideshow.html", image: "images/0199c1c9e9f8a68e6f7f85fff7a22620.jpg" },
-  { name: "Alex Webb", slug: "alex-webb", count: 211, label: "张作品", href: "slideshow.html", image: "images/006e1f3a4630b5be464805e728d88514.jpg" },
-  { name: "Gordon Parks", slug: "gordon-parks", count: 182, label: "张作品", href: "slideshow.html", image: "images/00878c5ce95de3a17f6e327922eca9e0.jpg" },
-  { name: "Stephen Shore", slug: "stephen-shore", count: 186, label: "张作品", href: "slideshow.html", image: "images/0220fb676ba21e5516a5681753b1547a.jpg" },
-  { name: "Nan Goldin", slug: "nan-goldin", count: 21, label: "张作品", href: "slideshow.html", image: "images/02d54790e23180ead41e6cad9f92c7d3.jpg" },
-  { name: "Ernst Haas", slug: "ernst-haas", count: 201, label: "张作品", href: "slideshow.html", image: "images/003a2ab477ea1949f63ae0b4a633f07c.jpg" },
-  { name: "Josef Koudelka", slug: "josef-koudelka", count: 210, label: "张作品", href: "slideshow.html", image: "images/0021c3b3a3c13669be92b2e0bf5e2cd0.jpg" },
-  { name: "Bruce Davidson", slug: "bruce-davidson", count: 194, label: "张作品", href: "slideshow.html", image: "images/0155cc5a0f3ccf91b7e88d279f8853e4.jpg" },
-  { name: "Marc Riboud", slug: "marc-riboud", count: 218, label: "张作品", href: "slideshow.html", image: "images/0062d162ae80beafdd26e259192cee6c.jpg" },
-  { name: "Guy Bourdin", slug: "guy-bourdin", count: 134, label: "张作品", href: "slideshow.html", image: "images/0093359050ce11b23dad3f6139d889be.jpg" },
-  { name: "Tim Walker", slug: "tim-walker", count: 946, label: "张作品", href: "slideshow.html", image: "images/00332429a35fd203d14ff59bee336bbd.jpg" },
-  { name: "Peter Lindbergh", slug: "peter-lindbergh", count: 1095, label: "张作品", href: "slideshow.html", image: "images/6e7164ea6692134188f078864a5df388.jpg" },
-  { name: "Elliott Erwitt", slug: "elliott-erwitt", count: 883, label: "张作品", href: "slideshow.html", image: "images/007bafab4895d8e772bfeaed541682eb.jpg" },
-  { name: "Fan Ho", slug: "fan-ho", count: 550, label: "张作品", href: "slideshow.html", image: "images/009390c0c7f375ba1cbcc8f3a4f8db61.jpg" },
-  { name: "Saul Leiter", slug: "saul-leiter", count: 300, label: "张作品", href: "slideshow.html", image: "images/0091c095a5864f3d49c1e7eeb13645fe.jpg" },
-  { name: "Arnold Newman", slug: "arnold-newman", count: 7, label: "张作品", href: "slideshow.html", image: "images/009c328cfcb8359caa02becda58799d0.jpg" },
-  { name: "Richard Avedon", slug: "richard-avedon", count: 379, label: "张作品", href: "slideshow.html", image: "images/006a3b72858160318647f0360ee5ebe5.png" },
-  { name: "Rinko Kawauchi", slug: "rinko-kawauchi", count: 86, label: "张作品", href: "slideshow.html", image: "images/0199564b77f2e22c409ce10eb7312fcc.jpg" },
-  { name: "Vivian Maier", slug: "vivian-maier", count: 98, label: "张作品", href: "slideshow.html", image: "images/03158dae9cb4c66f70b007ada0056b18.jpg" },
-  { name: "Robert Capa", slug: "robert-capa", count: 173, label: "张作品", href: "slideshow.html", image: "images/0192aab0bdcec9a0ac3e4b0f46170207.jpg" },
-  { name: "Harry Gruyaert", slug: "harry-gruyaert", count: 105, label: "张作品", href: "slideshow.html", image: "images/012c59003475e7d7c128be08031f70f3.jpg" },
-  { name: "Hideaki Hamada", slug: "hideaki-hamada", count: 218, label: "张作品", href: "slideshow.html", image: "images/00b3faa327a70407a0db38c3d6143ef5.jpg" },
-  { name: "Annie Leibovitz", slug: "annie-leibovitz", count: 4, label: "张作品 + 3本画册", href: "index.html", image: "images/00d6436d2d9283f7ce61f87b07ae378e.jpg" },
-  { name: "Mary Ellen Mark", slug: "mary-ellen-mark", count: 61, label: "张作品", href: "slideshow.html", image: "images/ed60da3b.841d.40c9.9e03.d45d331749bf.jpg" },
-  { name: "Paolo Roversi", slug: "paolo-roversi", count: 29, label: "张作品", href: "slideshow.html", image: "images/3241d2b458878dbbd7d4b038a6c8fe5a.jpg" },
-  { name: "Brassaï", slug: "brassaï", count: 30, label: "张作品", href: "slideshow.html", image: "images/02342d1e8a218a32df3125c066c86989.jpg" },
-  { name: "Robert Frank", slug: "robert-frank", count: 108, label: "张作品", href: "slideshow.html", image: "images/67a526900d3c957cf69c38096f5c7c26.jpg" },
-  { name: "Irving Penn", slug: "irving-penn", count: 101, label: "张作品", href: "slideshow.html", image: "images/6d79067bd3ac47b5074a6ac32f981cbf.jpg" },
-  { name: "Daido Moriyama", slug: "daido-moriyama", count: 121, label: "张作品", href: "slideshow.html", image: "images/66efaa731639ef9b7ebfda4fa3a014aa.jpg" },
-  { name: "Mario Testino", slug: "mario-testino", count: 322, label: "张作品", href: "slideshow.html", image: "images/00a794cc17112c4e4ceb0f95fdd9394e.jpg" },
-  { name: "Jacques Henri Lartigue", slug: "jacques-henri-lartigue", count: 188, label: "张作品", href: "slideshow.html", image: "images/026f8fc2d090e810f0876bbd2874f48f.jpg" },
-  { name: "Raghu Rai", slug: "raghu-rai", count: 197, label: "张作品", href: "slideshow.html", image: "images/001118a7c649ca3f81693f9a841e21ae.jpg" },
-  { name: "Berenice Abbott", slug: "berenice-abbott", count: 257, label: "张作品", href: "slideshow.html", image: "images/00d2b7c3eb32968aa4b06bb84528daaa.jpg" },
-  { name: "Wolfgang Tillmans", slug: "wolfgang-tillmans", count: 226, label: "张作品", href: "slideshow.html", image: "images/01c73e7b31b2509d952a20805830008c.jpg" },
-  { name: "Herb Ritts", slug: "herb-ritts", count: 90, label: "张作品", href: "slideshow.html", image: "images/0328532a4c8e8928548b00cb066774cc.jpg" },
-  { name: "Duane Michals", slug: "duane-michals", count: 78, label: "张作品", href: "slideshow.html", image: "images/06a7c6b5e04609081746dc8352c751c5.jpg" },
-  { name: "William Klein", slug: "william-klein", count: 215, label: "张作品", href: "slideshow.html", image: "images/00f0ee536cfaa1af7461d42cf82e05d1.webp" },
-  { name: "Sally Mann", slug: "sally-mann", count: 7, label: "张作品", href: "slideshow.html", image: "images/00ac37dab182ef22b58f6747ad17e269.webp" },
-  { name: "Bruce Gilden", slug: "bruce-gilden", count: 57, label: "张作品", href: "slideshow.html", image: "images/00a683e8d16ce3bfd7fbc2477c233f32.webp" },
-  { name: "Lee Friedlander", slug: "lee-friedlander", count: 62, label: "张作品", href: "slideshow.html", image: "images/0177f86af2079ef8b9fb8eaa2a01228d.jpg" },
-  { name: "Garry Winogrand", slug: "garry-winogrand", count: 121, label: "张作品", href: "slideshow.html", image: "images/001a14fd805dab3c94c6eb2b16c84caa.jpg" },
-  { name: "André Kertész", slug: "andre-kertesz", count: 114, label: "张作品", href: "slideshow.html", image: "images/091dea1b46e5fde53b284a8f80414132.jpg" },
-  { name: "Joel Meyerowitz", slug: "joel-meyerowitz", count: 158, label: "张作品", href: "slideshow.html", image: "images/00b198f58efaefe8d34a307ebb0006e0.jpg" },
-  { name: "Steve McCurry", slug: "steve-mccurry", count: 222, label: "张作品", href: "slideshow.html", image: "images/02dcf2292bbce35fb310608c6004e7ec.jpg" },
-  { name: "Ansel Adams", slug: "ansel-adams", count: 261, label: "张作品", href: "slideshow.html", image: "images/0022a906cd5ed8307088a1937a553ebe.jpg" },
-  { name: "Edward Weston", slug: "edward-weston", count: 79, label: "张作品", href: "slideshow.html", image: "images/02416d97539dbd91528890f1f5f2f399.jpg" },
-  { name: "Imogen Cunningham", slug: "imogen-cunningham", count: 88, label: "张作品", href: "slideshow.html", image: "images/03125777f886390e2f6c091350e39086.jpg" },
-  { name: "Minor White", slug: "minor-white", count: 79, label: "张作品", href: "slideshow.html", image: "images/08a5def6337ac23078df7ecaf90310d8.jpg" },
-  { name: "Alfred Stieglitz", slug: "alfred-stieglitz", count: 150, label: "张作品", href: "slideshow.html", image: "images/00ac0f18b427f69dc6e3173fc2f63f30.jpg" },
-  { name: "Paul Strand", slug: "paul-strand", count: 197, label: "张作品", href: "slideshow.html", image: "images/002ffaaf7ccda456b2e3855dd06fea87.jpg" },
-  { name: "Edward Steichen", slug: "edward-steichen", count: 237, label: "张作品", href: "slideshow.html", image: "images/0092d9c187ff134a70a2407e510fff60.jpg" },
-  { name: "Man Ray", slug: "man-ray", count: 8, label: "张作品", href: "slideshow.html", image: "images/0092d9c187ff134a70a2407e510fff60.jpg" },
-  { name: "László Moholy-Nagy", slug: "laszlo-moholy-nagy", count: 19, label: "张作品", href: "slideshow.html", image: "images/005051abe6a0c86c16bfe8764ef9e84b.jpg" },
-  { name: "Alexander Rodchenko", slug: "alexander-rodchenko", count: 190, label: "张作品", href: "slideshow.html", image: "images/005051abe6a0c86c16bfe8764ef9e84b.jpg" },
-  { name: "Helen Levitt", slug: "helen-levitt", count: 196, label: "张作品", href: "slideshow.html", image: "images/000c7fbb391ea62a2a92662554a07267.jpg" },
-  { name: "Lisette Model", slug: "lisette-model", count: 280, label: "张作品", href: "slideshow.html", image: "images/000c7fbb391ea62a2a92662554a07267.jpg" },
-  { name: "Harry Callahan", slug: "harry-callahan", count: 17, label: "张作品", href: "slideshow.html", image: "images/0056bc857cd019c2c956c6b65f6cb2e3.jpg" },
-  { name: "Aaron Siskind", slug: "aaron-siskind", count: 237, label: "张作品", href: "slideshow.html", image: "images/0056bc857cd019c2c956c6b65f6cb2e3.jpg" },
-  { name: "W. Eugene Smith", slug: "w-eugene-smith", count: 3, label: "张作品", href: "slideshow.html", image: "images/01d613f3f48435739cc01f5a27dcb1a0.jpg" },
-  { name: "Margaret Bourke-White", slug: "margaret-bourke-white", count: 193, label: "张作品", href: "slideshow.html", image: "images/01d613f3f48435739cc01f5a27dcb1a0.jpg" },
-  { name: "Lewis Hine", slug: "lewis-hine", count: 5, label: "张作品", href: "slideshow.html", image: "images/00c601f245fb39b5792f7ee2b1c29d4c.jpg" },
-  { name: "James Van Der Zee", slug: "james-van-der-zee", count: 178, label: "张作品", href: "slideshow.html", image: "images/00c601f245fb39b5792f7ee2b1c29d4c.jpg" },
-  { name: "Robert Doisneau", slug: "robert-doisneau", count: 22, label: "张作品", href: "slideshow.html", image: "images/004ca637c7c5d3baabe410b7945f1d68.jpg" },
-  { name: "Willy Ronis", slug: "willy-ronis", count: 4, label: "张作品", href: "slideshow.html", image: "images/004ca637c7c5d3baabe410b7945f1d68.jpg" },
-  { name: "Tina Modotti", slug: "tina-modotti", count: 2, label: "张作品", href: "slideshow.html", image: "images/010c4b6841f0f95077bf81a9eee5ab4c.jpg" },
-  { name: "René Burri", slug: "rene-burri", count: 266, label: "张作品", href: "slideshow.html", image: "images/010c4b6841f0f95077bf81a9eee5ab4c.jpg" },
-  { name: "Werner Bischof", slug: "werner-bischof", count: 287, label: "张作品", href: "slideshow.html", image: "images/009c9cc4609d5735c7d6cc698552e339.jpg" },
-  { name: "David Seymour", slug: "david-seymour", count: 243, label: "张作品", href: "slideshow.html", image: "images/009c9cc4609d5735c7d6cc698552e339.jpg" },
-  { name: "Inge Morath", slug: "inge-morath", count: 232, label: "张作品", href: "slideshow.html", image: "images/01341ac49c1ceafe6a6d7e840d67acbd.jpg" },
-  { name: "Martin Parr", slug: "martin-parr", count: 321, label: "张作品", href: "slideshow.html", image: "images/01341ac49c1ceafe6a6d7e840d67acbd.jpg" },
-  { name: "Pete Turner", slug: "pete-turner", count: 261, label: "张作品", href: "slideshow.html", image: "images/01a123245bee7ade75124fa9245e8a10.jpg" },
-  { name: "Fred Herzog", slug: "fred-herzog", count: 153, label: "张作品", href: "slideshow.html", image: "images/01a123245bee7ade75124fa9245e8a10.jpg" },
-  { name: "Luigi Ghirri", slug: "luigi-ghirri", count: 19, label: "张作品", href: "slideshow.html", image: "images/00d151ee37b578098b2619707586b6e2.jpg" },
-  { name: "Hiroshi Sugimoto", slug: "hiroshi-sugimoto", count: 156, label: "张作品", href: "slideshow.html", image: "images/00d151ee37b578098b2619707586b6e2.jpg" },
-  { name: "Shomei Tomatsu", slug: "shomei-tomatsu", count: 231, label: "张作品", href: "slideshow.html", image: "images/0166dd2fbb049e2961a0b30495386eea.jpg" },
-  { name: "David Bailey", slug: "david-bailey", count: 221, label: "张作品", href: "slideshow.html", image: "images/0166dd2fbb049e2961a0b30495386eea.jpg" },
-  { name: "Albert Watson", slug: "albert-watson", count: 276, label: "张作品", href: "slideshow.html", image: "images/01fd0df1f3d70acb04b295d837bc537d.jpg" },
-  { name: "Bruce Weber", slug: "bruce-weber", count: 254, label: "张作品", href: "slideshow.html", image: "images/01fd0df1f3d70acb04b295d837bc537d.jpg" },
-  { name: "Norman Parkinson", slug: "norman-parkinson", count: 24, label: "张作品", href: "slideshow.html", image: "images/0063012b8443844c355334e19399069d.jpg" },
-  { name: "Andreas Gursky", slug: "andreas-gursky", count: 176, label: "张作品", href: "slideshow.html", image: "images/0063012b8443844c355334e19399069d.jpg" },
-  { name: "Thomas Struth", slug: "thomas-struth", count: 319, label: "张作品", href: "slideshow.html", image: "images/0043858e78cb3b6f5545559e9f8b95f7.jpg" },
-  { name: "Rineke Dijkstra", slug: "rineke-dijkstra", count: 182, label: "张作品", href: "slideshow.html", image: "images/0043858e78cb3b6f5545559e9f8b95f7.jpg" },
-  { name: "Jeff Wall", slug: "jeff-wall", count: 210, label: "张作品", href: "slideshow.html", image: "images/0094c5d5940c3dbade9ed586cf44834f.jpg" },
-  { name: "Jeanloup Sieff", slug: "jeanloup-sieff", count: 245, label: "张作品", href: "slideshow.html", image: "images/005c847cdab0d783c766556d493cf729.jpg" },
-  { name: "Candida Höfer", slug: "candida-hofer", count: 309, label: "张作品", href: "slideshow.html", image: "images/00d4d79fb79630b83ef3b56129fcc7f0.jpg" },
-  { name: "Thomas Ruff", slug: "thomas-ruff", count: 3, label: "张作品", href: "slideshow.html", image: "images/00d4d79fb79630b83ef3b56129fcc7f0.jpg" },
-  { name: "Ikko Narahara", slug: "ikko-narahara", count: 245, label: "张作品", href: "slideshow.html", image: "images/00403961bc836e71ef270d4b24c3e1ba.webp" },
-  { name: "Kishin Shinoyama", slug: "kishin-shinoyama", count: 243, label: "张作品", href: "slideshow.html", image: "images/00403961bc836e71ef270d4b24c3e1ba.webp" },
-  { name: "Uta Barth", slug: "uta-barth", count: 20, label: "张作品", href: "slideshow.html", image: "images/011dd4bfa2dfb6519a879305214fa0d6.jpg" },
-  { name: "Mario Giacomelli", slug: "mario-giacomelli", count: 245, label: "张作品", href: "slideshow.html", image: "images/011dd4bfa2dfb6519a879305214fa0d6.jpg" },
-  { name: "Bernd & Hilla Becher", slug: "bernd-hilla-becher", count: 236, label: "张作品", href: "slideshow.html", image: "images/006b42c5f112e2c807d26ca8fd7a19c3.jpg" },
-  { name: "Michael Kenna", slug: "michael-kenna", count: 6, label: "张作品", href: "slideshow.html", image: "images/006b42c5f112e2c807d26ca8fd7a19c3.jpg" },
-  { name: "Josef Sudek", slug: "josef-sudek", count: 242, label: "张作品", href: "slideshow.html", image: "images/002e0f40407ca08202025220e989d018.jpg" },
-  { name: "Michael Wolf", slug: "michael-wolf", count: 10, label: "张作品", href: "slideshow.html", image: "images/002e0f40407ca08202025220e989d018.jpg" },
-  { name: "Emmet Gowin", slug: "emmet-gowin", count: 172, label: "张作品", href: "slideshow.html", image: "images/00a7da0ada4974904502df423839be77.jpg" },
-  { name: "Ray K. Metzker", slug: "ray-k-metzker", count: 223, label: "张作品", href: "slideshow.html", image: "images/00a7da0ada4974904502df423839be77.jpg" },
-  { name: "Horst P. Horst", slug: "horst-p-horst", count: 8, label: "张作品", href: "slideshow.html", image: "images/00b3eb28a7cba8108c79ec8c9663bb1d.jpg" },
-  { name: "Cecil Beaton", slug: "cecil-beaton", count: 270, label: "张作品", href: "slideshow.html", image: "images/00b3eb28a7cba8108c79ec8c9663bb1d.jpg" },
-  { name: "David LaChapelle", slug: "david-lachapelle", count: 275, label: "张作品", href: "slideshow.html", image: "images/003b8c63e07101bc4a5ccf688ac28fd1.jpg" },
-  { name: "Miles Aldridge", slug: "miles-aldridge", count: 4, label: "张作品", href: "slideshow.html", image: "images/003b8c63e07101bc4a5ccf688ac28fd1.jpg" },
-  { name: "Steven Meisel", slug: "steven-meisel", count: 80, label: "张作品", href: "slideshow.html", image: "images/0142ac5d3b0b8f2111ba277bfdd307b3.jpg" },
-  { name: "Sarah Moon", slug: "sarah-moon", count: 278, label: "张作品", href: "slideshow.html", image: "images/0142ac5d3b0b8f2111ba277bfdd307b3.jpg" },
-  { name: "Susan Meiselas", slug: "susan-meiselas", count: 213, label: "张作品", href: "slideshow.html", image: "images/001881fbc2d314be31f2f0f6ed5dd8ba.jpg" },
-  { name: "Constantine Manos", slug: "constantine-manos", count: 237, label: "张作品", href: "slideshow.html", image: "images/001881fbc2d314be31f2f0f6ed5dd8ba.jpg" },
-  { name: "Thomas Hoepker", slug: "thomas-hoepker", count: 243, label: "张作品", href: "slideshow.html", image: "images/004199df7c4ce473ed06962296244e7e.jpg" },
-  { name: "Patrick Zachmann", slug: "patrick-zachmann", count: 191, label: "张作品", href: "slideshow.html", image: "images/004199df7c4ce473ed06962296244e7e.jpg" },
-  { name: "William Albert Allard", slug: "william-albert-allard", count: 217, label: "张作品", href: "slideshow.html", image: "images/00bb9e500253dc3efcc77d7271da5429.jpg" },
-  { name: "Sam Abell", slug: "sam-abell", count: 199, label: "张作品", href: "slideshow.html", image: "images/00bb9e500253dc3efcc77d7271da5429.jpg" },
-  { name: "David Doubilet", slug: "david-doubilet", count: 107, label: "张作品", href: "slideshow.html", image: "images/01eca5f7415efd35a2511293a10348cb.jpg" },
-  { name: "James Balog", slug: "james-balog", count: 99, label: "张作品", href: "slideshow.html", image: "images/0048eee4375227662744f3c549883ae0.jpg" },
-  { name: "Steve Winter", slug: "steve-winter", count: 172, label: "张作品", href: "slideshow.html", image: "images/01c0a954f1c269e4d5ee5009445a750b.jpg" },
-  { name: "Jodi Cobb", slug: "jodi-cobb", count: 188, label: "张作品", href: "slideshow.html", image: "images/01c0a954f1c269e4d5ee5009445a750b.jpg" },
-  { name: "Frans Lanting", slug: "frans-lanting", count: 178, label: "张作品", href: "slideshow.html", image: "images/0090210ba98f5fc8d1993169d64cf388.jpg" },
-  { name: "Vincent Munier", slug: "vincent-munier", count: 243, label: "张作品", href: "slideshow.html", image: "images/0090210ba98f5fc8d1993169d64cf388.jpg" },
-  { name: "Art Wolfe", slug: "art-wolfe", count: 195, label: "张作品", href: "slideshow.html", image: "images/02d6570c65c5b8e4c6936b7dcd6b6a55.jpg" },
-  { name: "Platon", slug: "platon", count: 187, label: "张作品", href: "slideshow.html", image: "images/02d6570c65c5b8e4c6936b7dcd6b6a55.jpg" },
-  { name: "Jimmy Chin", slug: "jimmy-chin", count: 158, label: "张作品", href: "slideshow.html", image: "images/0053e650232ea76e97d2aa201b8f55bf.jpg" },
-  { name: "Paul Nicklen", slug: "paul-nicklen", count: 38, label: "张作品", href: "slideshow.html", image: "images/0053e650232ea76e97d2aa201b8f55bf.jpg" },
-  { name: "Cristina Mittermeier", slug: "cristina-mittermeier", count: 192, label: "张作品", href: "slideshow.html", image: "images/0147b935badfb2e0d2dbbdd68bd176f1.jpg" },
-  { name: "Thomas Mangelsen", slug: "thomas-mangelsen", count: 36, label: "张作品", href: "slideshow.html", image: "images/0147b935badfb2e0d2dbbdd68bd176f1.jpg" },
-  { name: "Beverly Joubert", slug: "beverly-joubert", count: 8, label: "张作品", href: "slideshow.html", image: "images/0257d50a7c67867e8c993775c1f76bc6.jpg" },
-  { name: "Ami Vitale", slug: "ami-vitale", count: 142, label: "张作品", href: "slideshow.html", image: "images/0257d50a7c67867e8c993775c1f76bc6.jpg" },
-  { name: "Nick Brandt", slug: "nick-brandt", count: 101, label: "张作品", href: "slideshow.html", image: "images/00b01176d28aacec99bfe6897bc38215.jpg" },
-  { name: "Thomas Heaton", slug: "thomas-heaton", count: 36, label: "张作品", href: "slideshow.html", image: "images/04ba90c0ce0618d255ddd7817fb8055e.jpg" },
-  { name: "Bruce Dale", slug: "bruce-dale", count: 292, label: "张作品", href: "slideshow.html", image: "images/00290b22ebd7d53c8c93f4ef70c36f28.jpg" },
-  { name: "Larry Burrows", slug: "larry-burrows", count: 223, label: "张作品", href: "slideshow.html", image: "images/00ee0666c3de2bfaa79f055c5504e134.jpg" },
-  { name: "Eve Arnold", slug: "eve-arnold", count: 309, label: "张作品", href: "slideshow.html", image: "0062d162ae80beafdd26e259192cee6c.jpg" },
-  { name: "Don McCullin", slug: "don-mccullin", count: 267, label: "张作品", href: "slideshow.html", image: "01b948ed1c5924b145fbd0bf62270c78.jpg" },
-  { name: "Weegee", slug: "weegee", count: 270, label: "张作品", href: "slideshow.html", image: "00e3deb47c958ae486fecc05be80ee2b.jpg" },
-  { name: "August Sander", slug: "august-sander", count: 319, label: "张作品", href: "slideshow.html", image: "00b669f7d6463006600bc5f935902556.jpg" },
-  { name: "Yousuf Karsh", slug: "yousuf-karsh", count: 270, label: "张作品", href: "slideshow.html", image: "01687ee0d5b97a13cf623c66473a32ba.jpg" },
-  { name: "Robert Mapplethorpe", slug: "robert-mapplethorpe", count: 290, label: "张作品", href: "slideshow.html", image: "004a0447d98694f951045ec43b9c407f.jpg" },
-  { name: "Slim Aarons", slug: "slim-aarons", count: 281, label: "张作品", href: "slideshow.html", image: "0251beeb900c8495af13d1ad43e90129.jpg" },
-  { name: "Bill Brandt", slug: "bill-brandt", count: 261, label: "张作品", href: "slideshow.html", image: "00a1788e997e71e6125d8c7e1c77fa58.jpg" },
-  { name: "Graciela Iturbide", slug: "graciela-iturbide", count: 217, label: "张作品", href: "slideshow.html", image: "00558dc93a2f8ba7289d3310e941f144.jpg" },
-  { name: "Eikoh Hosoe", slug: "eikoh-hosoe", count: 261, label: "张作品", href: "slideshow.html", image: "0159fd6d84305d3378e1b35c352da6aa.jpg" },
-  { name: "Joel Sternfeld", slug: "joel-sternfeld", count: 255, label: "张作品", href: "slideshow.html", image: "004a7345432c9e4706d73feed004e62d.jpg" },
-  { name: "Trent Parke", slug: "trent-parke", count: 231, label: "张作品", href: "slideshow.html", image: "00fca56fd25d3d24584869a23055d4ff.jpg" },
-  { name: "Alexey Titarenko", slug: "alexey-titarenko", count: 182, label: "张作品", href: "slideshow.html", image: "000290b331467c90075276ab10f2e0d1.jpg" },
-  { name: "Pentti Sammallahti", slug: "pentti-sammallahti", count: 239, label: "张作品", href: "slideshow.html", image: "0101d0a3f4fe7f8c9f25d8aafa4cb120.jpg" },
-  { name: "Manuel Álvarez Bravo", slug: "manuel-alvarez-bravo", count: 252, label: "张作品", href: "slideshow.html", image: "0214fd374502157cca1c22cb3502cf18.jpg" },
-  { name: "Nobuyoshi Araki", slug: "nobuyoshi-araki", count: 264, label: "张作品", href: "slideshow.html", image: "010408968ed656b20ba32c214ea50821.jpg" },
-  { name: "Ihei Kimura", slug: "ihei-kimura", count: 203, label: "张作品", href: "slideshow.html", image: "00f2276930176e310cbcca03bb4a5db1.jpg" },
-  { name: "Édouard Boubat", slug: "edouard-boubat", count: 217, label: "张作品", href: "slideshow.html", image: "0093d380b2747965108b40bde538a016.jpg" },
-  { name: "Ferdinando Scianna", slug: "ferdinando-scianna", count: 307, label: "张作品", href: "slideshow.html", image: "0008f8ba1e108cc8dfe66127916d151a.jpg" },
-  { name: "Eugène Atget", slug: "eugene-atget", count: 262, label: "张作品", href: "slideshow.html", image: "00ce1e3245f8b795be15408532207425.jpg" },
-  { name: "Chris Killip", slug: "chris-killip", count: 203, label: "张作品", href: "slideshow.html", image: "0248710835950309a0b995ef721f9a5a.jpg" },
-  { name: "David Goldblatt", slug: "david-goldblatt", count: 240, label: "张作品", href: "slideshow.html", image: "0028ff2cee6880ef0d9e0c1f6fd3d14f.jpg" },
-  { name: "Alec Soth", slug: "alec-soth", count: 260, label: "张作品", href: "slideshow.html", image: "00c4d5b0876fc4dc36efc228bea657a2.jpg" },
-  { name: "Gregory Crewdson", slug: "gregory-crewdson", count: 221, label: "张作品", href: "slideshow.html", image: "04347df664fc33268e40be898d20dd54.jpg" },
-  { name: "Bill Cunningham", slug: "bill-cunningham", count: 216, label: "张作品", href: "slideshow.html", image: "03375bf81461878a236a5b20b8ea6d58.jpg" },
-  { name: "Alex Prager", slug: "alex-prager", count: 205, label: "张作品", href: "slideshow.html", image: "00b32d5ed6703d6dcc0288add1f099b4.jpg" },
-  { name: "Lang Jingshan", slug: "lang-jingshan", count: 146, label: "张作品", href: "slideshow.html", image: "images/02bba33e1950d108d7db2c26a828480c.jpg" },
-  { name: "Albert Renger-Patzsch", slug: "albert-renger-patzsch", count: 247, label: "张作品", href: "slideshow.html", image: "images/0153848b42f8d72e63504c504bcc4385.jpg" },
-  { name: "Karl Blossfeldt", slug: "karl-blossfeldt", count: 219, label: "张作品", href: "slideshow.html", image: "images/02cf03b691c62359a37ecbad7966283d.jpg" },
-  { name: "Shoji Ueda", slug: "shoji-ueda", count: 211, label: "张作品", href: "slideshow.html", image: "images/001840e90226c72c26cd6cf397549582.jpg" },
-  { name: "Roy DeCarava", slug: "roy-decarava", count: 226, label: "张作品", href: "slideshow.html", image: "images/0308bee132f4b5dd9dd5898bbc070202.jpg" },
-  { name: "Leon Levinstein", slug: "leon-levinstein", count: 195, label: "张作品", href: "slideshow.html", image: "images/0189cb8d4617db53bd4aa7e1fc4d2dd5.jpg" },
-  { name: "Jacob Riis", slug: "jacob-riis", count: 206, label: "张作品", href: "slideshow.html", image: "images/00f556d70804d7aa3abd41cda0b579e8.jpg" },
-  { name: "Julia Margaret Cameron", slug: "julia-margaret-cameron", count: 274, label: "张作品", href: "slideshow.html", image: "images/00058277e1870bc1496e6ecf8e3a4ad3.jpg" },
-  { name: "Nadar", slug: "nadar", count: 233, label: "张作品", href: "slideshow.html", image: "images/0333ecda365b3525eee23dce26153c7c.jpg" },
-  { name: "Xiao Quan", slug: "xiao-quan", count: 217, label: "张作品", href: "slideshow.html", image: "images/010b3dc731199dba69d18ae0b1f1c65f.jpg" },
-  { name: "Patrick Demarchelier", slug: "patrick-demarchelier", count: 287, label: "张作品", href: "slideshow.html", image: "images/00672657eaa2067baafcf3717c9018e5.jpg" },
-  { name: "Arthur Elgort", slug: "arthur-elgort", count: 278, label: "张作品", href: "slideshow.html", image: "images/00e4150de16574550675fbb809e56efd.jpg" },
-  { name: "Lillian Bassman", slug: "lillian-bassman", count: 155, label: "张作品", href: "slideshow.html", image: "images/00133be87a7e66c7ce4ee38c3ee6daa8.jpg" },
-  { name: "Edward Burtynsky", slug: "edward-burtynsky", count: 236, label: "张作品", href: "slideshow.html", image: "images/005ea168aaf9ed1b05c9373b7ff81af9.jpg" },
-  { name: "Gabriele Basilico", slug: "gabriele-basilico", count: 209, label: "张作品", href: "slideshow.html", image: "images/00ad434646b867bb5a3839ff7c66f155.jpg" },
-  { name: "Eadweard Muybridge", slug: "eadweard-muybridge", count: 256, label: "张作品", href: "slideshow.html", image: "images/00a74e0a0871b821d2b25f1e1a5bf04e.jpg" },
-  { name: "Edward S. Curtis", slug: "edward-s-curtis", count: 265, label: "张作品", href: "slideshow.html", image: "images/002c27d51ef5f10224fca9ea015d257d.jpg" },
-  { name: "Yann Arthus-Bertrand", slug: "yann-arthus-bertrand", count: 149, label: "张作品", href: "slideshow.html", image: "images/018b4eb45005d69d829d9ed4b4767fc9.jpg" },
-  { name: "Alexander Gardner", slug: "alexander-gardner", count: 156, label: "张作品", href: "slideshow.html", image: "images/025bdda4f2af29e3862293582ba7295f.jpg" },
-  { name: "Roger Fenton", slug: "roger-fenton", count: 189, label: "张作品", href: "slideshow.html", image: "images/0468298ba58fe4e335adf3986fbe7a8b.jpg" },
-  { name: "William Henry Fox Talbot", slug: "william-henry-fox-talbot", count: 181, label: "张作品", href: "slideshow.html", image: "images/0030756cd1f37eb9953f59f050dbcf5c.jpg" },
-  { name: "Carleton Watkins", slug: "carleton-watkins", count: 175, label: "张作品", href: "slideshow.html", image: "images/027b92578cda41cc96964380430ab0e1.jpg" },
-  { name: "Timothy O'Sullivan", slug: "timothy-ossullivan", count: 165, label: "张作品", href: "slideshow.html", image: "images/019cbab8590f4498277bbf08896d6bd4.jpg" },
-  { name: "Philippe Halsman", slug: "philippe-halsman", count: 209, label: "张作品", href: "slideshow.html", image: "images/000f0c12a3ded6bfb01d16d846bff7d2.jpg" },
-  { name: "Madame Yevonde", slug: "madame-yevonde", count: 111, label: "张作品", href: "slideshow.html", image: "images/011c43492e8bdc4e8a574157cfeb383c.jpg" },
-  { name: "Viviane Sassen", slug: "viviane-sassen", count: 175, label: "张作品", href: "slideshow.html", image: "images/01ebabd82aa18517630a6335b837fffc.jpg" },
-  { name: "Richard Misrach", slug: "richard-misrach", count: 92, label: "张作品", href: "slideshow.html", image: "images/02dad4ec764443d842e134f69d70ba43.jpg" },
-  { name: "Yasuhiro Ishimoto", slug: "yasuhiro-ishimoto", count: 116, label: "张作品", href: "slideshow.html", image: "images/038fd53da73b4f2a0678adbac4b00239.jpg" },
-  { name: "Issei Suda", slug: "issei-suda", count: 42, label: "张作品", href: "slideshow.html", image: "images/01069be02ed07ccb7da2a953e25f71d4.jpg" },
-  { name: "Wu Jialin", slug: "wu-jialin", count: 219, label: "张作品", href: "slideshow.html", image: "images/002efaed094328e87f7fe463881c56cb.jpg" },
-  { name: "Liu Heung Shing", slug: "liu-heung-shing", count: 219, label: "张作品", href: "slideshow.html", image: "images/0067c3d543b336c82c77d1958e6d0ba8.jpg" },
-  { name: "RongRong", slug: "rongrong", count: 171, label: "张作品", href: "slideshow.html", image: "images/000f799d8f6d0145672fa2498cdca5fa.jpg" },
-  { name: "Masao Yamamoto", slug: "masao-yamamoto", count: 203, label: "张作品", href: "slideshow.html", image: "images/00dc5a74334204b9e4f457bfb6b4a410.jpg" },
-  { name: "Paul Caponigro", slug: "paul-caponigro", count: 149, label: "张作品", href: "slideshow.html", image: "images/00c9b4f7e5ab2bf0d7e97129492ef21f.jpg" },
-  { name: "Raghubir Singh", slug: "raghubir-singh", count: 173, label: "张作品", href: "slideshow.html", image: "images/0009aea958ced0f0d155264f7acdfaa2.jpg" },
-  { name: "Mitch Epstein", slug: "mitch-epstein", count: 196, label: "张作品", href: "slideshow.html", image: "images/000c371dbba0aa2d0e89e2d87ac7f433.jpg" },
-  { name: "Peter Hujar", slug: "peter-hujar", count: 198, label: "张作品", href: "slideshow.html", image: "images/01590f0f3d932d80cf353e764734e210.jpg" },
-  { name: "Martin Munkácsi", slug: "martin-munkacsi", count: 281, label: "张作品", href: "slideshow.html", image: "images/01772ce7fa731dcb1d647c296274f695.jpg" },
-  { name: "Deborah Turbeville", slug: "deborah-turbeville", count: 260, label: "张作品", href: "slideshow.html", image: "images/00808e8d88233bc1dfb7b4ad98e60df4.jpg" },
-  { name: "Fay Godwin", slug: "fay-godwin", count: 143, label: "张作品", href: "slideshow.html", image: "images/006292fd09b9c355b3150d99a794914e.jpg" },
-  { name: "Toshio Shibata", slug: "toshio-shibata", count: 186, label: "张作品", href: "slideshow.html", image: "images/0084276e66d9a0fe9a64801d33873cb6.jpg" },
-  { name: "Francesca Woodman", slug: "francesca-woodman", count: 210, label: "张作品", href: "slideshow.html", image: "images/018ebd63135f21b176f41ac6d1b7427a.jpg" },
-  { name: "Jerry Uelsmann", slug: "jerry-uelsmann", count: 126, label: "张作品", href: "slideshow.html", image: "images/0050358a5778e53183e797000cb70f92.jpg" },
-  { name: "Ralph Eugene Meatyard", slug: "ralph-eugene-meatyard", count: 256, label: "张作品", href: "slideshow.html", image: "images/006e3bfa0885b70e57f3707f20d3fe4b.jpg" },
-  { name: "Michael Nichols", slug: "michael-nichols", count: 259, label: "张作品", href: "slideshow.html", image: "images/01aa339f4feb40db10e76ed295213147.jpg" },
-  { name: "Jim Brandenburg", slug: "jim-brandenburg", count: 207, label: "张作品", href: "slideshow.html", image: "images/024181b6345e932f1bd92881df5209c6.jpg" },
-  { name: "Chris Burkard", slug: "chris-burkard", count: 230, label: "张作品", href: "slideshow.html", image: "images/00e4930d36a893e744567db5ec0470d2.jpg" },
-  { name: "Sabine Weiss", slug: "sabine-weiss", count: 215, label: "张作品", href: "slideshow.html", image: "images/0090d88402e14d89ef86cfef99d9a89b.jpg" },
-  { name: "Mark Cohen", slug: "mark-cohen", count: 214, label: "张作品", href: "slideshow.html", image: "images/004f2f6978b6c1a8857a9819fc1d8f59.jpg" },
-  { name: "Lee Miller", slug: "lee-miller", count: 237, label: "张作品", href: "slideshow.html", image: "images/007dcbe363db859e4dfe6aabdc3c9e6b.jpg" },
-  { name: "Bert Hardy", slug: "bert-hardy", count: 203, label: "张作品", href: "slideshow.html", image: "images/005eb916a3c1d48e7f86add02154387b.jpg" },
-  { name: "Roman Vishniac", slug: "roman-vishniac", count: 238, label: "张作品", href: "slideshow.html", image: "images/020a0910c5d8b3945e4b0fbc6daf705c.jpg" },
-  { name: "Eddie Adams", slug: "eddie-adams", count: 266, label: "张作品", href: "slideshow.html", image: "images/0002ec8c2fb9aabaf77044c436bdfdea.jpg" },
-  { name: "Catherine Leroy", slug: "catherine-leroy", count: 173, label: "张作品", href: "slideshow.html", image: "images/0100bc7ef8213299a90171dc9633f600.jpg" },
-  { name: "Cristina García Rodero", slug: "cristina-garcia-rodero", count: 252, label: "张作品", href: "slideshow.html", image: "images/029d38ed6c14ccf58bc530c4ee4af327.jpg" },
-  { name: "Nicholas Nixon", slug: "nicholas-nixon", count: 310, label: "张作品", href: "slideshow.html", image: "images/00522b80ac77d5610b0c1218e4a347ae.jpg" },
-  { name: "Seydou Keïta", slug: "seydou-keita", count: 241, label: "张作品", href: "slideshow.html", image: "images/01f000b3d6c01e20d78309209dccc407.jpg" },
-  { name: "Malick Sidibé", slug: "malick-sidibe", count: 251, label: "张作品", href: "slideshow.html", image: "images/00ce19cdb3c65cc8ff7b39dc454ae652.jpg" },
-  { name: "Melvin Sokolsky", slug: "melvin-sokolsky", count: 227, label: "张作品", href: "slideshow.html", image: "images/016a454aa90fc0dc916f426cfa63a580.jpg" },
-  { name: "Mario Sorrenti", slug: "mario-sorrenti", count: 343, label: "张作品", href: "slideshow.html", image: "images/0009242ffc1c9b8ece5db78605e766f3.jpg" },
-  { name: "Bob Richardson", slug: "bob-richardson", count: 324, label: "张作品", href: "slideshow.html", image: "images/0033a9950ef2c2bdbed20b4cd0d04bad.jpg" },
-  { name: "Lewis Baltz", slug: "lewis-baltz", count: 221, label: "张作品", href: "slideshow.html", image: "images/0082c16e67f8482a94a783b583e51ddc.jpg" },
-  { name: "Charles Sheeler", slug: "charles-sheeler", count: 236, label: "张作品", href: "slideshow.html", image: "images/030b974b03f15afe7a399b41241b63bd.jpg" },
-  { name: "John Davies", slug: "john-davies", count: 259, label: "张作品", href: "slideshow.html", image: "images/010121d2f9780fca47d905477bfcc8b4.jpg" },
-  { name: "Dora Maar", slug: "dora-maar", count: 250, label: "张作品", href: "slideshow.html", image: "images/00b83681cd4514061075e7bc998373a1.jpg" },
-  { name: "Florence Henri", slug: "florence-henri", count: 169, label: "张作品", href: "slideshow.html", image: "images/03a3a7e6d33fa99c79a0e255543a21a7.jpg" },
-  { name: "Lotte Jacobi", slug: "lotte-jacobi", count: 207, label: "张作品", href: "slideshow.html", image: "images/01de6da56102afd82c68b1990d65bbf1.jpg" },
-  { name: "William Mortensen", slug: "william-mortensen", count: 156, label: "张作品", href: "slideshow.html", image: "images/004bf547a548f365169662bdc1827244.jpg" },
-  { name: "Eliot Porter", slug: "eliot-porter", count: 222, label: "张作品", href: "slideshow.html", image: "images/0051d64ddc59c232689ef83fb015760d.jpg" },
-  { name: "Galen Rowell", slug: "galen-rowell", count: 178, label: "张作品", href: "slideshow.html", image: "images/0059f3964f9aa703abd8d82ba9991a87.jpg" },
-  { name: "Peter Dombrovskis", slug: "peter-dombrovskis", count: 208, label: "张作品", href: "slideshow.html", image: "images/0010094c812bd80f9092cc32b61f69cc.jpg" },
-];
+const MASTERS_DATA = [{"id": "hideaki-hamada", "dir_name": "hideaki-hamada", "name_zh": "滨田英明", "name_en": "Hideaki Hamada", "country": "🇯🇵 日本", "years": "1977–", "category": "japanese_life", "category_label": "日本生活与空气感", "equipment": "Pentax 67II · SMC 105mm F2.4 · 120 彩负", "masterpieces": "《晴与明 Haru & Mina》· 《Distances》· 《One Day Life》", "quote": "“我一直使用 Pentax 67II，是因为它能把光线与空气里看不见的温度，极其自然地留在底片上。”", "style_desc": "自然光侧逆光、高明度低饱和、透明感空气感、家庭日常与童年纯真", "tags": ["日常温柔", "家庭儿童", "空气感", "中画幅6×7"], "high_res_count": 198, "cover_image": "masters/hideaki-hamada/images/00b3faa327a70407a0db38c3d6143ef5.jpg", "gallery_url": "masters/hideaki-hamada/index.html"}, {"id": "rinko-kawauchi", "dir_name": "rinko-kawauchi", "name_zh": "川内伦子", "name_en": "Rinko Kawauchi", "country": "🇯🇵 日本", "years": "1972–", "category": "japanese_life", "category_label": "日本生活与空气感", "equipment": "Rolleiflex 2.8F · 6×6 中画幅 · 120 彩负", "masterpieces": "《花火》· 《翠玉》· 《照度 AILA》", "quote": "“我喜欢那些闪烁着微弱光芒、容易被人忽略的瞬间，那是生命在安静呼吸的声音。”", "style_desc": "微观生命、日常诗意、高光通透淡雅、正方形画幅、极度柔和的影调", "tags": ["微观诗意", "高光过曝", "木村伊兵卫赏", "正方形6×6"], "high_res_count": 77, "cover_image": "masters/rinko-kawauchi/images/0199564b77f2e22c409ce10eb7312fcc.jpg", "gallery_url": "masters/rinko-kawauchi/index.html"}, {"id": "yoshihiko-ueda", "dir_name": "yoshihiko-ueda", "name_zh": "上田义彦", "name_en": "Yoshihiko Ueda", "country": "🇯🇵 日本", "years": "1957–", "category": "japanese_life", "category_label": "日本生活与空气感", "equipment": "8×10 大画幅 / Pentax 67 · 120 胶片", "masterpieces": "三得利乌龙茶经典系列 · 《Quinault》 · 《Materia》", "quote": "“在深沉静谧的阴翳之中，自然的光线拥有最纯粹的尊严与生命力。”", "style_desc": "深沉古典影调、极度克制的用光与构图、东方禅意与永恒美学", "tags": ["三得利乌龙茶", "深沉静谧", "东方禅意", "大画幅"], "high_res_count": 27, "cover_image": "masters/yoshihiko-ueda/images/Yoshihiko_Ueda_photography_01.png", "gallery_url": "masters/yoshihiko-ueda/index.html"}, {"id": "yoshiyuki-okuyama", "dir_name": "yoshiyuki-okuyama", "name_zh": "奥山由之", "name_en": "Yoshiyuki Okuyama", "country": "🇯🇵 日本", "years": "1991–", "category": "japanese_life", "category_label": "日本生活与空气感", "equipment": "35mm / 120 中画幅胶片机 · 彩色负片", "masterpieces": "《BACON ICE CREAM》 · 宝矿力水特青春海报 · 《POCARI SWEAT》", "quote": "“用胶片捕捉那些正在流逝的、不完美的、带着微弱晃动的青春瞬间。”", "style_desc": "青春晃动感、闪光灯与情绪抓拍、充满生命力的当代日本新世代胶片美学", "tags": ["新世代先锋", "宝矿力海报", "动感闪光", "青春纪实"], "high_res_count": 35, "cover_image": "masters/yoshiyuki-okuyama/images/Yoshiyuki_Okuyama_photography_01.jpg", "gallery_url": "masters/yoshiyuki-okuyama/index.html"}, {"id": "shoji-ueda", "dir_name": "shoji-ueda", "name_zh": "植田正治", "name_en": "Shoji Ueda", "country": "🇯🇵 日本", "years": "1913–2000", "category": "japanese_life", "category_label": "日本生活与空气感", "equipment": "Mamiya RB67 / Rolleiflex · 中画幅胶片", "masterpieces": "《沙丘剧场》· 《童历》· 《无声的记忆》", "quote": "“我是个在沙丘上摆弄玩具的乡下摄影师。摄影最有趣的，就是把日常变成超现实舞台。”", "style_desc": "鸟取沙丘超现实主义构图、极简地平线留白、黑白与典雅彩色摆拍", "tags": ["沙丘剧场", "超现实摆拍", "极简留白", "中画幅经典"], "high_res_count": 182, "cover_image": "masters/shoji-ueda/images/0109a6fbe4ed0ce1671faf9ede861b50.jpg", "gallery_url": "masters/shoji-ueda/index.html"}, {"id": "hiroshi-sugimoto", "dir_name": "hiroshi-sugimoto", "name_zh": "杉本博司", "name_en": "Hiroshi Sugimoto", "country": "🇯🇵 日本", "years": "1948–", "category": "bw_geometry", "category_label": "东方光影与黑白极简", "equipment": "8×10 大画幅座机 · 极度慢速长曝光", "masterpieces": "《海景 Seascapes》· 《剧场 Theaters》· 《放电场》", "quote": "“时间是一条看不见的河流，而长曝光让时间的流动凝结成一片纯净的虚无。”", "style_desc": "大画幅极度克制、水平对称、纯净黑白渐变、哲学沉思与永恒感", "tags": ["时间虚无", "极致海景", "哲学长曝光", "8×10大画幅"], "high_res_count": 150, "cover_image": "masters/hiroshi-sugimoto/images/00d151ee37b578098b2619707586b6e2.jpg", "gallery_url": "masters/hiroshi-sugimoto/index.html"}, {"id": "saul-leiter", "dir_name": "saul-leiter", "name_zh": "索尔·雷特", "name_en": "Saul Leiter", "country": "🇺🇸 美国", "years": "1923–2013", "category": "color_film", "category_label": "经典胶片色彩", "equipment": "Leica M · 柯达 Kodachrome 彩色反转片", "masterpieces": "《Early Color》· 《纽约街头雨雾》", "quote": "“我拍照不是为了出名，只是因为看见了雨天玻璃上的红色雨伞和雾气很美。”", "style_desc": "彩色街头先驱、雨雾玻璃倒影、抽象色块遮挡、油画般油润浓郁质感", "tags": ["彩色先驱", "雨雾纽约", "油画质感", "反转片Kodachrome"], "high_res_count": 206, "cover_image": "masters/saul-leiter/images/00c95461553f11efff9968586a4be300.png", "gallery_url": "masters/saul-leiter/index.html"}, {"id": "fan-ho", "dir_name": "fan-ho", "name_zh": "何藩", "name_en": "Fan Ho", "country": "🇭🇰 中国香港", "years": "1931–2016", "category": "bw_geometry", "category_label": "东方光影与黑白极简", "equipment": "Rolleiflex 双反 6×6 · 120 黑白胶片", "masterpieces": "《阴影 Shadows》· 《香港往昔》· 《日暮归途》", "quote": "“我一直在等待那一束穿透街巷的斜阳，等待一个人走入那道光的瞬间。”", "style_desc": "东方古典光影构图、戏剧性斜射光、浓烈几何剪影、市井人文温情", "tags": ["东方光影", "香港往昔", "几何斜阳", "双反Rolleiflex"], "high_res_count": 420, "cover_image": "masters/fan-ho/images/009390c0c7f375ba1cbcc8f3a4f8db61.jpg", "gallery_url": "masters/fan-ho/index.html"}, {"id": "william-eggleston", "dir_name": "William-Eggleston", "name_zh": "威廉·埃格尔斯顿", "name_en": "William Eggleston", "country": "🇺🇸 美国", "years": "1939–", "category": "color_film", "category_label": "经典胶片色彩", "equipment": "Leica / 6×7 中画幅 · 染印法（Dye-Transfer）", "masterpieces": "《红色天花板》· 《William Eggleston's Guide》", "quote": "“我和任何事物都在进行民主的平等凝视。平凡事物在色彩里拥有惊人的尊严。”", "style_desc": "彩色摄影之父、染印法浓郁色彩、低角度奇特构图、平凡之物的神性", "tags": ["彩色摄影之父", "染印法绝色", "民主凝视", "红色天花板"], "high_res_count": 98, "cover_image": "masters/william-eggleston/images/02a2d56973413260dfa650487fe954fc.jpg", "gallery_url": "masters/william-eggleston/index.html"}, {"id": "stephen-shore", "dir_name": "Stephen-Shore", "name_zh": "斯蒂芬·肖尔", "name_en": "Stephen Shore", "country": "🇺🇸 美国", "years": "1947–", "category": "color_film", "category_label": "经典胶片色彩", "equipment": "8×10 大画幅 / 120 中画幅 · 彩色负片", "masterpieces": "《不寻常的场所 Uncommon Places》· 《美国表象》", "quote": "“摄影是训练视觉注意力最精确的方式。看清楚眼前的一切，就是摄影的全部。”", "style_desc": "新地形摄影代表、大画幅平静客观叙事、美国日常景观色彩色彩平衡教科书", "tags": ["新地形摄影", "平静克制", "色彩平衡", "美国景观"], "high_res_count": 179, "cover_image": "masters/stephen-shore/images/0220fb676ba21e5516a5681753b1547a.jpg", "gallery_url": "masters/stephen-shore/index.html"}];
+let currentCategory = 'all';
+let currentSearch = '';
+let currentView = 'list';
 
-const grid = document.getElementById('grid');
-photographers.forEach(p => {
-  if (p.count === 0) {
-    const div = document.createElement('div');
-    div.className = 'empty';
-    div.innerHTML = `<p>${p.name} · 待收录</p>`;
-    grid.appendChild(div);
+function getFilteredData() {
+  return MASTERS_DATA.filter(m => {
+    const matchCat = currentCategory === 'all' || m.category === currentCategory;
+    const q = currentSearch.toLowerCase().trim();
+    const matchSearch = !q || 
+      m.name_zh.toLowerCase().includes(q) || 
+      m.name_en.toLowerCase().includes(q) || 
+      m.equipment.toLowerCase().includes(q) ||
+      m.masterpieces.toLowerCase().includes(q) ||
+      m.style_desc.toLowerCase().includes(q);
+    return matchCat && matchSearch;
+  });
+}
+
+function render() {
+  const listEl = document.getElementById('listContainer');
+  const cardEl = document.getElementById('cardContainer');
+  listEl.innerHTML = '';
+  cardEl.innerHTML = '';
+  
+  const data = getFilteredData();
+  
+  if (data.length === 0) {
+    listEl.innerHTML = '<div style="text-align:center; padding:60px 0; color:var(--text-muted);">未找到匹配的摄影大师</div>';
     return;
   }
-  const a = document.createElement('a');
-  a.className = 'card';
-  a.href = `photographers/${p.slug}/${p.href}`;
-  a.innerHTML = `<img src="photographers/${p.slug}/${p.image}" alt="${p.name}"><div class="overlay"><div class="name">${p.name}</div><div class="count">${p.count} ${p.label}</div></div>`;
-  grid.appendChild(a);
+  
+  data.forEach((m, idx) => {
+    const numStr = String(idx + 1).padStart(2, '0');
+    
+    // 1. List Item
+    const item = document.createElement('a');
+    item.className = 'master-list-item';
+    item.href = m.gallery_url;
+    item.innerHTML = `
+      <div class="item-num">
+        <span>#${numStr}</span>
+        <span class="item-country">${m.country}</span>
+      </div>
+      <div class="item-names">
+        <div class="item-name-zh">${m.name_zh}</div>
+        <div class="item-name-en">${m.name_en} · ${m.years}</div>
+      </div>
+      <div class="item-details">
+        <div class="item-equip">📷 ${m.equipment}</div>
+        <div class="item-desc">${m.style_desc}</div>
+      </div>
+      <div class="item-count-badge">
+        <strong>${m.high_res_count} P</strong>
+        <span>高清收录</span>
+      </div>
+      <div class="item-action-btn">
+        浏览作品 ➔
+      </div>
+    `;
+    listEl.appendChild(item);
+    
+    // 2. Card Item
+    const card = document.createElement('a');
+    card.className = 'master-card';
+    card.href = m.gallery_url;
+    card.innerHTML = `
+      <div class="card-cover-wrap">
+        <img class="card-cover-img" src="${m.cover_image}" alt="${m.name_zh}" loading="lazy">
+      </div>
+      <div class="card-content">
+        <div class="card-header">
+          <div class="card-title-zh">${m.name_zh}</div>
+          <div class="card-title-en">${m.name_en} · ${m.years}</div>
+          <span class="card-meta-tag">${m.category_label}</span>
+        </div>
+        <div class="card-quote">${m.quote}</div>
+        <div class="card-footer">
+          <span style="color:var(--text-gold); font-weight:700;">${m.high_res_count} 幅高清原作</span>
+          <span style="color:var(--text-primary); font-weight:600;">进入画廊 ➔</span>
+        </div>
+      </div>
+    `;
+    cardEl.appendChild(card);
+  });
+}
+
+function handleSearch() {
+  currentSearch = document.getElementById('searchInput').value;
+  render();
+}
+
+function filterCategory(cat) {
+  currentCategory = cat;
+  document.querySelectorAll('.filter-pill').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('onclick').includes(cat));
+  });
+  render();
+}
+
+function setViewMode(mode) {
+  currentView = mode;
+  document.getElementById('btnListView').classList.toggle('active', mode === 'list');
+  document.getElementById('btnCardView').classList.toggle('active', mode === 'card');
+  const listEl = document.getElementById('listContainer');
+  const cardEl = document.getElementById('cardContainer');
+  if (mode === 'list') {
+    listEl.classList.remove('hidden');
+    cardEl.classList.remove('active');
+  } else {
+    listEl.classList.add('hidden');
+    cardEl.classList.add('active');
+  }
+}
+
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'paper';
+  const next = cur === 'dark' ? 'paper' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('masters_hub_theme', next);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('masters_hub_theme') || 'paper';
+  document.documentElement.setAttribute('data-theme', saved);
+  render();
 });
 </script>
 </body>

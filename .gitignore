@@ -5,3 +5,4 @@ images/
 daily_progress.log
 daily_error.log
 .DS_Store
+*.bak*

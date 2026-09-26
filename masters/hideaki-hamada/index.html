@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="paper">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>滨田英明 (Hideaki Hamada) · 摄影作品集与胶片灵感档案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #fbf9f5; --bg-secondary: #f3efe6; --bg-tertiary: #e8e2d5;
+  --card-bg: #ffffff; --card-border: rgba(0, 0, 0, 0.08); --card-border-strong: rgba(0, 0, 0, 0.16);
+  --text-primary: #18181b; --text-secondary: #4b5563; --text-muted: #6b7280; --text-gold: #b45309;
+  --accent-gold: #b45309; --accent-gold-bg: rgba(180, 83, 9, 0.08);
+  --font-serif: "Cinzel", "Newsreader", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, sans-serif;
+  --font-mono: "Space Grotesk", monospace;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05); --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.06);
+  --radius-sm: 6px; --radius-md: 10px;
+}
+[data-theme="dark"] {
+  --bg-primary: #0f1013; --bg-secondary: #16181e; --bg-tertiary: #20232b;
+  --card-bg: #181a20; --card-border: rgba(255, 255, 255, 0.09); --card-border-strong: rgba(255, 255, 255, 0.18);
+  --text-primary: #f4f4f5; --text-secondary: #9ca3af; --text-muted: #6b7280; --text-gold: #eab308;
+  --accent-gold: #eab308; --accent-gold-bg: rgba(234, 179, 8, 0.12);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.5);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-primary); line-height: 1.75; -webkit-font-smoothing: antialiased; }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+.site-header { position: sticky; top: 0; z-index: 100; background: rgba(251,249,245,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--card-border); }
+[data-theme="dark"] .site-header { background: rgba(15,16,19,0.9); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.brand-badge { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); }
+.brand-mark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent-gold), #9a6700); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 700; font-size: 13px; color: #fff; }
+.header-actions { display: flex; align-items: center; gap: 10px; }
+
+.pill-btn { background: var(--bg-secondary); border: 1px solid var(--card-border-strong); color: var(--text-primary); padding: 6px 14px; border-radius: 20px; cursor: pointer; text-decoration: none; font-size: 13px; font-family: var(--font-mono); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+.pill-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+.hero { padding: 50px 0 32px; text-align: center; border-bottom: 1px solid var(--card-border); }
+.hero-tag { display: inline-block; padding: 4px 14px; background: var(--accent-gold-bg); border: 1px solid var(--card-border); border-radius: 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-gold); font-weight: 700; margin-bottom: 14px; }
+.hero-title { font-family: var(--font-serif); font-size: clamp(30px, 4.5vw, 48px); font-weight: 700; margin-bottom: 12px; }
+.hero-quote { max-width: 680px; margin: 0 auto 24px; font-size: 15px; color: var(--text-secondary); line-height: 1.8; font-style: italic; background: var(--bg-secondary); padding: 16px 20px; border-radius: var(--radius-md); border-left: 3px solid var(--accent-gold); }
+
+.stats-bar { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.stat-pill { background: var(--bg-secondary); border: 1px solid var(--card-border); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-family: var(--font-mono); color: var(--text-secondary); }
+.stat-pill strong { color: var(--text-primary); }
+
+.controls-bar { position: sticky; top: 60px; z-index: 90; background: rgba(251,249,245,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--card-border); padding: 10px 0; }
+[data-theme="dark"] .controls-bar { background: rgba(15,16,19,0.95); }
+.controls-inner { display: flex; align-items: center; justify-content: space-between; }
+.view-btn-group { display: flex; gap: 4px; background: var(--bg-secondary); padding: 3px; border-radius: 8px; border: 1px solid var(--card-border); }
+.v-btn { background: transparent; border: none; padding: 4px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; color: var(--text-secondary); font-weight: 600; }
+.v-btn.active { background: var(--card-bg); color: var(--text-gold); box-shadow: var(--shadow-sm); }
+
+.gallery-section { padding: 32px 0 80px; }
+.feed-layout { display: flex; flex-direction: column; gap: 32px; max-width: 680px; margin: 0 auto; }
+.feed-card { background: var(--card-bg); border: 1px solid var(--card-border-strong); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md); }
+.feed-card img { width: 100%; height: auto; display: block; cursor: zoom-in; }
+.feed-card-footer { padding: 12px 16px; display: flex; justify-content: space-between; border-top: 1px solid var(--card-border); background: var(--bg-secondary); font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+
+.masonry-layout { display: none; column-count: 3; column-gap: 16px; }
+.masonry-layout.active { display: block; }
+.feed-layout.hidden { display: none; }
+.masonry-item { break-inside: avoid; margin-bottom: 16px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--card-border); background: var(--bg-secondary); cursor: zoom-in; }
+.masonry-item img { width: 100%; height: auto; display: block; }
+
+.lightbox-modal { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.95); backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; padding: 20px; }
+.lightbox-modal.active { display: flex; }
+.lightbox-img-wrap { max-width: 94vw; max-height: 90vh; position: relative; }
+.lightbox-img { max-width: 100%; max-height: 88vh; border-radius: var(--radius-sm); }
+.lightbox-close { position: absolute; top: -44px; right: 0; background: transparent; border: none; color: #fff; font-size: 32px; cursor: pointer; }
+.lightbox-counter { text-align: center; font-family: var(--font-mono); font-size: 13px; color: var(--text-gold); margin-top: 10px; }
+
+@media (max-width: 768px) {
+  .masonry-layout { column-count: 2; column-gap: 10px; }
+  .hero-title { font-size: 28px; }
+}
+@media (max-width: 480px) {
+  .masonry-layout { column-count: 1; }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../../index.html" class="brand-badge">
+      <div class="brand-mark">滨</div>
+      <div>
+        <div style="font-size:14px; font-weight:700;">滨田英明 (Hideaki Hamada)</div>
+        <div style="font-size:10px; color:var(--text-gold); font-family:var(--font-mono);">日本生活与空气感</div>
+      </div>
+    </a>
+    <div class="header-actions">
+      <button class="pill-btn" onclick="toggleTheme()">🌓 主题</button>
+      <a href="../../index.html" class="pill-btn">📋 大师清单</a>
+      <a href="https://gengyueworks.github.io/pentax67ii-manual/" class="pill-btn">📷 宾得说明书</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">🇯🇵 日本 · 1977– · 日本生活与空气感</div>
+    <h1 class="hero-title">滨田英明 (Hideaki Hamada)</h1>
+    <div class="hero-quote">“我一直使用 Pentax 67II，是因为它能把光线与空气里看不见的温度，极其自然地留在底片上。”</div>
+    <div class="stats-bar">
+      <div class="stat-pill"><strong>代表作</strong> 《晴与明 Haru & Mina》· 《Distances》· 《One Day Life》</div>
+      <div class="stat-pill"><strong>核心器材</strong> Pentax 67II · SMC 105mm F2.4 · 120 彩负</div>
+      <div class="stat-pill"><strong>精选馆藏</strong> 198 幅高画质作品</div>
+    </div>
+  </div>
+</section>
+
+<div class="controls-bar">
+  <div class="container controls-inner">
+    <div style="font-size:13px; font-weight:700; color:var(--text-gold); font-family:var(--font-mono);">
+      CURATED WORKS (198P)
+    </div>
+    <div class="view-btn-group">
+      <button class="v-btn active" id="btnFeed" onclick="setView('feed')">📱 灵感流 (Feed)</button>
+      <button class="v-btn" id="btnGrid" onclick="setView('grid')">🔲 瀑布流 (Grid)</button>
+    </div>
+  </div>
+</div>
+
+<main class="container gallery-section">
+  <div class="feed-layout" id="feedContainer"></div>
+  <div class="masonry-layout" id="gridContainer"></div>
+</main>
+
+<div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+  <div class="lightbox-img-wrap" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightboxImg" class="lightbox-img" src="" alt="大图查看">
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+</div>
+
+<script>
+const IMAGES = [{"filename": "00b3faa327a70407a0db38c3d6143ef5.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "01186cb4448e6e2c44e808caa92a9d91.jpg", "width": 1600, "height": 1956, "aspect": 0.82}, {"filename": "0138c37285302cd886e779ece2750020.jpg", "width": 1600, "height": 1966, "aspect": 0.81}, {"filename": "01868cf9dea7124b57e50d201d0d0afe.jpg", "width": 1600, "height": 1966, "aspect": 0.81}, {"filename": "02a1b170c739b8444532cdb5c76970ed.jpg", "width": 1600, "height": 1966, "aspect": 0.81}, {"filename": "030a8530f9f8a6df4d680c1943aa06c0.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "04d764df726677404f143f9f49b00fb9.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "04dccacba2a698f9e1a970dc6ef0cfa0.jpg", "width": 1800, "height": 1200, "aspect": 1.5}, {"filename": "06a0a29a427bbe1c6eb375d2fe09ff23.jpg", "width": 1600, "height": 1965, "aspect": 0.81}, {"filename": "07df71da6c83b3d07a2137240bb8efef.jpg", "width": 640, "height": 522, "aspect": 1.23}, {"filename": "0805acfe03066c8aefd753526266369c.jpg", "width": 1600, "height": 1964, "aspect": 0.81}, {"filename": "0bf6f42d85eb03fd0982f520a4c287fd.jpg", "width": 1800, "height": 1200, "aspect": 1.5}, {"filename": "0cda81c9ee98fcec01d260625920c784.jpg", "width": 640, "height": 522, "aspect": 1.23}, {"filename": "0ddc2a95b42a57376fe64b6fb8ef7b20.jpg", "width": 1600, "height": 1965, "aspect": 0.81}, {"filename": "0e874fd8a644679f5fb0108cf804aef9.jpg", "width": 1600, "height": 1964, "aspect": 0.81}, {"filename": "113d328fe85b66b9b4eb97835eb66833.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "11c43739a8a4fcfc1dc497791f5b99d7.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "128e32a16fee401989f22041d4627011.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "13a4cb1cfbe2fb05e0ed8791859f48c7.jpg", "width": 1600, "height": 1966, "aspect": 0.81}, {"filename": "1499aa514bcd1ce29105a89c01c04d4b.jpg", "width": 1474, "height": 1200, "aspect": 1.23}, {"filename": "15136b2fd3a6ad7a3283b336cf4cae39.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "164c674f982106bcac166a1b46cd3e1b.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "167d7082c5742d2eb49b3385678b5ddd.jpg", "width": 1800, "height": 1200, "aspect": 1.5}, {"filename": "1a19a70931ca421d9f64fa6ed8bfcfc0.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "1a1e2dec3b1157ae47d629a767f651da.jpg", "width": 1469, "height": 1200, "aspect": 1.22}, {"filename": "1a57ea15b02e17af7664bcdd9714150c.jpg", "width": 1474, "height": 1200, "aspect": 1.23}, {"filename": "1a84801fdf0abc2fb95b28ed6e35a29c.jpg", "width": 1600, "height": 1961, "aspect": 0.82}, {"filename": "1ce3ddb1bd68b9ba1a427e95db68add0.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "2059cc13d10bdee6f49509af0cb84126.jpg", "width": 1223, "height": 1500, "aspect": 0.82}, {"filename": "210a953f0efeb9362ba3eff788ab5188.jpg", "width": 1333, "height": 2000, "aspect": 0.67}, {"filename": "217d3efc9785620e8e539cc182aee142.jpg", "width": 1472, "height": 1200, "aspect": 1.23}, {"filename": "21a0e642f3ab6c0af2ac34c145ab50f3.png", "width": 1456, "height": 882, "aspect": 1.65}, {"filename": "2251a8ff1f4d82f98c074ec82d7bf6fc.jpg", "width": 1474, "height": 1200, "aspect": 1.23}, {"filename": "24161ca7bb7d57776fe5a3ddd28c4a28.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "2474f5f5a65faa2fce31659334631aa1.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "248a99eeb741db4afb47e00125cb29e4.jpg", "width": 1600, "height": 2400, "aspect": 0.67}, {"filename": "24a7d1f87e56c4a3b544b101b63d25fa.jpg", "width": 1474, "height": 1200, "aspect": 1.23}, {"filename": "27eb52c941152335580d786fa9a815c0.jpg", "width": 1600, "height": 1964, "aspect": 0.81}, {"filename": "2b36af294248808da8f08e5d18c230ba.jpg", "width": 1600, "height": 1939, "aspect": 0.83}, {"filename": "2e93efd2940efca463b4e13fc4944a80.jpg", "width": 1474, "height": 1200, "aspect": 1.23}, {"filename": "2f9fcd632fe3c30917aa00c9d659781b.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "2fc1bca730dc4639b8ad115ee612f03f.jpg", "width": 1600, "height": 1961, "aspect": 0.82}, {"filename": "304f9d9cfe6a2154edb2fca2218a24d1.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "320c407c4dac4f1bd1931ff836574f55.jpg", "width": 640, "height": 515, "aspect": 1.24}, {"filename": "32d252e3e9035a04ea9f47c8ca6428e1.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "33856cb2c6e058ff2498a190b7208011.jpg", "width": 1600, "height": 1964, "aspect": 0.81}, {"filename": "359bcbf8833990fe575afbd193e9b4d2.jpg", "width": 1600, "height": 1935, "aspect": 0.83}, {"filename": "35adc2e81129e07abae805a7337da62b.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "37eefc32aaa384861dec5a061405ada8.jpg", "width": 1600, "height": 2000, "aspect": 0.8}, {"filename": "3949022673955b2a84dc51f9a70c73fd.jpg", "width": 1800, "height": 1200, "aspect": 1.5}, {"filename": "3b24bba83cc555baae91ef8385764c85.jpg", "width": 1600, "height": 1966, "aspect": 0.81}, {"filename": "3b74eeb10c23d92d2aea94d79f9f1f77.jpg", "width": 1600, "height": 1966, "aspect": 0.81}, {"filename": "3e101dbc5c020c1cc4a611fdd189b6ca.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "3e558af7251f2bb42d6dbe925e0e84f8.jpg", "width": 1600, "height": 2400, "aspect": 0.67}, {"filename": "3f4597968acaca3dc47c8f2a2ff2d991.jpg", "width": 1333, "height": 2000, "aspect": 0.67}, {"filename": "41447a1a4f6ccdced087136caf05309c.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "417943a109d491dc2699d009c4c8e15e.png", "width": 752, "height": 593, "aspect": 1.27}, {"filename": "41a229598f1890c3d69aba0c38f12a54.jpg", "width": 1600, "height": 1965, "aspect": 0.81}, {"filename": "42715b2effff403cc1ece813435c6b7f.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "43f8808d74d52c0573b5ee1c12ecac18.jpg", "width": 1600, "height": 1966, "aspect": 0.81}, {"filename": "4522c2ca14c4722409c4e03404140cda.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "45ac905f70730a6de1b18d321203ded6.jpg", "width": 1333, "height": 2000, "aspect": 0.67}, {"filename": "467ed85dd240c71bf0b08357641df5e0.jpg", "width": 1474, "height": 1200, "aspect": 1.23}, {"filename": "49c70f83dabeda6f9be2f12ee58d104a.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "4d29c4dfb13638916a90826a33d5ef31.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "4deb0c46044c5be50ffb5d01aadda51c.jpg", "width": 1474, "height": 1200, "aspect": 1.23}, {"filename": "4eaaaff713949d9335fe5a123311b653.jpg", "width": 640, "height": 522, "aspect": 1.23}, {"filename": "4fc362d9036a5f7766f5a828215fb160.jpg", "width": 1639, "height": 1200, "aspect": 1.37}, {"filename": "52b79b9264b0e22e807a57f35826f440.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "58dc20a0159c933da8bbf7c390f78729.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "58fefcc8bb1e42f2bd533463037ce504.jpg", "width": 640, "height": 522, "aspect": 1.23}, {"filename": "5a281e21fe45d72e818586819861b413.jpg", "width": 1600, "height": 1964, "aspect": 0.81}, {"filename": "5b10f4558ec308d516d1346220d5720a.jpg", "width": 1600, "height": 1965, "aspect": 0.81}, {"filename": "5be7a14972f86fc3f347780626211d09.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "5c639908a0abb33ba6a18851f6117e0f.jpg", "width": 1600, "height": 1965, "aspect": 0.81}, {"filename": "5cd56357a472777c75a9bb5215b91fb9.jpg", "width": 640, "height": 522, "aspect": 1.23}, {"filename": "5ee91ac71f8fb7f0a0dc7d1e6d17d165.jpg", "width": 800, "height": 640, "aspect": 1.25}, {"filename": "5f36d069db057d426a66020beb5e541f.jpg", "width": 1801, "height": 1200, "aspect": 1.5}, {"filename": "6095673cddc69ef122a3830cf82630e4.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "6227376458c8b87a6e10e150b547a56b.jpg", "width": 1024, "height": 836, "aspect": 1.22}, {"filename": "6311b892f712d1a1d93830de5e8ada5e.jpg", "width": 1474, "height": 1200, "aspect": 1.23}, {"filename": "635af3df30bc07a3b0c78e091f481aa0.jpg", "width": 1600, "height": 1961, "aspect": 0.82}, {"filename": "642e051d48a53fa375148f907dba88fd.jpg", "width": 1600, "height": 2185, "aspect": 0.73}, {"filename": "657f59e8ceb3bc21ae1646d2c5e4ea12.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "668c6351c819bb84c5eb0d6826ed6ca2.jpg", "width": 1600, "height": 1965, "aspect": 0.81}, {"filename": "6b6dd338b47cd8e2a4b10184a3c4ee1d.jpg", "width": 1800, "height": 1200, "aspect": 1.5}, {"filename": "6ba2cbbffbc880ae13cac41e61d6aff3.jpg", "width": 1799, "height": 1200, "aspect": 1.5}, {"filename": "6bf2a8ebcd38d1d292abc7217c9837fe.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "6fd5088e101513642f823995a00676a2.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "70e5ab92a13319214031e5590f3f566e.jpg", "width": 640, "height": 522, "aspect": 1.23}, {"filename": "71836366c2c91702b247e6dbcecef2da.jpg", "width": 1800, "height": 1200, "aspect": 1.5}, {"filename": "730889c5ab9605cd0e9d0a3d067a4c02.jpg", "width": 1000, "height": 1499, "aspect": 0.67}, {"filename": "73bf1c86487453eb5d183f20fb4d2770.jpg", "width": 640, "height": 640, "aspect": 1.0}, {"filename": "755d9adfd0b4d75bbfaecfe0ce19d553.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "7587bc8990bea4f9927b0f6587ad87d1.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "7691b4c893a849fb543df2b6190a6432.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "778595f32c846f2c62934b7d801b447e.jpg", "width": 1800, "height": 1200, "aspect": 1.5}, {"filename": "7b1af1dc020b2b48a76814134744b567.jpg", "width": 640, "height": 521, "aspect": 1.23}, {"filename": "7c7debcbdf76270b94261c2fa1312315.jpg", "width": 1600, "height": 1964, "aspect": 0.81}, {"filename": "7ca812b2eca070b104dcabf0ad017bee.jpg", "width": 1469, "height": 1200, "aspect": 1.22}, {"filename": "7f265ac8491394ebfb3507ba5c60cdf7.jpg", "width": 1600, "height": 1965, "aspect": 0.81}, {"filename": "80b5fafc44bdc3b1973f790cf556bcc9.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "84ed08e958f93073afa6baf92c22a71c.jpg", "width": 640, "height": 521, "aspect": 1.23}, {"filename": "84f250cd91230461394c3829fbe4c08a.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "85ce76b337192298bbb19dcc5e049edf.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "86d83fe76e6de6a186fb2de94f2d487b.jpg", "width": 800, "height": 652, "aspect": 1.23}, {"filename": "8776c721efb81f860c335135ccdf35fc.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "893f71d3799f55d05dcec1fc260b6068.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "8b9b217ca0841991a5ddc0289509c324.jpg", "width": 1600, "height": 1965, "aspect": 0.81}, {"filename": "8cae8af99c7114b922ee07ae919ff37a.jpg", "width": 819, "height": 1024, "aspect": 0.8}, {"filename": "8cddec92a3f67d7cab98f4031ce2fe61.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "8cf1ffe5e5eb99d3ca623326c5ab20e4.jpg", "width": 640, "height": 522, "aspect": 1.23}, {"filename": "8ed7cd4576c790027fb692d1ef1f204d.jpg", "width": 1600, "height": 1964, "aspect": 0.81}, {"filename": "8f86d90345e74f562504ff52e4721a6c.jpg", "width": 1600, "height": 1983, "aspect": 0.81}, {"filename": "914b57a5519a9bda2e31f68b0b9ebfcd.jpg", "width": 1800, "height": 1200, "aspect": 1.5}, {"filename": "921972364afd0cf806aa7c5ddcab1be3.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "92a5c942b9dc0ae5c6b10e3e65d134cd.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "9434913e40caa4fa2be65dc4744dd1f8.jpg", "width": 640, "height": 522, "aspect": 1.23}, {"filename": "9463d9c072e00f06f407979df9d8d4cb.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "956591d7197212c1845ae28728018e75.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "98ceaa4d1dcd931c0e75f3662af6f134.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "9addf15d8ab574a73fc7425b687a2679.jpg", "width": 1600, "height": 2185, "aspect": 0.73}, {"filename": "9cee2040a00ef705d033d090ac5743b7.jpg", "width": 1600, "height": 1965, "aspect": 0.81}, {"filename": "9d780afdb676d72c1e4c0229ee9f51d5.jpg", "width": 1472, "height": 1200, "aspect": 1.23}, {"filename": "9d838dbfbae46a48b094eab33a5e7c75.jpg", "width": 1600, "height": 1963, "aspect": 0.82}, {"filename": "9ff9a2f44e1241f8a2f73df7bed6f047.jpg", "width": 1600, "height": 1964, "aspect": 0.81}, {"filename": "a0ccc70f04a4cf60e6d980f5c6badcef.jpg", "width": 1600, "height": 1966, "aspect": 0.81}, {"filename": "a7b836f6b6bfabbf0783e7663b165998.jpg", "width": 640, "height": 640, "aspect": 1.0}, {"filename": "a7c758f26b786ad32d2f521272426a53.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "a8a6d39614288a4008720abb0bf83b39.jpg", "width": 983, "height": 803, "aspect": 1.22}, {"filename": "aa8de0e3d8a6eea495b402b3c0d68d9e.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "ace41db2d4d15336854e93e656b0f810.jpg", "width": 1474, "height": 1200, "aspect": 1.23}, {"filename": "b06afe7e4a2f195f77393fbc52d1abfe.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "b22db50c2b8bfa7707ab49be5a75a401.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "b2c473a9fb2c335481c810a8b0e551c5.jpg", "width": 1600, "height": 1961, "aspect": 0.82}, {"filename": "b2cf237d3d527e5d14c0b035fb666d67.jpg", "width": 1500, "height": 1839, "aspect": 0.82}, {"filename": "b323731dd0f041dc6a186bfba72c38ae.png", "width": 1154, "height": 1130, "aspect": 1.02}, {"filename": "b3c5634ad41b96bc04a61e6d5070f87c.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "b7c63eb362d296a9292c95363bbed222.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "b802a755c8677ae997d8ba8a6c05db61.jpg", "width": 640, "height": 640, "aspect": 1.0}, {"filename": "b97eda26c03dfe4e79b5a2e99bb34a30.jpg", "width": 1503, "height": 1200, "aspect": 1.25}, {"filename": "bd050f5b4febb0985ce78ba33bca6f1c.jpg", "width": 640, "height": 522, "aspect": 1.23}, {"filename": "bdf943bdd018e7d586b35c1a723d8da6.jpg", "width": 1600, "height": 1961, "aspect": 0.82}, {"filename": "bf5242dee70f9d2b18f4fe6298852e73.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "c04549640485844ecd10f122f2cbf947.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "c20cdb91409a8809fe33d0319289dcab.jpg", "width": 1600, "height": 1961, "aspect": 0.82}, {"filename": "c21f39ca78786be463f0bd0a4c1efabd.jpg", "width": 1600, "height": 1962, "aspect": 0.82}, {"filename": "c30aa8a8db7b187617330999541585c5.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "c3dfda73a82bc87c60f2953896adf227.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "c462efd35f62f537875e412da7455024.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "c513137b3ed9b667558c09f2c079e53e.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "c9e1de321ecc7f886cf796c9459b1715.jpg", "width": 1600, "height": 1965, "aspect": 0.81}, {"filename": "ca260dba64f61acbd02c5ccc12d5a402.jpg", "width": 2048, "height": 1667, "aspect": 1.23}, {"filename": "cc4d10f25a2196134749afc27416b2b0.jpg", "width": 1600, "height": 1958, "aspect": 0.82}, {"filename": "cc556c5070b33eba794e566d51b2514e.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "cebb98b2cc2406328e8978b0c7a64362.jpg", "width": 640, "height": 522, "aspect": 1.23}, {"filename": "cfd831350c366cdee476b49025dadd94.jpg", "width": 1600, "height": 1964, "aspect": 0.81}, {"filename": "d0a18f033b3616aeb0d65b28ebf27a83.jpg", "width": 1600, "height": 1966, "aspect": 0.81}, {"filename": "d12910b5087ae492f07959b8de686e45.jpg", "width": 640, "height": 640, "aspect": 1.0}, {"filename": "d2a6d60e36154cd15aa37f14bae93a7d.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "d30a6dc70097942d96879a40bdf1f376.jpg", "width": 1600, "height": 1964, "aspect": 0.81}, {"filename": "d4359c7d9cd0ed60fbcec60b26d1daee.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "d4f6bf31c99363ce5331f33b98429834.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "d6c534cbe6b6f0fc9683e06eeafb8ac4.jpg", "width": 1474, "height": 1200, "aspect": 1.23}, {"filename": "d91b2bdc7edb951125150b3f1382e929.jpg", "width": 988, "height": 800, "aspect": 1.24}, {"filename": "d963de826886cd16c80b787bbdb1897a.jpg", "width": 828, "height": 1027, "aspect": 0.81}, {"filename": "d9853071fe88af18fafa77753dd25367.jpg", "width": 640, "height": 640, "aspect": 1.0}, {"filename": "da2b95ff9d8437ce34277575c619b665.jpg", "width": 1600, "height": 1965, "aspect": 0.81}, {"filename": "da2d8d394b0ff2fa16beef77e296fe29.jpg", "width": 979, "height": 1200, "aspect": 0.82}, {"filename": "daae7e64a229acbe51e8c957d0accc12.jpg", "width": 983, "height": 804, "aspect": 1.22}, {"filename": "db8ca3818c64c01da352a9dfc0e82d7e.jpg", "width": 1474, "height": 1200, "aspect": 1.23}, {"filename": "dbc3f344b5e8b27bf197a91a564f7da5.jpg", "width": 1800, "height": 1200, "aspect": 1.5}, {"filename": "dbe92a9951e160ebd0253d1d28566d4d.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "dc71cb39fec2c213b4c4acd30532b607.jpg", "width": 1472, "height": 1200, "aspect": 1.23}, {"filename": "dd17266d2bd7e79dec677e6186586aaa.jpg", "width": 1000, "height": 1500, "aspect": 0.67}, {"filename": "e2f5e306e65b68e2a184fc2a5d4604fb.jpg", "width": 1600, "height": 1965, "aspect": 0.81}, {"filename": "e36daba208b48b94a58aec847c0424bf.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "e3d2186599525109abde9550b31ed48b.jpg", "width": 1223, "height": 1500, "aspect": 0.82}, {"filename": "e4a995e1596d626f71d81809823d39f3.jpg", "width": 1471, "height": 1200, "aspect": 1.23}, {"filename": "e826ec0d9e5757c605d22e4481597046.jpg", "width": 1024, "height": 856, "aspect": 1.2}, {"filename": "e830681a242a6f50754218271f26dd75.jpg", "width": 1600, "height": 1966, "aspect": 0.81}, {"filename": "eb0612769ad8e624d432058237d119d8.jpg", "width": 1474, "height": 1200, "aspect": 1.23}, {"filename": "ef25dad400e984e15ba6f5fe699ed553.jpg", "width": 1600, "height": 1966, "aspect": 0.81}, {"filename": "ef54c6b3ba7be6fae38d132e8f178b26.jpg", "width": 640, "height": 518, "aspect": 1.24}, {"filename": "efee438c55b860efa7e335c12640ae33.jpg", "width": 830, "height": 676, "aspect": 1.23}, {"filename": "f1aa77d830e3b5dd5c8a22c323eff693.jpg", "width": 700, "height": 570, "aspect": 1.23}, {"filename": "f23a1e8025e68230d2bb76e30c88dc4a.jpg", "width": 1800, "height": 1200, "aspect": 1.5}, {"filename": "f2b40ca55c7e9860ca7f0c4ad46e91ae.jpg", "width": 640, "height": 522, "aspect": 1.23}, {"filename": "f47685dc84fcb42d5963810ec771d911.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "f618b078289a0c66739a12e3d1e3cfb2.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "f68abdff9695f15d09732d06533c1efa.jpg", "width": 1474, "height": 1200, "aspect": 1.23}, {"filename": "fc474cb34845cf4024f0f1b9e9bded76.jpg", "width": 1474, "height": 1200, "aspect": 1.23}, {"filename": "fce0e456fd83db0a144507df0f7837fc.jpg", "width": 640, "height": 523, "aspect": 1.22}, {"filename": "fde7777dd3ee3ccf38356a1e70254bfd.jpg", "width": 1473, "height": 1200, "aspect": 1.23}, {"filename": "feea010a8e38da22c1c38f8e3bd94d45.jpg", "width": 1600, "height": 1965, "aspect": 0.81}, {"filename": "ff08f5f1efacbfc372910c83621895e9.jpg", "width": 1600, "height": 1964, "aspect": 0.81}, {"filename": "ff86eb8e055ec4ae444a87ea80979650.jpg", "width": 1500, "height": 1838, "aspect": 0.82}, {"filename": "ffd196c25d0b31535490c2f5ff9ec562.jpg", "width": 1800, "height": 1200, "aspect": 1.5}];
+let activeIdx = 0;
+
+function render() {
+  const feed = document.getElementById('feedContainer');
+  const grid = document.getElementById('gridContainer');
+  feed.innerHTML = ''; grid.innerHTML = '';
+  
+  IMAGES.forEach((item, idx) => {
+    const fc = document.createElement('article');
+    fc.className = 'feed-card';
+    fc.innerHTML = `
+      <img src="images/${item.filename}" alt="作品" loading="lazy" onclick="openLight(${idx})">
+      <div class="feed-card-footer">
+        <span># 滨田英明 作品</span>
+        <span>${item.width}×${item.height}</span>
+      </div>
+    `;
+    feed.appendChild(fc);
+    
+    const mi = document.createElement('div');
+    mi.className = 'masonry-item';
+    mi.innerHTML = `<img src="images/${item.filename}" alt="作品" loading="lazy" onclick="openLight(${idx})">`;
+    grid.appendChild(mi);
+  });
+}
+
+function setView(mode) {
+  const feed = document.getElementById('feedContainer');
+  const grid = document.getElementById('gridContainer');
+  document.getElementById('btnFeed').classList.toggle('active', mode === 'feed');
+  document.getElementById('btnGrid').classList.toggle('active', mode === 'grid');
+  if (mode === 'feed') {
+    feed.classList.remove('hidden'); grid.classList.remove('active');
+  } else {
+    feed.classList.add('hidden'); grid.classList.add('active');
+  }
+}
+
+function openLight(idx) {
+  activeIdx = idx;
+  document.getElementById('lightboxImg').src = 'images/' + IMAGES[idx].filename;
+  document.getElementById('lightboxCounter').textContent = `${idx + 1} / ${IMAGES.length} · 滨田英明`;
+  document.getElementById('lightboxModal').classList.add('active');
+}
+function closeLightbox() { document.getElementById('lightboxModal').classList.remove('active'); }
+function nextLight() { openLight((activeIdx + 1) % IMAGES.length); }
+function prevLight() { openLight((activeIdx - 1 + IMAGES.length) % IMAGES.length); }
+
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'paper';
+  const next = cur === 'dark' ? 'paper' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('master_theme', next);
+}
+
+window.addEventListener('keydown', (e) => {
+  const m = document.getElementById('lightboxModal');
+  if (m.classList.contains('active')) {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight' || e.key === ' ') nextLight();
+    if (e.key === 'ArrowLeft') prevLight();
+  }
+});
+
+let touchStartX = 0;
+document.getElementById('lightboxModal').addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+document.getElementById('lightboxModal').addEventListener('touchend', (e) => {
+  const diff = e.changedTouches[0].screenX - touchStartX;
+  if (diff < -40) nextLight();
+  if (diff > 40) prevLight();
+}, { passive: true });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('master_theme') || 'paper';
+  document.documentElement.setAttribute('data-theme', saved);
+  render();
+});
+</script>
+</body>
+</html>

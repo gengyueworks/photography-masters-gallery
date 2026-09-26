@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="paper">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>植田正治 (Shoji Ueda) · 摄影作品集与胶片灵感档案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #fbf9f5; --bg-secondary: #f3efe6; --bg-tertiary: #e8e2d5;
+  --card-bg: #ffffff; --card-border: rgba(0, 0, 0, 0.08); --card-border-strong: rgba(0, 0, 0, 0.16);
+  --text-primary: #18181b; --text-secondary: #4b5563; --text-muted: #6b7280; --text-gold: #b45309;
+  --accent-gold: #b45309; --accent-gold-bg: rgba(180, 83, 9, 0.08);
+  --font-serif: "Cinzel", "Newsreader", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, sans-serif;
+  --font-mono: "Space Grotesk", monospace;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05); --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.06);
+  --radius-sm: 6px; --radius-md: 10px;
+}
+[data-theme="dark"] {
+  --bg-primary: #0f1013; --bg-secondary: #16181e; --bg-tertiary: #20232b;
+  --card-bg: #181a20; --card-border: rgba(255, 255, 255, 0.09); --card-border-strong: rgba(255, 255, 255, 0.18);
+  --text-primary: #f4f4f5; --text-secondary: #9ca3af; --text-muted: #6b7280; --text-gold: #eab308;
+  --accent-gold: #eab308; --accent-gold-bg: rgba(234, 179, 8, 0.12);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.5);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-primary); line-height: 1.75; -webkit-font-smoothing: antialiased; }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+.site-header { position: sticky; top: 0; z-index: 100; background: rgba(251,249,245,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--card-border); }
+[data-theme="dark"] .site-header { background: rgba(15,16,19,0.9); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.brand-badge { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); }
+.brand-mark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent-gold), #9a6700); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 700; font-size: 13px; color: #fff; }
+.header-actions { display: flex; align-items: center; gap: 10px; }
+
+.pill-btn { background: var(--bg-secondary); border: 1px solid var(--card-border-strong); color: var(--text-primary); padding: 6px 14px; border-radius: 20px; cursor: pointer; text-decoration: none; font-size: 13px; font-family: var(--font-mono); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+.pill-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+.hero { padding: 50px 0 32px; text-align: center; border-bottom: 1px solid var(--card-border); }
+.hero-tag { display: inline-block; padding: 4px 14px; background: var(--accent-gold-bg); border: 1px solid var(--card-border); border-radius: 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-gold); font-weight: 700; margin-bottom: 14px; }
+.hero-title { font-family: var(--font-serif); font-size: clamp(30px, 4.5vw, 48px); font-weight: 700; margin-bottom: 12px; }
+.hero-quote { max-width: 680px; margin: 0 auto 24px; font-size: 15px; color: var(--text-secondary); line-height: 1.8; font-style: italic; background: var(--bg-secondary); padding: 16px 20px; border-radius: var(--radius-md); border-left: 3px solid var(--accent-gold); }
+
+.stats-bar { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.stat-pill { background: var(--bg-secondary); border: 1px solid var(--card-border); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-family: var(--font-mono); color: var(--text-secondary); }
+.stat-pill strong { color: var(--text-primary); }
+
+.controls-bar { position: sticky; top: 60px; z-index: 90; background: rgba(251,249,245,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--card-border); padding: 10px 0; }
+[data-theme="dark"] .controls-bar { background: rgba(15,16,19,0.95); }
+.controls-inner { display: flex; align-items: center; justify-content: space-between; }
+.view-btn-group { display: flex; gap: 4px; background: var(--bg-secondary); padding: 3px; border-radius: 8px; border: 1px solid var(--card-border); }
+.v-btn { background: transparent; border: none; padding: 4px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; color: var(--text-secondary); font-weight: 600; }
+.v-btn.active { background: var(--card-bg); color: var(--text-gold); box-shadow: var(--shadow-sm); }
+
+.gallery-section { padding: 32px 0 80px; }
+.feed-layout { display: flex; flex-direction: column; gap: 32px; max-width: 680px; margin: 0 auto; }
+.feed-card { background: var(--card-bg); border: 1px solid var(--card-border-strong); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md); }
+.feed-card img { width: 100%; height: auto; display: block; cursor: zoom-in; }
+.feed-card-footer { padding: 12px 16px; display: flex; justify-content: space-between; border-top: 1px solid var(--card-border); background: var(--bg-secondary); font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+
+.masonry-layout { display: none; column-count: 3; column-gap: 16px; }
+.masonry-layout.active { display: block; }
+.feed-layout.hidden { display: none; }
+.masonry-item { break-inside: avoid; margin-bottom: 16px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--card-border); background: var(--bg-secondary); cursor: zoom-in; }
+.masonry-item img { width: 100%; height: auto; display: block; }
+
+.lightbox-modal { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.95); backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; padding: 20px; }
+.lightbox-modal.active { display: flex; }
+.lightbox-img-wrap { max-width: 94vw; max-height: 90vh; position: relative; }
+.lightbox-img { max-width: 100%; max-height: 88vh; border-radius: var(--radius-sm); }
+.lightbox-close { position: absolute; top: -44px; right: 0; background: transparent; border: none; color: #fff; font-size: 32px; cursor: pointer; }
+.lightbox-counter { text-align: center; font-family: var(--font-mono); font-size: 13px; color: var(--text-gold); margin-top: 10px; }
+
+@media (max-width: 768px) {
+  .masonry-layout { column-count: 2; column-gap: 10px; }
+  .hero-title { font-size: 28px; }
+}
+@media (max-width: 480px) {
+  .masonry-layout { column-count: 1; }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../../index.html" class="brand-badge">
+      <div class="brand-mark">植</div>
+      <div>
+        <div style="font-size:14px; font-weight:700;">植田正治 (Shoji Ueda)</div>
+        <div style="font-size:10px; color:var(--text-gold); font-family:var(--font-mono);">日本生活与空气感</div>
+      </div>
+    </a>
+    <div class="header-actions">
+      <button class="pill-btn" onclick="toggleTheme()">🌓 主题</button>
+      <a href="../../index.html" class="pill-btn">📋 大师清单</a>
+      <a href="https://gengyueworks.github.io/pentax67ii-manual/" class="pill-btn">📷 宾得说明书</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">🇯🇵 日本 · 1913–2000 · 日本生活与空气感</div>
+    <h1 class="hero-title">植田正治 (Shoji Ueda)</h1>
+    <div class="hero-quote">“我是个在沙丘上摆弄玩具的乡下摄影师。摄影最有趣的，就是把日常变成超现实舞台。”</div>
+    <div class="stats-bar">
+      <div class="stat-pill"><strong>代表作</strong> 《沙丘剧场》· 《童历》· 《无声的记忆》</div>
+      <div class="stat-pill"><strong>核心器材</strong> Mamiya RB67 / Rolleiflex · 中画幅胶片</div>
+      <div class="stat-pill"><strong>精选馆藏</strong> 182 幅高画质作品</div>
+    </div>
+  </div>
+</section>
+
+<div class="controls-bar">
+  <div class="container controls-inner">
+    <div style="font-size:13px; font-weight:700; color:var(--text-gold); font-family:var(--font-mono);">
+      CURATED WORKS (182P)
+    </div>
+    <div class="view-btn-group">
+      <button class="v-btn active" id="btnFeed" onclick="setView('feed')">📱 灵感流 (Feed)</button>
+      <button class="v-btn" id="btnGrid" onclick="setView('grid')">🔲 瀑布流 (Grid)</button>
+    </div>
+  </div>
+</div>
+
+<main class="container gallery-section">
+  <div class="feed-layout" id="feedContainer"></div>
+  <div class="masonry-layout" id="gridContainer"></div>
+</main>
+
+<div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+  <div class="lightbox-img-wrap" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightboxImg" class="lightbox-img" src="" alt="大图查看">
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+</div>
+
+<script>
+const IMAGES = [{"filename": "0109a6fbe4ed0ce1671faf9ede861b50.jpg", "width": 1800, "height": 1164, "aspect": 1.55}, {"filename": "011c8f449ba1a4207decd68361132842.jpg", "width": 628, "height": 700, "aspect": 0.9}, {"filename": "01888ab654eb7eaa1b33679df461949e.jpg", "width": 820, "height": 511, "aspect": 1.6}, {"filename": "04691d26abc8f463baf556ec39adfc54.jpg", "width": 1057, "height": 509, "aspect": 2.08}, {"filename": "06e3eae5092a00e1a9e4af20f50d5ed1.jpg", "width": 600, "height": 600, "aspect": 1.0}, {"filename": "0934d9663b91f8fc67831aa94ccf98fe.jpg", "width": 737, "height": 1024, "aspect": 0.72}, {"filename": "09ce18345472d9fbef97a5ab63f998b8.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "0ace4f13ec7e425f57649e37a28246f4.jpg", "width": 1200, "height": 798, "aspect": 1.5}, {"filename": "0e350e2e37497c9d0040f739affd4ff3.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "0e64a3c6faa63e6fa817948dcd12f1d6.jpg", "width": 1200, "height": 900, "aspect": 1.33}, {"filename": "0f6bfa54016946506c0f73a793405b24.jpg", "width": 1016, "height": 572, "aspect": 1.78}, {"filename": "0fe82cda438bfb93187235521f528eab.jpg", "width": 736, "height": 736, "aspect": 1.0}, {"filename": "10cfde955536cdb2ff5258a84b23a9fb.jpg", "width": 1600, "height": 1469, "aspect": 1.09}, {"filename": "12c00defd2678304a6269fb74695f8c2.jpg", "width": 640, "height": 640, "aspect": 1.0}, {"filename": "14060f6a9827ea8b1d95c5456c4d60dc.jpg", "width": 623, "height": 635, "aspect": 0.98}, {"filename": "153a4d03f2919b53c537387d2782b789.jpg", "width": 640, "height": 511, "aspect": 1.25}, {"filename": "16dd3021efe57f66989a699b1a25a43e.jpg", "width": 570, "height": 713, "aspect": 0.8}, {"filename": "1846d8973e6a121fd858bab84791c484.jpg", "width": 1620, "height": 1080, "aspect": 1.5}, {"filename": "18d53af2979dfef6acbe3d6b7efb7923.jpg", "width": 661, "height": 700, "aspect": 0.94}, {"filename": "18d777cab630fbf274bdc529eb28574c.jpg", "width": 668, "height": 700, "aspect": 0.95}, {"filename": "193f262cfad3ed66faafb45c093c1e19.jpg", "width": 640, "height": 644, "aspect": 0.99}, {"filename": "1abb0ffdbeb56dfeb70808f65142e48e.jpg", "width": 736, "height": 885, "aspect": 0.83}, {"filename": "1b28f17d7815445fd8f6f179d3bb6f1f.jpg", "width": 1300, "height": 956, "aspect": 1.36}, {"filename": "1b823f36a32a052db5971482a7005d81.jpg", "width": 1050, "height": 1021, "aspect": 1.03}, {"filename": "1c1b60652c66996f1858d5d2da018068.jpg", "width": 746, "height": 583, "aspect": 1.28}, {"filename": "1d5440b81ecf5d78b679bb486d5cb4d3.jpg", "width": 900, "height": 500, "aspect": 1.8}, {"filename": "1e82fb7b83f10af06d5147cdbf9aa127.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "1f3554ca53f944c17b384bda9f3cd7bf.jpg", "width": 1280, "height": 912, "aspect": 1.4}, {"filename": "1f6a0e9426471d048144f19b827bb5c8.jpg", "width": 1920, "height": 1527, "aspect": 1.26}, {"filename": "23b77e11d5042c3cbabb382abffd41b8.jpg", "width": 736, "height": 920, "aspect": 0.8}, {"filename": "24666b55f9de62914fbead14ec18ae97.jpg", "width": 750, "height": 753, "aspect": 1.0}, {"filename": "248f721f5fdc8a42aa80606019abb906.jpg", "width": 736, "height": 645, "aspect": 1.14}, {"filename": "2683380b3d7a9f1c2eccd4af44143d06.jpg", "width": 1080, "height": 1350, "aspect": 0.8}, {"filename": "270f7005ee426ebef8147032e3212698.jpg", "width": 640, "height": 640, "aspect": 1.0}, {"filename": "2766dd5b6e870e7245a4f48b6b4a714e.jpg", "width": 1080, "height": 1076, "aspect": 1.0}, {"filename": "282e877b5811ce78bc87f497c4039b4a.jpg", "width": 640, "height": 918, "aspect": 0.7}, {"filename": "296a16982b82485e05fe6ff506d8d537.jpg", "width": 782, "height": 800, "aspect": 0.98}, {"filename": "2b8b9ecc72d81666a6eab325874472c1.jpg", "width": 1200, "height": 1469, "aspect": 0.82}, {"filename": "2c596d321baa4de3629bafe7585b292a.jpg", "width": 600, "height": 662, "aspect": 0.91}, {"filename": "30c04a3563d4cc2de13a2f8f2d76adfe.jpg", "width": 1200, "height": 763, "aspect": 1.57}, {"filename": "32c12a0c376a2ac8d9c0f1d8da78c110.jpg", "width": 1200, "height": 800, "aspect": 1.5}, {"filename": "3313c6971d145e285c7e993cf1dc40d6.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "387c8702f329ef52161fd6a9cec45cf1.jpg", "width": 601, "height": 605, "aspect": 0.99}, {"filename": "39ca8d4f12fe268a08a99897435da72a.jpg", "width": 656, "height": 700, "aspect": 0.94}, {"filename": "3d2c39fe9d56db9c463ec3b8f8633785.jpg", "width": 1024, "height": 996, "aspect": 1.03}, {"filename": "3f6caff9517c9e8f5b7078aba19e19e7.jpg", "width": 1440, "height": 1223, "aspect": 1.18}, {"filename": "409fc7738c3270be034cd6ed7288c99d.jpg", "width": 1584, "height": 960, "aspect": 1.65}, {"filename": "4439cdf2edb23a0e9c0bba7a377e7498.jpg", "width": 600, "height": 563, "aspect": 1.07}, {"filename": "44eb7b87b85bd0a0016e356422603b5a.jpg", "width": 1200, "height": 800, "aspect": 1.5}, {"filename": "46933cb6d7d36ddda7faaa81aa771969.jpg", "width": 587, "height": 640, "aspect": 0.92}, {"filename": "47b71aa4eb1fe555a7204a37122169cc.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "481f6e20d24713a16673b8b95624281b.jpg", "width": 742, "height": 823, "aspect": 0.9}, {"filename": "48357f5734448c9460f26e96c7041a37.jpg", "width": 820, "height": 4089, "aspect": 0.2}, {"filename": "488cddb158d6665182f3c2b6859959d5.jpg", "width": 690, "height": 718, "aspect": 0.96}, {"filename": "48dbdc58a32a6f04f694caab7aaace2a.jpg", "width": 700, "height": 767, "aspect": 0.91}, {"filename": "4b37b821619331f1a66dd4cfbb0f4cfe.jpg", "width": 505, "height": 650, "aspect": 0.78}, {"filename": "4b3f1c6fa20d739bb14f6a92414a8d2e.jpg", "width": 1909, "height": 1920, "aspect": 0.99}, {"filename": "4b49bc9c2f09900ef89a7719ce1cac7f.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "4ba86f7c2a03fda21a5c7bf2ffeb504c.jpg", "width": 1300, "height": 956, "aspect": 1.36}, {"filename": "4c1d72a51911cab4e1c08c6593c0bb6e.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "4c57021e6d3e8abd7224f0d691a996e1.jpg", "width": 859, "height": 1000, "aspect": 0.86}, {"filename": "4e42eeddb67828878244efc51087928f.jpg", "width": 820, "height": 526, "aspect": 1.56}, {"filename": "4ea7d7ddd942f8817b2754864eb5b13b.jpg", "width": 1920, "height": 1887, "aspect": 1.02}, {"filename": "50f3cc0737de99ec57a29a89253502ab.jpg", "width": 1920, "height": 1080, "aspect": 1.78}, {"filename": "5194e6ff6aee0772566bb89dd2607d4c.jpg", "width": 935, "height": 1200, "aspect": 0.78}, {"filename": "51a72705cdd7950178657daaf1836cc6.jpg", "width": 1600, "height": 1469, "aspect": 1.09}, {"filename": "54bc16e22f7ab465fc0bcd051a0509e3.jpg", "width": 520, "height": 735, "aspect": 0.71}, {"filename": "569b0ca20f36825c94160cc3577b5890.jpg", "width": 2048, "height": 1629, "aspect": 1.26}, {"filename": "5713115e5a87623e30023501c5bb5ec9.jpg", "width": 586, "height": 600, "aspect": 0.98}, {"filename": "586ef011782d331708f751f509c1123c.jpg", "width": 1890, "height": 1920, "aspect": 0.98}, {"filename": "5a28565222308b660b3790ee5bb1c0c6.jpg", "width": 1500, "height": 1113, "aspect": 1.35}, {"filename": "5c66342322da4f0725fd5893fb7e4fb5.jpg", "width": 2927, "height": 1645, "aspect": 1.78}, {"filename": "5e79eda3bdcfbd604f98935f3fbe1e2f.jpg", "width": 720, "height": 1080, "aspect": 0.67}, {"filename": "6223e8fa3bb593d5728fed3a95a3ecda.jpg", "width": 628, "height": 800, "aspect": 0.79}, {"filename": "638b6c20fc3184726d3ff8b9fe686aed.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "6437b652b3d47ef25204e419283822b5.jpg", "width": 600, "height": 523, "aspect": 1.15}, {"filename": "669628e945763c17147c2d6e1c81cfea.jpg", "width": 1200, "height": 1069, "aspect": 1.12}, {"filename": "6a55eb22cc2d1bd6178eb69bcd8808c0.jpg", "width": 658, "height": 700, "aspect": 0.94}, {"filename": "6a792499bd5ffd948e7ea92869748cdb.jpg", "width": 1002, "height": 675, "aspect": 1.48}, {"filename": "6a94f05bda73c0b8893b64c25e89a9be.jpg", "width": 533, "height": 800, "aspect": 0.67}, {"filename": "6d490a7d110d91e8f6943df8f37bac3a.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "6e652b5084f74e2ff3033714277bb22f.jpg", "width": 1920, "height": 1080, "aspect": 1.78}, {"filename": "7028ae3edd91af7ee318403bade8b02a.jpg", "width": 820, "height": 544, "aspect": 1.51}, {"filename": "762fe0edcbc108215eee0d974e67fdd9.jpg", "width": 735, "height": 611, "aspect": 1.2}, {"filename": "7717de7f8c42f283243fff3d2b52f3d5.jpg", "width": 862, "height": 660, "aspect": 1.31}, {"filename": "771ba79fc075944e44c1f259056febad.jpg", "width": 866, "height": 1390, "aspect": 0.62}, {"filename": "78b865810305550d61e51bd7af9e2e14.jpg", "width": 576, "height": 800, "aspect": 0.72}, {"filename": "7a6d752d5194f03c61ecbfede96e701c.jpg", "width": 1522, "height": 1536, "aspect": 0.99}, {"filename": "7b43a0f553633f78882597bb1ef8ae88.jpg", "width": 1200, "height": 900, "aspect": 1.33}, {"filename": "7ba366b3de831ac1816905934eaae1e1.jpg", "width": 1920, "height": 1252, "aspect": 1.53}, {"filename": "7f8654f173b78cee287aad8cc22ea787.jpg", "width": 1200, "height": 900, "aspect": 1.33}, {"filename": "7fdf321adb9085c340f3b38bf68f6fb3.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "80bbda9aca2eda3ee62807ae25f7e885.jpg", "width": 1280, "height": 912, "aspect": 1.4}, {"filename": "813e4220726dc2fdf8915fdb0a131d2f.jpg", "width": 736, "height": 556, "aspect": 1.32}, {"filename": "81c787d21e973c798386cd34c4ef5a8d.jpg", "width": 576, "height": 600, "aspect": 0.96}, {"filename": "849425119bb8cce6dd55fce999127186.jpg", "width": 792, "height": 800, "aspect": 0.99}, {"filename": "84c830ff5c1bcd72bef1ded33b1e3379.jpg", "width": 4690, "height": 2638, "aspect": 1.78}, {"filename": "84d4891eec4799d101fbe72300e78e8d.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "85232cb298ce4af3a19c92bc18804d15.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "8a318351cf42d7843ad8492a27568c80.jpg", "width": 1890, "height": 1417, "aspect": 1.33}, {"filename": "8a9ccae1c5db425f14e7fe1ef0a575b3.jpg", "width": 1200, "height": 1916, "aspect": 0.63}, {"filename": "8ae8028f4338884fdd21fd898f3bfec4.jpg", "width": 820, "height": 526, "aspect": 1.56}, {"filename": "8b8514613f323b293f865977142ff472.jpg", "width": 1149, "height": 860, "aspect": 1.34}, {"filename": "8ca035e8e1d2614ee687cbd4d23d9035.jpg", "width": 800, "height": 800, "aspect": 1.0}, {"filename": "8cba01605d5c8e15f064d64c516f1897.jpg", "width": 1280, "height": 808, "aspect": 1.58}, {"filename": "9157e55f773513eea11570c975ea0130.jpg", "width": 820, "height": 777, "aspect": 1.06}, {"filename": "923e1915cb9af34e8c2a99c3d3f048f6.jpg", "width": 1440, "height": 960, "aspect": 1.5}, {"filename": "93f30f3ada8c71ff22e30824449a8930.jpg", "width": 2359, "height": 1591, "aspect": 1.48}, {"filename": "960d1d3f53a5664d08fd312450338b57.jpg", "width": 1024, "height": 746, "aspect": 1.37}, {"filename": "96320320f8efd1848487302a6976e04f.jpg", "width": 628, "height": 800, "aspect": 0.79}, {"filename": "9735ff53836e442f6085aa184e9ed862.jpg", "width": 1058, "height": 1536, "aspect": 0.69}, {"filename": "99c40990fd8dd4b3be234eb9c81a449a.jpg", "width": 800, "height": 800, "aspect": 1.0}, {"filename": "9bde3a55e1a01009a113ef5b6ae008c2.jpg", "width": 700, "height": 551, "aspect": 1.27}, {"filename": "9f078f390f7ce0496ed056cf7b9d97de.jpg", "width": 571, "height": 800, "aspect": 0.71}, {"filename": "a44371761690e87c7815a9fea574f26f.jpg", "width": 640, "height": 642, "aspect": 1.0}, {"filename": "a5f1eb07b8a432715a241d65b1563bb1.jpg", "width": 735, "height": 728, "aspect": 1.01}, {"filename": "a9ccf556813dd3cf35461daf834711af.jpg", "width": 1376, "height": 1536, "aspect": 0.9}, {"filename": "abd036c45002e198a3c8255ac8d5db30.jpg", "width": 1000, "height": 635, "aspect": 1.57}, {"filename": "ac1151d77851604e9bab7f4530c1a1a5.jpg", "width": 1920, "height": 1080, "aspect": 1.78}, {"filename": "aecde8ba18d0c0326076dc1683151ef5.jpg", "width": 1080, "height": 1080, "aspect": 1.0}, {"filename": "af21d957f943c32709a5fa2b413c74df.jpg", "width": 1016, "height": 572, "aspect": 1.78}, {"filename": "af4877594bec1292a16796282a582398.jpg", "width": 626, "height": 640, "aspect": 0.98}, {"filename": "af4cee27e1ff581fc5b2bfc078b60020.jpg", "width": 1440, "height": 960, "aspect": 1.5}, {"filename": "b068cbb2154748bb79422ddeb2e7a6a3.jpg", "width": 1920, "height": 1772, "aspect": 1.08}, {"filename": "b0782af2a6f5bc3e45891fa4fcb7412b.jpg", "width": 1676, "height": 2048, "aspect": 0.82}, {"filename": "b107110fff739e097e099563ae33f0c5.jpg", "width": 1000, "height": 514, "aspect": 1.95}, {"filename": "b7218c066f0525469fe1badc401b8c92.jpg", "width": 1200, "height": 1122, "aspect": 1.07}, {"filename": "b84a8f3bbb5d1dff485fcb7eba262c85.jpg", "width": 1440, "height": 1639, "aspect": 0.88}, {"filename": "baf171e987343ad3eb16a96dca19b041.jpg", "width": 1200, "height": 1186, "aspect": 1.01}, {"filename": "bb61ad5c05e7114dbdb6973c82764ee8.jpg", "width": 1280, "height": 1519, "aspect": 0.84}, {"filename": "bbaff8102bd853bc0bf7cb6e3275d768.jpg", "width": 1600, "height": 1469, "aspect": 1.09}, {"filename": "bc46fc8ef169af2b4e156d98c4d73b04.jpg", "width": 1500, "height": 1000, "aspect": 1.5}, {"filename": "bec39ce10073af3cbbf0f8d453c5e5cd.jpg", "width": 736, "height": 1118, "aspect": 0.66}, {"filename": "bf088ee286b412f0ddbb9bcc277e629e.jpg", "width": 1600, "height": 1469, "aspect": 1.09}, {"filename": "c457bf8a00ad788968e2ce14ca5e24a3.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "c6088459afb0ccacf8dbf3f2290603d3.jpg", "width": 1300, "height": 956, "aspect": 1.36}, {"filename": "c666015307ac86d508d1e138563bc2cf.jpg", "width": 820, "height": 524, "aspect": 1.56}, {"filename": "c77b9a9e0af783b80685c013d3e313e6.jpg", "width": 720, "height": 891, "aspect": 0.81}, {"filename": "c8c13ba18796ce9962c1a98f27b06ba9.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "c95164f65311a85f8305752bc01e6e1f.jpg", "width": 1600, "height": 1017, "aspect": 1.57}, {"filename": "ca518f2ed2d50fc5839dcad3852f9f8d.jpg", "width": 655, "height": 700, "aspect": 0.94}, {"filename": "d4e2ebd0667dee67e03111797d280b11.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "d56d8db0fdd80db51acacfc759033f43.jpg", "width": 800, "height": 600, "aspect": 1.33}, {"filename": "d6035c90e777594fd6b46c73490573dc.jpg", "width": 1200, "height": 1202, "aspect": 1.0}, {"filename": "d62703a8f1d5d4c68a234cd4609dac98.jpg", "width": 820, "height": 515, "aspect": 1.59}, {"filename": "d76067a807b0dc04299667825ca3cc49.jpg", "width": 1200, "height": 800, "aspect": 1.5}, {"filename": "d82c0dbef4bb02ab09a8f6a62d6abe83.jpg", "width": 1920, "height": 1527, "aspect": 1.26}, {"filename": "d93f04d3b9c182009c9ace79b8397004.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "d98caa2ee0e338a28c36cc1dfc2a7e46.jpg", "width": 1500, "height": 615, "aspect": 2.44}, {"filename": "daa171d2ec7b7283cad4d30d8ccf8c11.jpg", "width": 650, "height": 619, "aspect": 1.05}, {"filename": "db47bfb12acdcb1febb0abb29a29d2f9.jpg", "width": 1200, "height": 798, "aspect": 1.5}, {"filename": "de6539088b7e41dfb34c228f5516e6a9.jpg", "width": 600, "height": 577, "aspect": 1.04}, {"filename": "deb3123149c0dd5003fef5118d0e6b18.jpg", "width": 1200, "height": 800, "aspect": 1.5}, {"filename": "df20ff90c8f1fbd1dcc55a813eb52aea.jpg", "width": 1000, "height": 985, "aspect": 1.02}, {"filename": "dfef76fed98d569833643927e46f764e.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "e18bcc35eddc579a64633f82da27ec68.jpg", "width": 820, "height": 531, "aspect": 1.54}, {"filename": "e1c11430c292d7028489900ceff82a15.jpg", "width": 1500, "height": 1489, "aspect": 1.01}, {"filename": "e1d4e7c579532944970145eae7c1308b.jpg", "width": 740, "height": 540, "aspect": 1.37}, {"filename": "e42958a7d13b744c877d1912a3615cc2.jpg", "width": 1200, "height": 1296, "aspect": 0.93}, {"filename": "e517c00265d24c3272dded1b59e5844a.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "e7d76c625755bd2b621821ae5d61d092.jpg", "width": 838, "height": 559, "aspect": 1.5}, {"filename": "e8b2931eeb527eb8916db2931ce68f92.jpg", "width": 600, "height": 508, "aspect": 1.18}, {"filename": "e8cc1b876358a8caa04cafe1cb731f2c.jpg", "width": 1500, "height": 933, "aspect": 1.61}, {"filename": "ea31f5b6cded7fdd60e84e49ce259f88.jpg", "width": 1600, "height": 1469, "aspect": 1.09}, {"filename": "eaaf6f06d5dc43a1b68dd44660cfba7d.jpg", "width": 500, "height": 666, "aspect": 0.75}, {"filename": "eb98a5c025e16114e78e6edb09aa4d45.jpg", "width": 1520, "height": 1600, "aspect": 0.95}, {"filename": "ec4f313644ba4d7ee615219eadc3975c.jpg", "width": 1600, "height": 1062, "aspect": 1.51}, {"filename": "ecaa5feb958d5fd52e185c99b0bc9c4e.jpg", "width": 736, "height": 534, "aspect": 1.38}, {"filename": "edb75273e12b17cd69f9785d4782c5bc.jpg", "width": 1000, "height": 868, "aspect": 1.15}, {"filename": "ee5c59172f5c133b26f9b2ef543e2e15.jpg", "width": 655, "height": 540, "aspect": 1.21}, {"filename": "f1ca5cd8a9700783735a386975fbcd37.jpg", "width": 625, "height": 640, "aspect": 0.98}, {"filename": "f23b5ea84678adf141bb16021dc11fd1.jpg", "width": 736, "height": 902, "aspect": 0.82}, {"filename": "f2e6ed3cb3b67b7789ab07b66bb3add5.jpg", "width": 561, "height": 600, "aspect": 0.94}, {"filename": "f4433770dc899b70013396cdf6541924.jpg", "width": 1200, "height": 840, "aspect": 1.43}, {"filename": "f4fc1cba1543f6bc672efc59609101df.jpg", "width": 1200, "height": 1105, "aspect": 1.09}, {"filename": "f7cc0d2bfbb384c65cb208fb1f2411f9.jpg", "width": 500, "height": 750, "aspect": 0.67}, {"filename": "fac86c1133f48e218f786f298e415836.jpg", "width": 1200, "height": 798, "aspect": 1.5}, {"filename": "fb1fd5432f656989bc9ab81ea14163af.jpg", "width": 700, "height": 681, "aspect": 1.03}, {"filename": "fbaf46e1da1ded367b9aea1536273c36.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "fd26340a1dd53e79e185670e28ae09c8.jpg", "width": 800, "height": 532, "aspect": 1.5}, {"filename": "ff368f5bcd5054539901079fa7950695.jpg", "width": 850, "height": 850, "aspect": 1.0}, {"filename": "ff511b78f7d8e8d2275ca24c0384990f.jpg", "width": 1280, "height": 720, "aspect": 1.78}];
+let activeIdx = 0;
+
+function render() {
+  const feed = document.getElementById('feedContainer');
+  const grid = document.getElementById('gridContainer');
+  feed.innerHTML = ''; grid.innerHTML = '';
+  
+  IMAGES.forEach((item, idx) => {
+    const fc = document.createElement('article');
+    fc.className = 'feed-card';
+    fc.innerHTML = `
+      <img src="images/${item.filename}" alt="作品" loading="lazy" onclick="openLight(${idx})">
+      <div class="feed-card-footer">
+        <span># 植田正治 作品</span>
+        <span>${item.width}×${item.height}</span>
+      </div>
+    `;
+    feed.appendChild(fc);
+    
+    const mi = document.createElement('div');
+    mi.className = 'masonry-item';
+    mi.innerHTML = `<img src="images/${item.filename}" alt="作品" loading="lazy" onclick="openLight(${idx})">`;
+    grid.appendChild(mi);
+  });
+}
+
+function setView(mode) {
+  const feed = document.getElementById('feedContainer');
+  const grid = document.getElementById('gridContainer');
+  document.getElementById('btnFeed').classList.toggle('active', mode === 'feed');
+  document.getElementById('btnGrid').classList.toggle('active', mode === 'grid');
+  if (mode === 'feed') {
+    feed.classList.remove('hidden'); grid.classList.remove('active');
+  } else {
+    feed.classList.add('hidden'); grid.classList.add('active');
+  }
+}
+
+function openLight(idx) {
+  activeIdx = idx;
+  document.getElementById('lightboxImg').src = 'images/' + IMAGES[idx].filename;
+  document.getElementById('lightboxCounter').textContent = `${idx + 1} / ${IMAGES.length} · 植田正治`;
+  document.getElementById('lightboxModal').classList.add('active');
+}
+function closeLightbox() { document.getElementById('lightboxModal').classList.remove('active'); }
+function nextLight() { openLight((activeIdx + 1) % IMAGES.length); }
+function prevLight() { openLight((activeIdx - 1 + IMAGES.length) % IMAGES.length); }
+
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'paper';
+  const next = cur === 'dark' ? 'paper' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('master_theme', next);
+}
+
+window.addEventListener('keydown', (e) => {
+  const m = document.getElementById('lightboxModal');
+  if (m.classList.contains('active')) {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight' || e.key === ' ') nextLight();
+    if (e.key === 'ArrowLeft') prevLight();
+  }
+});
+
+let touchStartX = 0;
+document.getElementById('lightboxModal').addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+document.getElementById('lightboxModal').addEventListener('touchend', (e) => {
+  const diff = e.changedTouches[0].screenX - touchStartX;
+  if (diff < -40) nextLight();
+  if (diff > 40) prevLight();
+}, { passive: true });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('master_theme') || 'paper';
+  document.documentElement.setAttribute('data-theme', saved);
+  render();
+});
+</script>
+</body>
+</html>

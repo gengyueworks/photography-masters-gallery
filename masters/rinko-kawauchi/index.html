@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="paper">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>川内伦子 (Rinko Kawauchi) · 摄影作品集与胶片灵感档案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-primary: #fbf9f5; --bg-secondary: #f3efe6; --bg-tertiary: #e8e2d5;
+  --card-bg: #ffffff; --card-border: rgba(0, 0, 0, 0.08); --card-border-strong: rgba(0, 0, 0, 0.16);
+  --text-primary: #18181b; --text-secondary: #4b5563; --text-muted: #6b7280; --text-gold: #b45309;
+  --accent-gold: #b45309; --accent-gold-bg: rgba(180, 83, 9, 0.08);
+  --font-serif: "Cinzel", "Newsreader", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, sans-serif;
+  --font-mono: "Space Grotesk", monospace;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05); --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.06);
+  --radius-sm: 6px; --radius-md: 10px;
+}
+[data-theme="dark"] {
+  --bg-primary: #0f1013; --bg-secondary: #16181e; --bg-tertiary: #20232b;
+  --card-bg: #181a20; --card-border: rgba(255, 255, 255, 0.09); --card-border-strong: rgba(255, 255, 255, 0.18);
+  --text-primary: #f4f4f5; --text-secondary: #9ca3af; --text-muted: #6b7280; --text-gold: #eab308;
+  --accent-gold: #eab308; --accent-gold-bg: rgba(234, 179, 8, 0.12);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.5);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-body); background: var(--bg-primary); color: var(--text-primary); line-height: 1.75; -webkit-font-smoothing: antialiased; }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+.site-header { position: sticky; top: 0; z-index: 100; background: rgba(251,249,245,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--card-border); }
+[data-theme="dark"] .site-header { background: rgba(15,16,19,0.9); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.brand-badge { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); }
+.brand-mark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent-gold), #9a6700); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 700; font-size: 13px; color: #fff; }
+.header-actions { display: flex; align-items: center; gap: 10px; }
+
+.pill-btn { background: var(--bg-secondary); border: 1px solid var(--card-border-strong); color: var(--text-primary); padding: 6px 14px; border-radius: 20px; cursor: pointer; text-decoration: none; font-size: 13px; font-family: var(--font-mono); display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+.pill-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+.hero { padding: 50px 0 32px; text-align: center; border-bottom: 1px solid var(--card-border); }
+.hero-tag { display: inline-block; padding: 4px 14px; background: var(--accent-gold-bg); border: 1px solid var(--card-border); border-radius: 20px; font-family: var(--font-mono); font-size: 11px; color: var(--text-gold); font-weight: 700; margin-bottom: 14px; }
+.hero-title { font-family: var(--font-serif); font-size: clamp(30px, 4.5vw, 48px); font-weight: 700; margin-bottom: 12px; }
+.hero-quote { max-width: 680px; margin: 0 auto 24px; font-size: 15px; color: var(--text-secondary); line-height: 1.8; font-style: italic; background: var(--bg-secondary); padding: 16px 20px; border-radius: var(--radius-md); border-left: 3px solid var(--accent-gold); }
+
+.stats-bar { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+.stat-pill { background: var(--bg-secondary); border: 1px solid var(--card-border); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-family: var(--font-mono); color: var(--text-secondary); }
+.stat-pill strong { color: var(--text-primary); }
+
+.controls-bar { position: sticky; top: 60px; z-index: 90; background: rgba(251,249,245,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--card-border); padding: 10px 0; }
+[data-theme="dark"] .controls-bar { background: rgba(15,16,19,0.95); }
+.controls-inner { display: flex; align-items: center; justify-content: space-between; }
+.view-btn-group { display: flex; gap: 4px; background: var(--bg-secondary); padding: 3px; border-radius: 8px; border: 1px solid var(--card-border); }
+.v-btn { background: transparent; border: none; padding: 4px 10px; border-radius: 6px; font-size: 12px; cursor: pointer; color: var(--text-secondary); font-weight: 600; }
+.v-btn.active { background: var(--card-bg); color: var(--text-gold); box-shadow: var(--shadow-sm); }
+
+.gallery-section { padding: 32px 0 80px; }
+.feed-layout { display: flex; flex-direction: column; gap: 32px; max-width: 680px; margin: 0 auto; }
+.feed-card { background: var(--card-bg); border: 1px solid var(--card-border-strong); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md); }
+.feed-card img { width: 100%; height: auto; display: block; cursor: zoom-in; }
+.feed-card-footer { padding: 12px 16px; display: flex; justify-content: space-between; border-top: 1px solid var(--card-border); background: var(--bg-secondary); font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+
+.masonry-layout { display: none; column-count: 3; column-gap: 16px; }
+.masonry-layout.active { display: block; }
+.feed-layout.hidden { display: none; }
+.masonry-item { break-inside: avoid; margin-bottom: 16px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--card-border); background: var(--bg-secondary); cursor: zoom-in; }
+.masonry-item img { width: 100%; height: auto; display: block; }
+
+.lightbox-modal { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.95); backdrop-filter: blur(12px); display: none; align-items: center; justify-content: center; padding: 20px; }
+.lightbox-modal.active { display: flex; }
+.lightbox-img-wrap { max-width: 94vw; max-height: 90vh; position: relative; }
+.lightbox-img { max-width: 100%; max-height: 88vh; border-radius: var(--radius-sm); }
+.lightbox-close { position: absolute; top: -44px; right: 0; background: transparent; border: none; color: #fff; font-size: 32px; cursor: pointer; }
+.lightbox-counter { text-align: center; font-family: var(--font-mono); font-size: 13px; color: var(--text-gold); margin-top: 10px; }
+
+@media (max-width: 768px) {
+  .masonry-layout { column-count: 2; column-gap: 10px; }
+  .hero-title { font-size: 28px; }
+}
+@media (max-width: 480px) {
+  .masonry-layout { column-count: 1; }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="../../index.html" class="brand-badge">
+      <div class="brand-mark">川</div>
+      <div>
+        <div style="font-size:14px; font-weight:700;">川内伦子 (Rinko Kawauchi)</div>
+        <div style="font-size:10px; color:var(--text-gold); font-family:var(--font-mono);">日本生活与空气感</div>
+      </div>
+    </a>
+    <div class="header-actions">
+      <button class="pill-btn" onclick="toggleTheme()">🌓 主题</button>
+      <a href="../../index.html" class="pill-btn">📋 大师清单</a>
+      <a href="https://gengyueworks.github.io/pentax67ii-manual/" class="pill-btn">📷 宾得说明书</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">🇯🇵 日本 · 1972– · 日本生活与空气感</div>
+    <h1 class="hero-title">川内伦子 (Rinko Kawauchi)</h1>
+    <div class="hero-quote">“我喜欢那些闪烁着微弱光芒、容易被人忽略的瞬间，那是生命在安静呼吸的声音。”</div>
+    <div class="stats-bar">
+      <div class="stat-pill"><strong>代表作</strong> 《花火》· 《翠玉》· 《照度 AILA》</div>
+      <div class="stat-pill"><strong>核心器材</strong> Rolleiflex 2.8F · 6×6 中画幅 · 120 彩负</div>
+      <div class="stat-pill"><strong>精选馆藏</strong> 77 幅高画质作品</div>
+    </div>
+  </div>
+</section>
+
+<div class="controls-bar">
+  <div class="container controls-inner">
+    <div style="font-size:13px; font-weight:700; color:var(--text-gold); font-family:var(--font-mono);">
+      CURATED WORKS (77P)
+    </div>
+    <div class="view-btn-group">
+      <button class="v-btn active" id="btnFeed" onclick="setView('feed')">📱 灵感流 (Feed)</button>
+      <button class="v-btn" id="btnGrid" onclick="setView('grid')">🔲 瀑布流 (Grid)</button>
+    </div>
+  </div>
+</div>
+
+<main class="container gallery-section">
+  <div class="feed-layout" id="feedContainer"></div>
+  <div class="masonry-layout" id="gridContainer"></div>
+</main>
+
+<div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+  <div class="lightbox-img-wrap" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightboxImg" class="lightbox-img" src="" alt="大图查看">
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+</div>
+
+<script>
+const IMAGES = [{"filename": "0199564b77f2e22c409ce10eb7312fcc.jpg", "width": 720, "height": 720, "aspect": 1.0}, {"filename": "01d57f6a8a3c9f5f61d99cb7c0284a5c.jpg", "width": 1080, "height": 1080, "aspect": 1.0}, {"filename": "0384feb9afbedbbef6f97449361d3a30.jpg", "width": 640, "height": 580, "aspect": 1.1}, {"filename": "066de2ff891675369e0555baf0afc5dd.jpg", "width": 690, "height": 4128, "aspect": 0.17}, {"filename": "06a4a2b9fa65debce29f31c2508b6919.jpg", "width": 2000, "height": 1378, "aspect": 1.45}, {"filename": "06d829ad72e2efcc4f56750d8c952da6.jpg", "width": 600, "height": 2386, "aspect": 0.25}, {"filename": "06e9140320857d413d095e99bfcfc22f.jpg", "width": 700, "height": 934, "aspect": 0.75}, {"filename": "0711be320619c59a5a22357d0bddb3d3.jpg", "width": 690, "height": 4127, "aspect": 0.17}, {"filename": "07c3d91e9dc3dd26fef7c75f6a9bb909.jpg", "width": 600, "height": 600, "aspect": 1.0}, {"filename": "0d7c745b67790dc6ab241f74cf1a9831.jpg", "width": 1059, "height": 1056, "aspect": 1.0}, {"filename": "14ddd83cd370dd5b7f1c57cbbc00094e.jpg", "width": 1200, "height": 1200, "aspect": 1.0}, {"filename": "19fb2f2c8a0a14c88d0d5e194684696c.jpg", "width": 1440, "height": 1443, "aspect": 1.0}, {"filename": "1fc5404674a3824672ba10a213e90bd5.jpg", "width": 2000, "height": 1378, "aspect": 1.45}, {"filename": "257411825066a80963f0106fa1bfea79.jpg", "width": 1080, "height": 1080, "aspect": 1.0}, {"filename": "25d126baaf8c275f96148aff8c381b81.jpg", "width": 600, "height": 600, "aspect": 1.0}, {"filename": "28b3e7fa857c2de5fd87693ce2b2ff6c.jpg", "width": 1280, "height": 720, "aspect": 1.78}, {"filename": "2c66367dbf2a7993f8129a8bde80674f.jpg", "width": 1630, "height": 1630, "aspect": 1.0}, {"filename": "386852625780108435dcbd0f9aeaf4c4.jpg", "width": 750, "height": 3610, "aspect": 0.21}, {"filename": "410c6987c19e3aabb2010a49eb16949c.jpg", "width": 2000, "height": 1378, "aspect": 1.45}, {"filename": "498e22bc6cd61b78f39a77cc4d941f82.jpg", "width": 1536, "height": 1024, "aspect": 1.5}, {"filename": "499b80fafceca0b42e799faeb54cee41.jpg", "width": 600, "height": 613, "aspect": 0.98}, {"filename": "4a8b806104b00014fc5d7c414a374b5a.jpg", "width": 2000, "height": 1378, "aspect": 1.45}, {"filename": "4bc2236bf90f0c076ada9b663ef6f6ae.jpg", "width": 554, "height": 609, "aspect": 0.91}, {"filename": "52e8f8965c3a6b36f391ba2501907bc5.jpg", "width": 595, "height": 600, "aspect": 0.99}, {"filename": "56b8ee65a8757528120656d834fc36cf.jpg", "width": 1134, "height": 1134, "aspect": 1.0}, {"filename": "56dc495a8c5106bfd5cb232678cb9aff.jpg", "width": 710, "height": 634, "aspect": 1.12}, {"filename": "58d423db08897851b6333462d849bb3f.jpg", "width": 640, "height": 502, "aspect": 1.27}, {"filename": "5c6a653d35d9b190fa071c995b794207.jpg", "width": 640, "height": 632, "aspect": 1.01}, {"filename": "5d558a06e05590956f6da8e1cba7822c.jpg", "width": 1080, "height": 1080, "aspect": 1.0}, {"filename": "602fc5b74cc867d1ad434336f1c6e4e1.jpg", "width": 607, "height": 600, "aspect": 1.01}, {"filename": "69cba58571cc7ec6685867d9c20e0e34.jpg", "width": 2000, "height": 1378, "aspect": 1.45}, {"filename": "6be12be49082a9a1baed7ca0193b68ae.jpg", "width": 2000, "height": 1378, "aspect": 1.45}, {"filename": "6fb924dc0e9b2f1433b22e0b83aaa5ba.jpg", "width": 690, "height": 3210, "aspect": 0.21}, {"filename": "72209fcb22541aadaf3a2f53e0c55785.jpg", "width": 1024, "height": 1159, "aspect": 0.88}, {"filename": "731d03e96294d4ae0848c9278d21054b.jpg", "width": 2000, "height": 1378, "aspect": 1.45}, {"filename": "75a688679124992929800004f7313656.jpg", "width": 2048, "height": 1363, "aspect": 1.5}, {"filename": "773cf53dc8d9032e22df7e5ec875808d.webp", "width": 800, "height": 800, "aspect": 1.0}, {"filename": "788ea76122260fe03317028809fd3132.jpg", "width": 600, "height": 593, "aspect": 1.01}, {"filename": "7934051fac9b5f02db362cda1020d85d.jpg", "width": 690, "height": 2758, "aspect": 0.25}, {"filename": "7a8bdcbc66f954d0807b27641d9f3bfd.jpg", "width": 690, "height": 4141, "aspect": 0.17}, {"filename": "85593c6032a10a57772880abd08eb59b.jpg", "width": 690, "height": 4144, "aspect": 0.17}, {"filename": "856d22a5aaf4f2a817ed6ea4ba855bbf.jpg", "width": 750, "height": 5178, "aspect": 0.14}, {"filename": "8e101799735f00e616af9de4ab7a3e3f.jpg", "width": 2200, "height": 1580, "aspect": 1.39}, {"filename": "8e77ad21a872fffa3d27f9dab87b25b2.jpg", "width": 700, "height": 700, "aspect": 1.0}, {"filename": "91f2126d8a766389f15e5d070c5ded0a.jpg", "width": 600, "height": 600, "aspect": 1.0}, {"filename": "970a6031d4c3f10c5d69324974104cb8.jpg", "width": 750, "height": 2244, "aspect": 0.33}, {"filename": "99eb1d431c7141d0dc07fb1a662afd45.jpg", "width": 1048, "height": 1572, "aspect": 0.67}, {"filename": "9e43757f81108ad79c0003baf5102070.jpg", "width": 2200, "height": 2200, "aspect": 1.0}, {"filename": "9ed29944aa26e210ac770924899321d6.jpg", "width": 750, "height": 2304, "aspect": 0.33}, {"filename": "a80271b1db3be3ef2970d2d5dcfe5fa0.jpg", "width": 640, "height": 643, "aspect": 1.0}, {"filename": "a94e99a3749e87fa111e1120865e4c50.jpg", "width": 1080, "height": 1095, "aspect": 0.99}, {"filename": "aa806814a70e810d8a9a5450a20140de.jpg", "width": 1200, "height": 1199, "aspect": 1.0}, {"filename": "ab7320d2c6f08e868d092b583a9c43cc.jpg", "width": 600, "height": 600, "aspect": 1.0}, {"filename": "aba353dab823b1b4280c4135fa9a0031.jpg", "width": 600, "height": 588, "aspect": 1.02}, {"filename": "b1949d70e1e9b4dcb58a9b046ebf09ca.jpg", "width": 690, "height": 4168, "aspect": 0.17}, {"filename": "b24ff952c5111f8eb7da3d149c118b9a.jpg", "width": 2000, "height": 1378, "aspect": 1.45}, {"filename": "b5ba142e482e1227448fae21b71869f9.jpg", "width": 1200, "height": 1210, "aspect": 0.99}, {"filename": "bd16d13b06567d7dc2309f544a5f4a74.jpg", "width": 1300, "height": 1300, "aspect": 1.0}, {"filename": "c68100e158a51a93a3d84bc1b4d03609.jpg", "width": 690, "height": 677, "aspect": 1.02}, {"filename": "ca4c578b35e6c541f0c4f3cb5f4b1640.jpg", "width": 650, "height": 507, "aspect": 1.28}, {"filename": "cde7edf60e7e889b609221fde9cdf606.png", "width": 910, "height": 907, "aspect": 1.0}, {"filename": "ce9753d40b998a6404f0822cfb8b573d.jpg", "width": 690, "height": 695, "aspect": 0.99}, {"filename": "d0c13c75dd4655f0f7a69fe5835426b0.jpg", "width": 640, "height": 503, "aspect": 1.27}, {"filename": "db51a4caa877db4f55e4abba5eeb8b23.jpg", "width": 509, "height": 500, "aspect": 1.02}, {"filename": "de6f59e8491ba62c1d5b6371d4b68024.jpg", "width": 906, "height": 1200, "aspect": 0.76}, {"filename": "e1630a8f78825ffbb5e3d6bd268c11d3.jpg", "width": 700, "height": 699, "aspect": 1.0}, {"filename": "e27e2a394b3c875c76d1610ed50e0daa.jpg", "width": 600, "height": 600, "aspect": 1.0}, {"filename": "ea0041f762234bba42bd92c278fca43c.jpg", "width": 640, "height": 645, "aspect": 0.99}, {"filename": "ea391848c9494360b7391e34f4fd7528.png", "width": 600, "height": 600, "aspect": 1.0}, {"filename": "eaece0590b939b8bbea280b7c37d5041.webp", "width": 820, "height": 1094, "aspect": 0.75}, {"filename": "edd06d9d27df46d5256e192cc16f243b.jpg", "width": 550, "height": 609, "aspect": 0.9}, {"filename": "ef0158b2983ede2adcfa52882f5bd869.jpg", "width": 2200, "height": 2200, "aspect": 1.0}, {"filename": "f005ef1d5a2078b4f64be1b2382dd2d4.jpg", "width": 600, "height": 600, "aspect": 1.0}, {"filename": "f1051f10971faed32822fa0424e34fe6.jpg", "width": 690, "height": 2747, "aspect": 0.25}, {"filename": "f28237471fac18d413ea96d91b485697.jpg", "width": 1080, "height": 1080, "aspect": 1.0}, {"filename": "f2bb9a213c255858416a9e474765732a.jpg", "width": 2048, "height": 1363, "aspect": 1.5}, {"filename": "f405c01ad95803a01c850d19757ee748.jpg", "width": 700, "height": 728, "aspect": 0.96}];
+let activeIdx = 0;
+
+function render() {
+  const feed = document.getElementById('feedContainer');
+  const grid = document.getElementById('gridContainer');
+  feed.innerHTML = ''; grid.innerHTML = '';
+  
+  IMAGES.forEach((item, idx) => {
+    const fc = document.createElement('article');
+    fc.className = 'feed-card';
+    fc.innerHTML = `
+      <img src="images/${item.filename}" alt="作品" loading="lazy" onclick="openLight(${idx})">
+      <div class="feed-card-footer">
+        <span># 川内伦子 作品</span>
+        <span>${item.width}×${item.height}</span>
+      </div>
+    `;
+    feed.appendChild(fc);
+    
+    const mi = document.createElement('div');
+    mi.className = 'masonry-item';
+    mi.innerHTML = `<img src="images/${item.filename}" alt="作品" loading="lazy" onclick="openLight(${idx})">`;
+    grid.appendChild(mi);
+  });
+}
+
+function setView(mode) {
+  const feed = document.getElementById('feedContainer');
+  const grid = document.getElementById('gridContainer');
+  document.getElementById('btnFeed').classList.toggle('active', mode === 'feed');
+  document.getElementById('btnGrid').classList.toggle('active', mode === 'grid');
+  if (mode === 'feed') {
+    feed.classList.remove('hidden'); grid.classList.remove('active');
+  } else {
+    feed.classList.add('hidden'); grid.classList.add('active');
+  }
+}
+
+function openLight(idx) {
+  activeIdx = idx;
+  document.getElementById('lightboxImg').src = 'images/' + IMAGES[idx].filename;
+  document.getElementById('lightboxCounter').textContent = `${idx + 1} / ${IMAGES.length} · 川内伦子`;
+  document.getElementById('lightboxModal').classList.add('active');
+}
+function closeLightbox() { document.getElementById('lightboxModal').classList.remove('active'); }
+function nextLight() { openLight((activeIdx + 1) % IMAGES.length); }
+function prevLight() { openLight((activeIdx - 1 + IMAGES.length) % IMAGES.length); }
+
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme') || 'paper';
+  const next = cur === 'dark' ? 'paper' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('master_theme', next);
+}
+
+window.addEventListener('keydown', (e) => {
+  const m = document.getElementById('lightboxModal');
+  if (m.classList.contains('active')) {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight' || e.key === ' ') nextLight();
+    if (e.key === 'ArrowLeft') prevLight();
+  }
+});
+
+let touchStartX = 0;
+document.getElementById('lightboxModal').addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+document.getElementById('lightboxModal').addEventListener('touchend', (e) => {
+  const diff = e.changedTouches[0].screenX - touchStartX;
+  if (diff < -40) nextLight();
+  if (diff > 40) prevLight();
+}, { passive: true });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('master_theme') || 'paper';
+  document.documentElement.setAttribute('data-theme', saved);
+  render();
+});
+</script>
+</body>
+</html>
