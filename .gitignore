@@ -1,7 +1,5 @@
-# 图片数据不上传 GitHub（本地 6.3G，超过 GitHub 免费版限制）
-# 图片是本地数据资产，代码/文档/进度在 GitHub 维护
-*/images/
-images/
+# 忽略全量 6.3G 大库，仅允许精选 masters/ 资产
+/photographers/
 daily_progress.log
 daily_error.log
 .DS_Store
