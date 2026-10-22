@@ -29,3 +29,8 @@ Traceback (most recent call last):
     already = set(os.listdir(PHOTOS))
                   ^^^^^^^^^^^^^^^^^^
 FileNotFoundError: [Errno 2] No such file or directory: '/Volumes/拓展坞 1T2022/2 Codex-Workspace/Codex-Workspace-Main/32-AI高质量阅读库/摄影大师画廊/photographers'
+Traceback (most recent call last):
+  File "/Volumes/拓展坞 1T2022/2 Codex-Workspace/Codex-Workspace-Main/32-AI高质量阅读库/摄影大师画廊/auto_add.py", line 255, in <module>
+    already = set(os.listdir(PHOTOS))
+                  ^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Volumes/拓展坞 1T2022/2 Codex-Workspace/Codex-Workspace-Main/32-AI高质量阅读库/摄影大师画廊/photographers'
